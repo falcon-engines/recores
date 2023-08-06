@@ -11,6 +11,7 @@ github_push_engine_repo () {
 
 # Update website repository
 github_push_content_repo() {
+    cd ../;
     cd public ;
     git pull ;
     cd ..;
@@ -24,20 +25,13 @@ github_push_content_repo() {
     echo "Falcon web content is update";
 }
 
-# library Update to github
-github_remote_update() { 
-    git pull ;
-    git add  . ;
-    git commit -m "library-update";
-    git push;
-    cd ../.. ;
-}
+
 
 # Update based theme repository
 github_push_themes_based() {
     if [ -d "themes/based" ]; then
         cd themes/based/ ;
-        github_remote_update;
+        github_push_remote_update;
         echo "Falcon based themes is update";
     fi
 }
@@ -46,7 +40,7 @@ github_push_themes_based() {
 github_push_themes_marbel() {
     if [ -d "themes/marbel" ]; then
         cd themes/marbel/ ;
-        github_remote_update;
+        github_push_remote_update;
         cd ../.. ;
         echo "Falcon marbel themes is update";
     fi
@@ -56,7 +50,7 @@ github_push_themes_marbel() {
 github_push_plugins_project() {
     if [ -d "themes/project" ]; then
         cd themes/project/ ;
-        github_remote_update;
+        github_push_remote_update;
         echo "Falcon project plugins is update";
     fi
 }
@@ -65,7 +59,7 @@ github_push_plugins_project() {
 github_push_plugins_blocks() {
     if [ -d "themes/blocks" ]; then
         cd themes/blocks/ ;
-        github_remote_update;
+        github_push_remote_update;
         echo "Falcon blocks plugins is update";
     fi
 }
@@ -74,7 +68,7 @@ github_push_plugins_blocks() {
 github_push_plugins_users() {
     if [ -d "themes/users" ]; then
         cd themes/users;
-        github_remote_update;
+        github_push_remote_update;
         echo "Falcon users plugin is update";
     fi
 }
@@ -83,7 +77,7 @@ github_push_plugins_users() {
 github_push_plugins_course() {
     if [ -d "themes/course" ]; then
         cd themes/course;
-        github_remote_update;
+        github_push_remote_update;
         echo "Falcon course plugin is update";
     fi
 }
@@ -92,7 +86,7 @@ github_push_plugins_course() {
 github_push_plugins_news() {
     if [ -d "themes/news" ]; then
         cd themes/news;
-        github_remote_update;
+        github_push_remote_update;
         echo "Falcon course plugin is update" ;
     fi
 }
@@ -101,7 +95,7 @@ github_push_plugins_news() {
 github_push_plugins_report() {
     if [ -d "themes/report" ]; then
         cd themes/report ;
-        github_remote_update ;
+        github_push_remote_update ;
         echo "Falcon report plugin is update";
     fi
 }
@@ -110,7 +104,7 @@ github_push_plugins_report() {
 github_push_plugins_event() {
     if [ -d "themes/event" ]; then
         cd themes/event ;
-        github_remote_update ;
+        github_push_remote_update ;
         echo "Falcon event plugin is update" ;
     fi
 }
@@ -119,7 +113,7 @@ github_push_plugins_event() {
 github_push_plugins_tutorial() {
     if [ -d "themes/howto" ]; then
         cd themes/howto ;
-        github_remote_update ;
+        github_push_remote_update ;
         echo "Falcon tutorial plugin is update" ;
     fi
 }
@@ -128,7 +122,7 @@ github_push_plugins_tutorial() {
 github_push_plugins_documentation() {
     if [ -d "themes/docus" ]; then
         cd themes/docus ;
-        github_remote_update ;
+        github_push_remote_update ;
         echo "Falcon tutorial plugin is update" ;
     fi
 }
