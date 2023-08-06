@@ -45,8 +45,6 @@ Action option available, please select bellow by used this number:
     4. Pull all from Github
 ";
 }
-
-
 function rofal_action() {
 
     read -p "insert your action number : " ACTION;
@@ -68,13 +66,17 @@ function rofal_action() {
         github_pull_all;
     fi
     clear;
-    rofal_init;
+    rofal_main;
+}
+
+function rofal_main() {
+    rofal_banner;
+    rofal_option;
+    rofal_action;
 }
 
 
 function rofal_init() {
-    rofal_banner;
-    rofal_option;
-    rofal_action;
+    rofal_main;
 }
 rofal_init;
