@@ -53,6 +53,7 @@ function github_push_themes_marbel() {
 
 # Update admin module repository
 function github_push_module_admin() {
+    echo $PWD
     if [ -d "admin" ]; then
         cd admin ;
         github_push_remote_update;
