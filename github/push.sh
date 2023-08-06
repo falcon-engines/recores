@@ -32,7 +32,6 @@ function github_push_themes_based() {
     if [ -d "themes/based" ]; then
         cd themes/based/ ;
         github_push_remote_update;
-        cd ../.. ;
         echo "Falcon based themes is update";
     fi
 }
@@ -43,7 +42,6 @@ function github_push_themes_marbel() {
     if [ -d "themes/marbel" ]; then
         cd themes/marbel/ ;
         github_push_remote_update;
-        cd ../.. ;
         echo "Falcon marbel themes is update";
     fi
 }
