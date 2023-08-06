@@ -4,7 +4,6 @@
 function github_push_all_module() {
     github_push_engine_repo;
     github_push_content_repo;
-    github_remote_update;
     github_push_themes_based;
     github_push_themes_marbel;
     github_push_plugins_project;
