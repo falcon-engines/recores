@@ -68,6 +68,7 @@ function rofal_action() {
         github_pull_all;
     fi
     clear;
+    rofal_init;
 }
 
 
