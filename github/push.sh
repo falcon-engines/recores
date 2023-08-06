@@ -59,6 +59,7 @@ function github_push_module_admin() {
         git add  . ;
         git commit -m "data-update";
         git push;
+        cd .. ;
         echo "Falcon admin module is update";
     fi
 }
