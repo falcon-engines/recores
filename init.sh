@@ -22,8 +22,8 @@ clear;
 echo "
 --------------------------------------------------------------+
 |                                                             |      
-|   ROFAL - ROZARD FALCON PMS                                 |          
-|   Swiss Army Knife For Public Data Management System        |
+|   ROFAL - ROZARD FALCON DMS                                 |          
+|   Swiss Army Knife For Data Management System ( Public )    |
 |                                                             |
 |-------------------------------------------------------------|
 |   Controller | Command line interface                       |  
@@ -43,14 +43,15 @@ Action option available, please select bellow by used this number:
 
     1. Push all to Github
     2. Pull all from Github
-
 ";
 }
 
 
 
 function rofal_action() {
+
     read -p "insert your action number : " ACTION;
+
     if [ $ACTION == 1 ]; then
         rofal_banner;
         github_push_all;
@@ -59,6 +60,8 @@ function rofal_action() {
         rofal_banner;
         github_pull_all;
     fi
+
+    clear;
 }
 
 
