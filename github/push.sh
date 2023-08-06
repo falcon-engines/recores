@@ -63,6 +63,7 @@ function github_push_module_admin() {
 
 # Update based module repository
 function github_push_module_based() {
+    echo $PWD
     if [ -d "themes/based" ]; then
         cd themes/based/ ;
         github_push_remote_update;
