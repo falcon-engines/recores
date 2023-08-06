@@ -29,7 +29,6 @@ function github_push_content_repo() {
 
 # Update based theme repository
 function github_push_themes_based() {
-    cd ../;
     if [ -d "themes/based" ]; then
         cd themes/based/ ;
         github_push_remote_update;
@@ -40,7 +39,6 @@ function github_push_themes_based() {
 
 # Update marbel theme repository
 function github_push_themes_marbel() {
-    cd ../;
     if [ -d "themes/marbel" ]; then
         cd themes/marbel/ ;
         github_push_remote_update;
