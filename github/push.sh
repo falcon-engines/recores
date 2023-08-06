@@ -55,8 +55,10 @@ function github_push_module_admin() {
     echo $PWD
     if [ -d "admin" ]; then
         cd admin ;
-        github_push_remote_update;
-        cd ..;
+        git pull ;
+        git add  . ;
+        git commit -m "data-update";
+        git push;
         echo "Falcon admin module is update";
     fi
 }
