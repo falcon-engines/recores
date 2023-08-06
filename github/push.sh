@@ -39,6 +39,7 @@ function github_push_themes_based() {
 
 # Update marbel theme repository
 function github_push_themes_marbel() {
+    echo $PWD
     if [ -d "themes/marbel" ]; then
         cd themes/marbel/ ;
         github_push_remote_update;
@@ -49,6 +50,7 @@ function github_push_themes_marbel() {
 
 # Update project plugins repository
 function github_push_plugins_project() {
+     echo $PWD
     if [ -d "themes/project" ]; then
         cd themes/project/ ;
         github_push_remote_update;
@@ -58,6 +60,7 @@ function github_push_plugins_project() {
 
 # Update blocks plugins repository
 function github_push_plugins_blocks() {
+     echo $PWD
     if [ -d "themes/blocks" ]; then
         cd themes/blocks/ ;
         github_push_remote_update;
