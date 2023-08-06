@@ -5,10 +5,12 @@
 source ./extractor.sh
 
 # GITHUB LIBRARY
-source ./github/main.sh
+source ./github/libs.sh
 source ./github/init.sh
 source ./github/push.sh
 source ./github/pull.sh
+source ./github/main.sh
+
 
 
 
