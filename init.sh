@@ -2,7 +2,8 @@
 
 
 # MASTER LIBRARY
-source ./extractor.sh
+source ./config.sh
+source ./server.sh
 
 # GITHUB LIBRARY
 source ./github/sets.sh
@@ -38,11 +39,12 @@ function rofal_option() {
 echo " 
 Action option available, please select bellow by used this number:
 
-    1. Push all to Github
-    2. Pull all from Github
+    1. Start development Server
+    2. Start production server ( local )
+    3. Push all to Github
+    4. Pull all from Github
 ";
 }
-
 
 
 function rofal_action() {
@@ -51,16 +53,22 @@ function rofal_action() {
 
     if [ $ACTION == 1 ]; then
         rofal_banner;
-        github_push_all;
+        devel_server;
     fi
     if [ $ACTION == 2 ]; then
         rofal_banner;
+        devel_server;
+    fi
+    if [ $ACTION == 3 ]; then
+        rofal_banner;
+        github_push_all;
+    fi
+    if [ $ACTION == 4 ]; then
+        rofal_banner;
         github_pull_all;
     fi
-
     clear;
 }
-
 
 
 function rofal_init() {
