@@ -1,158 +1,137 @@
 #!/bin/bash
 
-# master directory pull
-function github_pull_master_engine() {
-    git pull;
+## LIBRARY
+
+function github_pull_remote_update() { 
+    git pull ;
+    cd ../.. ; 
 }
 
 
+## FUNCTION
+
+# pull master website engine
+function github_pull_engine_sites() {
+    git pull;
+}
+
 # public directory pull
-function github_pull_master_public() {
+function github_pull_public_sites() {
+    cd .. ;
     cd public;
     git pull;
     cd .. ;
 }
 
-
-# based theme pull
-function github_pull_based_theme() {
-
-    if [ -d "themes/based" ]; then
-        cd themes/based/ ;
-        git pull ;
-        cd .. ; 
-        cd .. 
-        echo "Falcon Based themes synchronized"
-    fi
-}
-
 # pull master theme
-function github_pull_master_theme() {
+function github_pull_themes_marbel() {
     if [ -d "themes/marbel" ]; then
         cd themes/marbel/ ;
-        git pull ;
-        cd .. ; 
-        cd .. 
+        github_pull_remote_update
         echo "Falcon marbel themes synchronized"
     fi
 }
 
 
-# pull project plugins
-function github_pull_plugin_project() {
+# pull admin module
+function github_pull_module_admin() {
+    if [ -d "admin" ]; then
+        cd admin ;
+        git pull ;
+        cd .. ;
+        echo "Falcon Based themes synchronized"
+    fi
+}
+
+
+# pull based module
+function github_pull_module_based() {
+    if [ -d "themes/based" ]; then
+        cd themes/project/ ;
+        github_pull_remote_update
+        echo "Falcon based module synchronized"
+    fi
+}
+
+
+# pull project module
+function github_pull_module_project() {
     if [ -d "themes/project" ]; then
         cd themes/project/ ;
-        git pull ;
-        cd .. ; 
-        cd .. 
-        echo "Falcon project plugins synchronized"
+        github_pull_remote_update
+        echo "Falcon project module synchronized"
     fi
 } 
 
 
-# pull project blocks
-function github_pull_plugin_blocks() {
+# pull blocks module
+function github_pull_module_blocks() {
     if [ -d "themes/blocks" ]; then
         cd themes/blocks/ ;
-        git pull ;
-        cd .. ; 
-        cd .. ;
+        github_pull_remote_update
         echo "Falcon blocks plugins synchronized"
     fi
 }
 
-
-
-
-# pull project users
-function github_pull_plugin_users() {
+# pull users module
+function github_pull_module_users() {
     if [ -d "themes/users" ]; then
         cd themes/users/ ;
-        git pull ;
-        cd .. ; 
-        cd .. ;
-        echo "Falcon users plugins synchronized"
+        github_pull_remote_update
+        echo "Falcon users module synchronized"
     fi
 }
 
-
-
-
-# pull project course
-function github_pull_plugin_course() {
+# pull course module
+function github_pull_module_course() {
     if [ -d "themes/course" ]; then
         cd themes/course/ ;
-        git pull ;
-        cd .. ; 
-        cd .. ;
-        echo "Falcon course plugins synchronized"
+        github_pull_remote_update ;
+        echo "Falcon course module synchronized"
     fi
 }
 
-
-
-# pull project news
-function github_pull_plugin_news() {
+# pull news module
+function github_pull_module_news() {
     if [ -d "themes/news" ]; then
         cd themes/news/ ;
-        git pull ;
-        cd .. ; 
-        cd .. ;
+        github_pull_remote_update
         echo "Falcon news plugins synchronized"
     fi
 }
 
-
-
-# pull project report
-function github_pull_plugin_report() {
-
+# pull report module 
+function github_pull_module_report() {
     if [ -d "themes/report" ]; then
         cd themes/report/ ;
-        git pull ;
-        cd .. ; 
-        cd .. ;
+        github_pull_remote_update
         echo "Falcon report plugins synchronized"
     fi
 }
 
-
-
-
-# pull project users
-function github_pull_plugin_users() {
-    if [ -d "themes/users" ]; then
-        cd themes/users/ ;
-        git pull ;
-        cd .. ; 
-        cd .. ;
+# pull event module
+function github_pull_module_event() {
+    if [ -d "themes/event" ]; then
+        cd themes/event/ ;
+        github_pull_remote_update
         echo "Falcon users plugins synchronized"
     fi
 }
 
-
-
-# pull project howto
-function github_pull_plugin_howto() {
+# pull tutorial module
+function github_pull_module_tutorial() {
     if [ -d "themes/howto" ]; then
         cd themes/howto/ ;
-        git pull ;
-        cd .. ; 
-        cd .. ;
+        github_pull_remote_update
         echo "Falcon tutorial plugins synchronized"
     fi
 }
 
-
-
-# pull project docus
-function github_pull_plugin_docus() {
-    # Update tutorial users repository
+# pull documentation module
+function github_pull_module_documentation() {
     if [ -d "themes/docus" ]; then
         cd themes/docus/ ;
-        git pull ;
-        cd .. ; 
-        cd .. ;
+        github_pull_remote_update
         echo "Falcon tutorial plugins synchronized"
     fi
 }
