@@ -49,7 +49,6 @@ Action option available, please select bellow by used this number:
 function rofal_action() {
 
     read -p "insert your action number : " ACTION;
-
     if [ $ACTION == 1 ]; then
         rofal_banner;
         github_push_all_module;

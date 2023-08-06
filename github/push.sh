@@ -16,7 +16,7 @@ function github_push_remote_update() {
 ## FUNCTION
 
 # Update engine repository
-function github_push_engine_repo () {
+function github_push_engine_sites () {
     git pull ;
     git add  . ;
     git commit -m "engine-update";
@@ -25,7 +25,7 @@ function github_push_engine_repo () {
 }
 
 # Update website repository
-function github_push_content_repo() {
+function github_push_public_sites() {
     cd ../;
     cd public ;
     git pull ;
@@ -40,14 +40,6 @@ function github_push_content_repo() {
     echo "Falcon web content is update";
 }
 
-# Update based theme repository
-function github_push_themes_based() {
-    if [ -d "themes/based" ]; then
-        cd themes/based/ ;
-        github_push_remote_update;
-        echo "Falcon based themes is update";
-    fi
-}
 
 # Update marbel theme repository
 function github_push_themes_marbel() {
@@ -58,8 +50,17 @@ function github_push_themes_marbel() {
     fi
 }
 
-# Update project plugins repository
-function github_push_plugins_project() {
+# Update based module repository
+function github_push_module_based() {
+    if [ -d "themes/based" ]; then
+        cd themes/based/ ;
+        github_push_remote_update;
+        echo "Falcon based themes is update";
+    fi
+}
+
+# Update project module
+function github_push_module_project() {
     if [ -d "themes/project" ]; then
         cd themes/project/ ;
         github_push_remote_update;
@@ -67,8 +68,8 @@ function github_push_plugins_project() {
     fi
 }
 
-# Update blocks plugins repository
-function github_push_plugins_blocks() {
+# Update blocks module
+function github_push_module_blocks() {
     if [ -d "themes/blocks" ]; then
         cd themes/blocks/ ;
         github_push_remote_update;
@@ -76,8 +77,8 @@ function github_push_plugins_blocks() {
     fi
 }
 
-# Update user plugins module
-function github_push_plugins_users() {
+# Update user module
+function github_push_module_users() {
     if [ -d "themes/users" ]; then
         cd themes/users;
         github_push_remote_update;
@@ -85,8 +86,8 @@ function github_push_plugins_users() {
     fi
 }
 
-# Update course plugins module
-function github_push_plugins_course() {
+# Update course module
+function github_push_module_course() {
     if [ -d "themes/course" ]; then
         cd themes/course;
         github_push_remote_update;
@@ -94,8 +95,8 @@ function github_push_plugins_course() {
     fi
 }
 
-# Update news plugins module
-function github_push_plugins_news() {
+# Update news module
+function github_push_module_news() {
     if [ -d "themes/news" ]; then
         cd themes/news;
         github_push_remote_update;
@@ -103,8 +104,8 @@ function github_push_plugins_news() {
     fi
 }
 
-# Update report plugins module
-function github_push_plugins_report() {
+# Update report module
+function github_push_module_report() {
     if [ -d "themes/report" ]; then
         cd themes/report ;
         github_push_remote_update ;
@@ -112,8 +113,8 @@ function github_push_plugins_report() {
     fi
 }
 
-# Update event plugins module
-function github_push_plugins_event() {
+# Update event module
+function github_push_module_event() {
     if [ -d "themes/event" ]; then
         cd themes/event ;
         github_push_remote_update ;
@@ -121,8 +122,8 @@ function github_push_plugins_event() {
     fi
 }
 
-# Update tutorial plugins module
-function github_push_plugins_tutorial() {
+# Update tutorial module
+function github_push_module_tutorial() {
     if [ -d "themes/howto" ]; then
         cd themes/howto ;
         github_push_remote_update ;
@@ -130,8 +131,8 @@ function github_push_plugins_tutorial() {
     fi
 }
 
-# Update documentation plugins module
-function github_push_plugins_documentation() {
+# Update documentation module
+function github_push_module_documentation() {
     if [ -d "themes/docus" ]; then
         cd themes/docus ;
         github_push_remote_update ;
