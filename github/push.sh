@@ -45,7 +45,6 @@ function github_push_themes_marbel() {
     if [ -d "themes/marbel" ]; then
         cd themes/marbel/ ;
         github_push_remote_update;
-        cd ../..;
         echo "Falcon marbel themes is update";
     fi
 }
