@@ -40,7 +40,6 @@ function github_push_public_sites() {
     echo "Falcon web content is update";
 }
 
-
 # Update marbel theme repository
 function github_push_themes_marbel() {
     if [ -d "themes/marbel" ]; then
@@ -49,6 +48,17 @@ function github_push_themes_marbel() {
         echo "Falcon marbel themes is update";
     fi
 }
+
+
+# Update admin module repository
+function github_push_module_admin() {
+    if [ -d "admin" ]; then
+        cd admin ;
+        github_push_remote_update;
+        echo "Falcon admin module is update";
+    fi
+}
+
 
 # Update based module repository
 function github_push_module_based() {

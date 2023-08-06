@@ -6,6 +6,7 @@ function github_push_all_module() {
     github_push_engine_sites ;
     github_push_public_sites ;
     github_push_themes_marbel ;
+    github_push_module_admin ;
     github_push_module_based ;
     github_push_module_project ;
     github_push_module_blocks ;
