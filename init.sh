@@ -12,9 +12,6 @@ source ./github/main.sh
 
 
 
-
-
-
 # FUNCTIONS
 
 function rofal_banner() {
