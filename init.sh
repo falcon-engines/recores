@@ -5,7 +5,7 @@
 source ./extractor.sh
 
 # GITHUB LIBRARY
-source ./github/init.sh
+source ./github/sets.sh
 source ./github/push.sh
 source ./github/pull.sh
 source ./github/main.sh
@@ -33,10 +33,17 @@ echo "
 |   License    | Copyright 2019-2023 @ Lektor Media Utama     |
 --------------------------------------------------------------+
 
-Action option available, please select bellow by used this number:
-    1. Update All Module and Content ( Github )
 ";
 }
+
+
+function rofal_option() {
+echo " 
+Action option available, please select bellow by used this number:
+    1. Update All Module ( Github )
+";
+}
+
 
 
 function rofal_action() {
@@ -53,6 +60,7 @@ function rofal_action() {
 
 function rofal_init() {
     rofal_banner;
+    rofal_option;
     rofal_action;
 }
 rofal_init;

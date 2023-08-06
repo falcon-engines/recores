@@ -1,5 +1,20 @@
 #!/bin/bash
 
+
+## LIBRARY
+
+# update plugins to github
+function github_push_remote_update() { 
+    git pull ;
+    git add  . ;
+    git commit -m "library-update";
+    git push;
+    cd ../.. ;
+}
+
+
+## FUNCTION
+
 # Update engine repository
 function github_push_engine_repo () {
     git pull ;
@@ -25,8 +40,6 @@ function github_push_content_repo() {
     echo "Falcon web content is update";
 }
 
-
-
 # Update based theme repository
 function github_push_themes_based() {
     if [ -d "themes/based" ]; then
@@ -38,7 +51,6 @@ function github_push_themes_based() {
 
 # Update marbel theme repository
 function github_push_themes_marbel() {
-    echo $PWD
     if [ -d "themes/marbel" ]; then
         cd themes/marbel/ ;
         github_push_remote_update;
@@ -48,7 +60,6 @@ function github_push_themes_marbel() {
 
 # Update project plugins repository
 function github_push_plugins_project() {
-     echo $PWD
     if [ -d "themes/project" ]; then
         cd themes/project/ ;
         github_push_remote_update;
@@ -58,7 +69,6 @@ function github_push_plugins_project() {
 
 # Update blocks plugins repository
 function github_push_plugins_blocks() {
-     echo $PWD
     if [ -d "themes/blocks" ]; then
         cd themes/blocks/ ;
         github_push_remote_update;
@@ -125,6 +135,6 @@ function github_push_plugins_documentation() {
     if [ -d "themes/docus" ]; then
         cd themes/docus ;
         github_push_remote_update ;
-        echo "Falcon tutorial plugin is update" ;
+        echo "Falcon documentation plugin is update" ;
     fi
 }
