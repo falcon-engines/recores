@@ -45,6 +45,7 @@ function github_push_themes_marbel() {
     if [ -d "themes/marbel" ]; then
         cd themes/marbel/ ;
         github_push_remote_update;
+        cd ../..;
         echo "Falcon marbel themes is update";
     fi
 }
@@ -55,7 +56,6 @@ function github_push_module_admin() {
     if [ -d "admin" ]; then
         cd admin ;
         github_push_remote_update;
-        cd ..
         echo "Falcon admin module is update";
     fi
 }
