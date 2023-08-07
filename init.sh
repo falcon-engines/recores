@@ -60,14 +60,10 @@ function rofal_action() {
     if [ $ACTION == 3 ]; then
         rofal_banner;
         github_push_all;
-        clear;
-        rofal_main;
     fi
     if [ $ACTION == 4 ]; then
         rofal_banner;
         github_pull_all;
-        clear;
-        rofal_main;
     fi
    
 
