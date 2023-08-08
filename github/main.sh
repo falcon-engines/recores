@@ -8,6 +8,7 @@ function github_push_all() {
     github_push_module_based ;
     github_push_module_project ;
     github_push_module_blocks ;
+    github_push_module_blog;
     github_push_module_users ;
     github_push_module_course ;
     github_push_module_news ;
@@ -26,6 +27,7 @@ function github_pull_all() {
     github_pull_module_based ;
     github_pull_module_project ;
     github_pull_module_blocks ;
+    github_pull_module_blog ;
     github_pull_module_users ;
     github_pull_module_course ;
     github_pull_module_news ;
