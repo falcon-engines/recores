@@ -32,7 +32,6 @@ function github_pull_themes_marbel() {
     fi
 }
 
-
 # pull admin module
 function github_pull_module_admin() {
     if [ -d "admin" ]; then
@@ -70,6 +69,15 @@ function github_pull_module_blocks() {
         cd themes/blocks/ ;
         github_pull_remote_update
         echo "Falcon blocks plugins synchronized"
+    fi
+}
+
+# Update blog module
+function github_push_module_blog() {
+    if [ -d "themes/blog" ]; then
+        cd themes/blog/ ;
+        github_pull_remote_update
+        echo "Falcon blog plugins synchronized"
     fi
 }
 

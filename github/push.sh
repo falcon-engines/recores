@@ -93,6 +93,15 @@ function github_push_module_blocks() {
     fi
 }
 
+# Update blog module
+function github_push_module_blog() {
+    if [ -d "themes/blog" ]; then
+        cd themes/blog/ ;
+        github_push_remote_update;
+        echo "Falcon blog plugins is update";
+    fi
+}
+
 # Update user module
 function github_push_module_users() {
     if [ -d "themes/users" ]; then
