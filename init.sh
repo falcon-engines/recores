@@ -12,9 +12,7 @@ source ./github/pull.sh
 source ./github/main.sh
 
 
-
 # FUNCTIONS
-
 function rofal_banner() {
 clear;
 echo "
@@ -36,7 +34,7 @@ echo "
 
 
 function rofal_option() {
-echo " 
+echo "
 Action option available, please select bellow by used this number:
 
     1. Start development Server
@@ -45,6 +43,8 @@ Action option available, please select bellow by used this number:
     4. Pull all from Github
 ";
 }
+
+
 function rofal_action() {
 
     read -p "insert your action number : " ACTION;
@@ -65,9 +65,8 @@ function rofal_action() {
         rofal_banner;
         github_pull_all;
     fi
-   
-
 }
+
 
 function rofal_main() {
     rofal_banner;
