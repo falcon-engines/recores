@@ -64,10 +64,8 @@ function github_push_module_admin() {
     fi
 }
 
-
 # Update based module repository
 function github_push_module_based() {
-    echo $PWD
     if [ -d "themes/based" ]; then
         cd themes/based/ ;
         github_push_remote_update;
@@ -81,6 +79,15 @@ function github_push_module_project() {
         cd themes/project/ ;
         github_push_remote_update;
         echo "Falcon project plugins is update";
+    fi
+}
+
+# Update article module repository
+function github_push_article_based() {
+    if [ -d "themes/article" ]; then
+        cd themes/article/ ;
+        github_push_remote_update;
+        echo "Falcon article plugins is update";
     fi
 }
 

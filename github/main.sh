@@ -5,6 +5,7 @@ function github_push_all() {
     github_push_public_sites ;
     github_push_themes_marbel ;
     github_push_module_admin ;
+    github_push_article_based ;
     github_push_module_based ;
     github_push_module_project ;
     github_push_module_blocks ;
@@ -24,6 +25,7 @@ function github_pull_all() {
     github_pull_public_sites ;
     github_pull_themes_marbel ;
     github_pull_module_admin ;
+    github_pull_article_based ;
     github_pull_module_based ;
     github_pull_module_project ;
     github_pull_module_blocks ;

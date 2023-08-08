@@ -42,7 +42,6 @@ function github_pull_module_admin() {
     fi
 }
 
-
 # pull based module
 function github_pull_module_based() {
     if [ -d "themes/based" ]; then
@@ -51,7 +50,6 @@ function github_pull_module_based() {
         echo "Falcon based module synchronized"
     fi
 }
-
 
 # pull project module
 function github_pull_module_project() {
@@ -62,6 +60,14 @@ function github_pull_module_project() {
     fi
 } 
 
+# Update article module
+function github_push_module_article() {
+    if [ -d "themes/article" ]; then
+        cd themes/article/ ;
+        github_pull_remote_update
+        echo "Falcon article plugins synchronized"
+    fi
+}
 
 # pull blocks module
 function github_pull_module_blocks() {
