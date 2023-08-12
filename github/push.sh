@@ -19,6 +19,8 @@ function github_push_remote_update() {
 function github_push_engine_sites() {
     cd ../;
     git pull --all;
+    git add  . ;
+    git commit -m "local-update";
     git commit -m "remote-update";
     git add  . ;
     git commit -m "engine-update";
