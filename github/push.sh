@@ -18,6 +18,7 @@ function github_push_remote_update() {
 # Update engine repository
 function github_push_engine_sites() {
     git pull --all;
+    git commit -m "remote-update";
     git add  . ;
     git commit -m "engine-update";
     git push ;
