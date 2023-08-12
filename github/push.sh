@@ -17,6 +17,7 @@ function github_push_remote_update() {
 
 # Update engine repository
 function github_push_engine_sites() {
+    cd ../;
     git pull --all;
     git commit -m "remote-update";
     git add  . ;
@@ -27,7 +28,6 @@ function github_push_engine_sites() {
 
 # Update website repository
 function github_push_public_sites() {
-    cd ../;
     cd public ;
     git pull ;
     cd ..;
