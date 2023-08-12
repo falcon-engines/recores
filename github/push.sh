@@ -17,14 +17,14 @@ function github_push_remote_update() {
 
 # pull admin engine
 function github_push_engine_admin() {
-    git pull --all;
+    git pull;
 }
 
 
 # Update engine repository
 function github_push_engine_sites() {
     cd ../;
-    git pull --all;
+    git pull;
     git add  . ;
     git commit -m "engine-update";
     git push ;
