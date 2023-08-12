@@ -12,7 +12,6 @@ function github_pull_remote_update() {
 
 # pull admin engine
 function github_pull_engine_admin() {
-   
     if [ -d "admin" ]; then
         git pull --all;
         echo "Falcon admin engine synchronized"
@@ -22,8 +21,9 @@ function github_pull_engine_admin() {
 
 # pull master website engine
 function github_pull_engine_sites() {
-    echo $PWD
     cd ..;
+    git add .;
+    git commit -m "local commit"
     git pull --all;
     echo "Falcon sites engine synchronized"
 }
