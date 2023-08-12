@@ -15,21 +15,25 @@ function github_push_remote_update() {
 
 ## FUNCTION
 
+# pull admin engine
+function github_push_engine_admin() {
+    git pull --all;
+}
+
+
 # Update engine repository
 function github_push_engine_sites() {
     cd ../;
     git pull --all;
-    git add  . ;
-    git commit -m "local-update";
-    git commit -m "remote-update";
     git add  . ;
     git commit -m "engine-update";
     git push ;
     echo "Falcon engine is update";
 }
 
+
 # Update website repository
-function github_push_public_sites() {
+function github_push_content_site() {
     cd public ;
     git pull ;
     cd ..;

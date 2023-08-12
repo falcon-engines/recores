@@ -3,25 +3,41 @@
 ## LIBRARY
 
 function github_pull_remote_update() { 
-    git pull ;
+    git pull --all;
     cd ../.. ; 
 }
 
 
 ## FUNCTION
 
+# pull admin engine
+function github_pull_engine_admin() {
+   
+    if [ -d "admin" ]; then
+        git pull --all;
+        echo "Falcon admin engine synchronized"
+    fi
+}
+
+
 # pull master website engine
 function github_pull_engine_sites() {
-    git pull;
+    echo $PWD
+    cd ..;
+    git pull --all;
+    echo "Falcon sites engine synchronized"
 }
 
 # public directory pull
-function github_pull_public_sites() {
-    cd .. ;
+function github_pull_content_site() {
+   
+    echo $PWD
     cd public;
-    git pull;
+    git pull --all;
     cd .. ;
 }
+
+
 
 # pull master theme
 function github_pull_themes_marbel() {
@@ -79,7 +95,7 @@ function github_pull_module_blocks() {
 }
 
 # Update blog module
-function github_push_module_blog() {
+function github_pull_module_blog() {
     if [ -d "themes/blog" ]; then
         cd themes/blog/ ;
         github_pull_remote_update
