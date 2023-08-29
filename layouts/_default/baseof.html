@@ -1,18 +1,20 @@
 <!doctype html>
 <html lang="{{ site.Language.Lang }}">
-<head>
-	{{- block "head_hook" . -}}{{- end -}}
-</head>
-<body class="page-{{ .Kind }} {{ .Section }} {{ with .Site.Params.layout.model }}{{ . }}{{ end }}" id="pagetop">
-	<header class="header">
-		{{- partial "corest/header" . }}
-	</header>
-	<div class="main">
-	    {{- block "main" . }}{{ end }}
-	</div>
-	<footer class="pt-2 pb-2">
-        {{- partial "corest/footer" . }}
-	</footer>
-	{{- block "foot_hook" . -}}{{- end -}}
-</body>
+	<head>
+		{{- partial "corest/headlink" . -}}
+		{{- block "head_hook" . -}}{{- end -}}
+	</head>
+	<body id="pagetop" class="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}">
+		<header class="main">
+			{{- partial "corest/header" . }}
+		</header>
+		<div class="main">
+			{{- block "main" . }}{{ end }}
+		</div>
+		<footer class="main">
+			{{- partial "corest/footer" . }}
+		</footer>
+		{{- partial "corest/footlink" . }}
+		{{- block "foot_hook" . -}}{{- end }}
+	</body>
 </html>
