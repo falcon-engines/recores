@@ -1,0 +1,12 @@
+[id]
+    weight = 1
+    title = "karim"
+    contentDir = "content/id"
+    languageName = "Bahasa"
+    
+[en]
+    weight = 2
+    title = "My New Hugo i18n Site"
+    contentDir = "content/en"
+    languageName = "English"
+    

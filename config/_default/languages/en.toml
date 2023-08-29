@@ -1,7 +1,0 @@
-contentDir = 'content/en'
-disabled = false
-languageCode = 'en-US'
-languageDirection = 'ltr'
-languageName = 'English'
-title = 'Projekt Dokumentation'
-weight = 2

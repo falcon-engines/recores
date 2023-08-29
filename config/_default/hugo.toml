@@ -1,0 +1,14 @@
+##-------------------------
+## sitest permalinks
+##-------------------------
+
+baseURL = 'http://lectore.com/'
+
+
+
+##-------------------------
+## language configuration
+##-------------------------
+
+defaultContentLanguage = 'id'
+

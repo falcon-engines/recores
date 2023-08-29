@@ -1,3 +1,5 @@
+##-------------------------
+## sitest permalinks
+##-------------------------
+
 baseURL = 'http://lectore.com/'
-title   = 'My New Hugo Site'
-languageCode = 'id'
