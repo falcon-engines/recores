@@ -1,5 +1,8 @@
 
 {{ define "main" }}
-    {{ partial "parted/langs/_default.html" . }}
+    {{ partial "blocks/langua/_default.html" . }}
+
+    {{ .Site.Params.site_meta.logo_light }}
+
     {{ .Content }}
 {{ end }} 

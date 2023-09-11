@@ -1,0 +1,16 @@
+##-------------------------
+## site configuration
+##-------------------------
+
+paginate = 20                       # site pagination
+disableKinds = [ "taxonomy" ]       # disable kind
+disableHugoGeneratorInject = true   # disable injection
+
+
+
+##-------------------------
+## custom file outputs
+##-------------------------
+
+[outputs]
+    # home = ["HTML", "RSS", "JSON"]

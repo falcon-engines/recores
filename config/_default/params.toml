@@ -1,0 +1,52 @@
+[site_meta]
+    leads      = "site tagline"                     # site tagline
+    phone      = "test phone"                       # phone number
+    email      = "test mail"                        # contact email
+    address1   = "Office main address"              # office primary address
+    address2   = "Office secondary address"         # office secondary address
+    telegram   = "@null"                            # telegram group
+    whatsapp   = "+62-895-0765-1345"                # whatsapp contact person
+    postaddr   = ""                                 # Mailing address or mailing address
+    author     = ""                                 # Default author name  
+    logo_light = "test-logo-light"                  # site logo light
+    logo_darks = "test-logo-dark"                   # site logo dark
+
+
+[base_model]
+    logos    = "all"                                # icon-only, full, all, text-only
+    header   = "_default"                           # footer model
+    footer   = "_default"                           # header model
+    nopage   = "_default"                           # 404 page not found
+
+
+[social_media]
+    facebook  = "my facebook id"                    # facebook username
+    twitter   = "my twitter id"                     # twitter username
+    instagram = "my instagram id"                   # instagram username
+    tiktok    = "my tiktok id"                      # tiktok username
+    youtube   = "my youtube id"                     # youtube chanel
+    discord   = "my discord id"                     # discord id
+
+
+[workspace] 
+    github    = "my github account"                 # github account
+    gitlab    = "my gilab account"                  # gitlab username
+    jira      = "my jira account"                   # jira workspace
+    slack     = "my slack account"                  # slack account
+
+
+[features]
+    darkmode = true   # true, false                 # enable darkmode
+    search   = true   # fusejs, algolia             # enable search features
+
+
+[services]
+    [algolia]
+        unique = "algolia_id"                       # algolia unique id
+        secret = "algolia_secret"                   # algolia secret key
+    [disqus]
+        unique = "disqus_id"                        # disqus unique id
+        secret = "disqus_secret"                    # disqus secret
+    [youtube]   
+        unique = "youtube_id"                       # youtube unique id
+        secret = "youtube_secret"                   # youtube secret 

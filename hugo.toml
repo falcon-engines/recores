@@ -1,5 +1,40 @@
 ##-------------------------
-## sitest permalinks
+## site information
 ##-------------------------
 
-baseURL = 'http://lectore.com/'
+title    = "site title"                      
+baseURL  = 'http://lectore.com/'             
+
+
+
+##-------------------------
+## plugins and themes
+##-------------------------
+
+theme = []                                   
+
+
+##-------------------------
+## laguage configuration
+##-------------------------
+
+languageCode = 'id'
+
+
+
+##-------------------------
+## site taxonomies
+##-------------------------
+
+[taxonomies]
+    category  = "categories"
+    tag       = "tags"
+    docus     = "docus"
+    event     = "events"
+    tutorial  = "tutorials"
+    canal     = "canals"
+    course    = "courses"
+    project   = "projects"
+    report    = "reports"
+    position  = "positions"
+    topic     = "topics"
