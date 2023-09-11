@@ -1,8 +1,4 @@
-
 {{ define "main" }}
-    {{ partial "blocks/langua/_default.html" . }}
-
-    {{ .Site.Params.site_meta.logo_light }}
-
+    {{ partial "blocks/widget/lang-main.html" . }}
     {{ .Content }}
 {{ end }} 

@@ -5,16 +5,11 @@
 		{{- block "head_hook" . -}}{{- end -}}
 	</head>
 	<body id="pagetop" class="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}">
-		<header class="main">
-			{{- partial "blocks/header/_main" . }}
-		</header>
-		<div class="main">
+		{{- partial "blocks/header/_main" . }}
+		<main class="content">
 			{{- block "main" . }}{{ end }}
-		</div>
-		<footer class="main">
-			{{- partial "blocks/footer/_main" . }}
-		</footer>
-		{{- partial "linkers/footlink" . }}
+		</main>
+		{{- partial "blocks/footer/_main" . }}
 		{{- block "foot_hook" . -}}{{- end }}
 	</body>
 </html>

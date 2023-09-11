@@ -14,9 +14,9 @@
 
 [base_model]
     logos    = "all"                                # icon-only, full, all, text-only
-    header   = "_default"                           # footer model
-    footer   = "_default"                           # header model
-    nopage   = "_default"                           # 404 page not found
+    header   = "base"                               # footer model
+    footer   = "base"                               # header model
+    nopage   = "base"                               # 404 page not found
 
 
 [social_media]

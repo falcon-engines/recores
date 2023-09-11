@@ -1,0 +1,11 @@
+{{ $model := .Site.Params.base_model.footer }}
+
+<footer class="footnav {{ $model }}">
+    {{ if eq $model "main" }}
+
+    {{ else }}
+        {{ partial "blocks/footer/_default" }}
+    {{ end }}
+</footer>
+
+{{- partial "linkers/footlink" . }}
