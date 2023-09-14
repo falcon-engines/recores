@@ -1,12 +1,12 @@
 [id]
     weight = 1
-    title = "karim"
-    contentDir = "content/id"
+    title = "karim id"
+    languageCode= "id"
+    contentDir = "content/sites/id"
     languageName = "Bahasa"
-    
 [en]
     weight = 2
-    title = "My New Hugo i18n Site"
-    contentDir = "content/en"
+    title = "Karim en"
+    languageCode= "en"
+    contentDir = "content/sites/en"
     languageName = "English"
-    
