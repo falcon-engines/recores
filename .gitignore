@@ -1,0 +1,5 @@
+# ignore hugo build
+.hugo_build.lock
+
+# ignore hugo build
+resources

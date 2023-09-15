@@ -2,11 +2,12 @@
     weight = 1
     title = "karim id"
     languageCode= "id"
-    contentDir = "content/sites/id"
+    contentDir = "content/page/id"
     languageName = "Bahasa"
+
 [en]
     weight = 2
     title = "Karim en"
     languageCode= "en"
-    contentDir = "content/sites/en"
+    contentDir = "content/page/en"
     languageName = "English"
