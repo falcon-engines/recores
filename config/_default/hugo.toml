@@ -2,15 +2,44 @@
 ## site configuration
 ##-------------------------
 
+
+# site information
+title    = 'site title'                      
+baseURL  = 'http://lectore.com/'             
+
+
+# plugins and themes
+theme = []                                   
+
+
+# laguage configuration
+languageCode = 'id'
+
+
+# taxonomy
+[taxonomies]
+    category  = "categories"
+    tag       = "tags"
+    docus     = "docus"
+    event     = "events"
+    tutorial  = "tutorials"
+    canal     = "canals"
+    course    = "courses"
+    project   = "projects"
+    report    = "reports"
+    position  = "positions"
+    topic     = "topics"
+
+
+# paging
 paginate = 20                       # site pagination
 disableKinds = [ "taxonomy" ]       # disable kind
+
+
+# engine credit
 disableHugoGeneratorInject = true   # disable injection
 
 
-
-##-------------------------
-## custom file outputs
-##-------------------------
-
+# generator output
 [outputs]
     # home = ["HTML", "RSS", "JSON"]

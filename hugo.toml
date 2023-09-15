@@ -1,31 +1,22 @@
 ##-------------------------
-## site information
+## site configuration
 ##-------------------------
 
-title    = "site title"                      
+
+# site information
+title    = 'Master'                      
 baseURL  = 'http://lectore.com/'             
 
 
-
-##-------------------------
-## plugins and themes
-##-------------------------
-
+# plugins and themes
 theme = []                                   
 
 
-##-------------------------
-## laguage configuration
-##-------------------------
-
+# laguage configuration
 languageCode = 'id'
 
 
-
-##-------------------------
-## site taxonomies
-##-------------------------
-
+# taxonomy
 [taxonomies]
     category  = "categories"
     tag       = "tags"
@@ -38,3 +29,17 @@ languageCode = 'id'
     report    = "reports"
     position  = "positions"
     topic     = "topics"
+
+
+# paging
+paginate = 20                       # site pagination
+disableKinds = [ "taxonomy" ]       # disable kind
+
+
+# engine credit
+disableHugoGeneratorInject = true   # disable injection
+
+
+# generator output
+[outputs]
+    # home = ["HTML", "RSS", "JSON"]

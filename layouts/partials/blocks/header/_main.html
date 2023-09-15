@@ -1,7 +1,10 @@
 {{ $model := .Site.Params.base_model.header }}
 
 <header class="headnav {{ $model }}">
+    {{ .Site.Title }}
+    
     {{ if eq $model "main" }}
+
     {{ else }}
         {{ partial "blocks/header/_default" }}
     {{ end }}
