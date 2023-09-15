@@ -1,4 +1,6 @@
 {{ define "main" }}
     {{ partial "blocks/widget/lang-main.html" . }}
+    <h1>{{ .Site.Title }}</h1>
+    {{ i18n "home" }}
     {{ .Content }}
 {{ end }} 

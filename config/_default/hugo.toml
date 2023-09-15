@@ -1,22 +1,26 @@
+baseURL   = 'http://lectore.com/'
+
+
+
 ##-------------------------
-## site configuration
+## plugins and themes
 ##-------------------------
 
-
-# site information
-title    = 'site title'                      
-baseURL  = 'http://lectore.com/'             
-
-
-# plugins and themes
 theme = []                                   
 
 
-# laguage configuration
-languageCode = 'id'
+##-------------------------
+## laguage configuration
+##-------------------------
+
+defaultContentLanguage = 'id'
 
 
-# taxonomy
+
+##-------------------------
+## site taxonomies
+##-------------------------
+
 [taxonomies]
     category  = "categories"
     tag       = "tags"
@@ -30,16 +34,46 @@ languageCode = 'id'
     position  = "positions"
     topic     = "topics"
 
+##-------------------------
+## site configuration
+##-------------------------
 
-# paging
-paginate = 20                       # site pagination
-disableKinds = [ "taxonomy" ]       # disable kind
+paginate                   = 20                   # site pagination
+disableKinds               = [ "taxonomy" ]       # disable kind
+disableHugoGeneratorInject = true                 # disable injection
 
 
-# engine credit
-disableHugoGeneratorInject = true   # disable injection
+
+##-------------------------
+## custom outputs
+##-------------------------
+
+# [outputs]
+#   home = ["HTML", "RSS", "JSON"]
 
 
-# generator output
-[outputs]
-    # home = ["HTML", "RSS", "JSON"]
+##-------------------------
+## custom directory
+##-------------------------
+
+[module]
+    noProxy = 'none'
+    proxy = 'direct'
+[[module.mounts]]
+    source = 'module/assets'
+    target = 'assets'
+[[module.mounts]]
+    source = 'module/formats'
+    target = 'archetypes'
+[[module.mounts]]
+    source = 'module/layouts'
+    target = 'layouts'
+[[module.mounts]]
+    source = 'module/langua'
+    target = 'i18n'
+[[module.mounts]]
+    source = 'content/data'
+    target = 'data'
+[[module.mounts]]
+    source = 'content/auxil'
+    target = 'static'
