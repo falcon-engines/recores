@@ -1,5 +1,0 @@
----
-title: "karim"
----
-
-Bahasa
