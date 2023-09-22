@@ -1,11 +1,15 @@
-h1{
-    color: red;
+.no-image {
+    background-color: #eee;
+    color: #777;
+    border-radius: 10px;
+    max-width: 720px;
+    aspect-ratio: 2 / 1;
+}   
+.fw-600 {
+    font-weight: 600;
 }
-p{
-    color: blue;
-}
-.content {
-    a {
-        color: orange;
-    }
+.flex-all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
