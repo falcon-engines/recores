@@ -1,11 +1,6 @@
-<figure class="fluid image" data-img="{{ .Destination | safeURL }}"  data-fall="" data-alt="{{ .Text }}" >
-    <div class="no-image round-10 flex-c fw-600 hide">
-        No Image
-    </div>
-</figure>
-
-
-<div class="row-a col-4">
-    <div>1</div>
-    <div>2</div>
+<div class="picbox flex-c round-10">
+    <figure class="picwrap">
+        <img src="/icons/no-image.svg" class="icon round-10" data-img="{{ .Destination | safeURL }}" >
+        <p class="fw-600 caption" data-alt="{{ .Text }}">No image</p>
+    </figure>
 </div>
