@@ -1,18 +1,20 @@
-.picbox {
-    color: #777;
-    background-color: #eee;
-    aspect-ratio: 2 / 1;
-    .icon {
-        width: 36px;
-        height: 36px;
-        margin: 0 auto;
-    }
+/* main variable */
+
+html {
+    --bg-primary: #fff;
+    --text-primary: #000;
+}
+ 
+html[data-theme='dark'] {
+    --bg-primary: #11151d;
+    --text-primary: #fff;
 }
 
-.picmain {
-    aspect-ratio: 2 / 1;
-}
 
+body{
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
 
 
 /* border radius */
@@ -75,6 +77,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+/* visibility */
+.hide {
+    visibility: hidden;
 }
 
 
