@@ -1,9 +1,19 @@
-.no-image {
-    background-color: #eee;
+.picbox {
     color: #777;
-    max-width: 720px;
+    background-color: #eee;
     aspect-ratio: 2 / 1;
-}   
+    .icon {
+        width: 36px;
+        height: 36px;
+        margin: 0 auto;
+    }
+}
+
+.picmain {
+    aspect-ratio: 2 / 1;
+}
+
+
 
 /* border radius */
 .round-7 {
@@ -14,6 +24,7 @@
 }
 .round-10 {
     border-radius: 10px;
+    overflow: hidden;
 }
 .round-15 {
     border-radius: 15px;
