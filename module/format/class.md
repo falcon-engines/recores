@@ -1,6 +1,6 @@
 ---
 title: "hre kelas"
-date: {{ .Date }}
+date : {{ .Date }}
 draft: true
 ---
 

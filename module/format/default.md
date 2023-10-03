@@ -1,6 +1,6 @@
 ---
 title: "Hore"
-date: {{ .Date }}
+date : {{ .Date }}
 draft: true
 ---
 
