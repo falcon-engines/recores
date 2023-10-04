@@ -39,7 +39,23 @@ let image = () => {
 }
 
 let theme = () => {
-
+    let alltheme = document.querySelector('.theme-mode') 
+    if ( alltheme ) {
+        let action = Array.prototype.slice.call(alltheme.querySelectorAll('.theme-action'));
+        let dialog = alltheme.querySelector('.menu');
+        action.forEach( button => {
+            button.addEventListener( 'click', () => {
+                let actions = Array.prototype.slice.call(dialog.querySelectorAll('.mode'));
+                dialog.classList.toggle('dnone');  
+                actions.forEach( action => {
+                    action.addEventListener( 'click', (event)=> {
+                        localStorage.removeItem("theme");
+                        localStorage.setItem("theme", event.currentTarget.dataset.themeset );
+                    });
+                });
+            });
+        });
+    }
 }
 
 window.addEventListener("load", (event) => {

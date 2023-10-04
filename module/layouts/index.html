@@ -1,5 +1,6 @@
 {{ define "main" }}
     {{ partial "blocks/widget/lang-main.html" . }}
+    {{ partial "blocks/widget/dark-mode.html" . }}
     <h1>{{ .Site.Title }}</h1>
     {{ i18n "home" }}
     {{ .Content }}
