@@ -4,4 +4,4 @@ title: "karim"
 
 Bahasa
 
-![karim adalah](images/general.jpg "loadnow" )
+![karim adalah](general.jpg "loadnow" )

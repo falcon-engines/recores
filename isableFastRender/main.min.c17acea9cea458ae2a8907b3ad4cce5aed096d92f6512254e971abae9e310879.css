@@ -1,0 +1,1 @@
+.noimg{color:#777;background-color:#eee;aspect-ratio:2/1}.noimg figure{width:9%;display:grid;justify-items:center}.noimg .caption{font-size:1.7vw}.picbox,.noimg{animation:loadimage .2s}.picbox .image,.noimg .image{width:100%}.picbox .caption,.noimg .caption{text-align:center}@keyframes loadimage{from{opacity:0}to{opacity:1}}

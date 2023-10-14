@@ -41,16 +41,22 @@ let image = () => {
 let theme = () => {
     let alltheme = document.querySelector('.theme-mode') 
     if ( alltheme ) {
-        let action = Array.prototype.slice.call(alltheme.querySelectorAll('.theme-action'));
+        let action = Array.prototype.slice.call(alltheme.querySelectorAll('.action'));
         let dialog = alltheme.querySelector('.menu');
         action.forEach( button => {
             button.addEventListener( 'click', () => {
                 let actions = Array.prototype.slice.call(dialog.querySelectorAll('.mode'));
-                dialog.classList.toggle('dnone');  
+                if (dialog.classList.contains('dnone')) {
+                    dialog.classList.remove('dnone'); 
+                }
+                else {
+                    dialog.classList.add('dnone'); 
+                }
                 actions.forEach( action => {
                     action.addEventListener( 'click', (event)=> {
-                        localStorage.removeItem("theme");
                         localStorage.setItem("theme", event.currentTarget.dataset.themeset );
+                        document.documentElement.setAttribute("data-mode", event.currentTarget.dataset.themeset);
+                        dialog.classList.add('dnone');
                     });
                 });
             });
@@ -59,6 +65,6 @@ let theme = () => {
 }
 
 window.addEventListener("load", (event) => {
-    image();
+    //image();
     theme();
 });
