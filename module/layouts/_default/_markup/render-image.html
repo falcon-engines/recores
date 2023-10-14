@@ -75,11 +75,13 @@
     {{ end }}
 
 
+    <!-- image resizers fullwidth -->
     {{- if ge $pathsrc.Width 1800 -}}
         {{ $resizeact = $pathsrc }}
     {{ end }}
 
 {{ end }}
+
 
 <!-- render images -->
 <div class=" {{ $stylerc }}">
