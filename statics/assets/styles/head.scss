@@ -1,5 +1,10 @@
 /* main variable */
 
+* {
+    margin:0;
+    padding: 0;
+}
+
 html {
     --bg-primary: #fff;
     --bg-blue : linear-gradient(65deg, #0270D7 0, #0F8AFD 100%);
@@ -150,6 +155,13 @@ p {
     grid-template-columns: repeat( 11, calc( 100vw / 12 ) ) ;
 }
 
+
+/* media */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
 
 /* components */
 
