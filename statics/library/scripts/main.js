@@ -49,8 +49,8 @@ let theme = () => {
                 dialog.classList.toggle('dnone');  
                 actions.forEach( action => {
                     action.addEventListener( 'click', (event)=> {
-                        localStorage.removeItem("theme");
-                        localStorage.setItem("theme", event.currentTarget.dataset.themeset );
+                        localStorage.removeItem( "theme" );
+                        localStorage.setItem( "theme", event.currentTarget.dataset.themeset );
                     });
                 });
             });
