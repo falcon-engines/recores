@@ -1,0 +1,155 @@
+<!-- global - general config -->
+{{- $resizer := slice "320" "480" "640" "768" "960" "1280" "1536" -}}
+{{- $pagesrc := .Page.Resources.GetMatch .Destination }}
+{{- $pathsrc := "" }}
+{{- $stylerc := "lazy-load flex-c round-10" }}
+{{- $mediawd := "100vw" -}}
+
+<!-- global - video variable -->
+{{- $vformat := slice "mp4" "flv" "webm" "avi" "mkv"  -}}
+{{- $vsource := slice "youtube.com/" "vimeo.com/" "drive.google.com/" -}}
+{{- $vfolder := resources.GetMatch ( print "videos/" .Destination ) }}
+
+<!-- global - image variable -->
+{{- $pformat := slice "png" "webp" "jpeg" "svg" "jpeg" -}}
+{{- $psource := slice "pixabay.com/" "480" "640" "768" "960" "1280" "1536" -}}
+{{- $pfolder := resources.GetMatch ( print "images/" .Destination ) }}
+
+
+<!-- video - processing -->
+{{ if or ( in $vformat .Destination ) ( in $vsource .Destination ) }}
+    ini video
+{{ end }}
+
+
+<!-- image - processing -->
+{{ if or ( in $pformat .Destination ) ( in $psource .Destination ) }}
+    ini picture
+{{ end }}
+
+
+
+<!-- image - processing -->
+
+
+
+
+
+
+<!-- image sources -->
+{{ if $pfolder }} 
+    {{ $pathsrc = $pfolder }}
+{{ else if $pagesrc }}
+    {{ $pathsrc = $pagesrc }}
+{{ else }}
+    {{ $pathsrc = "/icons/no-image.svg" }}
+    {{ $stylerc = "lazy-load flex-c round-10 noimg" }}
+{{ end }}
+
+
+<!-- image processing -->
+
+{{ $resizeact := "" }}
+{{ $resizedxs := "" }}
+{{ $resizedsm := "" }}
+{{ $resizedmd := "" }}
+{{ $resizedlg := "" }}
+{{ $resizedxl := "" }}
+{{ $resizedx2 := "" }}
+
+{{ if ne $pathsrc "/icons/no-image.svg" }}
+
+    <!-- image resizers 420 -->
+
+    {{- if ge $pathsrc.Width 420 -}} 
+        {{ $resizedxs = $pathsrc.Resize "420x"  }}
+        {{ $resizeact = $resizedxs }}
+    {{ end }}
+
+
+    <!-- image resizers 640 -->
+   
+    {{- if ge $pathsrc.Width 640 -}}
+        {{ $resizedsm = $pathsrc.Resize "640x"  }}
+        {{ $resizeact = $resizedsm }}
+    {{ end }}
+
+
+    <!-- image resizers 768 -->
+   
+    {{- if ge $pathsrc.Width 768 -}}
+        {{ $resizedmd = $pathsrc.Resize "768x"  }}
+        {{ $resizeact = $resizedmd }}
+    {{ end }}
+
+
+    <!-- image resizers 960 -->
+
+    {{- if ge $pathsrc.Width 960 -}}
+        {{ $resizedlg = $pathsrc.Resize "960x"  }}
+        {{ $resizeact = $resizedlg }}
+    {{ end }}
+
+
+    <!-- image resizers 1280 -->
+
+    {{- if ge $pathsrc.Width 1280 -}}
+        {{ $resizedxl = $pathsrc.Resize "1280x"  }}
+        {{ $resizeact = $resizedxl }}
+    {{ end }}
+
+
+    <!-- image resizers 1536 -->
+    {{- if ge $pathsrc.Width 1536 -}}
+        {{ $resizedx2 = $pathsrc.Resize "1536x"  }}
+        {{ $resizeact = $resizedx2 }}
+    {{ end }}
+
+
+    <!-- image resizers fullwidth -->
+    {{- if ge $pathsrc.Width 1800 -}}
+        {{ $resizeact = $pathsrc }}
+    {{ end }}
+
+{{ end }}
+
+
+{{ if strings.Contains .Destination "youtube.com" }}
+    Youtube video
+{{ end }}
+
+
+{{ if ne ( or ( strings.Contains .Destination "youtube.com" ) ( strings.Contains .Destination "vimeo.com" )  ) true }}
+
+<!-- render images -->
+<div class=" {{ $stylerc }}">
+    <figure>
+        <picture>
+            {{ if $resizedxs }}
+                <source media="(max-width: 420px)"  srcset="{{ $resizedxs.RelPermalink }}">
+            {{ end }}
+            {{ if $resizedsm }}
+                <source media="(max-width: 640px)"  srcset="{{ $resizedsm.RelPermalink }}">
+            {{ end }}
+            {{ if $resizedmd }}
+                <source media="(max-width: 768px)"  srcset="{{ $resizedmd.RelPermalink }}">
+            {{ end }}
+            {{ if $resizedlg }}
+                <source media="(max-width: 960px)"  srcset="{{ $resizedlg.RelPermalink }}">
+            {{ end }}
+            {{ if $resizedxl }}
+                <source media="(max-width: 1280px)" srcset="{{ $resizedxl.RelPermalink }}">
+            {{ end }}
+            {{ if $resizedx2 }}
+                <source media="(max-width: 1536px)" srcset="{{ $resizedx2.RelPermalink }}">
+            {{ end }}
+            {{ if $resizedx2 }}
+                <source media="(min-width: 1536px)" srcset="{{ $resizeact }}">
+            {{ end }}
+            
+            <img src="{{ $pathsrc }}" class="image round-10" alt="{{ .Title }}" loading="lazy">
+        </picture>
+        <p class="fw-600 caption" data-alt="{{ .Text }}">No image</p>
+    </figure>
+</div>
+{{ end }}

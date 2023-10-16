@@ -1,6 +1,25 @@
-<div class="lazy-load flex-c round-10 hide">
-    <figure>
-        <img src="/icons/no-image.svg" class="image round-10" data-img="{{ .Destination | safeURL }}" alt="{{ .Title }}" loading="lazy">
-        <p class="fw-600 caption" data-alt="{{ .Text }}">No image</p>
-    </figure>
-</div>
+<!-- global  - general config -->
+{{- $resizer := slice "320" "480" "640" "768" "960" "1280" "1536" -}}
+{{- $sources := .Destination | safeURL }}
+{{- $stylerc := "lazy-load flex-c round-10" }}
+{{- $mediawd := "100vw" -}}
+
+<!-- global  - video variable -->
+{{- $vformat := slice "mp4" "flv" "webm" "avi" "mkv"  -}}
+{{- $vsource := slice "youtube.com" "vimeo.com" "drive.google.com" -}}
+{{- $vfolder := resources.GetMatch ( print "videos/" .Destination ) }}
+
+<!-- global  - image variable -->
+{{- $pformat := slice "png" "webp" "jpeg" "svg" "jpeg" -}}
+{{- $psource := slice "pixabay.com/" "480" "640" "768" "960" "1280" "1536" -}}
+{{- $pfolder := resources.GetMatch ( print "images/" .Destination ) }}
+
+<!-- proces - main resources -->
+{{- $pathsrc := "" }}
+{{ if resources.GetMatch $sources  }}
+    {{- $pathsrc = .Page.Resources.GetMatch $sources }}
+{{ else if resources.GetMatch $sources  }}
+    {{- $pathsrc = .Page.Resources.GetMatch $sources }}
+{{ else  }}
+    {{- $pathsrc = $sources }}
+{{ end }}
