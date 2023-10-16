@@ -75,11 +75,11 @@ disableHugoGeneratorInject = true                 # disable injection
     source = 'module/langua'
     target = 'i18n'
 [[module.mounts]]
-    source = 'statics/assets'
+    source = 'module/assets'
     target = 'assets'
 [[module.mounts]]
-    source = 'statics/datum'
-    target = 'data'
-[[module.mounts]]
-    source = 'statics/assets'
+    source = 'module/assets'
     target = 'static'
+[[module.mounts]]
+    source = 'datums'
+    target = 'data'

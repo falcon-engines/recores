@@ -54,14 +54,9 @@ let theme = () => {
                 }
                 actions.forEach( action => {
                     action.addEventListener( 'click', (event)=> {
-<<<<<<< HEAD:statics/library/scripts/main.js
-                        localStorage.removeItem( "theme" );
-                        localStorage.setItem( "theme", event.currentTarget.dataset.themeset );
-=======
                         localStorage.setItem("theme", event.currentTarget.dataset.themeset );
                         document.documentElement.setAttribute("data-mode", event.currentTarget.dataset.themeset);
                         dialog.classList.add('dnone');
->>>>>>> 5345a0b6a6d438ae97619f9e41e3ed88e445889a:statics/assets/scripts/main.js
                     });
                 });
             });
