@@ -4,5 +4,7 @@ title: "karim"
 
 Bahasa
 
-![karim adalah](general.jpg "loadnow" )
-![Watch the video](https://www.youtube.com/embed/<VIDEO_ID> "karim")
+![karim adalah](sample.jpg "loadnow" )
+![video sample](sample.mp4 "loadnow" )
+![Watch the video](https://www.youtube.com/watch?v=joRVkFrxuS4)
+

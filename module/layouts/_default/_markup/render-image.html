@@ -1,63 +1,97 @@
-<!-- global  - general config -->
+<!-- GLOBAL -->
 {{- $resizer := slice "320" "480" "640" "768" "960" "1280" "1536" -}}
+{{- $getlink := .Destination | safeURL }}
+{{- $pathsrc := .Page.Resources.GetMatch $getlink }}
 {{- $stylerc := "lazy-load flex-c round-10" }}
 {{- $mediawd := "100vw" -}}
-
-<!-- global  - video variable -->
-{{- $vformat := slice "mp4" "flv" "webm" "avi" "mkv"  -}}
-{{- $vsource := slice "youtube.com" "vimeo.com" "drive.google.com" -}}
+{{- $srctype := "" }}
 
 
-<!-- global  - image variable -->
-{{- $pformat := slice "png" "webp" "jpeg" "svg" "jpg" -}}
-{{- $psource := slice "pixabay.com/" "unsplash.com/" "pexels.com" -}}
 
+<!-- IMAGES -->
+{{- $imgtype := slice "png" "webp" "jpeg" "svg" "jpg" -}}
+{{- $imglink := slice "pixabay.com" "unsplash.com" "pexels.com" -}}
 
-<!-- proces - link resources -->
-{{- $pathsrc := .Destination | safeURL }}
-{{- $typesrc := "" }}
-{{- if strings.Contains $pathsrc "http" -}}
-    {{ range $vsource }}
-        {{ if strings.Contains $pathsrc . }}
-            {{ $typesrc = "vid_embed" }}
+<!-- images - remote data -->
+{{ range $imglink }}
+    {{ if strings.Contains $getlink . }}
+        <!-- media types -->
+        {{ $srctype = "image" }}
+        <!-- image paths  -->
+        {{ $pathsrc = $getlink }}
+    {{ end }}
+{{ end }}
+
+<!-- images - local data -->
+{{ range $imgtype }}
+    {{ if strings.Contains $getlink .  }}
+        <!-- media types -->
+        {{ $srctype = "image" }}
+        <!-- image paths  -->
+        {{ if resources.GetMatch ( print "images/" $getlink ) }}
+            {{ $pathsrc = resources.GetMatch ( print "images/" $getlink ) }}
+        {{ else if $pathsrc }}
+            {{ $pathsrc = $pathsrc }}
+        {{ else }}
+            {{ $pathsrc = "/icons/no-image.svg" }}
         {{ end }}
     {{ end }}
-    {{ range $psource }}
-        {{ if strings.Contains $pathsrc . }}
-            {{ $typesrc = "img_embed" }}
+{{ end }}
+
+
+
+<!-- VIDEO -->
+{{- $vidtype := slice "mp4" "flv" "webm" "avi" "mkv"  -}}
+{{- $vidlink := slice "youtube.com" "vimeo.com" "archive.org" -}}
+
+<!-- video - remote data -->
+{{ range $vidlink }}
+    {{ if strings.Contains $getlink . }}
+        <!-- video types -->
+        {{ $srctype = trim . ".com" }}
+        <!-- video paths -->
+        {{ $pathsrc = $getlink}}
+    {{ end }}
+{{ end }}
+
+<!-- video local data -->
+{{ range $vidtype }}
+    {{ if strings.Contains $getlink . }}
+        <!-- video types -->
+        {{ $srctype = "video" }}
+        <!-- video paths -->
+        {{ if resources.GetMatch ( print "videos/" $getlink ) }}
+            {{ $pathsrc = resources.GetMatch ( print "videos/" $getlink ) }}
+        {{ else if $pathsrc }}
+            {{ $pathsrc = $pathsrc }}
+        {{ else }}
+            {{ $pathsrc = "/icons/no-image.svg" }}
         {{ end }}
     {{ end }}
-{{- else -}}
-    {{ range $vformat }}
-        {{ if strings.Contains $pathsrc . }}
+{{ end }}
 
-            <!-- set type of media -->
-            {{ $typesrc = "vid_local" }}
 
-            <!-- set resource of media -->
-            {{ if resources.GetMatch ( print "videos/" $pathsrc ) }}
-                {{- $pathsrc = resources.GetMatch ( print "videos/" $pathsrc ) }}
-            {{ else if .Page.Resources.GetMatch .Destination }}
-                {{- $pathsrc = .Page.Resources.GetMatch .Destination }}
-            {{ end }}
+<!-- RENDER -->
 
-        {{ end }}
-    {{ end}}
-    {{ range $pformat }}
-        {{ if strings.Contains $pathsrc . }}
+<!-- image -->
+{{ if eq $srctype "image" }}
+    images nih
+{{ end }}
 
-            <!-- set type of media -->
-            {{ $typesrc = "img_local" }}
 
-            <!-- set resource of media -->
-            {{ if resources.GetMatch ( print "images/" $pathsrc ) }}
-                {{- $pathsrc = resources.GetMatch ( print "images/" $pathsrc ) }}
-            {{ else if .Page.Resources.GetMatch .Destination }}
-                {{- $pathsrc = .Page.Resources.GetMatch .Destination }}
-            {{ end }}
-        {{ end }}
-    {{ end}}
-{{- end -}}
+<!-- video -->
+{{ if eq $srctype "video" }}
+    video nih
+{{ end }}
 
-<p>{{ $typesrc }}</p>
-<p>{{ $pathsrc }}</p>
+
+<!-- youtube -->
+{{ if eq $srctype "youtube" }}
+    youtube nih
+{{ end }}
+
+
+<!-- vimeo -->
+{{ if eq $srctype "vimeo" }}
+    images nih
+{{ end }}
