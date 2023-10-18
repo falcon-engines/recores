@@ -78,7 +78,7 @@
 {{- else if eq $srctype "video" -}}
 
     <!-- video -->
-    <div class="vidwrap">
+    <div class="media-lazy vidwrap">
         <video width="759" height="427" poster="{{ .Title }}" preload="none" controls>
             {{ if strings.Contains $pathsrc "mp4" }}
                 <source src="{{ $pathsrc }}" type="video/mp4">
@@ -91,7 +91,7 @@
 
 {{- else if or ( eq $srctype "youtube.com" ) ( eq $srctype "vimeo.com" ) -}}
 
-    <div class="vidwrap">
+    <div class="media-lazy vidwrap">
         <iframe src="{{ $pathsrc }}" width="759" height="427" frameborder="0" loading=lazy allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     </div>
 
