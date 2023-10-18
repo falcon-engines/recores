@@ -1,5 +1,5 @@
 <!-- global - general config -->
-{{- $resizer := slice "320" "480" "640" "768" "960" "1280" "1536" -}}
+{{- $medsize := slice "576" "768" "992" "1200" "1400" -}}
 {{- $pagesrc := .Page.Resources.GetMatch .Destination }}
 {{- $pathsrc := "" }}
 {{- $stylerc := "lazy-load flex-c round-10" }}

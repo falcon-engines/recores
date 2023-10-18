@@ -1,5 +1,5 @@
 <!-- GLOBAL -->
-{{- $resizer := slice "320" "480" "640" "768" "960" "1280" "1536" -}}
+{{- $medsize := slice "576" "768" "992" "1200" "1400" -}}
 {{- $getlink := .Destination | safeURL }}
 {{- $pathsrc := .Page.Resources.GetMatch $getlink }}
 {{- $stylerc := "lazy-load flex-c round-10" }}
@@ -7,78 +7,38 @@
 {{- $srctype := "" }}
 
 
-<!-- IMAGES -->
-{{ if or ( strings.Contains $getlink "pixabay.com" ) ( strings.Contains $getlink "unsplash.com" ) ( strings.Contains $getlink "pexels.com" ) }} 
-    {{ $srctype = "image" }}
-    {{ $pathsrc = $getlink }}
-{{ else if or ( strings.Contains $getlink "png" ) ( strings.Contains $getlink "webp" ) ( strings.Contains $getlink "jpeg" ) ( strings.Contains $getlink "jpg" ) ( strings.Contains $getlink "svg" ) }}
-    {{ $srctype = "image" }}
-    {{ if resources.GetMatch ( print "images/" $getlink ) }}
+<!-- RENDER -->
+{{- if or ( strings.Contains $getlink "png" ) ( strings.Contains $getlink "webp" ) ( strings.Contains $getlink "jpeg" ) ( strings.Contains $getlink "jpg" ) ( strings.Contains $getlink "svg" ) -}}
+
+    <!-- render image -->
+    {{ if strings.Contains $getlink "http" }}
+        {{ $pathsrc = $getlink }}
+    {{ else if resources.GetMatch ( print "images/" $getlink ) }}
         {{ $pathsrc = resources.GetMatch ( print "images/" $getlink ) }}
     {{ else if $pathsrc }}
         {{ $pathsrc = $pathsrc }}
     {{ else }}
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
-<!-- VIDEO -->
-{{ else if strings.Contains $getlink "youtube.com"  }} 
-    {{ $srctype = "youtube.com" }}
-    {{ $pathsrc = strings.Replace $getlink "watch?v=" "embed/" }}
-{{ else if strings.Contains $getlink "vimeo.com" }}
-    {{ $srctype = "vimeo.com" }}
-    {{ $pathsrc = $getlink }}
-{{ else if or ( strings.Contains $getlink "mp4" ) ( strings.Contains $getlink "flv" ) ( strings.Contains $getlink "avi" ) ( strings.Contains $getlink "mkv" ) }}
-    {{ $srctype = "video" }}
-    {{ if resources.GetMatch ( print "videos/" $getlink ) }}
+
+    local images
+
+
+{{- else if or ( strings.Contains $getlink "mp4" ) ( strings.Contains $getlink "flv" ) ( strings.Contains $getlink "avi" ) ( strings.Contains $getlink "mkv" )  }}
+
+    <!-- render video -->
+    {{ if strings.Contains $getlink "http" }}
+        {{ $pathsrc = $getlink }}
+    {{ else if resources.GetMatch ( print "videos/" $getlink ) }}
         {{ $pathsrc = resources.GetMatch ( print "videos/" $getlink ) }}
     {{ else if $pathsrc }}
         {{ $pathsrc = $pathsrc }}
     {{ else }}
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
-<!-- GDOCS -->
-{{ else if or ( strings.Contains $getlink "docs.google.com" ) ( strings.Contains $getlink "drive.google.com" ) }}
-    {{ if strings.Contains $getlink "document" }}
-        {{ $srctype = "google_doc" }}
-        {{ $pathsrc = print $getlink "?embedded=true" }}
-    {{ else if strings.Contains $getlink "spreadsheets" }}
-        {{ $srctype = "google_xls" }}
-        {{ if strings.Contains $getlink "gid=" }}
-            {{ $pathsrc = print $getlink "&widget=true&headers=false" }}
-        {{ else }}
-            {{ $pathsrc = print $getlink "?widget=true&headers=false" }}
-        {{ end }}
-    {{ else if strings.Contains $getlink "presentation" }}
-        {{ $srctype = "google_ppt" }}
-        {{ $pathsrc = replace $getlink "pub?" "embed?" }}
-    {{ else if strings.Contains $getlink "file" }}
-        {{ $srctype = "google_pdf" }}
-        {{ $pathsrc = replace $getlink "/view?usp=share_link" "/preview" }}
-    {{ end }}
-<!-- GPDFS -->
-{{ else if strings.Contains $getlink ".pdf" }}
-    {{ $srctype = "embeds_pdf" }}
-    {{ if strings.Contains $getlink "http" }}
-        {{ $srctype = "google_doc" }}
-        {{ $pathsrc = $getlink }}
-    {{ else if resources.GetMatch ( print "docus/" $getlink ) }}
-        {{ $pathsrc = resources.GetMatch ( print "docus/" $getlink ) }}
-    {{ else }}
-        {{ $pathsrc = "/icons/no-image.svg" }}
-    {{ end }}
-{{ end }}
 
-
-<!-- RENDER -->
-{{- if eq $srctype "image" -}}
-
-    <!-- image -->
-    images nih
-
-{{- else if eq $srctype "video" -}}
-
-    <!-- video -->
-    <div class="media-lazy vidwrap">
+     <!-- render video -->
+     <div class="media-lazy vidwrap">
         <video width="759" height="427" poster="{{ .Title }}" preload="none" controls>
             {{ if strings.Contains $pathsrc "mp4" }}
                 <source src="{{ $pathsrc }}" type="video/mp4">
@@ -89,40 +49,95 @@
         </video>
     </div>
 
-{{- else if or ( eq $srctype "youtube.com" ) ( eq $srctype "vimeo.com" ) -}}
+{{- else if strings.Contains $getlink ".pdf" -}}
+
+    <!-- render pdf -->
+    {{ if strings.Contains $getlink "http" }}
+        {{ $pathsrc = $getlink }}
+    {{ else if resources.GetMatch ( print "docus/" $getlink ) }}
+        {{ $pathsrc = resources.GetMatch ( print "docus/" $getlink ) }}
+    {{ else }}
+        {{ $pathsrc = "/icons/no-image.svg" }}
+    {{ end }}
+
+    <div class="media-lazy embeds-pdf" data-src="{{ $pathsrc }}">
+        <iframe src="{{ $pathsrc }}" width="100%" height="480" allow="autoplay"></iframe>
+    </div>
+
+
+{{- else if strings.Contains $getlink "youtube.com"  }}
+
+    <!-- youtube embed -->
+    {{ $pathsrc = strings.Replace $getlink "watch?v=" "embed/" }}
 
     <div class="media-lazy vidwrap">
         <iframe src="{{ $pathsrc }}" width="759" height="427" frameborder="0" loading=lazy allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-{{- else if eq $srctype "google_doc" -}}
+{{- else if strings.Contains $getlink "vimeo.com"  }}
+
+    <!-- vimeo embed -->
+    {{ $pathsrc = $getlink }}
+
+    <div class="media-lazy vidwrap">
+        <iframe src="{{ $pathsrc }}" width="759" height="427" frameborder="0" loading=lazy allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+{{- else if strings.Contains $getlink "docs.google.com/document" }}
+
+    <!-- google document embed -->
+    {{ $pathsrc = print $getlink "?embedded=true" }}
 
     <div class="media-lazy google-doc" data-src="{{ $pathsrc }}">
         <iframe src="{{ $pathsrc }}" width="100%" height="480"></iframe>
     </div>
+   
+{{- else if strings.Contains $getlink "docs.google.com/spreadsheets"  -}}
 
-{{- else if eq $srctype "google_xls" -}}
+    <!-- google spreadsheets embed -->
+    {{ if strings.Contains $getlink "gid=" }}
+        {{ $pathsrc = print $getlink "&widget=true&headers=false" }}
+    {{ else }}
+        {{ $pathsrc = print $getlink "?widget=true&headers=false" }}
+    {{ end }}
 
     <div class="media-lazy google-xls" data-src="{{ $pathsrc }}">
         <iframe src="{{ $pathsrc }}" width="100%" height="480" ></iframe>
     </div>
+   
 
-{{- else if eq $srctype "google_ppt" -}}
+{{- else if strings.Contains $getlink "docs.google.com/presentation"  -}}
+
+    <!-- google presentation embed -->
+    {{ $pathsrc = replace $getlink "pub?" "embed?" }}
 
     <div class="media-lazy google-ppt" data-src="{{ $pathsrc }}">
         <iframe src="{{ $pathsrc }}" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
     </div>
 
-{{- else if eq $srctype "google_pdf" -}}
+{{- else if strings.Contains $getlink "drive.google.com/file" -}}
+
+    <!-- google pdf embed -->
+    {{ $pathsrc = replace $getlink "/view?usp=share_link" "/preview" }}
 
     <div class="media-lazy google-pdf" data-src="{{ $pathsrc }}">
         <iframe src="{{ $pathsrc }}" width="100%" height="480" allow="autoplay"></iframe>
     </div>
 
-{{- else if eq $srctype "embeds_pdf" -}}
 
-    <div class="media-lazy embeds-pdf" data-src="{{ $pathsrc }}">
-        <iframe src="{{ $pathsrc }}" width="100%" height="480" allow="autoplay"></iframe>
+{{- else if strings.Contains $getlink "lottie" -}}
+
+    <!-- lottie animation embed -->
+    {{ if strings.Contains $getlink "http" }}
+        {{ $pathsrc = $getlink }}
+    {{ else if resources.GetMatch ( print "anima/" $getlink ) }}
+        {{ $pathsrc = resources.GetMatch ( print "anima/" $getlink ) }}
+    {{ else }}
+        {{ $pathsrc = "/icons/no-image.svg" }}
+    {{ end }}
+
+    <div class="media-lazy animax" data-src="{{ $pathsrc }}">
+        <dotlottie-player src="{{ $pathsrc }}" background="transparent" speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
     </div>
 
 {{ end }}

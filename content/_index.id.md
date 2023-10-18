@@ -29,4 +29,5 @@ title: "karim"
 # Google Pdf
 ![Watch vimeo](https://drive.google.com/file/d/1N3OE-qI6ga4euDjx-7IQDYKcoSH9k0CZ/view?usp=share_link)
 
-# Chart csv
+# Animax Json
+![karim adalah](technology/seo-dashboard-1.lottie "loadnow" )

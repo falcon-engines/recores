@@ -64,7 +64,23 @@ let theme = () => {
     }
 }
 
-window.addEventListener("load", (event) => {
+let media = () => {
+
+    let animax = document.querySelector('.animax');
+ 
+    if (animax) {
+
+        /** load player script */
+        let mainjs = document.getElementById('main-jsx');
+        let gensrc = document.createElement('script');
+        gensrc.src = "https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs";
+        gensrc.setAttribute("type", "module");
+        mainjs.after(gensrc);
+    }   
+}
+
+window.addEventListener("load", () => {
     //image();
+    media();
     theme();
 });
