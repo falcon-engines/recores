@@ -58,10 +58,11 @@
 <!-- GPDFS -->
 {{ else if strings.Contains $getlink ".pdf" }}
     {{ $srctype = "embeds_pdf" }}
-    {{ if resources.GetMatch ( print "docus/" $getlink ) }}
+    {{ if strings.Contains $getlink "http" }}
+        {{ $srctype = "google_doc" }}
+        {{ $pathsrc = $getlink }}
+    {{ else if resources.GetMatch ( print "docus/" $getlink ) }}
         {{ $pathsrc = resources.GetMatch ( print "docus/" $getlink ) }}
-    {{ else if $pathsrc }}
-        {{ $pathsrc = $pathsrc }}
     {{ else }}
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
@@ -95,11 +96,13 @@
     </div>
 
 {{- else if eq $srctype "google_doc" -}}
+
     <div class="media-lazy google-doc" data-src="{{ $pathsrc }}">
         <iframe src="{{ $pathsrc }}" width="100%" height="480"></iframe>
     </div>
 
 {{- else if eq $srctype "google_xls" -}}
+
     <div class="media-lazy google-xls" data-src="{{ $pathsrc }}">
         <iframe src="{{ $pathsrc }}" width="100%" height="480" ></iframe>
     </div>
@@ -109,6 +112,7 @@
     <div class="media-lazy google-ppt" data-src="{{ $pathsrc }}">
         <iframe src="{{ $pathsrc }}" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
     </div>
+
 {{- else if eq $srctype "google_pdf" -}}
 
     <div class="media-lazy google-pdf" data-src="{{ $pathsrc }}">
