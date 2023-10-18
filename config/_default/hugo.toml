@@ -81,5 +81,5 @@ disableHugoGeneratorInject = true                 # disable injection
     source = 'module/assets'
     target = 'static'
 [[module.mounts]]
-    source = 'datums'
+    source = 'module/datum'
     target = 'data'
