@@ -7,91 +7,118 @@
 {{- $srctype := "" }}
 
 
-
 <!-- IMAGES -->
-{{- $imgtype := slice "png" "webp" "jpeg" "svg" "jpg" -}}
-{{- $imglink := slice "pixabay.com" "unsplash.com" "pexels.com" -}}
-
-<!-- images - remote data -->
-{{ range $imglink }}
-    {{ if strings.Contains $getlink . }}
-        <!-- media types -->
-        {{ $srctype = "image" }}
-        <!-- image paths  -->
-        {{ $pathsrc = $getlink }}
+{{ if or ( strings.Contains $getlink "pixabay.com" ) ( strings.Contains $getlink "unsplash.com" ) ( strings.Contains $getlink "pexels.com" ) }} 
+    {{ $srctype = "image" }}
+    {{ $pathsrc = $getlink }}
+{{ else if or ( strings.Contains $getlink "png" ) ( strings.Contains $getlink "webp" ) ( strings.Contains $getlink "jpeg" ) ( strings.Contains $getlink "jpg" ) ( strings.Contains $getlink "svg" ) }}
+    {{ $srctype = "image" }}
+    {{ if resources.GetMatch ( print "images/" $getlink ) }}
+        {{ $pathsrc = resources.GetMatch ( print "images/" $getlink ) }}
+    {{ else if $pathsrc }}
+        {{ $pathsrc = $pathsrc }}
+    {{ else }}
+        {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
-{{ end }}
-
-<!-- images - local data -->
-{{ range $imgtype }}
-    {{ if strings.Contains $getlink .  }}
-        <!-- media types -->
-        {{ $srctype = "image" }}
-        <!-- image paths  -->
-        {{ if resources.GetMatch ( print "images/" $getlink ) }}
-            {{ $pathsrc = resources.GetMatch ( print "images/" $getlink ) }}
-        {{ else if $pathsrc }}
-            {{ $pathsrc = $pathsrc }}
-        {{ else }}
-            {{ $pathsrc = "/icons/no-image.svg" }}
-        {{ end }}
-    {{ end }}
-{{ end }}
-
-
-
 <!-- VIDEO -->
-{{- $vidtype := slice "mp4" "flv" "webm" "avi" "mkv"  -}}
-{{- $vidlink := slice "youtube.com" "vimeo.com" "archive.org" -}}
-
-<!-- video - remote data -->
-{{ range $vidlink }}
-    {{ if strings.Contains $getlink . }}
-        <!-- video types -->
-        {{ $srctype = trim . ".com" }}
-        <!-- video paths -->
-        {{ $pathsrc = $getlink}}
+{{ else if strings.Contains $getlink "youtube.com"  }} 
+    {{ $srctype = "youtube.com" }}
+    {{ $pathsrc = strings.Replace $getlink "watch?v=" "embed/" }}
+{{ else if strings.Contains $getlink "vimeo.com" }}
+    {{ $srctype = "vimeo.com" }}
+    {{ $pathsrc = $getlink }}
+{{ else if or ( strings.Contains $getlink "mp4" ) ( strings.Contains $getlink "flv" ) ( strings.Contains $getlink "avi" ) ( strings.Contains $getlink "mkv" ) }}
+    {{ $srctype = "video" }}
+    {{ if resources.GetMatch ( print "videos/" $getlink ) }}
+        {{ $pathsrc = resources.GetMatch ( print "videos/" $getlink ) }}
+    {{ else if $pathsrc }}
+        {{ $pathsrc = $pathsrc }}
+    {{ else }}
+        {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
-{{ end }}
-
-<!-- video local data -->
-{{ range $vidtype }}
-    {{ if strings.Contains $getlink . }}
-        <!-- video types -->
-        {{ $srctype = "video" }}
-        <!-- video paths -->
-        {{ if resources.GetMatch ( print "videos/" $getlink ) }}
-            {{ $pathsrc = resources.GetMatch ( print "videos/" $getlink ) }}
-        {{ else if $pathsrc }}
-            {{ $pathsrc = $pathsrc }}
+<!-- GDOCS -->
+{{ else if or ( strings.Contains $getlink "docs.google.com" ) ( strings.Contains $getlink "drive.google.com" ) }}
+    {{ if strings.Contains $getlink "document" }}
+        {{ $srctype = "google_doc" }}
+        {{ $pathsrc = print $getlink "?embedded=true" }}
+    {{ else if strings.Contains $getlink "spreadsheets" }}
+        {{ $srctype = "google_xls" }}
+        {{ if strings.Contains $getlink "gid=" }}
+            {{ $pathsrc = print $getlink "&widget=true&headers=false" }}
         {{ else }}
-            {{ $pathsrc = "/icons/no-image.svg" }}
+            {{ $pathsrc = print $getlink "?widget=true&headers=false" }}
         {{ end }}
+    {{ else if strings.Contains $getlink "presentation" }}
+        {{ $srctype = "google_ppt" }}
+        {{ $pathsrc = replace $getlink "pub?" "embed?" }}
+    {{ else if strings.Contains $getlink "file" }}
+        {{ $srctype = "google_pdf" }}
+        {{ $pathsrc = replace $getlink "/view?usp=share_link" "/preview" }}
+    {{ end }}
+<!-- GPDFS -->
+{{ else if strings.Contains $getlink ".pdf" }}
+    {{ $srctype = "embeds_pdf" }}
+    {{ if resources.GetMatch ( print "docus/" $getlink ) }}
+        {{ $pathsrc = resources.GetMatch ( print "docus/" $getlink ) }}
+    {{ else if $pathsrc }}
+        {{ $pathsrc = $pathsrc }}
+    {{ else }}
+        {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
 {{ end }}
 
 
 <!-- RENDER -->
+{{- if eq $srctype "image" -}}
 
-<!-- image -->
-{{ if eq $srctype "image" }}
+    <!-- image -->
     images nih
-{{ end }}
 
+{{- else if eq $srctype "video" -}}
 
-<!-- video -->
-{{ if eq $srctype "video" }}
-    video nih
-{{ end }}
+    <!-- video -->
+    <div class="vidwrap">
+        <video width="759" height="427" poster="{{ .Title }}" preload="none" controls>
+            {{ if strings.Contains $pathsrc "mp4" }}
+                <source src="{{ $pathsrc }}" type="video/mp4">
+            {{ end }}
+            {{ if strings.Contains $pathsrc "flv" }}
+                <source src="{{ $pathsrc }}" type="video/flv">
+            {{ end }}
+        </video>
+    </div>
 
+{{- else if or ( eq $srctype "youtube.com" ) ( eq $srctype "vimeo.com" ) -}}
 
-<!-- youtube -->
-{{ if eq $srctype "youtube" }}
-    youtube nih
-{{ end }}
+    <div class="vidwrap">
+        <iframe src="{{ $pathsrc }}" width="759" height="427" frameborder="0" loading=lazy allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
 
+{{- else if eq $srctype "google_doc" -}}
+    <div class="media-lazy google-doc" data-src="{{ $pathsrc }}">
+        <iframe src="{{ $pathsrc }}" width="100%" height="480"></iframe>
+    </div>
 
-<!-- vimeo -->
-{{ if eq $srctype "vimeo" }}
-    images nih
+{{- else if eq $srctype "google_xls" -}}
+    <div class="media-lazy google-xls" data-src="{{ $pathsrc }}">
+        <iframe src="{{ $pathsrc }}" width="100%" height="480" ></iframe>
+    </div>
+
+{{- else if eq $srctype "google_ppt" -}}
+
+    <div class="media-lazy google-ppt" data-src="{{ $pathsrc }}">
+        <iframe src="{{ $pathsrc }}" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    </div>
+{{- else if eq $srctype "google_pdf" -}}
+
+    <div class="media-lazy google-pdf" data-src="{{ $pathsrc }}">
+        <iframe src="{{ $pathsrc }}" width="100%" height="480" allow="autoplay"></iframe>
+    </div>
+
+{{- else if eq $srctype "embeds_pdf" -}}
+
+    <div class="media-lazy embeds-pdf" data-src="{{ $pathsrc }}">
+        <iframe src="{{ $pathsrc }}" width="100%" height="480" allow="autoplay"></iframe>
+    </div>
+
 {{ end }}

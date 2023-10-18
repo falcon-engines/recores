@@ -163,6 +163,25 @@ img {
     height: auto;
 }
 
+.vidwrap { 
+    float: none; 
+    clear: both; 
+    width: 100%; 
+    position: relative; 
+    padding-bottom: 56.25%; 
+    padding-top: 25px; 
+    height: 0; 
+} 
+
+.vidwrap iframe,
+.vidwrap video { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+}
+
 /* components */
 
 html[data-mode='dark'] .icons {
