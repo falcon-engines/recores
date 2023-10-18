@@ -1,7 +1,7 @@
 # FALCON STATIC SITES SKELS
 
 
-## MEDIA 
+## Render Media 
 
 # Image locals
 ```
