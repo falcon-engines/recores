@@ -7,8 +7,7 @@
 {{ $styles := resources.Get "styles/main.scss" | resources.ExecuteAsTemplate "main.css" . | toCSS | minify |  fingerprint }}
 <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}" media="screen">
 
-
 <!-- based scripts -->
-{{ $scripts := resources.Get "scripts/main.js" | resources.ExecuteAsTemplate "main.js" . |  minify |  fingerprint }}
-<script id="main-jsx" src="{{ $scripts.Permalink }}" integrity="{{ $scripts.Data.Integrity }}" defer></script>
+{{ $scripts := resources.Get "scripts/main.js" | js.Build "scripts/main.js" | resources.ExecuteAsTemplate "main.js" . |  minify |  fingerprint  }}
+<script id="main-jsx" src="{{ $scripts.Permalink }}" integrity="{{ $scripts.Data.Integrity }}" defer type="module"></script>
 

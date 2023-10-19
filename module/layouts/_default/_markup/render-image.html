@@ -38,7 +38,9 @@
     {{ end }}
 
      <!-- render video -->
-     <div class="media-lazy vidwrap">
+     <div class="video-lazy vidwrap" data-poster="{{ .Title }}" data-src="{{ $pathsrc }}">
+
+        <!-- 
         <video width="759" height="427" poster="{{ .Title }}" preload="none" controls>
             {{ if strings.Contains $pathsrc "mp4" }}
                 <source src="{{ $pathsrc }}" type="video/mp4">
@@ -47,6 +49,7 @@
                 <source src="{{ $pathsrc }}" type="video/flv">
             {{ end }}
         </video>
+         -->
     </div>
 
 {{- else if strings.Contains $getlink ".pdf" -}}
