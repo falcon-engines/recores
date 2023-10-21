@@ -26,6 +26,6 @@
 {{- $jsx_critical := resources.Get "scripts/head.js" -}} 
 {{- if hugo.IsProduction }}
     {{- $jsx_critical = resources.Get "scripts/head.js" | resources.Minify }}
-{{- end }}
+{{- end -}}
 
 <style>{{- $css_critical.Content | safeCSS -}}</style><script>{{- $jsx_critical.Content | safeJS  -}} </script>
