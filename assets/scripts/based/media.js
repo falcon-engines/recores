@@ -1,87 +1,114 @@
-export let imagesload = () => {
-    
-    let allimg = document.querySelectorAll('.lazy-load') 
-    let arrimg = Array.prototype.slice.call(allimg);
+export class medialoader {
 
-    arrimg.forEach( img => {
+    constructor(){
+        let animaxfind = document.querySelector('.animax');
+        let pagechecks = document.querySelector('.media');
+        if ( animaxfind ) {
+            this.animation();
+        } 
+        if ( pagechecks ) {
+            this.lazy_load();
+        } 
+    }
 
-        let imgpic = img.querySelector('img');
-        let imgcap = img.querySelector('p');
-        let checks = new XMLHttpRequest();
-
-        // check http image
-        checks.open('HEAD', imgpic.dataset.img, false);
-        checks.send();
-    
-        if ( checks.status == 200 ) {
-
-            // image setup
-            imgpic.src = imgpic.dataset.img
-
-            // image loads
-            imgpic.addEventListener( 'load', () => {
-                imgpic.classList.add('picmain');
-                imgpic.classList.remove('icon');
-                img.classList.add('picbox');
-
-                // display image
-                img.classList.remove('hide');
-
-                // setup caption
-                imgcap.innerText = imgcap.dataset.alt
-            }) 
-
-        } else {
-            img.classList.add('noimg');
-            img.classList.remove('hide');
-        }
-    });
-}
-
-export let animaxload = () => {
-
-    let animax = document.querySelector('.animax');
- 
-    if (animax) {
-
-        // load player script
-        let mainjs = document.getElementById('main-jsx');
-        let gensrc = document.createElement('script');
+    // animation 
+    animation() {
+        let mainjs = document.getElementById( 'main-jsx' );
+        let gensrc = document.createElement( 'script' );
         gensrc.src = "https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs";
-        gensrc.setAttribute("type", "module");
-        mainjs.after(gensrc);
+        gensrc.setAttribute( 'type', 'module');
+        gensrc.setAttribute( 'defer', '');
+        mainjs.after( gensrc );
+    }
 
-        // load player embed
-    }   
-}
-
-export let videosload = () => {
-
-    // https://blog.logrocket.com/understanding-lazy-loading-javascript/
-
-    if ( document.querySelector('.video-lazy') ) {
-
-        // callback
-        let intersection = ( entries, observer ) => {
-            entries.forEach(( entry ) => {
-                if ( entry.isIntersecting ) {
-                    let video = entry.target;
-                    video.classList.remove('video-lazy');
-                    observer.unobserve(video);
-                }
-            });
-        };
-
-        // observation
-        let targets = document.querySelectorAll('.video-lazy');
+    // lazyloads 
+    lazy_load() {
+        let masters = document.querySelectorAll( '.media' );
         let options = { root: null, rootMargin: '0px' };
-        let observe = new IntersectionObserver( intersection, options );
-        targets.forEach((video) => {
-            observe.observe(video);
+        let observe = new IntersectionObserver( this.lazy_main, options );
+        masters.forEach((items) => {
+            observe.observe(items);
         });
     }
-}
 
-export let pdfdocload = () => {
+    lazy_main( entries, observer ) {
 
+        let render = document.createElement( 'iframe' );
+       
+        entries.forEach(( entry ) => {
+          
+            let target = entry.target;
+            let format = target.dataset.type;
+            let loader = target.querySelector('.loader-round');
+     
+            let lazy_gppt = ( target, render ) => {
+                render.setAttribute( 'frameborder', 0 );
+                render.setAttribute( 'mozallowfullscreen', true );
+                render.setAttribute( 'allowfullscreen', true );
+                target.insertBefore( render, target.children[0] );
+            }
+           
+            let lazy_vide = ( target, render, loader ) => {
+                // element builder 
+                render.setAttribute( 'controls', '' );
+                render.setAttribute( 'controlsList', 'noplaybackrate nodownload' );
+                render.setAttribute( 'poster', target.dataset.cover );
+                target.insertBefore( render, target.children[0] );
+                // close animation
+                render.addEventListener('canplaythrough', ( event ) => {
+                    event.currentTarget.classList.add( 'loaded' );
+                    setTimeout( () => {
+                        loader.classList.add( 'hide' );
+                    }, 1000);
+                });
+            }
+        
+            let lazy_ytub = ( target, render ) => {
+                render.setAttribute( 'frameborder', 0 );
+                render.setAttribute( 'loading', 'lazy' );
+                render.setAttribute( 'allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' );
+                render.setAttribute( 'allowfullscreen', '' );
+                target.insertBefore( render, render.children[0] );
+            }
+
+            let lazy_kill = (render, loader) => {
+                render.addEventListener('load', ( event ) => {
+                    event.currentTarget.classList.add( 'loaded' );
+                    setTimeout( () => {
+                        loader.classList.add( 'hide' );
+                    }, 1000)
+                });
+            }
+
+            if ( entry.isIntersecting ) {
+                if ( format === 'video' ) {
+                    render = document.createElement( 'video' );
+                    render.src = target.dataset.src;
+                    lazy_vide( target, render, loader );
+                }
+                else if ( format === 'file' || format === 'vimeo' || format === 'gdoc' || format === 'gxls' || format === 'gpdf' ) {
+                    render.src = target.dataset.src;
+                    target.insertBefore(render, target.children[0]);
+                    lazy_kill( render, loader );
+                }
+                else if ( format === 'gppt' ) {
+                    render.src = target.dataset.src;
+                    lazy_gppt( target, render );
+                    lazy_kill( render, loader );
+                    
+                }
+                else if ( format === 'youtube' ) {
+                    render.src = target.dataset.src;
+                    lazy_ytub( target, render );
+                    lazy_kill( render, loader );
+                }
+                else {
+                    
+                }
+                
+                observer.unobserve(target);
+            }
+        });
+
+    }
 }

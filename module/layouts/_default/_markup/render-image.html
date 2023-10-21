@@ -15,17 +15,22 @@
         {{ $pathsrc = $getlink }}
     {{ else if resources.GetMatch ( print "images/" $getlink ) }}
         {{ $pathsrc = resources.GetMatch ( print "images/" $getlink ) }}
-    {{ else if $pathsrc }}
-        {{ $pathsrc = $pathsrc }}
     {{ else }}
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
 
-    local images
+    <div class="lazy-load flex-c round-10">
+        <figure>
+            <picture>
+                <img src="{{ $pathsrc }}" class="image round-10" alt="{{ .Title }}" loading="lazy">
+            </picture>
+            <p class="fw-600 caption" data-alt="{{ .Text }}">No image</p>
+        </figure>
+    </div>
 
 
 {{- else if or ( strings.Contains $getlink "mp4" ) ( strings.Contains $getlink "flv" ) ( strings.Contains $getlink "avi" ) ( strings.Contains $getlink "mkv" )  }}
-
+    
     <!-- render video -->
     {{ if strings.Contains $getlink "http" }}
         {{ $pathsrc = $getlink }}
@@ -36,20 +41,8 @@
     {{ else }}
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
-
-     <!-- render video -->
-     <div class="video-lazy vidwrap" data-poster="{{ .Title }}" data-src="{{ $pathsrc }}">
-
-        <!-- 
-        <video width="759" height="427" poster="{{ .Title }}" preload="none" controls>
-            {{ if strings.Contains $pathsrc "mp4" }}
-                <source src="{{ $pathsrc }}" type="video/mp4">
-            {{ end }}
-            {{ if strings.Contains $pathsrc "flv" }}
-                <source src="{{ $pathsrc }}" type="video/flv">
-            {{ end }}
-        </video>
-         -->
+    <div class="media landscape row-all colfix" data-src="{{ $pathsrc }}" data-type="video" data-cover="{{ .Title }}">
+        <div class="loader-round"><div></div><div></div></div>
     </div>
 
 {{- else if strings.Contains $getlink ".pdf" -}}
@@ -63,8 +56,8 @@
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
 
-    <div class="media-lazy embeds-pdf" data-src="{{ $pathsrc }}">
-        <iframe src="{{ $pathsrc }}" width="100%" height="480" allow="autoplay"></iframe>
+    <div class="media portrait row-all colfix round-10" data-src="{{ $pathsrc }}" data-type="file">
+        <div class="loader-round"><div></div><div></div></div>
     </div>
 
 
@@ -73,8 +66,8 @@
     <!-- youtube embed -->
     {{ $pathsrc = strings.Replace $getlink "watch?v=" "embed/" }}
 
-    <div class="media-lazy vidwrap">
-        <iframe src="{{ $pathsrc }}" width="759" height="427" frameborder="0" loading=lazy allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    <div class="media landscape row-all colfix round-10" data-src="{{ $pathsrc }}" data-type="youtube">
+        <div class="loader-round"><div></div><div></div></div>
     </div>
 
 {{- else if strings.Contains $getlink "vimeo.com"  }}
@@ -82,8 +75,8 @@
     <!-- vimeo embed -->
     {{ $pathsrc = $getlink }}
 
-    <div class="media-lazy vidwrap">
-        <iframe src="{{ $pathsrc }}" width="759" height="427" frameborder="0" loading=lazy allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    <div class="media landscape row-all colfix round-10" data-src="{{ $pathsrc }}" data-type="vimeo">
+        <div class="loader-round"><div></div><div></div></div>
     </div>
 
 {{- else if strings.Contains $getlink "docs.google.com/document" }}
@@ -91,8 +84,8 @@
     <!-- google document embed -->
     {{ $pathsrc = print $getlink "?embedded=true" }}
 
-    <div class="media-lazy google-doc" data-src="{{ $pathsrc }}">
-        <iframe src="{{ $pathsrc }}" width="100%" height="480"></iframe>
+    <div class="media portrait row-all colfix round-10" data-src="{{ $pathsrc }}" data-type="gdoc">
+        <div class="loader-round"><div></div><div></div></div>
     </div>
    
 {{- else if strings.Contains $getlink "docs.google.com/spreadsheets"  -}}
@@ -104,8 +97,8 @@
         {{ $pathsrc = print $getlink "?widget=true&headers=false" }}
     {{ end }}
 
-    <div class="media-lazy google-xls" data-src="{{ $pathsrc }}">
-        <iframe src="{{ $pathsrc }}" width="100%" height="480" ></iframe>
+    <div class="media portrait row-all colfix round-10" data-src="{{ $pathsrc }}" data-type="gxls">
+        <div class="loader-round"><div></div><div></div></div>
     </div>
    
 
@@ -114,8 +107,8 @@
     <!-- google presentation embed -->
     {{ $pathsrc = replace $getlink "pub?" "embed?" }}
 
-    <div class="media-lazy google-ppt" data-src="{{ $pathsrc }}">
-        <iframe src="{{ $pathsrc }}" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    <div class="media landscape row-all colfix round-10" data-src="{{ $pathsrc }}" data-type="gppt">
+        <div class="loader-round"><div></div><div></div></div>
     </div>
 
 {{- else if strings.Contains $getlink "drive.google.com/file" -}}
@@ -123,8 +116,8 @@
     <!-- google pdf embed -->
     {{ $pathsrc = replace $getlink "/view?usp=share_link" "/preview" }}
 
-    <div class="media-lazy google-pdf" data-src="{{ $pathsrc }}">
-        <iframe src="{{ $pathsrc }}" width="100%" height="480" allow="autoplay"></iframe>
+    <div class="media portrait row-all colfix round-10" data-src="{{ $pathsrc }}" data-type="gpdf">
+        <div class="loader-round"><div></div><div></div></div>
     </div>
 
 
@@ -139,7 +132,7 @@
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
 
-    <div class="media-lazy animax" data-src="{{ $pathsrc }}">
+    <div class="animax row-all colfix" data-type="animax">
         <dotlottie-player src="{{ $pathsrc }}" background="transparent" speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
     </div>
 
