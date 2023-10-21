@@ -1,5 +1,6 @@
 [site_meta]
     leads      = "site tagline"                     # site tagline
+    descs      = "site description"                 # site description
     phone      = "test phone"                       # phone number
     email      = "test mail"                        # contact email
     address1   = "Office main address"              # office primary address
