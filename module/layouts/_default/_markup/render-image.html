@@ -1,9 +1,9 @@
 <!-- GLOBAL -->
-{{- $medsize := slice "576" "768" "992" "1200" "1400" -}}
+
 {{- $getlink := .Destination | safeURL }}
 {{- $pathsrc := .Page.Resources.GetMatch $getlink }}
 {{- $stylerc := "lazy-load flex-c round-10" }}
-{{- $mediawd := "100vw" -}}
+
 {{- $srctype := "" }}
 
 
@@ -19,12 +19,30 @@
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
 
-    <div class="lazy-load flex-c round-10">
-        <figure>
+    <div class="flex-c round-10">
+        {{- $resizer := slice "320" "640" "960" "1280" "1600" "1920"  -}}
+        {{- $mediawd := "(min-width: 1024px) 100vw, 50vw" -}}
+        {{- $normals := $pathsrc.Resize "640x jpg" -}}
+        <figure class="fluid">
             <picture>
-                <img src="{{ $pathsrc }}" class="image round-10" alt="{{ .Title }}" loading="lazy">
+                {{ $getwebp := slice }}
+                {{ range $resizer }}
+                    {{ $value :=  print ($pathsrc.Resize (printf "%sx%s" . " webp") ).RelPermalink " " . "w" }}
+                    {{ $getwebp = $getwebp | append $value }} 
+                {{ end }}
+                {{ $webpsrc := delimit $getwebp ", "  }}
+                <source type="image/webp" srcset=" {{- print $webpsrc -}}" sizes="{{ $mediawd }}" />
+                
+                {{ $getjpg := slice }}
+                {{ range $resizer }}
+                    {{ $value :=  print ($pathsrc.Resize (printf "%sx%s" . " jpg") ).RelPermalink " " . "w" }}
+                    {{ $getwebp = $getwebp | append $value }} 
+                {{ end }}
+                {{ $jpgsrc  := delimit $getjpg ", "  }}
+                <source type="image/jpg"  srcset=" {{- print $jpgsrc -}}" sizes="{{ $mediawd }}" />
+                <img src="{{ $normals }}" class="fluid"  alt="{{ .Title }}" loading="lazy">
             </picture>
-            <p class="fw-600 caption" data-alt="{{ .Text }}">No image</p>
+            {{ with .Text }}<p class="fw-600 caption" data-alt="{{ . }}">{{ . }}</p>{{ end }}
         </figure>
     </div>
 
@@ -36,8 +54,6 @@
         {{ $pathsrc = $getlink }}
     {{ else if resources.GetMatch ( print "videos/" $getlink ) }}
         {{ $pathsrc = resources.GetMatch ( print "videos/" $getlink ) }}
-    {{ else if $pathsrc }}
-        {{ $pathsrc = $pathsrc }}
     {{ else }}
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}

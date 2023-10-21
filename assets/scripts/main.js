@@ -1,5 +1,5 @@
-import { themebasics } from './based/theme.js';
-import { medialoader } from './based/media.js';
+import { themebasics } from './main/theme.js';
+import { medialoader } from './main/media.js';
 
 window.addEventListener("load", () => {
     
