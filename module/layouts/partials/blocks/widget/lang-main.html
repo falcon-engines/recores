@@ -1,5 +1,10 @@
-<ul>
-    {{ range $.Site.Home.AllTranslations }}
-    <li><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
-    {{ end }}
-</ul>
+<div class="lang-menu dropdown">
+    <div class="action">
+        <img src="{{ .Site.BaseURL }}icons/general/lang-menu.svg" class="icons" width="26" height="26" alt="dark mode icons">
+    </div>
+    <div class="menu dnone">
+        {{ range $.Site.Home.AllTranslations }}
+            <a class="item" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+        {{ end }}
+    </div>
+</div>

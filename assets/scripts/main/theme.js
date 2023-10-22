@@ -1,36 +1,47 @@
 // darkmode switcher
 export class themebasics {
 
+    
     constructor(){
-
-        let thememode = document.querySelector('.theme-mode');
-        if ( thememode ) {
-            this.darkmode( thememode );
+        let dropdawn = document.querySelector( '.dropdown' );
+        if ( dropdawn ) {
+            this.dropdown();
         }
-
+        let darkmode = document.querySelector( '.theme-menu' );
+        if ( darkmode ) {
+            this.darkmode();
+        }
     }
 
-    darkmode( item ) {
-        let action = Array.prototype.slice.call( item.querySelectorAll( '.action' ) );
-        let dialog = item.querySelector( '.menu' );
-        action.forEach( button => {
-            button.addEventListener( 'click', () => {
-                let actions = Array.prototype.slice.call(dialog.querySelectorAll( '.mode ' ) );
-                if (dialog.classList.contains( 'dnone' ) ) {
-                    dialog.classList.remove( 'dnone' ); 
+
+    dropdown() {
+        let droper = Array.prototype.slice.call( document.querySelectorAll( '.dropdown' ) );
+        droper.forEach( dropmenu => {
+            let action = dropmenu.querySelector( '.action' );
+            let openow = dropmenu.querySelector( '.menu' );
+            let allnav = Array.prototype.slice.call( document.querySelectorAll( '.dropdown .menu' ) );
+            action.addEventListener( 'click', () => {
+                if (openow.classList.contains( 'dnone' ) ) {
+                    allnav.forEach( allmenu => { allmenu.classList.add( 'dnone' ); });
+                    openow.classList.remove( 'dnone' ); 
                 }
                 else {
-                    dialog.classList.add( 'dnone' ); 
+                    openow.classList.add( 'dnone' ); 
                 }
-                actions.forEach( action => {
-                    action.addEventListener( 'click', (event)=> {
-                        let themset = event.currentTarget.dataset.themeset
-                        localStorage.setItem( 'theme', themset );
-                        document.documentElement.setAttribute( 'data-mode', themset );
-                        dialog.classList.add( 'dnone' );
-                    });
-                });
             });
         });
+    }
+
+
+    darkmode() {
+        let actions = Array.prototype.slice.call( document.querySelectorAll( '.theme-menu .item' ) );
+        actions.forEach( action => {
+            action.addEventListener( 'click', (event)=> {
+                let themset = event.currentTarget.dataset.themeset;
+                localStorage.setItem( 'theme', themset );
+                document.documentElement.setAttribute( 'data-mode', themset );
+                event.currentTarget.parentElement.classList.add( 'dnone' );
+            });
+        })
     }
 }
