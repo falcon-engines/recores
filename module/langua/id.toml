@@ -1,2 +1,5 @@
 [home]
   other = 'Beranda'
+
+[lang_menu]
+  other = 'Bahasa'

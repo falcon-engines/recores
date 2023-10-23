@@ -1,6 +1,7 @@
-<div class="lang-menu dropdown">
-    <div class="action">
+<div class="lang-menu dropdown mx-1 ">
+    <div class="action flex all">
         <img src="{{ .Site.BaseURL }}icons/general/lang-menu.svg" class="icons" width="26" height="26" alt="dark mode icons">
+        <p class="no-space ml-1">{{- T "lang_menu" -}} </p>
     </div>
     <div class="menu dnone">
         {{ range .Site.Home.AllTranslations }}

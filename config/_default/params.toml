@@ -14,7 +14,7 @@
 
 
 [base_model]
-    logos    = "icon-only"                          # icon, text, all
+    logos    = "all"                               # icon, text, all
     header   = "base"                               # footer model
     footer   = "base"                               # header model
     nopage   = "base"                               # 404 page not found

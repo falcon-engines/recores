@@ -23,18 +23,16 @@
         </figure>
     {{ else if eq $model "text" }}
         <div class="meta">
-            <h1 class="title">{{ $site_title }}</h1>
-            {{ if eq $model "all" }}
-            <p class="leads">{{ $site_leads }}</p>
-            {{ end }}
+            <h1 class="title no-space">{{ $site_title }}</h1>
+            <p class="leads fz-130 no-space">{{ $site_leads }}</p>
         </div>
     {{ else }}
         <figure class="box" data-logodark="{{ $darks_logo }}">
             <img class="image" src="{{ $light_logo }}" alt="{{ .Site.Params.title }} main logo" width="62" height="62">
         </figure>
         <div class="meta">
-            <h1 class="title">{{ $site_title }}</h1>
-            <p class="leads">{{ $site_leads }}</p>
+            <h1 class="title fz-130 no-space">{{ $site_title }}</h1>
+            <p class="leads fz-85 no-space">{{ $site_leads }}</p>
         </div>
     {{ end }}
 </div>
