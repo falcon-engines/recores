@@ -1,7 +1,7 @@
 <div class="lang-menu dropdown mx-1 ">
     <div class="action flex all">
         {{ if or ( eq .Site.Params.base_model.helps "icon" ) ( eq .Site.Params.base_model.helps "both" ) ( eq .Site.Params.base_model.helps "menu" ) }}
-            <img class="icons" src="{{ .Site.BaseURL }}icons/general/lang-menu.svg" class="icons" width="22" height="22" alt="lang menu icons">
+            <img class="icons" src="{{ .Site.BaseURL }}icons/general/lang-menu.svg" class="icons" width="24" height="24" alt="lang menu icons">
         {{ end }}
         {{ if or ( eq .Site.Params.base_model.helps "text" ) ( eq .Site.Params.base_model.helps "both" ) ( eq .Site.Params.base_model.helps "menu" ) }}
             <p class="title no-space ml-1">{{- T "lang_menu" -}} </p>
@@ -11,10 +11,10 @@
         {{ end }}
     </div>
     <div class="menu dnone">
-        {{ range .Site.Home.AllTranslations }}
-            <div class="item">
-                <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
-            </div>
-        {{ end }}
+    {{ range .Site.Home.AllTranslations }}
+        <div class="item">
+            <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+        </div>
+    {{ end }}
     </div>
 </div>

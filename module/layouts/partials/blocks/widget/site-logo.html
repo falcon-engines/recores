@@ -16,10 +16,10 @@
     {{ $site_leads = .Site.Params.site_meta.leads  }}
 {{ end }}
 
-<div class="site-logo flex horizontal {{ $model }}">
+<div class="site-logo flex horizontal">
     {{ if eq $model "icon" }}
         <figure class="box" data-logodark="{{ $darks_logo }}">
-            <img class="image" src="/{{ $light_logo }}" alt="{{ .Site.Params.title }} main logo" width="62" height="62">
+            <img class="image" src="/{{ $light_logo }}" alt="{{ .Site.Params.title }} main logo" width="52" height="52">
         </figure>
     {{ else if eq $model "text" }}
         <div class="meta">
@@ -28,7 +28,7 @@
         </div>
     {{ else }}
         <figure class="box" data-logodark="{{ $darks_logo }}">
-            <img class="image" src="/{{ $light_logo }}" alt="{{ .Site.Params.title }} main logo" width="62" height="62">
+            <img class="image" src="/{{ $light_logo }}" alt="{{ .Site.Params.title }} main logo" width="52" height="52">
         </figure>
         <div class="meta">
             {{ with $site_title }} <h1 class="title fz-120 no-space">{{ . }}</h1>{{ end }}

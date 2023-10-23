@@ -1,7 +1,7 @@
 <div class="theme-menu dropdown mx-1"> 
     <div class="action flex all">
         {{ if or ( eq .Site.Params.base_model.helps "icon" ) ( eq .Site.Params.base_model.helps "both" ) ( eq .Site.Params.base_model.helps "menu" ) }}
-            <img src="{{ .Site.BaseURL }}icons/general/dark-theme.svg" class="icons" width="22" height="22" alt="dark mode icons">
+            <img src="{{ .Site.BaseURL }}icons/general/dark-theme.svg" class="icons" width="24" height="24" alt="dark mode icons">
         {{ end }}
         {{ if or ( eq .Site.Params.base_model.helps "text" ) ( eq .Site.Params.base_model.helps "both" ) ( eq .Site.Params.base_model.helps "menu" ) }}
             <p class="title no-space ml-1">{{- T "appearance_menu" -}} </p>

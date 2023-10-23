@@ -2,21 +2,21 @@
 {{ $menuactived := "" }}
 
 <header class="headnav">
-    <div class="wrap">
+    <div class="wrap my-1">
         <div class="flex vertical fluid">
         {{ partial "blocks/widget/site-logo" . }}
-        <nav class="nav" id="navigation">
+        <nav id="navigation" class="nav mr-a">
             <ul class="navlist nolist flex vertical">
             {{ range .Site.Menus.main }}
                 {{ if .HasChildren }}
                     <li class="nav-submenu dropdown mx-1"> 
                         <div class="action flex all">
-                            <p class="title no-space ml-1">{{ .Name }}</p>
-                            <img src="/icons/general/chevron-down.svg" class="icons ml-1" height="12" width="12">
+                            <p class="title no-space">{{ .Name }}</p>
+                            <img src="/icons/general/chevron-down.svg" class="icons ml-05" height="10" width="10">
                         </div>
                         <ul class="menu dnone nolist">
                             {{ range .Children }}
-                                <li class="mx-1" >
+                                <li class="" >
                                     <a class="" href="{{ .URL }}"><p class="title no-space ml-1">{{ .Name }}</p></a>
                                 </li>
                             {{ end }}
@@ -24,7 +24,7 @@
                     </li>
                 {{ else }}
                     <li class="mx-1" >
-                        <a class="" href="{{ .URL }}"><p class="title no-space ml-1">{{ .Name }}</p></a>
+                        <a class="" href="{{ .URL }}"><p class="title no-space">{{ .Name }}</p></a>
                     </li>
                 {{ end }}
                 
