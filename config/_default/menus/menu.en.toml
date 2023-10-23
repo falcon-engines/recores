@@ -1,12 +1,20 @@
 [[main]]
-    name = 'Home'
+    identifier = "home"
+    name    = 'Home'
     pageRef = '/'
+    weight  = 10
+[[main]]
+    identifier = "products"
+    name    = 'Products'
+    pageRef = '/products'
+    weight  = 20
+[[main]]
+    identifier = "product1"
+    name   = "Product 1"
+    url    = "/product/1"
+    parent = "products"
     weight = 10
 [[main]]
-    name = 'Products'
-    pageRef = '/products'
-    weight = 20
-[[main]]
-    name = 'Services'
+    name    = 'Services'
     pageRef = '/services'
-    weight = 30
+    weight  = 30

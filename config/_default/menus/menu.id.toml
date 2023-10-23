@@ -1,12 +1,26 @@
 [[main]]
-    name = 'Home'
-    pageRef = '/'
-    weight  = 10
+    identifier  = "beranda"
+    name        = 'Beranda'
+    pageRef     = '/'
+    weight      = 10
 [[main]]
-    name    = 'Products'
-    pageRef = '/products'
-    weight  = 20
+    identifier  = "produk"
+    name        = 'Produk'
+    pageRef     = '/produk'
+    weight      = 20
 [[main]]
-    name    = 'Services'
-    pageRef = '/services'
-    weight  = 30
+    identifier  = "product1"
+    name        = "Produk 1"
+    url         = "/produk/1"
+    parent      = "produk"
+    weight      = 10
+[[main]]
+    identifier  = "product2"
+    name        = "Produk 2"
+    url         = "/produk/2"
+    parent      = "produk"
+    weight      = 20
+[[main]]
+    name        = 'Services'
+    pageRef     = '/services'
+    weight      = 30

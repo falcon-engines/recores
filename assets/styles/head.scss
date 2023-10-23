@@ -248,10 +248,6 @@ a {
     margin-right: .75rem ;
 }
 
-
-
-
-
 /* media */
 img, picture, video, canvas, svg {
     display: block;
@@ -308,4 +304,9 @@ html[data-mode='dark'] .icons {
 }
 input, button, textarea, select {
     font: inherit;
+}
+
+.nolist {
+    list-style: none;
+    padding-inline-start: 0;
 }
