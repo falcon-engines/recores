@@ -1,5 +1,8 @@
 /* main variable */
+@import 'main/variable.scss';
 
+
+/* General  */
 * {
     margin:0;
 }
@@ -171,37 +174,46 @@ a {
 .flex.vertical {
     align-items: center;
 }
-.row-2 {
+.wrap {
+    margin: 0 auto;
+    @media ( max-width: $media-xs ), ( min-width: $media-xs )  {
+        width: calc( 100vw - 20px);
+    }
+    @media ( min-width: $media-sm )  {
+        width: 97vw;
+    }
+}
+.cols-2 {
     grid-template-columns: repeat( 2, calc( 100vw / 2 ) ) ;
 }
-.row-3 {
+.cols-3 {
     grid-template-columns: repeat( 3, calc( 100vw / 3 ) ) ;
 }
-.row-4 {
+.col-4 {
     grid-template-columns: repeat( 4, calc( 100vw / 4 ) ) ;
 }
-.row-5 {
+.col-5 {
     grid-template-columns: repeat( 5, calc( 100vw / 5 ) ) ;
 }
-.row-6 {
+.col-6 {
     grid-template-columns: repeat( 6, calc( 100vw / 6 ) ) ;
 }
-.row-7 {
+.col-7 {
     grid-template-columns: repeat( 7, calc( 100vw / 7 ) ) ;
 }
-.row-8 {
+.col-8 {
     grid-template-columns: repeat( 8, calc( 100vw / 8 ) ) ;
 }
-.row-9 {
+.col-9 {
     grid-template-columns: repeat( 9, calc( 100vw / 9 ) ) ;
 }
-.row-10 {
+.col-10 {
     grid-template-columns: repeat( 10, calc( 100vw / 10 ) ) ;
 }
-.row-11 {
+.col-11 {
     grid-template-columns: repeat( 11, calc( 100vw / 11 ) ) ;
 }
-.row-12 {
+.col-12 {
     grid-template-columns: repeat( 11, calc( 100vw / 12 ) ) ;
 }
 

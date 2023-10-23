@@ -1,16 +1,40 @@
-{{ $model := .Site.Params.base_model.logos }}
-<div class="logo {{ $model }}">
-    {{ if ne $model "text-only" }}
-    <figure class="box" data-logodark="{{ .Site.Params.site_meta.logo_darks }}">
-        <img class="image" src="{{ .Site.Params.site_meta.logo_light }}" alt="{{ .Site.Params.title }} main logo">
-    </figure>
-    {{ end }}
-    {{ if ne $model "icon-only" }}
-    <div class="meta">
-        <h1 class="title">{{ .Site.Params.title }}</h1>
-        {{ if eq $model "all" }}
-        <p class="leads">{{  .Site.Params.site_meta.leads }}</p>
-        {{ end }}
-    </div>
+{{ $model      := .Site.Params.base_model.logos }}
+{{ $darks_logo := "icons/brand/lektor.svg" }}
+{{ $light_logo := "icons/brand/lektor.svg" }}
+{{ $site_title := "Lektor Media Utama" }}
+{{ $site_leads := "Beyond the Art and Technology" }}
+{{ if .Site.Params.site_meta.logo_darks }}
+    {{ $darks_logo = .Site.Params.site_meta.logo_darks  }}
+{{ end }}
+{{ if .Site.Params.site_meta.logo_light }}
+    {{ $light_logo = .Site.Params.site_meta.logo_light  }}
+{{ end }}
+{{ if .Site.Params.title }}
+    {{ $site_title = .Site.Params.title  }}
+{{ end }}
+{{ if .Site.Params.site_meta.leads }}
+    {{ $site_leads = .Site.Params.site_meta.leads  }}
+{{ end }}
+
+<div class="site-logo flex horizontal {{ $model }}">
+    {{ if eq $model "icon" }}
+        <figure class="box" data-logodark="{{ $darks_logo }}">
+            <img class="image" src="{{ $light_logo }}" alt="{{ .Site.Params.title }} main logo" width="62" height="62">
+        </figure>
+    {{ else if eq $model "text" }}
+        <div class="meta">
+            <h1 class="title">{{ $site_title }}</h1>
+            {{ if eq $model "all" }}
+            <p class="leads">{{ $site_leads }}</p>
+            {{ end }}
+        </div>
+    {{ else }}
+        <figure class="box" data-logodark="{{ $darks_logo }}">
+            <img class="image" src="{{ $light_logo }}" alt="{{ .Site.Params.title }} main logo" width="62" height="62">
+        </figure>
+        <div class="meta">
+            <h1 class="title">{{ $site_title }}</h1>
+            <p class="leads">{{ $site_leads }}</p>
+        </div>
     {{ end }}
 </div>

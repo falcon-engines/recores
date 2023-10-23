@@ -1,3 +1,4 @@
+@import 'main/variable.scss';
 @import "main/media.scss";
 
 /* render image */
@@ -29,5 +30,3 @@
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
-

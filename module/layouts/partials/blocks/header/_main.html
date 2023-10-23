@@ -1,11 +1,10 @@
 {{ $model := .Site.Params.base_model.header }}
 
-<header class="headnav {{ $model }}">
-    {{ .Site.Title }}
+<header class="headnav wrap flex horizontal {{ $model }}">
     
     {{ if eq $model "main" }}
 
     {{ else }}
-        {{ partial "blocks/header/_default" }}
+        {{ partial "blocks/header/_default" . }}
     {{ end }}
 </header>

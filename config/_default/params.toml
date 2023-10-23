@@ -1,5 +1,5 @@
 [site_meta]
-    leads      = "site tagline"                     # site tagline
+    leads      = ""                                 # site tagline
     descs      = "site description"                 # site description
     phone      = "test phone"                       # phone number
     email      = "test mail"                        # contact email
@@ -9,12 +9,12 @@
     whatsapp   = "+62-895-0765-1345"                # whatsapp contact person
     postaddr   = ""                                 # Mailing address or mailing address
     author     = ""                                 # Default author name  
-    logo_light = "test-logo-light"                  # site logo light
-    logo_darks = "test-logo-dark"                   # site logo dark
+    logo_light = ""                                 # site logo light (path/url)
+    logo_darks = ""                                 # site logo dark (path/url)
 
 
 [base_model]
-    logos    = "all"                                # icon-only, full, all, text-only
+    logos    = "icon-only"                          # icon, text, all
     header   = "base"                               # footer model
     footer   = "base"                               # header model
     nopage   = "base"                               # 404 page not found

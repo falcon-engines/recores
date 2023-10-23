@@ -1,5 +1,4 @@
 <!-- GLOBAL -->
-
 {{- $getlink := .Destination | safeURL }}
 {{- $pathsrc := .Page.Resources.GetMatch $getlink }}
 {{- $stylerc := "lazy-load flex-c round-10" }}
@@ -19,7 +18,7 @@
     {{ end }}
 
     <div class="flex-c round-10">
-        {{- $resizer := slice "320" "640" "960" "1280" "1600" "1920"  -}}
+        {{- $resizer := slice "320" "640" "960" "1280" "1680" "1972"  -}}
         {{- $mediawd := "(min-width: 1024px) 100vw, 50vw" -}}
         {{- $normals := $pathsrc.Resize "640x jpg" -}}
         <figure class="fluid">
@@ -56,9 +55,13 @@
     {{ else }}
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
+
     <div class="media landscape row all colfix" data-src="{{ $pathsrc.RelPermalink }}" data-type="video" data-cover="{{ .Title }}">
-        <div class="loader-round"><div></div><div></div></div>
+        <div class="loader-round">
+            <div></div><div></div>
+        </div>
     </div>
+
 
 {{- else if strings.Contains $getlink ".pdf" -}}
 

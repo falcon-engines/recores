@@ -3,7 +3,7 @@
         <img src="{{ .Site.BaseURL }}icons/general/lang-menu.svg" class="icons" width="26" height="26" alt="dark mode icons">
     </div>
     <div class="menu dnone">
-        {{ range $.Site.Home.AllTranslations }}
+        {{ range .Site.Home.AllTranslations }}
             <a class="item" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
         {{ end }}
     </div>
