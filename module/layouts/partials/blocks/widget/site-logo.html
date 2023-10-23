@@ -1,8 +1,8 @@
 {{ $model      := .Site.Params.base_model.logos }}
 {{ $darks_logo := "icons/brand/lektor.svg" }}
 {{ $light_logo := "icons/brand/lektor.svg" }}
-{{ $site_title := "Lektor Media Utama" }}
-{{ $site_leads := "Beyond the Art and Technology" }}
+{{ $site_title := "" }}
+{{ $site_leads := "" }}
 {{ if .Site.Params.site_meta.logo_darks }}
     {{ $darks_logo = .Site.Params.site_meta.logo_darks  }}
 {{ end }}
@@ -19,20 +19,20 @@
 <div class="site-logo flex horizontal {{ $model }}">
     {{ if eq $model "icon" }}
         <figure class="box" data-logodark="{{ $darks_logo }}">
-            <img class="image" src="{{ $light_logo }}" alt="{{ .Site.Params.title }} main logo" width="62" height="62">
+            <img class="image" src="/{{ $light_logo }}" alt="{{ .Site.Params.title }} main logo" width="62" height="62">
         </figure>
     {{ else if eq $model "text" }}
         <div class="meta">
             <h1 class="title no-space">{{ $site_title }}</h1>
-            <p class="leads fz-130 no-space">{{ $site_leads }}</p>
+            <p class="leads fz-120 no-space">{{ $site_leads }}</p>
         </div>
     {{ else }}
         <figure class="box" data-logodark="{{ $darks_logo }}">
-            <img class="image" src="{{ $light_logo }}" alt="{{ .Site.Params.title }} main logo" width="62" height="62">
+            <img class="image" src="/{{ $light_logo }}" alt="{{ .Site.Params.title }} main logo" width="62" height="62">
         </figure>
         <div class="meta">
-            <h1 class="title fz-130 no-space">{{ $site_title }}</h1>
-            <p class="leads fz-85 no-space">{{ $site_leads }}</p>
+            {{ with $site_title }} <h1 class="title fz-120 no-space">{{ . }}</h1>{{ end }}
+            {{ with $site_leads }} <p class="leads fz-85 no-space">{{ . }}</p> {{ end }}
         </div>
     {{ end }}
 </div>

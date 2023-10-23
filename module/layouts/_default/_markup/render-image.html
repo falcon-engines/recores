@@ -23,9 +23,10 @@
         {{- $normals := $pathsrc.Resize "640x jpg" -}}
         <figure class="fluid">
             <picture>
+                
                 {{ $getwebp := slice }}
                 {{ range $resizer }}
-                    {{ $value :=  print ($pathsrc.Resize (printf "%sx%s" . " webp") ).RelPermalink " " . "w" }}
+                    {{ $value  :=  print ($pathsrc.Resize (printf "%sx%s" . " webp") ).RelPermalink " " . "w" }}
                     {{ $getwebp = $getwebp | append $value }} 
                 {{ end }}
                 {{ $webpsrc := delimit $getwebp ", "  }}

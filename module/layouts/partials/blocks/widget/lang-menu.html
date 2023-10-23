@@ -1,11 +1,20 @@
 <div class="lang-menu dropdown mx-1 ">
     <div class="action flex all">
-        <img src="{{ .Site.BaseURL }}icons/general/lang-menu.svg" class="icons" width="26" height="26" alt="dark mode icons">
-        <p class="no-space ml-1">{{- T "lang_menu" -}} </p>
+        {{ if or ( eq .Site.Params.base_model.helps "icon" ) ( eq .Site.Params.base_model.helps "both" ) ( eq .Site.Params.base_model.helps "menu" ) }}
+            <img class="icons" src="{{ .Site.BaseURL }}icons/general/lang-menu.svg" class="icons" width="22" height="22" alt="lang menu icons">
+        {{ end }}
+        {{ if or ( eq .Site.Params.base_model.helps "text" ) ( eq .Site.Params.base_model.helps "both" ) ( eq .Site.Params.base_model.helps "menu" ) }}
+            <p class="title no-space ml-1">{{- T "lang_menu" -}} </p>
+        {{ end }}
+        {{ if eq .Site.Params.base_model.helps "menu" }}
+            <img class="icons ml-a" src="{{ .Site.BaseURL }}icons/general/right-arrow.svg" class="icons" width="16" height="16" alt="lang menu arrow">
+        {{ end }}
     </div>
     <div class="menu dnone">
         {{ range .Site.Home.AllTranslations }}
-            <a class="item" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+            <div class="item">
+                <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+            </div>
         {{ end }}
     </div>
 </div>

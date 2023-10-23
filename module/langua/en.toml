@@ -3,3 +3,6 @@
 
 [lang_menu]
   other = 'Language'
+
+[appearance_menu]
+  other = 'Appearance'
