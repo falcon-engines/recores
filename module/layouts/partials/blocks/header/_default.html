@@ -1,9 +1,23 @@
+{{ $currentpage := .  }}
+{{ $menuactived := "" }}
+
 <header class="headnav">
     <div class="wrap">
         <div class="flex vertical">
         {{ partial "blocks/widget/site-logo" . }}
+        <nav class="nav" id="navigation">
+            <ul class="navlist">
+            {{ range .Site.Menus.main }}
+                {{ if or ( $currentpage.IsMenuCurrent "main" . ) ( eq $currentpage.Section .Identifier ) }} 
+                    {{ $menuactived = "active" }}
+                {{end}}
+                <li><a class="{{ $menuactived }}" href="{{ .URL }}">{{ .Name }}</a></li>
+            {{ end }}
+            </ul>
+        </nav>
         {{ partial "blocks/widget/lang-menu.html" . }}
         {{ partial "blocks/widget/dark-mode.html" . }}
         </div>
     </div>
 </header>
+

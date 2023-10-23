@@ -14,7 +14,7 @@
 
 
 [base_model]
-    logos    = "all"                                # icon, text, all
+    logos    = "icon"                                # icon, text, all
     helps    = "menu"                               # icon, text, both, menu 
     header   = "base"                               # footer model
     footer   = "base"                               # header model
