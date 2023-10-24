@@ -1,4 +1,14 @@
+{{ define "head_hook" }}
+    {{ partial "linker/headlink.html" }}
+{{ end }}
+
+
 {{ define "main" }}
     {{ i18n "home" }}
     {{ .Content }}
 {{ end }} 
+
+
+{{ define "foot_hook" }}
+    {{ partial "linker/footlink.html" }}
+{{ end }}
