@@ -1,0 +1,47 @@
+/* media */
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+.fluid {
+    width: 100%;
+}
+.media {
+    width: 100%; 
+    position: relative; 
+    background: var(--bg-layer);
+    border: var(--br-color);
+    overflow: hidden;
+}
+.landscape { 
+    aspect-ratio: 16 / 9;
+    border-radius: 15px;
+    video {
+        height: 100%;
+        object-fit: cover; 
+    }
+    iframe {
+        height: 100%;
+    }
+}
+.portrait {
+    height: 95vh;
+    iframe{
+        height: 100%;
+    }
+}
+.portrait,
+.landscape {
+    video,
+    iframe{
+        opacity: 0;
+        width: 100%;
+        border: 0;
+        position: absolute;
+    }
+    video.loaded,
+    iframe.loaded{
+        opacity: 1;
+        transition: opacity .5s linear 1s; 
+    }
+}
