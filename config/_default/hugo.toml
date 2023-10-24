@@ -9,8 +9,8 @@ baseURL = 'http://lectore.com/'
 ##-------------------------
 ## plugins and themes
 ##-------------------------
-
-theme = []                                   
+themesDir = "module/plugins/"  
+theme     = [ "based" ]                                   
 
 
 
@@ -64,6 +64,7 @@ disableHugoGeneratorInject = true                 # disable injection
 ## custom directory
 ##-------------------------
 
+
 [module]
 [[module.mounts]]
     source = 'module/format'
@@ -80,3 +81,4 @@ disableHugoGeneratorInject = true                 # disable injection
 [[module.mounts]]
     source = 'datums'
     target = 'data'
+    

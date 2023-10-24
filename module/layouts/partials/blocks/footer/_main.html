@@ -1,9 +1,0 @@
-{{ $model := .Site.Params.base_model.footer }}
-{{ if eq $model "main" }}
-
-{{ else }}
-    {{ partial "blocks/footer/_default" }}
-{{ end }}
-
-
-{{- partial "linkers/footlink" . }}

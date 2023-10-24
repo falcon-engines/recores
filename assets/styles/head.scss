@@ -6,25 +6,27 @@
 @import 'head/spacing.scss';
 @import 'head/typography.scss';
 
+
+
+/* theme variable */
+
+
+
 /* General  */
 * {
     margin:0;
 }
-
 *, *::before, *::after {
     box-sizing: inherit;
 }
-
 #root, #__next {
     isolation: isolate;
 }
-
 html{
     box-sizing: border-box;
     overflow-x: hidden;
     touch-action: manipulation;
 }
-
 body{
     background: var(--bg-primary);
     color: var(--text-body);
