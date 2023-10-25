@@ -38,20 +38,20 @@
 
 <!-- cores scripts -->
 {{ if hugo.IsProduction }}
-    {{ $cores_script := resources.Get "scripts/core.js" | js.Build "scripts/core.js" | resources.ExecuteAsTemplate "jsx/core.js" . |  minify |  fingerprint  }}
+    {{ $cores_script := resources.Get "scripts/core-init.js" | js.Build "scripts/core.js" | resources.ExecuteAsTemplate "jsx/core.js" . |  minify |  fingerprint  }}
     <script id="core-jsx" src="{{ $cores_script.Permalink | safeURL }}" integrity="{{ $cores_script.Data.Integrity | safeHTMLAttr }}" defer type="module"></script>
 {{ else }}
-    {{ $cores_script := resources.Get "scripts/core.js" | js.Build "scripts/core.js" | resources.ExecuteAsTemplate "jsx/core.js" .   }}
+    {{ $cores_script := resources.Get "scripts/core-init.js" | js.Build "scripts/core.js" | resources.ExecuteAsTemplate "jsx/core.js" .   }}
     <script id="core-jsx" src="{{ $cores_script.Permalink | safeURL }}" type="module" defer></script>
 {{ end }}
 
 
 <!-- theme scripts -->
 {{ if hugo.IsProduction }}
-    {{ $theme_script := resources.Get "scripts/main.js" | js.Build "scripts/main.js" | resources.ExecuteAsTemplate "jsx/main.js" . |  minify |  fingerprint  }}
+    {{ $theme_script := resources.Get "script/main.js" | js.Build "jsx/main.js" | resources.ExecuteAsTemplate "jsx/main.js" . |  minify |  fingerprint  }}
     <script id="base-jsx" src="{{ $theme_script.Permalink | safeURL }}" integrity="{{ $theme_script.Data.Integrity | safeHTMLAttr }}" defer type="module"></script>
 {{ else }}
-    {{ $theme_script := resources.Get "scripts/core.js" | js.Build "scripts/core.js" | resources.ExecuteAsTemplate "jsx/main.js" .   }}
+    {{ $theme_script := resources.Get "script/main.js" | js.Build "jsx/main.js" | resources.ExecuteAsTemplate "jsx/main.js" .   }}
     <script id="base-jsx" src="{{ $theme_script.Permalink | safeURL }}" type="module" defer></script>
 {{ end }}
 
