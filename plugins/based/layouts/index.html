@@ -1,10 +1,14 @@
-{{ define "head_script" }}
-    {{ $.Scratch.Set "critical_css" "styles/index.scss" }}
+{{ define "head_assets" }}
+    {{ $.Scratch.Set "head_css" "styles/head.scss" }}
 {{ end }}
-
 
 {{ define "main" }}
     {{ i18n "home" }}
     {{ .Content }}
 {{ end }} 
+
+{{ define "foot_assets" }}
+    {{ $.Scratch.Set "page_css" ( dict "src" "styles/pages/index.scss" "dest" "css/index.css" ) }}
+    {{ $.Scratch.Set "page_jsx" ( dict "src" "script/pages/index.js" "dest" "jsx/index.js" ) }}
+{{ end }}
 

@@ -1,14 +1,18 @@
+{{- block "head_assets" . -}}{{- end -}}
+{{- block "foot_assets" . -}}{{- end -}}
 <!doctype html>
 <html lang="{{ site.Language.Lang }}" data-mode="auto">
 	<head>
-		{{- partial "corest/metadata" . -}}
-		{{- partial "corest/headaset" . -}}<!-- style and script -->
+		{{- partial "corest/headlink" . -}}
 	</head>
 	<body id="pagetop" class="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}">
-		{{- partial "based/header" . }}
-		<main class="content">
-			{{- block "main" . }}{{ end }}
-		</main>
-		{{- partial "corest/footlink" . }}
+		<div class="main">
+			{{- partial "based/header" . }}
+			<main class="content">
+				{{- block "main" . }}{{ end }}
+			</main>
+			{{- partial "based/footer" . }}
+		</div>
+		{{- partial "corest/genscript" . }}
 	</body>
 </html>

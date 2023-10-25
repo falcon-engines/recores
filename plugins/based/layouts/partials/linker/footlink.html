@@ -1,3 +1,0 @@
-<!-- based scripts -->
-{{ $scripts := resources.Get "scripts/based-main.js" | js.Build "scripts/based-main.js" | resources.ExecuteAsTemplate "based.js" . |  minify |  fingerprint  }}
-<script id="based-jsx" src="{{ $scripts.Permalink }}" integrity="{{ $scripts.Data.Integrity }}" defer type="module"></script>
