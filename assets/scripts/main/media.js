@@ -80,7 +80,7 @@ export class medialoader {
                 });
             }
 
-            if ( entry.isIntersecting ) {
+            if ( entry.isIntersecting || entry.isInViewport ) {
                 if ( format === 'video' ) {
                     render = document.createElement( 'video' );
                     render.src = target.dataset.src;
