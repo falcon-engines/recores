@@ -3,14 +3,14 @@
 {{ $page_css_critical :=  "" }}
 {{ if .Scratch.Get "head_css" }}
     {{ $page_css_critical  =  .Scratch.Get "head_css"  }}
-    {{ $base_css_critical  =  slice ( resources.Get "styles/head-init.scss" ) ( resources.Get $page_css_critical ) | resources.Concat "styles/critical.css"  | toCSS  }}
+    {{ $base_css_critical  =  slice ( resources.Get "styles/base.scss" ) ( resources.Get $page_css_critical ) | resources.Concat "styles/critical.css"  | toCSS  }}
 {{ else if and (.Scratch.Get "head_css" ) ( hugo.IsProduction ) }}
     {{ $page_css_critical  =  .Scratch.Get "head_css"  }}
-    {{ $base_css_critical  =  slice ( resources.Get "styles/head-init.scss" ) ( resources.Get $page_css_critical ) | resources.Concat "styles/critical.css"  | toCSS | minify }}
+    {{ $base_css_critical  =  slice ( resources.Get "styles/base.scss" ) ( resources.Get $page_css_critical ) | resources.Concat "styles/critical.css"  | toCSS | minify }}
 {{ else if hugo.IsProduction }}
-    {{ $base_css_critical  =  resources.Get "styles/head-init.scss" | resources.ToCSS  }}
+    {{ $base_css_critical  =  resources.Get "styles/base.scss" | resources.ToCSS  }}
 {{ else }}
-    {{- $base_css_critical =  resources.Get "styles/head-init.scss" | resources.ToCSS | resources.Minify }}
+    {{- $base_css_critical =  resources.Get "styles/base.scss" | resources.ToCSS | resources.Minify }}
 {{ end }}
 
 <style>{{ $base_css_critical.Content | safeCSS  }}</style>
@@ -22,14 +22,14 @@
 {{ $page_jsx_critical :=  "" }}
 {{ if and (.Scratch.Get "critical_jsx" ) }}
     {{ $page_jsx_critical  =  .Scratch.Get "critical_jsx"  }}
-    {{ $base_jsx_critical  =  slice ( resources.Get "scripts/head-init.js" ) ( resources.Get $page_jsx_critical ) | resources.Concat "scripts/critical.js"    }}
+    {{ $base_jsx_critical  =  slice ( resources.Get "scripts/base.js" ) ( resources.Get $page_jsx_critical ) | resources.Concat "scripts/critical.js" }}
 {{ else if and (.Scratch.Get "critical_jsx" ) ( hugo.IsProduction ) }}
     {{ $page_jsx_critical  =  .Scratch.Get "critical_jsx"  }}
-    {{ $base_jsx_critical  =  slice ( resources.Get "scripts/head-init.js" ) ( resources.Get $page_jsx_critical ) | resources.Concat "scripts/critical.js"  |  minify }}
+    {{ $base_jsx_critical  =  slice ( resources.Get "scripts/base.js" ) ( resources.Get $page_jsx_critical ) | resources.Concat "scripts/critical.js"  |  minify }}
 {{ else if hugo.IsProduction }}
-    {{ $base_jsx_critical  =  resources.Get "scripts/head-init.js"   }}
+    {{ $base_jsx_critical  =  resources.Get "scripts/base.js"   }}
 {{ else }}
-    {{- $base_jsx_critical =  resources.Get "scripts/head-init.js" | resources.Minify }}
+    {{- $base_jsx_critical =  resources.Get "scripts/base.js" | resources.Minify }}
 {{ end }}
 
 <script>{{- $base_jsx_critical.Content | safeJS  -}}</script>
