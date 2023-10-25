@@ -109,6 +109,21 @@ example
 {{< /grid >}}
 ```
 
-| Attribute | Description  |
-| :---:   | :---: | 
-| Seconds | 301   | 
+| Attribute | Description                               |
+| :-------: | :---------------------------------------: | 
+| columns   | Number of generated colums                |
+| class     | Custom class for grid element             |
+| element   | HTML element ( value : section | null )   | 
+
+
+#### column
+
+example
+```
+{{< column class="mt-2" >}} Kolom kiri {{< /column >}}
+```
+
+| Attribute | Description                               |
+| :-------: | :---------------------------------------: | 
+| class     | Custom class for grid element             |
+
