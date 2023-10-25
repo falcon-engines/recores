@@ -1,0 +1,5 @@
+{{- $class := .Get "class" -}}
+
+<div class="{{ $class | safeHTMLAttr }}" >
+    {{- .Inner | safeHTML -}}
+</div>
