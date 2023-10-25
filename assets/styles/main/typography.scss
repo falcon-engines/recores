@@ -1,15 +1,16 @@
 
-/* typhography */
-
+/* font weight */
+.fw-3x{
+    font-weight: 300;
+}
 .fw-6x{
     font-weight: 600;
 }
 .fw-4x{
     font-weight: 400;
 }
-.fw-3x{
-    font-weight: 300;
-}
+
+/* font size */
 .fz-80{
     font-size: 80%;
 }
@@ -49,6 +50,8 @@
 .fz-5x{
     font-size: 500%;
 }
+
+/* function */
 .no-decor {
     text-decoration: none;
 }
