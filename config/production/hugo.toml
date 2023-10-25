@@ -1,22 +1,26 @@
 
-##-------------------------
-## custom outputs
-##-------------------------
-#
-# [outputs]
-#   home = ["HTML", "RSS", "JSON"]
 
 ##-------------------------
-## minify outputs
+## output format
+##-------------------------
+
+[outputs]
+    home = ['html', 'amp', 'rss']
+    page = ['html']
+
+
+
+##-------------------------
+## output minify
 ##-------------------------
 
 [minify]
-    disableCSS   = false
-    disableHTML  = false
-    disableJS    = false
-    disableJSON  = false
-    disableSVG   = false
-    disableXML   = false
+    disableCSS = false
+    disableHTML = false
+    disableJS = false
+    disableJSON = false
+    disableSVG = false
+    disableXML = false
     minifyOutput = true
     [minify.tdewolff]
         [minify.tdewolff.css]
@@ -24,11 +28,11 @@
             precision = 0
         [minify.tdewolff.html]
             keepComments = false
-            keepConditionalComments = false
+            keepConditionalComments = true
             keepDefaultAttrVals = true
             keepDocumentTags = true
             keepEndTags = true
-            keepQuotes = true
+            keepQuotes = false
             keepWhitespace = false
         [minify.tdewolff.js]
             keepVarNames = false

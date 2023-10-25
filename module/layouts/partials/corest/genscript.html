@@ -49,10 +49,10 @@
 <!-- theme scripts -->
 {{- if hugo.IsProduction -}}
     {{- $theme_script := resources.Get "script/main.js" | js.Build "jsx/main.js" | resources.ExecuteAsTemplate "jsx/main.js" . |  minify |  fingerprint -}}
-    <script id="base-jsx" src=".{{ $theme_script.RelPermalink | safeURL }}" integrity="{{ $theme_script.Data.Integrity | safeHTMLAttr }}" defer type="module"></script>
+    <script id="base-jsx" src="{{ $theme_script.RelPermalink | safeURL }}" integrity="{{ $theme_script.Data.Integrity | safeHTMLAttr }}" defer type="module"></script>
 {{ else }}
     {{- $theme_script := resources.Get "script/main.js" | js.Build "jsx/main.js" | resources.ExecuteAsTemplate "jsx/main.js" . -}}
-    <script id="base-jsx" src=".{{ $theme_script.RelPermalink | safeURL }}" type="module" defer></script>
+    <script id="base-jsx" src="{{ $theme_script.RelPermalink | safeURL }}" type="module" defer></script>
 {{- end -}}
 
 <!-- paged scripts -->

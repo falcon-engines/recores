@@ -62,9 +62,6 @@ disableHugoGeneratorInject = true                 # disable injection
 
 [module]
 [[module.mounts]]
-    source = 'module/assets'
-    target = 'assets'
-[[module.mounts]]
     source = 'module/format'
     target = 'archetypes'
 [[module.mounts]]
@@ -74,7 +71,7 @@ disableHugoGeneratorInject = true                 # disable injection
     source = 'module/langua'
     target = 'i18n'
 [[module.mounts]]
-    source = 'module/statics'
+    source = 'assets'
     target = 'static'
 [[module.mounts]]
     source = 'master/datums'

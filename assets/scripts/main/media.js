@@ -71,7 +71,7 @@ export class medialoader {
                 target.insertBefore( render, render.children[0] );
             }
 
-            let lazy_kill = (render, loader) => {
+            let lazy_kill = ( render, loader ) => {
                 render.addEventListener('load', ( event ) => {
                     event.currentTarget.classList.add( 'loaded' );
                     setTimeout( () => {

@@ -3,6 +3,13 @@ title: "karim"
 draft: false
 ---
 
+# Docus remote
+![docus sample](https://archive.org/download/gov.uscourts.mowd.117531/gov.uscourts.mowd.117531.1.0.pdf "master" )
+
+# Docus locals
+![docus sample](test.pdf)
+
+
 # karim
 ## karim
 ### karim

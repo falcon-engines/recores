@@ -11,6 +11,8 @@
     <!-- render image -->
     {{ if strings.Contains $getlink "http" }}
         {{ $pathsrc = $getlink }}
+    {{ else if $pathsrc }}
+        {{ $pathsrc = $pathsrc }}
     {{ else if resources.GetMatch ( print "images/" $getlink ) }}
         {{ $pathsrc = resources.GetMatch ( print "images/" $getlink ) }}
     {{ else }}
@@ -51,6 +53,8 @@
     <!-- render video -->
     {{ if strings.Contains $getlink "http" }}
         {{ $pathsrc = $getlink }}
+    {{ else if $pathsrc }}
+        {{ $pathsrc = $pathsrc }}
     {{ else if resources.GetMatch ( print "videos/" $getlink ) }}
         {{ $pathsrc = resources.GetMatch ( print "videos/" $getlink ) }}
     {{ else }}
@@ -69,13 +73,15 @@
     <!-- render pdf -->
     {{ if strings.Contains $getlink "http" }}
         {{ $pathsrc = $getlink }}
-    {{ else if resources.GetMatch ( print  "docus/" $getlink ) }}
-        {{ $pathsrc = resources.GetMatch ( print "docus/" $getlink.RelPermalink) }}
+    {{ else if $pathsrc }}
+        {{ $pathsrc = $pathsrc }}
+    {{ else if ( where ( readDir "assets/docus/" ) "Name" $getlink ) }}
+        {{ $pathsrc = print "docus/" $getlink }}
     {{ else }}
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
-
-    <div class="media portrait row all colfix round-10" data-src="{{ $pathsrc }}" data-type="file">
+   
+    <div class="media portrait row all colfix round-10 pdf" data-src="{{ $pathsrc }}" data-type="file">
         <div class="loader-round"><div></div><div></div></div>
     </div>
 
