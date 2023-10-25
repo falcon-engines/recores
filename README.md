@@ -35,7 +35,7 @@
 ```
 
 
-### Pdf
+### Portable Document Format (pdf)
 
 #### locals
 ```
