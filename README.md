@@ -98,3 +98,17 @@ copy link
 
 
 ## LAYOUT
+
+#### grid
+
+example
+```
+{{< grid columns="2" class="" element="section" >}}
+    {{< column >}} Kolom kiri {{< /column >}}
+    {{< column >}} Kolom kanan {{< /column >}}
+{{< /grid >}}
+```
+
+| Attribute | Description  |
+| :---:   | :---: | 
+| Seconds | 301   | 
