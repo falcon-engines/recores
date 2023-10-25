@@ -1,74 +1,72 @@
 <!-- cores styles -->
-{{ if hugo.IsProduction }}
-    {{ $cores_style := resources.Get "styles/core-init.scss" | resources.ExecuteAsTemplate "css/core.css" . | toCSS |  minify |  fingerprint  }}
-    <link id="core-css" type="text/css" rel="stylesheet" href="{{ $cores_style.Permalink | safeURL }}" integrity="{{ $cores_style.Data.Integrity }}"/>
-{{ else }}
-    {{ $cores_style := resources.Get "styles/core-init.scss" | resources.ExecuteAsTemplate "css/core.css" . | toCSS   }}
-    <link id="core-css" type="text/css" rel="stylesheet" href="{{ $cores_style.Permalink | safeURL }}" />
-{{ end }}
+{{- if hugo.IsProduction -}}
+    {{- $cores_style := resources.Get "styles/core-init.scss" | resources.ExecuteAsTemplate "css/core.css" . | toCSS |  minify |  fingerprint -}}
+    <link id="core-css" type="text/css" rel="stylesheet" href="{{ $cores_style.RelPermalink | safeURL }}" integrity="{{ $cores_style.Data.Integrity }}"/>
+{{- else -}}
+    {{- $cores_style := resources.Get "styles/core-init.scss" | resources.ExecuteAsTemplate "css/core.css" . | toCSS -}}
+    <link id="core-css" type="text/css" rel="stylesheet" href="{{ $cores_style.RelPermalink | safeURL }}" />
+{{- end -}}
 
 
 <!-- theme styles -->
-{{ if hugo.IsProduction }}
-    {{ $theme_style := resources.Get "styles/main.scss" | resources.ExecuteAsTemplate "css/main.css" . | toCSS |  minify |  fingerprint  }}
-    <link id="base-css" type="text/css" rel="stylesheet" href="{{ $theme_style.Permalink | safeURL }}" integrity="{{ $theme_style.Data.Integrity }}"/>
-{{ else }}
+{{- if hugo.IsProduction -}}
+    {{- $theme_style := resources.Get "styles/main.scss" | resources.ExecuteAsTemplate "css/main.css" . | toCSS |  minify |  fingerprint  -}}
+    <link id="base-css" type="text/css" rel="stylesheet" href="{{ $theme_style.RelPermalink | safeURL }}" integrity="{{ $theme_style.Data.Integrity }}"/>
+{{- else -}}
     {{ $theme_style := resources.Get "styles/main.scss" | resources.ExecuteAsTemplate "css/main.css" . | toCSS   }}
-    <link id="base-css" type="text/css" rel="stylesheet" href="{{ $theme_style.Permalink | safeURL }}" />
-{{ end }}
+    <link id="base-css" type="text/css" rel="stylesheet" href="{{ $theme_style.RelPermalink | safeURL }}" />
+{{- end -}}
 
 
 <!-- paged styles -->
-{{ if .Scratch.Get "page_css" }}
-    {{ $paged_style := .Scratch.Get "page_css"  }}
+{{- if .Scratch.Get "page_css" -}}
+    {{- $paged_style := .Scratch.Get "page_css" -}}
     {{ if hugo.IsProduction }}
         {{ range slice $paged_style }}
-            {{ $style := resources.Get .src | resources.ExecuteAsTemplate .dest . | toCSS | minify | fingerprint }}
-            <link id="page-css"  type="text/css" rel="stylesheet" href="{{ $style.Permalink | safeURL }}" integrity="{{ $style.Data.Integrity | safeHTMLAttr }}"/>
-        {{ end }}
+            {{- $style := resources.Get .src | resources.ExecuteAsTemplate .dest . | toCSS | minify | fingerprint -}}
+            <link id="page-css"  type="text/css" rel="stylesheet" href="{{ $style.RelPermalink | safeURL }}" integrity="{{ $style.Data.Integrity | safeHTMLAttr }}"/>
+        {{- end -}}
     {{ else }}
         {{ range slice $paged_style }}
-            {{ $style := resources.Get .src | resources.ExecuteAsTemplate .dest . | toCSS  }}
-            <link id="page-css"  type="text/css" rel="stylesheet" href="{{ $style.Permalink | safeURL }}" />
-        {{ end }}
+            {{- $style := resources.Get .src | resources.ExecuteAsTemplate .dest . | toCSS  -}}
+            <link id="page-css"  type="text/css" rel="stylesheet" href="{{ $style.RelPermalink | safeURL }}" />
+        {{- end }}
     {{ end }}
-{{ end }}
+{{- end -}}
 
 
 
 <!-- cores scripts -->
-{{ if hugo.IsProduction }}
-    {{ $cores_script := resources.Get "scripts/core-init.js" | js.Build "scripts/core.js" | resources.ExecuteAsTemplate "jsx/core.js" . |  minify |  fingerprint  }}
-    <script id="core-jsx" src="{{ $cores_script.Permalink | safeURL }}" integrity="{{ $cores_script.Data.Integrity | safeHTMLAttr }}" defer type="module"></script>
-{{ else }}
-    {{ $cores_script := resources.Get "scripts/core-init.js" | js.Build "scripts/core.js" | resources.ExecuteAsTemplate "jsx/core.js" .   }}
-    <script id="core-jsx" src="{{ $cores_script.Permalink | safeURL }}" type="module" defer></script>
-{{ end }}
+{{- if hugo.IsProduction -}}
+    {{- $cores_script := resources.Get "scripts/core-init.js" | js.Build "scripts/core.js" | resources.ExecuteAsTemplate "jsx/core.js" . |  minify |  fingerprint  -}}
+    <script id="core-jsx" src="{{ $cores_script.RelPermalink | safeURL }}" integrity="{{ $cores_script.Data.Integrity | safeHTMLAttr }}" defer type="module"></script>
+{{- else -}}
+    {{- $cores_script := resources.Get "scripts/core-init.js" | js.Build "scripts/core.js" | resources.ExecuteAsTemplate "jsx/core.js" . -}}
+    <script id="core-jsx" src="{{ $cores_script.RelPermalink | safeURL }}" type="module" defer></script>
+{{- end -}}
 
 
 <!-- theme scripts -->
-{{ if hugo.IsProduction }}
-    {{ $theme_script := resources.Get "script/main.js" | js.Build "jsx/main.js" | resources.ExecuteAsTemplate "jsx/main.js" . |  minify |  fingerprint  }}
-    <script id="base-jsx" src="{{ $theme_script.Permalink | safeURL }}" integrity="{{ $theme_script.Data.Integrity | safeHTMLAttr }}" defer type="module"></script>
+{{- if hugo.IsProduction -}}
+    {{- $theme_script := resources.Get "script/main.js" | js.Build "jsx/main.js" | resources.ExecuteAsTemplate "jsx/main.js" . |  minify |  fingerprint -}}
+    <script id="base-jsx" src=".{{ $theme_script.RelPermalink | safeURL }}" integrity="{{ $theme_script.Data.Integrity | safeHTMLAttr }}" defer type="module"></script>
 {{ else }}
-    {{ $theme_script := resources.Get "script/main.js" | js.Build "jsx/main.js" | resources.ExecuteAsTemplate "jsx/main.js" .   }}
-    <script id="base-jsx" src="{{ $theme_script.Permalink | safeURL }}" type="module" defer></script>
-{{ end }}
-
+    {{- $theme_script := resources.Get "script/main.js" | js.Build "jsx/main.js" | resources.ExecuteAsTemplate "jsx/main.js" . -}}
+    <script id="base-jsx" src=".{{ $theme_script.RelPermalink | safeURL }}" type="module" defer></script>
+{{- end -}}
 
 <!-- paged scripts -->
-{{ if .Scratch.Get "page_jsx" }}
-    {{ $paged_script := .Scratch.Get "page_jsx"  }}
-    {{ if hugo.IsProduction }}
-        {{ range slice $paged_script }}
-            {{ $page_script := resources.Get .src | js.Build .dest | resources.ExecuteAsTemplate .dest . | minify | fingerprint }}
-            <script id="page-jsx" src="{{ $page_script.Permalink }}" integrity="{{ $page_script.Data.Integrity | safeHTMLAttr }}" defer type="module"></script>
-        {{ end }}
-    {{ else }}
-        {{ range slice $paged_script }}
-            {{ $page_script := resources.Get .src | js.Build .dest | resources.ExecuteAsTemplate .dest . }}
-            <script id="page-jsx" src="{{ $page_script.Permalink }}" type="module" defer></script>
-        {{ end }}
-    {{ end }}
-{{ end }}
-
+{{- if .Scratch.Get "page_jsx" -}}
+    {{- $paged_script := .Scratch.Get "page_jsx" -}}
+    {{- if hugo.IsProduction -}}
+        {{- range slice $paged_script -}}
+            {{- $page_script := resources.Get .src | js.Build .dest | resources.ExecuteAsTemplate .dest . | minify | fingerprint -}}
+            <script id="page-jsx" src="{{ $page_script.RelPermalink }}" integrity="{{ $page_script.Data.Integrity | safeHTMLAttr }}" defer type="module"></script>
+        {{- end -}}
+    {{- else -}}
+        {{- range slice $paged_script -}}
+            {{- $page_script := resources.Get .src | js.Build .dest | resources.ExecuteAsTemplate .dest . -}}
+            <script id="page-jsx" src="{{ $page_script.RelPermalink }}" type="module" defer></script>
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
