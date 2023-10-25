@@ -14,13 +14,11 @@ themesDir  = "module/plugins/"
 publishDir = "publish"
 
 
-
 ##-------------------------
 ## register plugins
 ##-------------------------
 
 theme  = [ "based" ]                                   
-
 
 
 ##-------------------------
