@@ -1,8 +1,10 @@
 <!doctype html>
 <html lang="{{ site.Language.Lang }}" data-mode="auto">
 	<head>
-		{{- partial "linkers/headlink" . -}}
-		{{- block "head_hook" . -}}{{- end -}}
+		{{- partial "linkers/metadata" . -}}
+		<!-- style and script -->
+		{{- block "head_script" . -}}{{- end -}}
+		{{- partial "linkers/scripter" . -}}
 	</head>
 	<body id="pagetop" class="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}">
 		{{- partial "based/header" . }}
@@ -10,6 +12,5 @@
 			{{- block "main" . }}{{ end }}
 		</main>
 		{{- partial "linkers/footlink" . }}
-		{{- block "foot_hook" . -}}{{- end }}
 	</body>
 </html>

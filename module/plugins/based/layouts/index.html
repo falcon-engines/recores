@@ -1,5 +1,5 @@
-{{ define "head_hook" }}
-    {{ partial "linker/headlink.html" }}
+{{ define "head_script" }}
+    {{ $.Scratch.Set "critical_css" "styles/index.scss" }}
 {{ end }}
 
 
@@ -8,7 +8,3 @@
     {{ .Content }}
 {{ end }} 
 
-
-{{ define "foot_hook" }}
-    {{ partial "linker/footlink.html" }}
-{{ end }}

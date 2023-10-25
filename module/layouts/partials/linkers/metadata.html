@@ -17,15 +17,3 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<!-- critical assets -->
-{{- $css_critical := resources.Get "styles/head.scss" | resources.ToCSS }}
-{{- if hugo.IsProduction }}
-    {{- $css_critical = resources.Get "styles/head.scss" | resources.ToCSS | resources.Minify }}
-{{- end }}
-
-{{- $jsx_critical := resources.Get "scripts/head.js" -}} 
-{{- if hugo.IsProduction }}
-    {{- $jsx_critical = resources.Get "scripts/head.js" | resources.Minify }}
-{{- end -}}
-
-<style>{{- $css_critical.Content | safeCSS -}}</style><script>{{- $jsx_critical.Content | safeJS  -}} </script>
