@@ -13,7 +13,7 @@ export class medialoader {
 
     // animation 
     animation() {
-        let mainjs = document.getElementById( 'main-jsx' );
+        let mainjs = document.getElementById( 'core-jsx' );
         let gensrc = document.createElement( 'script' );
         gensrc.src = "https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs";
         gensrc.setAttribute( 'type', 'module');
