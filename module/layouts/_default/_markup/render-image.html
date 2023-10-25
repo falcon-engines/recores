@@ -81,7 +81,7 @@
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
    
-    <div class="media portrait grid align-a colfix" data-src="{{ $pathsrc }}" data-type="file">
+    <div class="media portrait grid align-a colfix" data-src="{{ $pathsrc }}" data-title="{{ .Text }}" data-type="file">
         <div class="loader-round"><div></div><div></div></div>
     </div>
 
@@ -91,7 +91,7 @@
     <!-- youtube embed -->
     {{ $pathsrc = strings.Replace $getlink "watch?v=" "embed/" }}
 
-    <div class="media landscape grid align-a colfix" data-src="{{ $pathsrc }}" data-type="youtube">
+    <div class="media landscape grid align-a colfix" data-src="{{ $pathsrc }}" data-title="{{ .Text }}" data-type="youtube">
         <div class="loader-round"><div></div><div></div></div>
     </div>
 
@@ -100,7 +100,7 @@
     <!-- vimeo embed -->
     {{ $pathsrc = $getlink }}
 
-    <div class="media landscape grid align-a colfix" data-src="{{ $pathsrc }}" data-type="vimeo">
+    <div class="media landscape grid align-a colfix" data-src="{{ $pathsrc }}" data-title="{{ .Text }}" data-type="vimeo">
         <div class="loader-round"><div></div><div></div></div>
     </div>
 
@@ -109,7 +109,7 @@
     <!-- google document embed -->
     {{ $pathsrc = print $getlink "?embedded=true" }}
 
-    <div class="media portrait grid align-a colfix" data-src="{{ $pathsrc }}" data-type="gdoc">
+    <div class="media portrait grid align-a colfix" data-src="{{ $pathsrc }}" data-title="{{ .Text }}" data-type="gdoc">
         <div class="loader-round"><div></div><div></div></div>
     </div>
    
@@ -122,7 +122,7 @@
         {{ $pathsrc = print $getlink "?widget=true&headers=false" }}
     {{ end }}
 
-    <div class="media portrait grid align-a colfix" data-src="{{ $pathsrc }}" data-type="gxls">
+    <div class="media portrait grid align-a colfix" data-src="{{ $pathsrc }}" data-title="{{ .Text }}" data-type="gxls">
         <div class="loader-round"><div></div><div></div></div>
     </div>
    
@@ -132,7 +132,7 @@
     <!-- google presentation embed -->
     {{ $pathsrc = replace $getlink "pub?" "embed?" }}
 
-    <div class="media landscape grid align-a colfix" data-src="{{ $pathsrc }}" data-type="gppt">
+    <div class="media landscape grid align-a colfix" data-src="{{ $pathsrc }}" data-title="{{ .Text }}" data-type="gppt">
         <div class="loader-round"><div></div><div></div></div>
     </div>
 
@@ -141,7 +141,7 @@
     <!-- google pdf embed -->
     {{ $pathsrc = replace $getlink "/view?usp=share_link" "/preview" }}
 
-    <div class="media portrait grid align-a colfix" data-src="{{ $pathsrc }}" data-type="gpdf">
+    <div class="media portrait grid align-a colfix" data-src="{{ $pathsrc }}" data-title="{{ .Text }}" data-type="gpdf">
         <div class="loader-round"><div></div><div></div></div>
     </div>
 

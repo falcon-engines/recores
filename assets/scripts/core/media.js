@@ -88,6 +88,7 @@ export class medialoader {
                 }
                 else if ( format === 'file' || format === 'vimeo' || format === 'gdoc' || format === 'gxls' || format === 'gpdf' ) {
                     render.src = target.dataset.src;
+                    render.setAttribute( 'title', target.dataset.title );
                     target.insertBefore(render, target.children[0]);
                     lazy_kill( render, loader );
                 }

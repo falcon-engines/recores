@@ -1,7 +1,7 @@
 [[main]]
     identifier  = "beranda"
     name        = 'Beranda'
-    pageRef     = '/'
+    url         = '/'
     weight      = 10
 [[main]]
     identifier  = "produk"
@@ -22,5 +22,5 @@
     weight      = 20
 [[main]]
     name        = 'Services'
-    pageRef     = '/services'
+    url         = '/services'
     weight      = 30
