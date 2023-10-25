@@ -12,8 +12,6 @@ English
 # Video locals
 ![video sample](sample.mp4 "https://cdn.pixabay.com/photo/2023/10/04/02/55/mountains-8292685_1280.jpg" )
 
-
-
 # Docus remote
 ![docus sample](https://archive.org/download/gov.uscourts.mowd.117531/gov.uscourts.mowd.117531.1.0.pdf "master" )
 

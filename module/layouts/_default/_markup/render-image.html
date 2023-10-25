@@ -1,7 +1,7 @@
 <!-- GLOBAL -->
 {{- $getlink := .Destination | safeURL }}
 {{- $pathsrc := .Page.Resources.GetMatch $getlink }}
-{{- $stylerc := "lazy-load flex-c round-10" }}
+{{- $stylerc := "lazy-load flex-c" }}
 {{- $srctype := "" }}
 
 
@@ -19,7 +19,7 @@
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
 
-    <div class="flex-c round-10">
+    <div class="flex-c">
         {{- $resizer := slice "320" "640" "960" "1280" "1680" "1972"  -}}
         {{- $mediawd := "(min-width: 1024px) 100vw, 50vw" -}}
         {{- $normals := $pathsrc.Resize "640x jpg" -}}
@@ -55,13 +55,13 @@
         {{ $pathsrc = $getlink }}
     {{ else if $pathsrc }}
         {{ $pathsrc = $pathsrc }}
-    {{ else if resources.GetMatch ( print "videos/" $getlink ) }}
-        {{ $pathsrc = resources.GetMatch ( print "videos/" $getlink ) }}
+    {{ else if resources.GetMatch ( print "/videos/" $getlink ) }}
+        {{ $pathsrc = resources.GetMatch ( print "/videos/" $getlink ) }}
     {{ else }}
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
 
-    <div class="media landscape row all colfix" data-src="{{ $pathsrc.RelPermalink }}" data-type="video" data-cover="{{ .Title }}">
+    <div class="media landscape grid align-a colfix" data-src="{{ $pathsrc.RelPermalink }}" data-type="video" data-cover="{{ .Title }}">
         <div class="loader-round">
             <div></div><div></div>
         </div>
@@ -76,12 +76,12 @@
     {{ else if $pathsrc }}
         {{ $pathsrc = $pathsrc }}
     {{ else if ( where ( readDir "assets/docus/" ) "Name" $getlink ) }}
-        {{ $pathsrc = print "docus/" $getlink }}
+        {{ $pathsrc = print "/docus/" $getlink }}
     {{ else }}
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
    
-    <div class="media portrait row all colfix round-10 pdf" data-src="{{ $pathsrc }}" data-type="file">
+    <div class="media portrait grid align-a colfix" data-src="{{ $pathsrc }}" data-type="file">
         <div class="loader-round"><div></div><div></div></div>
     </div>
 
@@ -91,7 +91,7 @@
     <!-- youtube embed -->
     {{ $pathsrc = strings.Replace $getlink "watch?v=" "embed/" }}
 
-    <div class="media landscape row all colfix round-10" data-src="{{ $pathsrc }}" data-type="youtube">
+    <div class="media landscape grid align-a colfix" data-src="{{ $pathsrc }}" data-type="youtube">
         <div class="loader-round"><div></div><div></div></div>
     </div>
 
@@ -100,7 +100,7 @@
     <!-- vimeo embed -->
     {{ $pathsrc = $getlink }}
 
-    <div class="media landscape row all colfix round-10" data-src="{{ $pathsrc }}" data-type="vimeo">
+    <div class="media landscape grid align-a colfix" data-src="{{ $pathsrc }}" data-type="vimeo">
         <div class="loader-round"><div></div><div></div></div>
     </div>
 
@@ -109,7 +109,7 @@
     <!-- google document embed -->
     {{ $pathsrc = print $getlink "?embedded=true" }}
 
-    <div class="media portrait row all colfix round-10" data-src="{{ $pathsrc }}" data-type="gdoc">
+    <div class="media portrait grid align-a colfix" data-src="{{ $pathsrc }}" data-type="gdoc">
         <div class="loader-round"><div></div><div></div></div>
     </div>
    
@@ -122,7 +122,7 @@
         {{ $pathsrc = print $getlink "?widget=true&headers=false" }}
     {{ end }}
 
-    <div class="media portrait row all colfix round-10" data-src="{{ $pathsrc }}" data-type="gxls">
+    <div class="media portrait grid align-a colfix" data-src="{{ $pathsrc }}" data-type="gxls">
         <div class="loader-round"><div></div><div></div></div>
     </div>
    
@@ -132,7 +132,7 @@
     <!-- google presentation embed -->
     {{ $pathsrc = replace $getlink "pub?" "embed?" }}
 
-    <div class="media landscape row all colfix round-10" data-src="{{ $pathsrc }}" data-type="gppt">
+    <div class="media landscape grid align-a colfix" data-src="{{ $pathsrc }}" data-type="gppt">
         <div class="loader-round"><div></div><div></div></div>
     </div>
 
@@ -141,7 +141,7 @@
     <!-- google pdf embed -->
     {{ $pathsrc = replace $getlink "/view?usp=share_link" "/preview" }}
 
-    <div class="media portrait row all colfix round-10" data-src="{{ $pathsrc }}" data-type="gpdf">
+    <div class="media portrait grid align-a colfix" data-src="{{ $pathsrc }}" data-type="gpdf">
         <div class="loader-round"><div></div><div></div></div>
     </div>
 
@@ -157,7 +157,7 @@
         {{ $pathsrc = "/icons/no-image.svg" }}
     {{ end }}
 
-    <div class="animax row all colfix" data-type="animax">
+    <div class="animax grid align-a colfix" data-type="animax">
         <dotlottie-player src="{{ $pathsrc.RelPermalink }}" background="transparent" speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
     </div>
 

@@ -15,7 +15,6 @@ img, picture, video, canvas, svg {
 }
 .landscape { 
     aspect-ratio: 16 / 9;
-    border-radius: 15px;
     video {
         height: 100%;
         object-fit: cover; 
