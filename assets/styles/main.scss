@@ -1,31 +1,3 @@
-@import "main/media.scss";
-
-/* render image */
-.noimg{
-    color: #777;
-    background-color: #eee;
-    aspect-ratio: 2 / 1;
-    figure {
-        width: 9%;
-        display: grid;
-        justify-items: center;
-    }
-    .caption {
-        font-size: 1.7vw;
-    }
-}
-
-.picbox, .noimg{
-    animation: loadimage .2s;
-    .image {
-        width: 100%;
-    }
-    .caption {
-       text-align: center;
-    }
-}
-
-@keyframes loadimage {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+@import 'main/gridbox.scss';
+@import 'main/media.scss';
+@import 'main/spacing.scss';

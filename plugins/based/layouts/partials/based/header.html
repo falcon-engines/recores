@@ -3,18 +3,18 @@
 
 <header class="headnav default">
     <div class="wrap my-1">
-        <div class="flex vertical fluid">
-        {{ partial "blocks/widget/site-logo" . }}
+        <div class="flex align-v fluid">
+        {{ partial "widget/site-logo" . }}
         <nav id="navigation" class="nav mr-a">
-            <ul class="navlist nolist flex vertical">
+            <ul class="navlist nolist flex align-v">
             {{ range .Site.Menus.main }}
                 {{ if .HasChildren }}
                     <li class="nav-submenu dropdown mx-1"> 
                         <div class="action flex all">
                             <p class="title no-space">{{ .Name }}</p>
-                            <img src="/icons/general/chevron-down.svg" class="icons ml-05" height="10" width="10">
+                            <img src="/icons/general/chevron-down.svg" class="icons ml-05" height="10" width="10" alt="arrow down">
                         </div>
-                        <ul class="menu dnone nolist">
+                        <ul class="menu d-hide nolist">
                             {{ range .Children }}
                                 <li class="" >
                                     <a class="" href="{{ .URL }}"><p class="title no-space ml-1">{{ .Name }}</p></a>
@@ -31,8 +31,8 @@
             {{ end }}
             </ul>
         </nav>
-        {{ partial "blocks/widget/lang-menu.html" . }}
-        {{ partial "blocks/widget/dark-mode.html" . }}
+        {{ partial "widget/lang-menu.html" . }}
+        {{ partial "widget/dark-mode.html" . }}
         </div>
     </div>
 </header>

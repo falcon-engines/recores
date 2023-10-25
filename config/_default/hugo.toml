@@ -9,7 +9,7 @@ baseURL = 'http://lectore.com/'
 ##-------------------------
 ## plugins and themes
 ##-------------------------
-themesDir = "module/plugins/"  
+themesDir = "plugins/"  
 theme     = [ "based" ]                                   
 
 

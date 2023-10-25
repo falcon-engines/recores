@@ -16,5 +16,5 @@
     weight = 10
 [[main]]
     name    = 'Services'
-    pageRef = '/services'
+    url     = '/services'
     weight  = 30

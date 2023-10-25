@@ -10,7 +10,7 @@
             <img class="icons ml-1" src="{{ .Site.BaseURL }}icons/general/right-arrow.svg" class="icons" width="14" height="14" alt="lang menu arrow">
         {{ end }}
     </div>
-    <div class="menu dnone">
+    <div class="menu d-hide">
     {{ range .Site.Home.AllTranslations }}
         <div class="item">
             <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>

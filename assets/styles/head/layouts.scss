@@ -1,35 +1,27 @@
 /* layouts */
-.hide {
-    visibility: hidden;
-}
-.dnone {
-    opacity: 0;
-    z-index: -1;
-    display: block;
-    position: fixed;
-}
-.colfix {
-    float: none; 
-    clear: both; 
-}
-.row {
+.grid {
     display: grid;
 }
 .flex {
     display: inline-flex;
 }
-.row.all,
-.flex.all {
+.align-a {
     align-items: center;
     justify-items: center;
 }
-.row.horizontal,
-.flex.horizontal {
+.align-h {
     justify-items: center;
 }
-.row.vertical,
-.flex.vertical {
+.align-v {
     align-items: center;
+}
+.d-hide {
+    z-index: -1;
+    position: fixed;
+    visibility: hidden;
+}
+.d-none {
+    display: none;
 }
 .wrap {
     margin: 0 auto;
@@ -40,53 +32,5 @@
         width: 94vw;
     }
 }
-.cols-2 {
-    grid-template-columns: repeat( 2, calc( 100vw / 2 ) ) ;
-}
-.cols-3 {
-    grid-template-columns: repeat( 3, calc( 100vw / 3 ) ) ;
-}
-.col-4 {
-    grid-template-columns: repeat( 4, calc( 100vw / 4 ) ) ;
-}
-.col-5 {
-    grid-template-columns: repeat( 5, calc( 100vw / 5 ) ) ;
-}
-.col-6 {
-    grid-template-columns: repeat( 6, calc( 100vw / 6 ) ) ;
-}
-.col-7 {
-    grid-template-columns: repeat( 7, calc( 100vw / 7 ) ) ;
-}
-.col-8 {
-    grid-template-columns: repeat( 8, calc( 100vw / 8 ) ) ;
-}
-.col-9 {
-    grid-template-columns: repeat( 9, calc( 100vw / 9 ) ) ;
-}
-.col-10 {
-    grid-template-columns: repeat( 10, calc( 100vw / 10 ) ) ;
-}
-.col-11 {
-    grid-template-columns: repeat( 11, calc( 100vw / 11 ) ) ;
-}
-.col-12 {
-    grid-template-columns: repeat( 11, calc( 100vw / 12 ) ) ;
-}
-.round-5 {
-    border-radius: 5px;
-    overflow: hidden;
-}
-.round-7 {
-    border-radius: 7px;
-    overflow: hidden;
-}
-.round-10 {
-    border-radius: 10px;
-    overflow: hidden;
-}
-.round-15 {
-    border-radius: 15px;
-    overflow: hidden;
-}
+
 

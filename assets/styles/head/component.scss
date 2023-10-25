@@ -1,10 +1,10 @@
 
 /* components */
-
 html[data-mode='dark'] .icons {
     -webkit-filter: invert(100%); /* Safari/Chrome */
     filter: invert(100%);
 }
+
 input, button, textarea, select {
     font: inherit;
 }

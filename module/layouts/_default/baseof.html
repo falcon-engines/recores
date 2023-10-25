@@ -1,16 +1,14 @@
 <!doctype html>
 <html lang="{{ site.Language.Lang }}" data-mode="auto">
 	<head>
-		{{- partial "linkers/metadata" . -}}
-		<!-- style and script -->
-		{{- block "head_script" . -}}{{- end -}}
-		{{- partial "linkers/scripter" . -}}
+		{{- partial "corest/metadata" . -}}
+		{{- partial "corest/headaset" . -}}<!-- style and script -->
 	</head>
 	<body id="pagetop" class="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}">
 		{{- partial "based/header" . }}
 		<main class="content">
 			{{- block "main" . }}{{ end }}
 		</main>
-		{{- partial "linkers/footlink" . }}
+		{{- partial "corest/footlink" . }}
 	</body>
 </html>

@@ -21,12 +21,12 @@ export class themebasics {
             let openow = dropmenu.querySelector( '.menu' );
             let allnav = Array.prototype.slice.call( document.querySelectorAll( '.dropdown .menu' ) );
             action.addEventListener( 'click', () => {
-                if (openow.classList.contains( 'dnone' ) ) {
-                    allnav.forEach( allmenu => { allmenu.classList.add( 'dnone' ); });
-                    openow.classList.remove( 'dnone' ); 
+                if (openow.classList.contains( 'd-hide' ) ) {
+                    allnav.forEach( allmenu => { allmenu.classList.add( 'd-hide' ); });
+                    openow.classList.remove( 'd-hide' ); 
                 }
                 else {
-                    openow.classList.add( 'dnone' ); 
+                    openow.classList.add( 'd-hide' ); 
                 }
             });
         });
