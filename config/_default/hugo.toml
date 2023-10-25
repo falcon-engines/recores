@@ -5,13 +5,21 @@
 baseURL = 'http://lectore.com/'
 
 
+##-------------------------
+## directory config
+##-------------------------
+
+contentDir = "master/content/"
+themesDir  = "module/plugins/"  
+publishDir = "publish"
+
+
 
 ##-------------------------
-## plugins and themes
+## register plugins
 ##-------------------------
-themesDir = "plugins/"  
-themebase = "based"
-theme     = [ "based" ]                                   
+
+theme  = [ "based" ]                                   
 
 
 
@@ -21,6 +29,14 @@ theme     = [ "based" ]
 
 defaultContentLanguage = 'id'
 
+
+##-------------------------
+## site configs
+##-------------------------
+
+paginate                   = 20                   # site pagination
+disableKinds               = [ "taxonomy" ]       # disable kind
+disableHugoGeneratorInject = true                 # disable injection
 
 
 ##-------------------------
@@ -43,16 +59,6 @@ defaultContentLanguage = 'id'
 
 
 ##-------------------------
-## site configs
-##-------------------------
-
-paginate                   = 20                   # site pagination
-disableKinds               = [ "taxonomy" ]       # disable kind
-disableHugoGeneratorInject = true                 # disable injection
-
-
-
-##-------------------------
 ## custom outputs
 ##-------------------------
 #
@@ -61,12 +67,18 @@ disableHugoGeneratorInject = true                 # disable injection
 
 
 
+
+
+
 ##-------------------------
-## custom directory
+## module config
 ##-------------------------
 
 
 [module]
+[[module.mounts]]
+    source = 'module/assets'
+    target = 'assets'
 [[module.mounts]]
     source = 'module/format'
     target = 'archetypes'
@@ -80,6 +92,6 @@ disableHugoGeneratorInject = true                 # disable injection
     source = 'module/statics'
     target = 'static'
 [[module.mounts]]
-    source = 'datums'
+    source = 'master/datums'
     target = 'data'
     
