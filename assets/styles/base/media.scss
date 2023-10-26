@@ -31,6 +31,7 @@ img, picture, video, canvas, svg {
 }
 .portrait,
 .landscape {
+    img,
     video,
     iframe{
         opacity: 0;
@@ -38,9 +39,10 @@ img, picture, video, canvas, svg {
         border: 0;
         position: absolute;
     }
+    img.loaded,
     video.loaded,
     iframe.loaded{
         opacity: 1;
-        transition: opacity .5s linear 1s; 
+        transition: opacity .5s linear .5s; 
     }
 }

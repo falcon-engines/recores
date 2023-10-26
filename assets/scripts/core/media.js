@@ -71,12 +71,22 @@ export class medialoader {
                 target.insertBefore( render, render.children[0] );
             }
 
+            let lazy_imgs = ( target, render ) => {
+                let content_width = target.clientWidth;
+                render.setAttribute( 'alt', target.dataset.title );
+                render.setAttribute( 'width', content_width );
+                render.setAttribute( 'height', Math.round((content_width/16)*9) );
+                // avoid lazy loading images that are in the first visible viewport
+                if ( entry.isInViewport == false  ) {
+                    render.setAttribute( 'loading', 'lazy' );
+                }
+                target.insertBefore( render, target.children[4] );
+            }
+
             let lazy_kill = ( render, loader ) => {
                 render.addEventListener('load', ( event ) => {
                     event.currentTarget.classList.add( 'loaded' );
-                    setTimeout( () => {
-                        loader.classList.add( 'hide' );
-                    }, 1000)
+                    loader.classList.add( 'hide' );
                 });
             }
 
@@ -85,6 +95,12 @@ export class medialoader {
                     render = document.createElement( 'video' );
                     render.src = target.dataset.src;
                     lazy_vide( target, render, loader );
+                }
+                else if ( format === 'image' ) {
+                    render = document.createElement( 'img' );
+                    render.src = target.dataset.src;
+                    lazy_imgs( target, render, loader );
+                    lazy_kill( render, loader );
                 }
                 else if ( format === 'file' || format === 'vimeo' || format === 'gdoc' || format === 'gxls' || format === 'gpdf' ) {
                     render.src = target.dataset.src;
