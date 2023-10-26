@@ -14,7 +14,7 @@ export class themebasics {
 
         // progressive web aplication
         let pwascript = document.querySelector('meta[name="pwa-engines"]');
-        if ( pwascript.content = true ) {
+        if ( pwascript ) {
             console.log('pwa active')
             this.pwaengine();
         }

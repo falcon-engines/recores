@@ -10,7 +10,7 @@
     else if ( mode === 'light'  ) {
         document.documentElement.setAttribute("data-mode", "light");
     }
-    else if ( window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches || days === false ) {
+    else if ( window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches || days == false ) {
         document.documentElement.setAttribute("data-mode", "dark");
     }
     else {
