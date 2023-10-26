@@ -39,8 +39,9 @@
 
 [features]
     darkmode = true   # true, false                 # enable darkmode
+    pwa_apps = false  # true, false                 # enable progresive web application
     search   = true   # fusejs, algolia             # enable search features
-
+    
 
 [services]
     [algolia]

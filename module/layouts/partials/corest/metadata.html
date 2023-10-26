@@ -1,5 +1,6 @@
 {{ $titles  := .Title }}
 {{ $descrip := .Page.Params.Description }}
+{{ $pwaapps := .Site.Params.Features.pwa_apps }}
 {{ $keyword := delimit .Keywords ", " }}
 {{ if .IsHome }}
     {{ $titles  = .Site.Title }}
@@ -15,5 +16,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- pwa applications -->
+<meta name="pwa-engines" content="{{ $pwaapps }}">
 <meta name="theme-color" content="#317EFB">
+
 

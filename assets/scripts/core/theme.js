@@ -13,7 +13,11 @@ export class themebasics {
         }
 
         // progressive web aplication
-        this.pwaengine();
+        let pwascript = document.querySelector('meta[name="pwa-engines"]');
+        if ( pwascript.content = true ) {
+            console.log('pwa active')
+            this.pwaengine();
+        }
     }
 
 
