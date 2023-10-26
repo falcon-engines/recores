@@ -37,8 +37,8 @@ export class medialoader {
             let format = target.dataset.type;
             let loader = target.querySelector('.loader-round');
             
-            let lazy_anim = ( target, render ) => {
-                let mainjs = document.getElementById( 'page-jsx' );
+            let lazy_anim = () => {
+                let mainjs = document.getElementById( 'base-jsx' );
                 let gensrc = document.createElement( 'script' );
                 gensrc.src = "https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs";
                 gensrc.setAttribute( 'type', 'module');
@@ -78,7 +78,7 @@ export class medialoader {
 
             let lazy_imgs = ( target, render ) => {
                 let content_width = target.clientWidth;
-                render.setAttribute( 'alt', target.dataset.title );
+                render.setAttribute( 'alt', target.dataset.alt );
                 render.setAttribute( 'width', content_width );
                 render.setAttribute( 'height', Math.round((content_width/16)*9) );
                 // avoid lazy loading images that are in the first visible viewport
@@ -87,6 +87,11 @@ export class medialoader {
                 }
                 render.src = target.dataset.src;
                 target.insertBefore( render, target.children[20] );
+
+                render.addEventListener('load', ( event ) => {
+                    event.currentTarget.classList.add( 'loaded' );
+                    loader.classList.add( 'hide' );
+                });
             }
 
             let lazy_kill = ( render, loader ) => {
@@ -99,13 +104,12 @@ export class medialoader {
             if ( entry.isIntersecting || entry.isInViewport ) {
                 if ( format === 'video' ) {
                     render = document.createElement( 'video' );
-                   
+                    render.src = target.dataset.src;
                     lazy_vide( target, render, loader );
                 }
                 else if ( format === 'image' ) {
                     render = document.createElement( 'img' );
                     lazy_imgs( target, render, loader );
-                    lazy_kill( render, loader );
                 }
                 else if ( format === 'file' || format === 'vimeo' || format === 'gdoc' || format === 'gxls' || format === 'gpdf' ) {
                     render.src = target.dataset.src;
@@ -117,23 +121,20 @@ export class medialoader {
                     render.src = target.dataset.src;
                     lazy_gppt( target, render );
                     lazy_kill( render, loader );
-                    
                 }
                 else if ( format === 'youtube' ) {
                     render.src = target.dataset.src;
                     lazy_ytub( target, render );
                     lazy_kill( render, loader );
                 }
-                else if ( format === 'anima' ) {
+                else if ( format === 'animax' ) {
                     lazy_anim( target, render );
                 }
                 else {
                     
                 }
-                
                 observer.unobserve(target);
             }
         });
-
     }
 }
