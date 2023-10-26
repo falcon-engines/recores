@@ -1,11 +1,7 @@
 export class medialoader {
 
     constructor(){
-        let animaxfind = document.querySelector('.animax');
         let pagechecks = document.querySelector('.media');
-        if ( animaxfind ) {
-            this.animation();
-        } 
         if ( pagechecks ) {
             this.lazy_load();
         } 
@@ -40,7 +36,16 @@ export class medialoader {
             let target = entry.target;
             let format = target.dataset.type;
             let loader = target.querySelector('.loader-round');
-     
+            
+            let lazy_anim = ( target, render ) => {
+                let mainjs = document.getElementById( 'page-jsx' );
+                let gensrc = document.createElement( 'script' );
+                gensrc.src = "https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs";
+                gensrc.setAttribute( 'type', 'module');
+                gensrc.setAttribute( 'defer', '');
+                mainjs.after( gensrc );
+            }
+
             let lazy_gppt = ( target, render ) => {
                 render.setAttribute( 'frameborder', 0 );
                 render.setAttribute( 'mozallowfullscreen', true );
@@ -80,7 +85,8 @@ export class medialoader {
                 if ( entry.isInViewport == false  ) {
                     render.setAttribute( 'loading', 'lazy' );
                 }
-                target.insertBefore( render, target.children[4] );
+                render.src = target.dataset.src;
+                target.insertBefore( render, target.children[20] );
             }
 
             let lazy_kill = ( render, loader ) => {
@@ -93,12 +99,11 @@ export class medialoader {
             if ( entry.isIntersecting || entry.isInViewport ) {
                 if ( format === 'video' ) {
                     render = document.createElement( 'video' );
-                    render.src = target.dataset.src;
+                   
                     lazy_vide( target, render, loader );
                 }
                 else if ( format === 'image' ) {
                     render = document.createElement( 'img' );
-                    render.src = target.dataset.src;
                     lazy_imgs( target, render, loader );
                     lazy_kill( render, loader );
                 }
@@ -118,6 +123,9 @@ export class medialoader {
                     render.src = target.dataset.src;
                     lazy_ytub( target, render );
                     lazy_kill( render, loader );
+                }
+                else if ( format === 'anima' ) {
+                    lazy_anim( target, render );
                 }
                 else {
                     

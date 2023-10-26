@@ -3,6 +3,9 @@ title: "karim"
 draft: false
 ---
 
+# Image locals
+![karim adalah](sample.jpg "loadnow" )
+
 
 # karim
 ## karim
@@ -10,6 +13,7 @@ draft: false
 #### karim
 ##### karim
 ###### karim
+
 
 
 {{< grid columns="2" class="" element="section" >}}

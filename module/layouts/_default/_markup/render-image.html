@@ -20,8 +20,7 @@
     {{ end }}
 
     <div class="flex-c">
-        {{- $resizer := slice "320" "640" "960" "1280" "1680" "1972"  -}}
-        {{- $mediawd := "(min-width: 1024px) 100vw, 50vw" -}}
+        {{- $resizer := slice "1972" "1680" "1280" "960" "640" "320" -}}
         {{- $actuals := $pathsrc.Resize "1280x jpg" -}}
         <figure>
             <picture class="media landscape grid align-a colfix" data-src="{{ $pathsrc.RelPermalink }}" data-alt="{{ .Title }}" data-type="image">
@@ -51,26 +50,26 @@
                     {{ $getwebp = $getwebp | append $values }} 
                 {{ end }}
                 {{ $webpsrc := delimit $getwebp ", "  }}
-                <source type="image/webp" srcset=" {{- print $webpsrc -}}" sizes="{{ $mediawd }}" />
+                <source type="image/webp" srcset=" {{- print $webpsrc -}}" />
 
                 {{ $getjpg := slice }}
                 {{ range $resizer }}
                     {{ $rezise := "" }}
                     {{ $values := "" }}
                     {{ if eq . "1972" }}
-                        {{ $rezise = $pathsrc.Resize "1972x1109 webp" }}
+                        {{ $rezise = $pathsrc.Resize "1972x1109 jpg" }}
                         {{ $values  = print $rezise.RelPermalink " " . "w" }}
                     {{ else if eq . "1680" }}
-                        {{ $rezise = $pathsrc.Resize "1680x945 webp" }}
+                        {{ $rezise = $pathsrc.Resize "1680x945 jpg" }}
                         {{ $values =  print $rezise.RelPermalink " " . "w" }}
                     {{ else if eq . "1280" }}
-                        {{ $rezise = $pathsrc.Resize "1280x720 webp" }}
+                        {{ $rezise = $pathsrc.Resize "1280x720 jpg" }}
                         {{ $values   =  print $rezise.RelPermalink " " . "w" }}
                     {{ else if eq . "960" }}
-                        {{ $rezise = $pathsrc.Resize "960x540 webp" }}
+                        {{ $rezise = $pathsrc.Resize "960x540 jpg" }}
                         {{ $values   =  print $rezise.RelPermalink " " . "w" }}
                     {{ else if eq . "640" }}
-                        {{ $rezise = $pathsrc.Resize "640x360 webp" }}
+                        {{ $rezise = $pathsrc.Resize "640x360 jpg" }}
                         {{ $values   =  print $rezise.RelPermalink " " . "w" }}
                     {{ else if eq . "320" }}
                         {{ $rezise = $pathsrc.Resize "320x180 webp" }}
@@ -79,11 +78,8 @@
                     {{ $getjpg = $getjpg | append $values }} 
                 {{ end }}
                 {{ $jpgsrc := delimit $getjpg ", "  }}
-                <source type="image/jpg"  srcset="{{- print $jpgsrc -}}" sizes="{{ $mediawd }}" />
+                <source type="image/jpg"  srcset="{{- print $jpgsrc -}}" />
                 <div class="loader-round"><div></div><div></div></div>
-                <!-- 
-                <img src="{{ $pathsrc }}" class="fluid" itemprop="contentUrl"  alt="{{ .Title }}" width="{{ $actuals.Width }}" height="{{ $actuals.Height }}"  loading="lazy">
-                 -->
             </picture>
             {{ with .Text }}<p class="fw-600 caption" data-alt="{{ . }}">{{ . }}</p>{{ end }}
         </figure>
