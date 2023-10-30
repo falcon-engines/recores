@@ -7,8 +7,7 @@
 {{ if eq $tab_elems "section" }}
 
     <section id="{{ $tab_title }}" class="tabs build {{- with $tab_model }} {{ . | safeHTMLAttr }} {{ end }}{{- with $tab_class }} {{ . | safeHTMLAttr }}{{ end }}">
- 
-        <div class="tabs-menu">
+         <div class="tabs-menu">
         {{ range ( split $tabs_head "," ) }}
             {{- $titles := trim . " "  -}}
             {{- $target := print "tab-" ( $titles | lower ) -}}
@@ -18,7 +17,6 @@
         <div class="tabs-load" data-tabs="{{- $tabs_head | lower | base64Encode -}}">
             {{- .Inner | safeHTML -}}
         </div>
-       
     </section>
 
 {{ else }}
