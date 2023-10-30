@@ -18,6 +18,11 @@ export class themebasics {
         if ( document.querySelector( '.theme-menu' ) ) {
             this.darkmode();
         }
+
+        // search modulars
+        if ( document.querySelector( '.search-form' ) ) {
+            this.findpage();
+        }
    
         // progressive web aplication
         if ( document.querySelector('meta[name="pwa-engines"]') ) {
@@ -131,5 +136,17 @@ export class themebasics {
                 event.currentTarget.parentElement.classList.add( 'dnone' );
             });
         })
+    }
+
+    
+    findpage() {
+        let action = document.getElementById('search-input');
+        action.addEventListener("keypress", function(event) {
+            if (event.key === "Enter" ) {
+                event.preventDefault();
+                let query = this.value;
+                window.location.href = window.location.origin+'/search/?q='+query;
+            }
+        });
     }
 }

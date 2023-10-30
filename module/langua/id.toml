@@ -6,3 +6,6 @@
 
 [appearance_menu]
   other = 'Tampilan'
+
+[search_tag]
+  other = 'Ketikan kata kunci'

@@ -6,3 +6,6 @@
 
 [appearance_menu]
   other = 'Appearance'
+
+[search_tag]
+  other = 'Type to search'

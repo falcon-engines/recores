@@ -43,6 +43,7 @@
     search   = true   # fusejs, algolia             # enable search features
     
 
+
 [services]
     [algolia]
         unique = "algolia_id"                       # algolia unique id
