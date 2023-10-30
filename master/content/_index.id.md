@@ -3,30 +3,7 @@ title: "karim"
 draft: false
 ---
 
-<!-- grid example -->
-# Grid Example
-{{< grid count="2" class="" tag="section" >}}
-    {{< cols id="" class="" >}}
-        karim grid 1
-    {{< /cols >}}
-    {{< cols id="" class="" >}}
-        karim grid 2
-    {{< /cols >}}
-{{< /grid >}}
 
-
-[Click me](http://www.google.com "btn btn-primary")
-
-
-
-# Heading 
-
-# karim
-## karim
-### karim
-#### karim
-##### karim
-###### karim
 
 # Article
 
