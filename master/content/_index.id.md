@@ -3,9 +3,8 @@ title: "karim"
 draft: false
 ---
 
-
-# Grid Example
 <!-- grid example -->
+# Grid Example
 {{< grid count="2" class="" tag="section" >}}
     {{< cols id="" class="" >}}
         karim grid 1
@@ -16,29 +15,8 @@ draft: false
 {{< /grid >}}
 
 
-# Tabs Example
-<!-- tabs example -->
-{{< tabs name="keluarga Al" data="karim, evi, zaza, rasyid, mama" class="karim-school" tag="section" model="l-side" >}}
-    {{< tab >}}
-        karim Tab 1
-    {{< /tab >}}
-    {{< tab >}}
-        karim Tab 2
-    {{< /tab >}}
-    {{< tab >}}
-        karim Tab 3
-    {{< /tab >}}
-    {{< tab >}}
-        karim Tab 4
-    {{< /tab >}}
-    {{< tab >}}
-        karim Tab 5
-    {{< /tab >}}
-{{< /tabs >}}
+[Click me](http://www.google.com "btn btn-primary")
 
-
-# Image locals
-![karim adalah](sample.jpg "loadnow" )
 
 
 # Heading 

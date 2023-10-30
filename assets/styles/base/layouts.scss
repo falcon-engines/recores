@@ -32,3 +32,16 @@
         width: 94vw;
     }
 }
+
+/* button */
+a.btn {
+    font-size: 1rem;
+    padding: .7rem 1.75rem;
+    text-decoration: none;
+    border: var(--br-primer);
+}
+
+a.btn-primary {
+    background: var(--btn-primer);
+    border: 0;
+}

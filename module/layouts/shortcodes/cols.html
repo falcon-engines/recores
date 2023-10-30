@@ -1,17 +1,13 @@
-{{- $element := .Get "element" -}}
-{{- $class   := .Get "class"   -}}
-{{- if $class -}}
-    {{- $class = print "class='" ( $class | safeHTMLAttr ) "'"   -}}
-{{- end -}}
-{{- $ident   := .Get "id" -}}
+{{- $elems := .Get "element" -}}
+{{- $class := .Get "class"   -}}
+{{- $ident := .Get "id"      -}}
 
-
-{{ if eq $element "section" }}
-    <section id="{{ $ident }}"  class="{{- $class -}}" >
+{{ if eq $elems "section" }}
+    <section id="{{- $ident | safeHTMLAttr -}}"  class="{{- $class | safeHTMLAttr -}}" >
         {{- .Inner | safeHTML -}}
     </section>
 {{ else }}
-    <div id="{{ $ident }}" class="{{- $class | safeHTMLAttr -}}" >
+    <div id="{{- $ident | safeHTMLAttr -}}" class="{{- $class | safeHTMLAttr -}}" >
         {{- .Inner | safeHTML -}}
     </div>
 {{ end }}

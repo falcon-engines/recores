@@ -24,12 +24,12 @@
 .tabs.headnav{
     .tabs-menu {
         display: flex;
-        border-top: var(--br-color);
-        border-bottom: var(--br-color);
+        border-top: var(--br-primer);
+        border-bottom: var(--br-primer);
     }
     .tabs-open {
         padding: 10px;
-        border-right: var(--br-color);
+        border-right: var(--br-primer);
         text-align: center;
     }
     .tabs-open:nth-last-child(1) {
@@ -45,7 +45,7 @@
     }
     .tabs-open {
         padding: 10px 1rem;
-        border-bottom: var(--br-color);
+        border-bottom: var(--br-primer);
     }
     .tabs-open:nth-last-child(1) {
         margin: 0;
@@ -56,7 +56,7 @@
 .tabs.l-side {
     grid-template-columns: 20% auto;
     .tabs-menu {
-        border-right: var(--br-color);
+        border-right: var(--br-primer);
         margin-right: 1rem;
         text-align: right;
     }
@@ -65,7 +65,7 @@
 .tabs.r-side {
     grid-template-columns: auto 20%;
     .tabs-menu {
-        border-left: var(--br-color);
+        border-left: var(--br-primer);
         margin-left: 1rem;
         order: 2;
     }
