@@ -1,5 +1,4 @@
-{{- $class := .Get "class" | safeHTMLAttr  -}}
-<div id="" class="tab-content d-hide {{ $class | safeHTMLAttr -}}" >
+<div id="" class="tab-content" >
     {{- .Inner | safeHTML -}}
 </div>
 

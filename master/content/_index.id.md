@@ -27,7 +27,7 @@ draft: false
 
 
 <!-- tabs example -->
-{{< tabs name="keluarga Al" data="Karim, evi, zaza, rasyid, mama" class="" tag="section" >}}
+{{< tabs name="keluarga Al" data="karim, evi, zaza, rasyid, mama" class="" tag="section" model="sidebar" >}}
     {{< tab >}}
         karim Tab 1
     {{< /tab >}}
@@ -39,6 +39,9 @@ draft: false
     {{< /tab >}}
     {{< tab >}}
         karim Tab 4
+    {{< /tab >}}
+    {{< tab >}}
+        karim Tab 5
     {{< /tab >}}
 {{< /tabs >}}
 

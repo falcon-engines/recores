@@ -47,7 +47,6 @@ export class themebasics {
             let tabitems = Array.prototype.slice.call( tabloads.querySelectorAll( 'div' ) );
             tabitems.forEach( item => {
                 if ( tabcount === 0 ) {
-                    item.classList.remove( 'd-hide' );
                     item.classList.add( 'active' );
                 }
                 item.setAttribute( 'id', 'tab-'+ tabdatas[tabcount] );
@@ -77,10 +76,8 @@ export class themebasics {
                     getcon.forEach( item => {
                         if ( item.classList.contains('active') ) {
                             item.classList.remove( 'active' );
-                            item.classList.add( 'd-hide' );
                         }
                     });
-                    target.classList.remove( 'd-hide' );
                     target.classList.add( 'active' );
                 } 
             });
