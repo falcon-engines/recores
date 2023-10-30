@@ -1,0 +1,15 @@
+{{ $tabs_head := .Get "data"  }}
+{{ $div_class := .Get "class" }}
+{{ $div_title :=  strings.Replace ( .Get "name" ) " " "-" | lower }}
+<div id="{{ $div_title }}" class="tabs build {{- with $div_class }} {{ . | safeHTMLAttr }}{{ end }}">
+    <div class="tabs-menu flex">
+    {{ range ( split $tabs_head "," ) }}
+        {{- $titles := trim . " "  -}}
+        {{- $target := print "tab-" ( $titles | lower ) -}}
+        <div class="tabs-open" data-target="{{- $target -}}">{{ strings.FirstUpper $titles }}</div>
+    {{ end }}
+    </div>
+    <div class="tabs-load" data-tabs="{{- $tabs_head | lower | base64Encode -}}">
+        {{- .Inner | safeHTML -}}
+    </div>
+</div>

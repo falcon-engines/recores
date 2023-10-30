@@ -13,3 +13,16 @@ input, button, textarea, select {
     list-style: none;
     padding-inline-start: 0;
 }
+
+
+/* tabs */
+
+.tabs {
+    .tabs-open {
+        flex-shrink: 0;
+        flex-grow: 1;
+    }
+    .tabs-load {
+        position: relative;
+    }
+}

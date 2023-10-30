@@ -1,13 +1,13 @@
+{{- $columns := .Get "count" -}}
+{{- $element := .Get "tag"   -}}
+{{- $class   := .Get "class" -}}
 
-{{- $columns := .Get "columns" -}}
-{{- $element := .Get "element" -}}
-
-{{ if eq $element "section" }}
-    <section class="grid-{{ $columns | safeHTMLAttr }} vertical">
+{{- if eq $element "section" -}}
+    <section class="grid-{{ $columns | safeHTMLAttr }} vertical{{- with $class}} {{ . | safeHTMLAttr }}{{ end }}">
         {{- .Inner | safeHTML -}}
     </section>
-{{ else }}
-    <div class="grid-{{ $columns | safeHTMLAttr }} vertical">
+{{- else -}}
+    <div class="grid-{{ $columns | safeHTMLAttr }} vertical{{- with $class}} {{ . | safeHTMLAttr }}{{ end }} ">
         {{- .Inner | safeHTML -}}
     </div>
-{{ end }}
+{{- end -}}
