@@ -6,23 +6,22 @@ $media-lg:  1280px;
 $media-xl:  1600px;
 $media-xxl: 1974px;
 
-
 html {
     --bg-primary: #fff;
-    --bg-blue : linear-gradient(65deg, #0270D7 0, #0F8AFD 100%);
-    --bg-layer : linear-gradient(65deg, #0270D7 0, #0F8AFD 100%);
-    --br-color : 1px solid rgb(0 0 0 / 15%);
+    --bg-accent : linear-gradient(65deg, #0270D7 0, #0F8AFD 100%);
+    --bg-layer  : linear-gradient(65deg, #e6e6e6 0, #ffffff 100%);
+    --br-color  : 1px solid rgb(0 0 0 / 15%);
     --text-body : #222;
     --text-primary: #000;
-    --text-reading : #222;
+    --text-reading: #222;
 }
  
 html[data-mode='dark'] {
     --bg-primary: #242830;
-    --bg-blue : linear-gradient(65deg, #0270D7 0, #0F8AFD 100%);
-    --bg-layer : linear-gradient(75deg, #25323c 0, #4c5054 100%);
-    --br-color : 1px solid rgb(255 255 255 / 15%);
+    --bg-accent : linear-gradient(65deg, #0270D7 0, #0F8AFD 100%);
+    --bg-layer  : linear-gradient(75deg, #25323c 0, #4c5054 100%);
+    --br-color  : 1px solid rgb(255 255 255 / 15%);
     --text-body : #8A94A7;
     --text-primary: #fff;
-    --text-reading : #dee4ef;   
+    --text-reading: #dee4ef;   
 }
