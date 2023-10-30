@@ -3,31 +3,22 @@ title: "karim"
 draft: false
 ---
 
-# Image locals
-![karim adalah](sample.jpg "loadnow" )
 
-
-# karim
-## karim
-### karim
-#### karim
-##### karim
-###### karim
-
-
+# Grid Example
 <!-- grid example -->
 {{< grid count="2" class="" tag="section" >}}
     {{< cols id="" class="" >}}
-        karim col 1
+        karim grid 1
     {{< /cols >}}
     {{< cols id="" class="" >}}
-        karim col 2
+        karim grid 2
     {{< /cols >}}
 {{< /grid >}}
 
 
+# Tabs Example
 <!-- tabs example -->
-{{< tabs name="keluarga Al" data="karim, evi, zaza, rasyid, mama" class="" tag="section" model="sidebar" >}}
+{{< tabs name="keluarga Al" data="karim, evi, zaza, rasyid, mama" class="karim-school" tag="section" model="l-side" >}}
     {{< tab >}}
         karim Tab 1
     {{< /tab >}}
@@ -45,6 +36,21 @@ draft: false
     {{< /tab >}}
 {{< /tabs >}}
 
+
+# Image locals
+![karim adalah](sample.jpg "loadnow" )
+
+
+# Heading 
+
+# karim
+## karim
+### karim
+#### karim
+##### karim
+###### karim
+
+# Article
 
 Surabaya - Ketua DPP PDIP Puan Maharani menegaskan Gibran Rakabuming masih menjadi bagian dari partainya. Meski anak Presiden Jokowi tersebut telah menerima pencalonan jadi cawapres dari Golkar.
 "Kan belum keluar. Ya lihat nanti orang belum keluar," kata Puan usai menghadiri acara silaturahmi bersama gus dan ning di Grand City, Surabaya, Sabtu (21/10/2023).

@@ -15,26 +15,3 @@ input, button, textarea, select {
 }
 
 
-/* tabs */
-
-.tabs {
-    .tabs-open {
-        flex-shrink: 0;
-        flex-grow: 1;
-    }
-    .tabs-load {
-        position: relative;
-    }
-
-    .tab-content{
-        z-index: -1;
-        position: fixed;
-        visibility: hidden;
-    }
-    .tab-content.active{
-        z-index: 1;
-        position: relative;
-        visibility: visible;
-    }
-  
-}

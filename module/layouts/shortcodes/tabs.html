@@ -1,12 +1,14 @@
 {{ $tabs_head := .Get "data"  }}
 {{ $tab_class := .Get "class" }}
 {{ $tab_elems := .Get "tag" }}
+{{ $tab_model := .Get "model" }}
 {{ $tab_title :=  strings.Replace ( .Get "name" ) " " "-" | lower }}
 
 {{ if eq $tab_elems "section" }}
 
-    <section id="{{ $tab_title }}" class="tabs build {{- with $tab_class }} {{ . | safeHTMLAttr }}{{ end }}">
-        <div class="tabs-menu flex">
+    <section id="{{ $tab_title }}" class="tabs build {{- with $tab_model }} {{ . | safeHTMLAttr }} {{ end }}{{- with $tab_class }} {{ . | safeHTMLAttr }}{{ end }}">
+ 
+        <div class="tabs-menu">
         {{ range ( split $tabs_head "," ) }}
             {{- $titles := trim . " "  -}}
             {{- $target := print "tab-" ( $titles | lower ) -}}
@@ -16,11 +18,12 @@
         <div class="tabs-load" data-tabs="{{- $tabs_head | lower | base64Encode -}}">
             {{- .Inner | safeHTML -}}
         </div>
+       
     </section>
 
 {{ else }}
 
-    <div id="{{ $tab_title }}" class="tabs build {{- with $tab_class }} {{ . | safeHTMLAttr }}{{ end }}">
+    <div id="{{ $tab_title }}" class="tabs build {{- with $tab_model }} {{ . | safeHTMLAttr }} {{ end }}{{- with $tab_class }} {{ . | safeHTMLAttr }}{{ end }}">
         <div class="tabs-menu flex">
         {{ range ( split $tabs_head "," ) }}
             {{- $titles := trim . " "  -}}
@@ -32,4 +35,5 @@
             {{- .Inner | safeHTML -}}
         </div>
     </div>
+
 {{ end }}
