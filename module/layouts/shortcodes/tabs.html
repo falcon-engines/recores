@@ -11,7 +11,7 @@
         {{ range ( split $tabs_head "," ) }}
             {{- $titles := trim . " "  -}}
             {{- $target := print "tab-" ( $titles | lower ) -}}
-            <div class="tabs-open" data-target="{{- $target -}}">{{ strings.FirstUpper $titles }}</div>
+            <div class="tabs-open" data-target="{{- $target -}}">{{- strings.FirstUpper $titles -}}</div>
         {{ end }}
         </div>
         <div class="tabs-load" data-tabs="{{- $tabs_head | lower | base64Encode -}}">
@@ -26,7 +26,7 @@
         {{ range ( split $tabs_head "," ) }}
             {{- $titles := trim . " "  -}}
             {{- $target := print "tab-" ( $titles | lower ) -}}
-            <div class="tabs-open" data-target="{{- $target -}}">{{ strings.FirstUpper $titles }}</div>
+            <div class="tabs-open" data-target="{{- $target -}}">{{- strings.FirstUpper $titles -}}</div>
         {{ end }}
         </div>
         <div class="tabs-load" data-tabs="{{- $tabs_head | lower | base64Encode -}}">
