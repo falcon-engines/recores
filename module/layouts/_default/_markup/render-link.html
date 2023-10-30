@@ -1,5 +1,5 @@
 
-{{ $class := .Title }}
+{{ $class := .Title | lower }}
 {{ $local := urls.Parse .Destination}}
 {{ if $local.Path }}
     <a class="{{ $class }}" href="{{ .Destination }}" target="_self" rel="noopener noreferrer">{{ .Text }}</a>
