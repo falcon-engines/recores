@@ -37,10 +37,10 @@ images      = ['images/sample.jpg']                 # site default images
 
 
 [workspace] 
-    github    = "my github account"                 # github account
-    gitlab    = "my gilab account"                  # gitlab username
-    jira      = "my jira account"                   # jira workspace
-    slack     = "my slack account"                  # slack account
+    github    = "github account"                    # github account
+    gitlab    = "gilab account"                     # gitlab username
+    jira      = "jira account"                      # jira workspace
+    slack     = "slack account"                     # slack account
 
 
 [features]

@@ -1,7 +1,7 @@
 
 {{ $class := .Title | lower }}
-{{ $local := urls.Parse .Destination}}
-{{ if $local.Path }}
+{{ $local := urls.Parse .Destination }}
+{{ if strings.Contains $local.Path "http" }}
     <a class="{{ $class }}" href="{{ .Destination }}" target="_self" rel="noopener noreferrer">{{ .Text }}</a>
 {{ else }}
     <a class="{{ $class }}" href="{{ .Destination }}" target="_blank" rel="noopener noreferrer">{{ .Text }}</a>
