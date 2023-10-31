@@ -8,6 +8,7 @@
     <link id="base-css" type="text/css" rel="stylesheet" href="{{ $based_style.RelPermalink | safeURL }}" />
 {{- end -}}
 
+
 <!-- paged styles -->
 {{- if .Scratch.Get "page_css" -}}
     {{- $paged_style := .Scratch.Get "page_css" -}}
@@ -27,7 +28,7 @@
 
 <!-- google analytic scripts -->
 {{ if hugo.IsProduction }}
-    {{ template "_internal/google_analytics.html" . }}
+    {{ template "_internal/google_analytics_async.html" . }}
 {{ end }}
 
 

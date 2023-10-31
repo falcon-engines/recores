@@ -6,24 +6,3 @@
 @import 'base/typography.scss';
 
 
-/* General  */
-* {
-    margin:0;
-}
-*, *::before, *::after {
-    box-sizing: inherit;
-}
-#root, #__next {
-    isolation: isolate;
-}
-html{
-    box-sizing: border-box;
-    overflow-x: hidden;
-    touch-action: manipulation;
-}
-body{
-    background: var(--bg-primary);
-    color: var(--text-body);
-    font-size: calc(15px + .390625vw);
-    -webkit-font-smoothing: antialiased;
-}

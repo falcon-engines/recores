@@ -22,12 +22,14 @@ let layout_items = ( data, target ) => {
 
     // link data
     link.setAttribute( 'href', data.uri );
-    link.classList.add( 'search-item', 'no-decor' );
+    link.classList.add( 'search-item', 'd-block', 'no-decor', 'ft-u', 'my-4' );
   
     // head data
     head.innerText = data.title;
+    head.classList.add( 'fz-120', 'ft-u' );
 
     // desc data
+    desc.classList.add( 'fz-90', 'ft-u' );
     desc.innerText = data.description;
    
     // builders

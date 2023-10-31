@@ -26,6 +26,9 @@
 .fz-100{
     font-size: 100%;
 }
+.fz-110{
+    font-size: 110%;
+}
 .fz-120{
     font-size: 120%;
 }
@@ -49,4 +52,8 @@
 }
 .fz-5x{
     font-size: 500%;
+}
+/* font transform */
+.ft-u {
+    text-transform: capitalize;
 }
