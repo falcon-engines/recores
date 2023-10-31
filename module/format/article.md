@@ -1,6 +1,7 @@
 ---
-title: "hre kelas"
-date : {{ .Date }}
-draft: true
+title       : "Hore"
+date        : {{ .Date }}
+description : "Write description"
+draft       : true
 ---
 

@@ -56,6 +56,13 @@ disableHugoGeneratorInject = true                 # disable injection
 
 
 ##-------------------------
+## output format
+##-------------------------
+
+[outputs]
+    home = ['HTML']
+
+##-------------------------
 ## module config
 ##-------------------------
 

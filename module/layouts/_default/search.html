@@ -1,8 +1,8 @@
 {{ define "main" }}
     {{ .Content }}
-    cari
 {{ end }}
 
 {{ define "foot_assets" }}
     {{ $.Scratch.Set "page_jsx" ( dict "src" "scripts/page/search.js" "dest" "jsx/search-page.js" ) }}
 {{ end }}
+

@@ -1,5 +1,8 @@
 ---
-title: "Hore"
-date : {{ .Date }}
-draft: true
+title       : "Hore"
+date        : {{ .Date }}
+description : "Write description"
+categories  : []
+tags        : []
+draft       : true
 ---

@@ -40,14 +40,17 @@
 [features]
     darkmode = true   # true, false                 # enable darkmode
     pwa_apps = false  # true, false                 # enable progresive web application
-    search   = true   # fusejs, algolia             # enable search features
-    
+   
 
-
-[services]
+[searchs]
+    status = true     # true, false
+    engine = "self"   # algolia, fuse               # search engine  
     [algolia]
         unique = "algolia_id"                       # algolia unique id
         secret = "algolia_secret"                   # algolia secret key
+    
+
+[services]
     [disqus]
         unique = "disqus_id"                        # disqus unique id
         secret = "disqus_secret"                    # disqus secret

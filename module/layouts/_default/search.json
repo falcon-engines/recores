@@ -1,0 +1,13 @@
+{{- $.Scratch.Add "index" slice -}}
+{{- range .Site.Pages  -}}
+    {{ if and ( ne .Section "api" ) ( ne .Title "Search" ) ( ne .IsHome true ) }}
+        {{- $tags := delimit .Params.tags "," -}}
+        {{- $cats := delimit .Params.categories "," -}}
+        {{- $desc := .Description -}}
+        {{- $sect := cond ( gt .Section 1 ) .Section "root" -}}
+        {{- $link := .Permalink | safeURL -}}
+        {{- $name := .Title | lower | safeHTML -}}
+        {{- $.Scratch.Add "index" ( dict "uri" $link "title" $name "description" $desc "keywords" $tags "categories" $cats "section" $sect ) -}}
+    {{- end -}}
+{{ end }}
+{{- $.Scratch.Get "index" | jsonify -}}

@@ -1,6 +1,9 @@
 ---
 title  : "Search"
-layout: "search"
+layout : "search"
+outputs: 
+    - JSON
+    - HTML
 draft  : false
 ---
 
