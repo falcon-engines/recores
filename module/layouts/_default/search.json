@@ -1,6 +1,6 @@
 {{- $.Scratch.Add "index" slice -}}
 {{- range .Site.Pages  -}}
-    {{ if and ( ne .Section "api" ) ( ne .Title "Search" ) ( ne .IsHome true ) }}
+    {{ if and ( ne .Title "Search" ) ( ne .IsHome true ) }}
         {{- $tags := .Params.tags  -}}
         {{- $cats := .Params.categories -}}
         {{- $desc := .Description -}}

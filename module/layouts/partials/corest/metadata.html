@@ -13,11 +13,17 @@
 <meta name="language" content="{{ site.Language.Lang }}">
 <meta name="description" content="{{ $descrip }}">
 <meta name="keywords" content="{{ $keyword }}">
-
-<!-- site compability -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- opengragp metadata  -->
+{{ template "_internal/opengraph.html" . }}
+
+
+<!-- twitter cards  -->
+{{ template "_internal/twitter_cards.html" . }}
+
 
 <!-- progresive web application manifest -->
 {{- if $pwaapps -}}
@@ -33,8 +39,9 @@
     <meta http-equiv="refresh" content="{{ $redirect }}" />
 {{ end }}
 
-
+<!-- alternative format -->
 {{ range .AlternativeOutputFormats -}}
   <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .RelPermalink | safeURL }}">
 {{ end }}
+
 

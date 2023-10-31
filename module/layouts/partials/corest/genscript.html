@@ -1,3 +1,4 @@
+
 <!-- based styles -->
 {{- if hugo.IsProduction -}}
     {{- $based_style := slice ( resources.Get "styles/core.scss" ) ( resources.Get "styles/main.scss"  ) | resources.Concat "styles/based.css" | resources.ExecuteAsTemplate "css/base.css" . | toCSS | minify  | fingerprint -}}
@@ -22,6 +23,11 @@
         {{- end }}
     {{ end }}
 {{- end -}}
+
+<!-- google analytic scripts -->
+{{ if hugo.IsProduction }}
+    {{ template "_internal/google_analytics.html" . }}
+{{ end }}
 
 
 

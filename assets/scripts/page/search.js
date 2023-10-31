@@ -7,39 +7,51 @@ let get_uri_param = (params) => {
 }
 
 
-let search_engine = async( query ) => {
+let search_engine = async() => {
     let json_link = await fetch('index.json');
     let json_data = await json_link.json();
-    let data_main = [];
+    return json_data;
+}
 
-    for (var i = 0; i < json_data.length; i++){
-        if ( json_data[i].title.includes(query) ){
-            if ( json_data[i].section.length > 0 ) {
-                data_main[json_data[i].section] = [i];
-                data_main[json_data[i].section][i] = {
-                    title       : json_data[i].title,
-                    links       : json_data[i].uri,
-                    description : json_data[i].description,
-                }
+let layout_items = ( data, target ) => {
+
+    // prototype
+    let link = document.createElement('a');
+    let head = document.createElement('h1');
+    let desc = document.createElement('p');
+
+    // link data
+    link.setAttribute( 'href', data.uri );
+  
+    // head data
+    head.innerText = data.title;
+
+    // desc data
+    desc.innerText = data.description;
+   
+    // builders
+    target.appendChild(link);
+    link.appendChild(head);
+    link.appendChild(desc);
+}
+
+let result_found = (data, query) => {
+
+    for (var i = 0; i < data.length; i++){
+        if ( data[i].title.includes(query) ){
+            if ( data[i].section.length > 0 ) {
+                target = document.getElementById('tab-search-'+data[i].section);
+                layout_items( data[i] ,target );
             }
             else {
-                data_main['general'] = [i];
-                data_main['general'][i] = {
-                    title       : json_data[i].title,
-                    links       : json_data[i].uri,
-                    description : json_data[i].description,
-                }
+                target = document.getElementById('tab-search-general');
+                layout_items( data[i] ,target );
             }
         }
     }
-
-    return data_main;
 }
 
 
-let result_found = (data) => {
-    console.log(data)
-}
 
 
 let result_losed = () => {
@@ -60,8 +72,8 @@ let make_tabpage = ()=> {
 ( async() => {
     let query_arg = get_uri_param('q');
     let search_ls = await search_engine(query_arg);
-    if ( Object.keys(search_ls).length > 0 ) {
-        result_found(search_ls);
+    if ( search_ls.length > 0 ) {
+        result_found(search_ls, query_arg);
     }
     else {
         result_losed();

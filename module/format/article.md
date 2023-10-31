@@ -1,9 +1,12 @@
 ---
 title       : "Hore"
 date        : {{ .Date }}
-description : "Write description"
-categories  : []
+images      : ['sample.jpg']
+series      : []
+audio       : []
+videos      : []
 tags        : []
+categories  : []
+description : "Write description"
 draft       : true
 ---
-

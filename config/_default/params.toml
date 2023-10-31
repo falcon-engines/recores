@@ -1,13 +1,9 @@
+description = 'Text about my cool site'             # site description
+images      = ['images/sample.jpg']                 # site default images
+
+
 [site_meta]
     leads      = ""                                 # site tagline
-    descs      = "site description"                 # site description
-    phone      = "test phone"                       # phone number
-    email      = "test mail"                        # contact email
-    address1   = "Office main address"              # office primary address
-    address2   = "Office secondary address"         # office secondary address
-    telegram   = "@null"                            # telegram group
-    whatsapp   = "+62-895-0765-1345"                # whatsapp contact person
-    postaddr   = ""                                 # Mailing address or mailing address
     author     = ""                                 # Default author name  
     logo_light = ""                                 # site logo light (path/url)
     logo_darks = ""                                 # site logo dark (path/url)
@@ -21,7 +17,17 @@
     nopage   = "based"                              # 404 page not found
 
 
-[social_media]
+[contact]
+    phone      = "test phone"                       # phone number
+    email      = "test mail"                        # contact email
+    address1   = "Office main address"              # office primary address
+    address2   = "Office secondary address"         # office secondary address
+    telegram   = "@null"                            # telegram group
+    whatsapp   = "+62-895-0765-1345"                # whatsapp contact person
+    postaddr   = ""                                 # Mailing address or mailing address
+
+
+[social]
     facebook  = "my facebook id"                    # facebook username
     twitter   = "my twitter id"                     # twitter username
     instagram = "my instagram id"                   # instagram username
@@ -48,12 +54,3 @@
     [algolia]
         unique = "algolia_id"                       # algolia unique id
         secret = "algolia_secret"                   # algolia secret key
-    
-
-[services]
-    [disqus]
-        unique = "disqus_id"                        # disqus unique id
-        secret = "disqus_secret"                    # disqus secret
-    [youtube]   
-        unique = "youtube_id"                       # youtube unique id
-        secret = "youtube_secret"                   # youtube secret 
