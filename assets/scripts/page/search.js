@@ -22,6 +22,7 @@ let layout_items = ( data, target ) => {
 
     // link data
     link.setAttribute( 'href', data.uri );
+    link.classList.add( 'search-item', 'no-decor' );
   
     // head data
     head.innerText = data.title;

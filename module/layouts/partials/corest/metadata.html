@@ -25,6 +25,10 @@
 {{ template "_internal/twitter_cards.html" . }}
 
 
+<!-- scheme metadata  -->
+{{ template "_internal/schema.html" . }}
+
+
 <!-- progresive web application manifest -->
 {{- if $pwaapps -}}
     <meta name="pwa-engines" content="{{ $pwaapps }}">

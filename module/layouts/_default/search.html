@@ -1,48 +1,47 @@
+
+
 {{ define "main" }}
-
-    
-
-    {{ .Content }}
-
-   
-
-    <div id="search-result" class="tabs headnav wrap">
-        {{ $section := slice | uniq }}
-        {{- range .Site.Pages  -}}
-            {{- if and ( .Section ) ( ne .Section "tags" )  -}}
-                {{ $section =  $section | append .Section }}
-            {{ else if  ( ne .Section "tags" )   }}
-                {{ $section =  $section | append  "general" }}
+    <div id="search-page" class="wrap">
+        {{ .Content }}
+        <div id="search-result" class="tabs headnav wrap">
+            {{ $section := slice | uniq }}
+            {{- range .Site.Pages  -}}
+                {{- if and ( .Section ) ( ne .Section "tags" )  -}}
+                    {{ $section =  $section | append .Section }}
+                {{ else if  ( ne .Section "tags" )   }}
+                    {{ $section =  $section | append  "general" }}
+                {{ end }}
             {{ end }}
-        {{ end }}
-        <div class="tabs-menu">
-            {{ range $index, $element := $section | uniq }}
-                {{ if (eq $index 0) }}
-                    <div class="tabs-open active" data-target="tab-search-{{- . | lower -}}">{{- strings.FirstUpper . -}}</div>
-                {{ else }}
-                    <div class="tabs-open" data-target="tab-search-{{- . | lower -}}">{{- strings.FirstUpper . -}}</div>
-                {{ end }} 
-            {{ end }}
+            <div class="tabs-menu">
+                {{ range $index, $element := $section | uniq }}
+                    {{ if (eq $index 0) }}
+                        <div class="tabs-open active" data-target="tab-search-{{- . | lower -}}">{{- strings.FirstUpper . -}}</div>
+                    {{ else }}
+                        <div class="tabs-open" data-target="tab-search-{{- . | lower -}}">{{- strings.FirstUpper . -}}</div>
+                    {{ end }} 
+                {{ end }}
+            </div>
+            <div class="tabs-load">
+                {{ range $index, $element := $section  | uniq }}
+                    {{ if (eq $index 0) }}
+                        <div id="tab-search-{{- . | lower -}}" class="tab-content search-cat active"></div>
+                    {{ else }}
+                        <div id="tab-search-{{- . | lower -}}" class="tab-content search-cat"></div>
+                    {{ end }} 
+                {{ end }}
+            </div>
+            <template id="list-template">
+                <a href="#">
+                    <h2>Title</h2>
+                    <p> Decription </p>
+                </a>
+            </template>
         </div>
-        <div class="tabs-load">
-            {{ range $index, $element := $section  | uniq }}
-                {{ if (eq $index 0) }}
-                    <div id="tab-search-{{- . | lower -}}" class="tab-content search-cat active"></div>
-                {{ else }}
-                    <div id="tab-search-{{- . | lower -}}" class="tab-content search-cat"></div>
-                {{ end }} 
-            {{ end }}
-        </div>
-        <template id="list-template">
-            <a href="#">
-                <h2>Title</h2>
-                <p> Decription </p>
-            </a>
-        </template>
     </div>
 {{ end }}
 
 {{ define "foot_assets" }}
-    {{ $.Scratch.Set "page_jsx" ( dict "src" "scripts/page/search.js" "dest" "jsx/search.js" "type" "none" ) }}
+    {{ $.Scratch.Set "page_css" ( dict "src" "styles/page/search.scss" "dest" "css/search.css" ) }}
+    {{ $.Scratch.Set "page_jsx" ( dict "src" "scripts/page/search.js"  "dest" "jsx/search.js" "type" "none" ) }}
 {{ end }}
 
