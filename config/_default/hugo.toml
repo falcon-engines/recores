@@ -77,18 +77,17 @@ disableHugoGeneratorInject = true                 # disable injection
 
 [services]
     [services.googleAnalytics]
-        unique = 'g-measurment-id'
+        ID = 'g-measurment-id'                      # google measure id
     [services.disqus]
-        unique = 'your-disqus-shortname'
+        unique = 'your-disqus-shortname'            # disqus shortname
     [services.youtube]   
         unique = "youtube_id"                       # youtube unique id
         secret = "youtube_secret"                   # youtube secret 
-   
+
 
 ##-------------------------
 ## module config
 ##-------------------------
-
 
 [module]
 [[module.mounts]]
