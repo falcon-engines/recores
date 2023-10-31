@@ -62,6 +62,15 @@ disableHugoGeneratorInject = true                 # disable injection
 [outputs]
     home = ['HTML']
 
+
+##-------------------------
+## build configs
+##-------------------------
+
+[build]
+    noJSConfigInAssets = true
+
+
 ##-------------------------
 ## module config
 ##-------------------------

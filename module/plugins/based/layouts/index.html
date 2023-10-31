@@ -9,6 +9,6 @@
 
 {{ define "foot_assets" }}
     {{ $.Scratch.Set "page_css" ( dict "src" "styles/pages/index.scss" "dest" "css/index.css" ) }}
-    {{ $.Scratch.Set "page_jsx" ( dict "src" "script/pages/index.js" "dest" "jsx/index.js" ) }}
+    {{ $.Scratch.Set "page_jsx" ( dict "src" "script/pages/index.js" "dest" "jsx/index.js" "type" "module" ) }}
 {{ end }}
 

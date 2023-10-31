@@ -41,12 +41,14 @@
     {{- if hugo.IsProduction -}}
         {{- range slice $paged_script -}}
             {{- $page_script := resources.Get .src | js.Build .dest | resources.ExecuteAsTemplate .dest . | minify | fingerprint -}}
-            <script id="page-jsx" src="{{ $page_script.RelPermalink }}" integrity="{{ $page_script.Data.Integrity | safeHTMLAttr }}" type="module" defer></script>
+            {{- $module_type := cond ( eq .type "module"  ) "module" "" -}}
+            <script id="page-jsx" src="{{ $page_script.RelPermalink }}" integrity="{{ $page_script.Data.Integrity | safeHTMLAttr }}" type="{{ $module_type }}" defer></script>
         {{- end -}}
     {{- else -}}
         {{- range slice $paged_script -}}
             {{- $page_script := resources.Get .src | js.Build .dest | resources.ExecuteAsTemplate .dest . -}}
-            <script id="page-jsx" src="{{ $page_script.RelPermalink }}" type="module" defer></script>
+            {{- $module_type := cond ( eq .type "module"  ) "module" "" -}}
+            <script id="page-jsx" src="{{ $page_script.RelPermalink }}" type="{{ $module_type }}" defer></script>
         {{- end -}}
     {{- end -}}
 {{- end -}}
