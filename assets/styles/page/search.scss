@@ -1,8 +1,24 @@
-#search-page {
+@import '../base/variable.scss';
+
+.boxes {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#result {
 
     .search-tab{
-        grid-template-columns: 652px auto;
-        grid-gap: 7.5rem;
+        grid-template-columns: 100%;
+        @media (min-width: $media-md) {
+            grid-template-columns: 55% auto;
+            grid-gap: 4rem;
+        }
+        @media (min-width: $media-lg) {
+            grid-gap: 6.5rem;
+        }
+    }
+    .tabs-load{
+        margin: 0 auto;
     }
 
     .medbox{
@@ -12,30 +28,202 @@
             border-bottom: var(--br-primer);
         }
     }
-    .search-item{
+
+    .items{
+
         h1 {
             line-height: 1;
             font-weight: 500;
         }
+
         p {
             margin-top: 6px ;
             margin-bottom: 0 ;
         }
+        
         canvas {
             min-width: 100px;
             height: 100px;
         }
     }
 
-    .audio-playlist{
+    .audio-list{
         border-bottom: var(--br-primer);
     }
-    .audio-playlist:nth-last-child(1) {
+
+    .audio-list:nth-last-child(1) {
         border-bottom: 0;
     }
 
     .wave-player{
         background: var(--bg-accent);
         border-bottom: var(--br-primer);
+    }
+
+    .tabs-menu {
+        border-top: 0;
+    }
+
+    .tabs-open {
+        padding: 20px 0;
+    }
+}
+
+
+#formed{
+
+    .media {
+        border: 0;
+    }
+
+    .lossed {
+        display: grid;
+        margin: 0 auto;
+        grid-template-columns: 100%;
+        align-items: center;
+        @media (min-width: $media-md) {
+            grid-template-columns: 50% auto;
+            grid-gap: 4rem;
+        }
+        @media (min-width: $media-lg) {
+            grid-gap: 6.5rem;
+        }
+        .media {
+            min-height: 600px;
+        }
+        .headon{
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+
+            .icons {
+                width: 52px;
+                height: 52px;
+                margin-right: 1rem;
+            }
+        }
+        
+        .title{
+            font-weight: 600;
+            line-height: 1;
+        }
+        .tagline{
+            font-weight: 400;
+            font-size: 110%;
+        }
+        .description{
+            font-size: 95%;
+            margin-bottom: 1rem;
+        }
+
+        .search-form {
+            width: 420px;
+
+            img {
+                @media (min-width: $media-xl) {
+                    margin: 8px;
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+
+            input {
+                font-size: 1.12rem;
+            }
+        }
+    }
+
+    .founded,
+    .started {
+
+        .tagline, .description {
+            display: none;
+        }
+    }
+
+    .started {
+        display: grid;
+        grid-template-columns: 100%;
+        min-height: 400px;
+
+        .headon .icons,
+        .animax {
+            display: none;
+        }
+
+        .information{
+            display: grid;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .headon{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .title {
+            font-weight: 400;
+            font-size: 150%;
+        }
+       
+        .search-form {
+            width: 45vw;
+
+            img {
+                @media (min-width: $media-xl) {
+                    width: 36px;
+                    height: 36px;
+                }
+            }
+            
+            input {
+                @media (min-width: $media-xl) {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+
+    .founded {
+        display: flex;
+
+        .headon,
+        .media {
+            display: none;
+        }
+
+        .information{
+            margin: 0 auto;
+        }
+
+        .search-form {
+            width: 45vw;
+            margin: 4rem 0;
+
+            img {
+                @media (min-width: $media-xl) {
+                    margin: 8px;
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+
+            input {
+                @media (min-width: $media-xl) {
+                    font-size: 1.22rem;
+                }
+            }
+        }
+    }
+
+    .search-form{
+
+        img {
+            margin: 7px;
+            width: 28px;
+            height: 28px;
+        }
     }
 }

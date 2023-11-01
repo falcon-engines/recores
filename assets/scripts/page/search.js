@@ -7,7 +7,7 @@ let search_param = (params) => {
 }
 
 
-let search_engine = async() => {
+let search_datums = async() => {
     let json_link = await fetch('index.json');
     let json_data = await json_link.json();
     return json_data;
@@ -34,10 +34,10 @@ let search_listed = ( data ) => {
     
     // link data
     link.setAttribute( 'href', data.uri );
-    link.classList.add( 'search-item', 'no-decor', 'ft-u', 'mb-6', 'flex' );
+    link.classList.add( 'items', 'no-decor', 'ft-u', 'mb-6', 'flex' );
     
     // lbox data
-    lbox.classList.add( 'l-box' );
+    lbox.classList.add( 'l-box', 'pr-5' );
 
     // head data
     head.innerText = data.title;
@@ -74,7 +74,7 @@ let search_listed = ( data ) => {
 
 /** video engine */
 
-let videos_listed = ( data ) => {
+let video_listed = ( data ) => {
 
     // filterings
     if ( ! data.video  ) {
@@ -123,16 +123,9 @@ let videos_listed = ( data ) => {
 }
 
 
-/** noresult engine */
-
-let layout_losed = ( data ) => {
-    console.log('no result')
-}
-
-
 /** audio engine */
 
-let wavers_listed = ( data ) => {
+let waver_listed = ( data ) => {
 
     // filterings
     if ( ! data.audio  ) {
@@ -147,7 +140,6 @@ let wavers_listed = ( data ) => {
     let root = '';
     let boxs = document.getElementById('audio-overview');
     let head = boxs.querySelector('.heading h2');
-    let wave = document.createElement('div');
 
     
     // root element 
@@ -176,7 +168,7 @@ let wavers_listed = ( data ) => {
 
 
     // auds boxs
-    auds.classList.add('flex', 'align-v', 'audio-playlist');
+    auds.classList.add('flex', 'align-v', 'audio-list');
 
     // auds name
     name.classList.add('fz-95', 'fw-4x', 'px-1', 'py-1');
@@ -201,7 +193,7 @@ let wavers_listed = ( data ) => {
 }
 
 
-let wavers_engine = ( root ) => {
+let waver_engine = ( root ) => {
    
     // Custom rendering function
     const wavesurfer = WaveSurfer.create({
@@ -216,7 +208,7 @@ let wavers_engine = ( root ) => {
         renderFunction: (channels, ctx) => {
             const { width, height } = ctx.canvas
             const scale = channels[0].length / width
-            const step = 10
+            const step = 9
 
             ctx.translate(0, height / 2)
             ctx.strokeStyle = ctx.fillStyle
@@ -250,7 +242,7 @@ let wavers_engine = ( root ) => {
 }
 
 
-let wavers_player = ()=> {
+let waver_player = ()=> {
 
     let actions = Array.prototype.slice.call(document.querySelectorAll( '.audio-play' ));
     let counter = 0;
@@ -264,7 +256,7 @@ let wavers_player = ()=> {
             let wave = root.querySelector('.wave-player');
 
             if ( counter < 1 ) {
-                players = wavers_engine( wave );
+                players = waver_engine( wave );
                 counter++;
             }
            
@@ -301,28 +293,67 @@ let wavers_player = ()=> {
 }
 
 
+/** corest engine */
 
-/** main process */
-( async() => {
+let result_loads = ( data ) => {
 
-    // prepare data
     let query = search_param('q');
-    let datas = await search_engine(query);
+    let width = window.innerWidth;
+    let areas = document.getElementById('result');
 
-    // load and view
-    if ( datas.length > 0 ) {
-        for (var i = 0; i < datas.length; i++){
-            if ( datas[i].title.includes(query) ){
-                search_listed( datas[i] );
-                videos_listed( datas[i] );
-                wavers_listed( datas[i] )
+    for (var i = 0; i < data.length; i++){
+        if ( data[i].title.includes(query) ){
+            areas.classList.remove('d-hide');
+            search_listed( data[i] );
+        }
+        if ( data[i].title.includes(query) && width > 960){
+            video_listed( data[i] );
+            waver_listed( data[i] );
+        }
+    }
+
+    // load audio engine
+    waver_player();
+}
+
+let result_losed = ( data ) => {
+   
+    let query = search_param('q');
+    let forms = document.querySelector('#formed');
+    let rests = document.querySelector('#result');
+    let boxes = forms.querySelector('.container');
+    let playa = boxes.querySelector('.animate');
+    let icons = boxes.querySelector('.icons');
+    let title = boxes.querySelector('.title');
+
+    if ( query ) {
+        for (var i = 0; i < data.length; i++){
+            if ( ! data[i].title.includes(query) ){
+                forms.classList.remove('d-hide');
+                boxes.classList.add('lossed');
+                playa.src = '/anima/technology/robot-factory-research.lottie';
+                break;
+            }
+            else {
+                forms.classList.remove('d-hide');
+                boxes.classList.add('founded');
+                break;
             }
         }
     }
     else {
-        layout_losed();
+        forms.classList.remove('d-hide');
+        boxes.classList.add('started');
+        rests.classList.add('d-hide');
+        icons.src = '/icons/general/search.svg';
+        title.innerText = 'Mulai Pencarian';
     }
+}
 
-    // load wave
-    wavers_player();
+
+/** main process */
+( async() => {
+    let datas = await search_datums();
+    result_loads( datas );
+    result_losed( datas );
 })();
