@@ -1,3 +1,5 @@
+"use strict";
+
 import { themebasics } from './core/theme.js';
 import { medialoader } from './core/media.js';
 
