@@ -11,7 +11,7 @@
         {{- $auds := .Params.audio -}}
         {{- $link := .Permalink | safeURL -}}
         {{- $name := .Title | lower | safeHTML -}}
-        {{- $.Scratch.Add "index" ( dict "uri" $link "title" $name "date" $date "description" $desc "keywords" $tags "categories" $cats "section" $sect "audio" $auds "video" $vids "image" $imgs   ) -}}
+        {{- $.Scratch.Add "index" ( dict "links" $link "title" $name "date" $date "description" $desc "tags" $tags "category" $cats "section" $sect "audio" $auds "video" $vids "image" $imgs   ) -}}
     {{- end -}}
 {{ end }}
 {{- $.Scratch.Get "index" | jsonify -}}

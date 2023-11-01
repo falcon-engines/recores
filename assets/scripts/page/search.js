@@ -25,7 +25,7 @@ let search_listed = ( data ) => {
     let root = '';
     
     // root element 
-    if ( data.section.length > 0 ) {
+    if ( data.sects.length > 0 ) {
         root = document.getElementById('tab-list-'+data.section);
     }
     else {
@@ -45,7 +45,7 @@ let search_listed = ( data ) => {
 
     // desc data
     desc.classList.add( 'fz-85', 'ft-u', 'description' );
-    desc.innerText = data.date+'  '+'  '+' ─ '+'  '+'  '+data.description.substring(0, 120) ;
+    desc.innerText = data.dates+'  '+'  '+' ─ '+'  '+'  '+data.descs.substring(0, 120) ;
 
     // imgs data
     rbox.src    = data.image;
@@ -72,6 +72,130 @@ let search_listed = ( data ) => {
 }
 
 
+let search_querys = ( data ) => {
+
+    var datas = data.replace( '+' , ' ');
+    var terms = datas.split(' ');
+    var trees = [];
+
+    var stopwords = ['yes',
+                'hi',
+                'so',
+                'say',
+                'me',
+                'uhh',
+                'omg',
+                'go',
+                'hello',
+                'hi'
+            ];
+
+    for (var i = 0; i < terms.length; i += 1) {
+        for (var j = i; j < terms.length; j += 1) {
+            var weight = Math.pow(2, j - i);
+            var str = "";
+            for (var k = i; k <= j; k += 1) {
+                str += (terms[k] + " ");
+            }
+            var newTerm = str.trim();
+            if (newTerm.length >= 3 && stopwords.indexOf(newTerm) < 0) {
+                trees.push({
+                    weight: weight,
+                    term: " " + str.trim() + " "
+                });
+            }
+        }
+    }
+
+    return trees;
+
+}
+
+
+let text_sanitize = ( input ) => {
+
+    let normalizer = document.createElement("textarea");
+    normalizer.innerHTML = input;
+    let inputDecoded = normalizer.value;
+    return " " + inputDecoded.trim().toLowerCase().replace(/[^0-9a-z ]/gi, " ").replace(/\s+/g, " ") + " ";
+}
+
+
+let search_engine = ( query, datas ) => {
+
+    let allresult   = [];  
+    let basehosts   = {};
+    let duplicate   = {};
+    basehosts.index = [];
+    
+
+    datas.forEach(function (result) {
+
+        if ( result.tags && !duplicate[result.links] ) {
+            let populate = {};
+            let new_tags = [];
+            populate.title = text_sanitize(result.title);
+            populate.descs = text_sanitize(result.description);
+            populate.links = result.links;
+            populate.video = result.video;
+            populate.image = result.image;
+            populate.audio = result.audio;
+            populate.dates = result.date;
+            populate.sects = result.section;
+            populate.categ = result.category;
+            
+            result.tags.forEach(function (tag) {
+                return new_tags.push(text_sanitize(tag));
+            });
+            populate.tags = new_tags;
+            basehosts.index.push(populate);
+            duplicate[result.links] = true;
+        }
+    });
+
+   
+    basehosts.index.forEach(function (item) {
+        if ( item.tags ) {
+            let weight_1 = 0;
+            
+            query.forEach(function (term) {
+                if ( item.title.startsWith(term.term) ) {
+                    weight_1 += term.weight * 32;
+                }
+            });
+            weight_1 += search_termin(query, 16, item.title);
+            weight_1 += search_termin(query, 2,  item.descs);
+            item.tags.forEach(function ( tag ) {
+                weight_1 += search_termin(query, 4, tag );
+            });
+
+           
+            if (weight_1) {
+                allresult.push({
+                    weight: weight_1,
+                    item: item
+                });
+            }
+        }
+    });
+ 
+    return allresult;
+}
+
+
+let search_termin = ( terms, weight, target ) => {
+    let resultat = 0;
+    terms.forEach(function ( term ) {
+        if (~ target.indexOf(term.term) ) {
+            let idx = ~target.indexOf(term.term);
+            while (~idx) {
+                resultat += term.weight * weight;
+                idx = target.indexOf(term.term, idx + 1);
+            }
+        }
+    });
+    return resultat;
+}
 
 /** video engine */
 
@@ -89,7 +213,7 @@ let video_listed = ( data ) => {
     let head = boxs.querySelector('.heading h2');
     
     // root element 
-    if ( data.section.length > 0 ) {
+    if ( data.sects.length > 0 ) {
         root = document.getElementById('video-list-'+data.section);
         if ( root.childNodes.length) {
             return;
@@ -104,17 +228,17 @@ let video_listed = ( data ) => {
 
     // vids prep
     boxs.classList.remove('d-hide');
-    if ( data.section.length > 0 ) {
-        head.innerText = data.section+' related video'
+    if ( data.sects.length > 0 ) {
+        head.innerText = data.sects+' related video'
         
     }
     else {
         head.innerText = 'Featured Video'
     }
+
    
     // vids data
     vids.src      = data.video;
-    vids.width    = root.offsetWidth;
     vids.controls = true;
     vids.setAttribute( 'controlsList', 'nodownload noplaybackrate' );
     vids.setAttribute( 'disablePictureInPicture', '' )
@@ -145,8 +269,8 @@ let waver_listed = ( data ) => {
 
     
     // root element 
-    if ( data.section.length > 0 ) {
-        root = document.getElementById('audio-list-'+data.section);
+    if ( data.sects.length > 0 ) {
+        root = document.getElementById('audio-list-'+data.sects);
         if ( root.childNodes.length > 3) {
             return;
         }
@@ -160,7 +284,7 @@ let waver_listed = ( data ) => {
 
     // auds prep
     boxs.classList.remove('d-hide');
-    if ( data.section.length > 0 ) {
+    if ( data.sects.length > 0 ) {
         head.innerText = data.section+' Listening'
         
     }
@@ -300,23 +424,27 @@ let waver_player = ()=> {
 
 let result_loads = ( data ) => {
 
-    let query = search_param('q');
-    let width = window.innerWidth;
-    let areas = document.getElementById('result');
+    let limit = 30;
 
-    for (var i = 0; i < data.length; i++){
-        if ( data[i].title.includes(query) ){
-            areas.classList.remove('d-hide');
-            search_listed( data[i] );
-        }
-        if ( data[i].title.includes(query) && width > 960){
-            video_listed( data[i] );
-            waver_listed( data[i] );
+    if ( ! data ) {
+        return;
+    }
+
+
+    data.sort(function (a, b) { return b.weight - a.weight; });
+    for (let i = 0; i < data.length && i < limit; i += 1) {
+     
+        let result = data[i].item;
+        search_listed( result );
+
+        if ( window.innerWidth > 960){
+            video_listed( result );
+            waver_listed( result );
         }
     }
 
     // load audio engine
-    waver_player();
+    waver_player(); 
 }
 
 
@@ -329,23 +457,22 @@ let result_losed = ( data ) => {
     let playa = boxes.querySelector('.animate');
     let icons = boxes.querySelector('.icons');
     let title = boxes.querySelector('.title');
+    let areas = document.getElementById('result');
+    let datas = search_engine( query, data );
 
-    if ( query ) {
-        for (var i = 0; i < data.length; i++){
-            if ( ! data[i].title.includes(query) ){
-                forms.classList.remove('d-hide');
-                boxes.classList.add('lossed');
-                if ( window.innerWidth > 960 ) {
-                    playa.src = '/anima/technology/robot-factory-research.lottie';
-                }   
-                break;
-            }
-            else {
-                forms.classList.remove('d-hide');
-                boxes.classList.add('founded');
-                break;
-            }
-        }
+
+    if ( data.length > 0 ) {
+        areas.classList.remove('d-hide');
+        forms.classList.remove('d-hide');
+        boxes.classList.add('founded');
+       
+    }
+    else if ( data.length == 0 ) {
+        forms.classList.remove('d-hide');
+        boxes.classList.add('lossed');
+        if ( window.innerWidth > 960 ) {
+            playa.src = '/anima/technology/robot-factory-research.lottie';
+        }   
     }
     else {
         forms.classList.remove('d-hide');
@@ -360,8 +487,12 @@ let result_losed = ( data ) => {
 
 /** main process */
 
-( async() => {
-    let datas = await search_datums();
+window.addEventListener("load", async()=> {
+    let jsons = await search_datums();
+    let query = search_querys( search_param('q') );
+    let datas = search_engine( query, jsons );
+
     result_loads( datas );
     result_losed( datas );
-})();
+});
+   
