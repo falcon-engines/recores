@@ -1,11 +1,41 @@
 #search-page {
 
+    .search-tab{
+        grid-template-columns: 652px auto;
+        grid-gap: 7.5rem;
+    }
+
+    .medbox{
+        border: var(--br-primer);
+
+        .heading {
+            border-bottom: var(--br-primer);
+        }
+    }
     .search-item{
         h1 {
             line-height: 1;
+            font-weight: 500;
         }
         p {
-            margin:0;
+            margin-top: 6px ;
+            margin-bottom: 0 ;
         }
+        canvas {
+            min-width: 100px;
+            height: 100px;
+        }
+    }
+
+    .audio-playlist{
+        border-bottom: var(--br-primer);
+    }
+    .audio-playlist:nth-last-child(1) {
+        border-bottom: 0;
+    }
+
+    .wave-player{
+        background: var(--bg-accent);
+        border-bottom: var(--br-primer);
     }
 }

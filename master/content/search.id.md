@@ -1,10 +1,11 @@
 ---
-title : "Search"
-layout: "search"
-outputs: 
+title       : "Search"
+layout      : "search"
+outputs     : 
     - JSON
     - HTML
-draft : false
+description : "Halaman pencarian untuk website"
+draft       : false
 ---
 
 search result

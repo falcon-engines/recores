@@ -1,8 +1,12 @@
 ---
 title       : "Karim Elra"
 date        : 2023-10-31T17:07:20+07:00
-description : "write us"
+images      : ['/images/sample.webp']
+series      : []
+audio       : ['/audios/zaza.mp3']
+videos      : ['/videos/sample.mp4']
 categories  : []
-tags        : ['hore','koaroim']
+tags        : []
+description : "write us"
 draft       : false
 ---

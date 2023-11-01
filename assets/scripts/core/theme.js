@@ -1,6 +1,5 @@
 export class themebasics {
 
-
     constructor(){
         
         // tablayout engines
@@ -23,14 +22,13 @@ export class themebasics {
         if ( document.querySelector( '.search-form' ) ) {
             this.findpage();
         }
-   
+
         // progressive web aplication
         if ( document.querySelector('meta[name="pwa-engines"]') ) {
             console.log('pwa active')
             this.pwaengine();
         }
     }
-
 
     tabpreps() {
         let builder = Array.prototype.slice.call( document.querySelectorAll( '.tabs.build' ) );
@@ -141,12 +139,14 @@ export class themebasics {
     
     findpage() {
         let action = document.getElementById('search-input');
+
         action.addEventListener("keypress", function(event) {
-            if (event.key === "Enter" ) {
+            if ( event.key === "Enter" ) {
                 event.preventDefault();
                 let query = this.value;
                 window.location.href = window.location.origin+'/search/?q='+query;
             }
         });
+
     }
 }

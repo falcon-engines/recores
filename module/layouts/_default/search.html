@@ -24,9 +24,50 @@
             <div class="tabs-load">
                 {{ range $index, $element := $section  | uniq }}
                     {{ if (eq $index 0) }}
-                        <div id="tab-search-{{- . | lower -}}" class="tab-content search-cat active"></div>
+                        <div id="tab-search-{{- . | lower -}}" class="tab-content search-tab grid active">
+                            <div id="tab-list-{{- . | lower -}}" class="mt-6"></div>
+                            <div id="overview-{{- . | lower -}}" class="mt-6 wave-audio">
+                                <div id="video-overview" class="d-hide medbox round-10 mb-5">
+                                    <div class="heading flex align-v py-05 px-1">
+                                        <img class="icons" src="/icons/general/video.svg" height="26" width="26" alt="data icons heading video">
+                                        <h2 class="ml-1 fz-95">Wathcing Video</h2>
+                                    </div>
+                                    <div id="video-list-{{- . | lower -}}"></div>
+                                </div>
+                                <div id="audio-overview" class="hide medbox round-10">
+                                    <div class="heading flex align-v py-05 px-1">
+                                        <img class="icons" src="/icons/general/headphones.svg" height="22" width="22" alt="data icons heading audio">
+                                        <h2 class="ml-1 fz-95">Listening Audio</h2>
+                                    </div>
+                                    <div id="audio-list-{{- . | lower -}}">
+                                        <div class="wave-player" id="wave-general" data-link=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {{ else }}
-                        <div id="tab-search-{{- . | lower -}}" class="tab-content search-cat"></div>
+                        <div id="tab-search-{{- . | lower -}}" class="tab-content search-tab grid">
+                            <div id="tab-list-{{- . | lower -}}">
+                            </div>
+                            <div id="overview-{{- . | lower -}}" class="mt-6 wave-audio">
+                                <div id="video-overview" class="d-hide medbox round-10 mb-5">
+                                    <div class="heading flex align-v py-05 px-1">
+                                        <img class="icons" src="/icons/general/video.svg" height="26" width="26" alt="data icons heading video">
+                                        <h2 class="ml-1 fz-95">Wathcing Video</h2>
+                                    </div>
+                                    <div id="video-list-{{- . | lower -}}"></div>
+                                </div>
+                                <div id="audio-overview" class="hide medbox round-10">
+                                    <div class="heading flex align-v py-05 px-1">
+                                        <img class="icons" src="/icons/general/headphones.svg" height="22" width="22" alt="data icons heading audio">
+                                        <h2 class="ml-1 fz-95">Listening Audio</h2>
+                                    </div>
+                                    <div id="audio-list-{{- . | lower -}}">
+                                        <div class="wave-player" id="wave-general" data-link=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {{ end }} 
                 {{ end }}
             </div>

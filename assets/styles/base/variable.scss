@@ -9,6 +9,7 @@ $media-xxl: 1974px;
 html {
     --bg-primary : #fff;
     --bg-layer   : linear-gradient(65deg, #e6e6e6 0, #ffffff 100%);
+    --bg-accent  : linear-gradient(65deg, #e6e6e6 0, #ffffff 100%);
     --br-primer  : 1px solid rgb(0 0 0 / 15%);
     --btn-primer : linear-gradient(65deg, #0270D7 0, #0F8AFD 100%);
     --text-body  : #222;
@@ -20,6 +21,7 @@ html {
 html[data-mode='dark'] {
     --bg-primary : #242830;
     --bg-layer   : linear-gradient(75deg, #25323c 0, #4c5054 100%);
+    --bg-accent   : linear-gradient(75deg, #21282e 0, #1b202b 100%);
     --br-primer   : 1px solid rgb(255 255 255 / 15%);
     --btn-primer : linear-gradient(65deg, #0270D7 0, #0F8AFD 100%);
     --text-body  : #8A94A7;
