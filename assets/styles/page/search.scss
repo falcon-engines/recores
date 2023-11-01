@@ -96,6 +96,7 @@
             display: none;
             @media (min-width: $media-md) {
                 display: grid;
+                min-height: 600px;
             }
         }
         .headon{

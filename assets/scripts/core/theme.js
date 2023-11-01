@@ -30,6 +30,7 @@ export class themebasics {
         }
     }
 
+    
     tabpreps() {
         let builder = Array.prototype.slice.call( document.querySelectorAll( '.tabs.build' ) );
         let tabcount = 0;
@@ -139,11 +140,10 @@ export class themebasics {
     
     findpage() {
         let action = document.getElementById('search-input');
-
         action.addEventListener("keypress", function(event) {
             if ( event.key === "Enter" ) {
                 event.preventDefault();
-                let query = this.value;
+                let query = this.value.replace(/[^a-z0-9]+/gi, '+').toLowerCase();
                 window.location.href = window.location.origin+'/search/?q='+query;
             }
         });
