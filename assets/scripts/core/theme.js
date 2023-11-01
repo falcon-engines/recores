@@ -139,7 +139,7 @@ export class themebasics {
         })
     }
 
-    
+
     findpage() {
         let action = document.getElementById('search-input');
         action.addEventListener("keypress", function(event) {
@@ -149,6 +149,5 @@ export class themebasics {
                 window.location.href = window.location.origin+'/search/?q='+query;
             }
         });
-
     }
 }
