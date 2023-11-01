@@ -78,6 +78,10 @@ let search_listed = ( data ) => {
 
 let search_querys = ( data ) => {
 
+    if (! data ) {
+        return;
+    }
+
     var datas = data.replace( '+' , ' ');
     var terms = datas.split(' ');
     var trees = [];
@@ -126,6 +130,10 @@ let text_sanitize = ( input ) => {
 
 
 let search_engine = ( query, datas ) => {
+
+    if ( ! datas || ! query ) {
+        return;
+    }
 
     let allresult   = [];  
     let basehosts   = {};
@@ -428,15 +436,12 @@ let waver_player = ()=> {
 
 let result_loads = ( data ) => {
 
-    let limit = 30;
-
     if ( ! data ) {
         return;
     }
 
-
     data.sort(function (a, b) { return b.weight - a.weight; });
-    for (let i = 0; i < data.length && i < limit; i += 1) {
+    for (let i = 0; i < data.length && i < 30 ; i += 1) {
      
         let result = data[i].item;
         search_listed( result );
@@ -454,7 +459,7 @@ let result_loads = ( data ) => {
 
 let result_losed = ( data ) => {
    
-    let query = search_param('q');
+    let query = search_querys( search_param('q') );
     let forms = document.querySelector('#formed');
     let rests = document.querySelector('#result');
     let boxes = forms.querySelector('.container');
@@ -462,10 +467,17 @@ let result_losed = ( data ) => {
     let icons = boxes.querySelector('.icons');
     let title = boxes.querySelector('.title');
     let areas = document.getElementById('result');
-    let datas = search_engine( query, data );
 
 
-    if ( data.length > 0 ) {
+
+    if ( ! data || ! query  ) {
+        forms.classList.remove('d-hide');
+        boxes.classList.add('started');
+        rests.classList.add('d-hide');
+        icons.src = '/icons/general/search.svg';
+        title.innerText = 'Mulai Pencarian';
+    }
+    else if ( data.length > 0 ) {
         areas.classList.remove('d-hide');
         forms.classList.remove('d-hide');
         boxes.classList.add('founded');
@@ -479,11 +491,7 @@ let result_losed = ( data ) => {
         }   
     }
     else {
-        forms.classList.remove('d-hide');
-        boxes.classList.add('started');
-        rests.classList.add('d-hide');
-        icons.src = '/icons/general/search.svg';
-        title.innerText = 'Mulai Pencarian';
+        
     }
 }
 
@@ -495,8 +503,8 @@ window.addEventListener("load", async()=> {
     let jsons = await search_datums();
     let query = search_querys( search_param('q') );
     let datas = search_engine( query, jsons );
-
     result_loads( datas );
     result_losed( datas );
+ 
 });
    
