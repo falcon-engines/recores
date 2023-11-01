@@ -1,3 +1,4 @@
+"use strict";
 /**
  * https://blog.jeremylikness.com/blog/dynamic-search-in-a-static-hugo-website/
  */
@@ -78,14 +79,13 @@ let search_listed = ( data ) => {
 
 let search_querys = ( data ) => {
 
-    if (! data ) {
+    if ( ! data ) {
         return;
     }
 
     var datas = data.replace( '+' , ' ');
     var terms = datas.split(' ');
     var trees = [];
-
     var stopwords = ['yes',
                 'hi',
                 'so',
@@ -116,7 +116,6 @@ let search_querys = ( data ) => {
     }
 
     return trees;
-
 }
 
 
@@ -139,7 +138,6 @@ let search_engine = ( query, datas ) => {
     let basehosts   = {};
     let duplicate   = {};
     basehosts.index = [];
-    
 
     datas.forEach(function (result) {
 
@@ -431,7 +429,6 @@ let waver_player = ()=> {
 }
 
 
-"use strict";
 /** corest engine */
 
 let result_loads = ( data ) => {
@@ -507,4 +504,3 @@ window.addEventListener("load", async()=> {
     result_losed( datas );
  
 });
-   
