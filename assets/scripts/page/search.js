@@ -431,7 +431,7 @@ let waver_player = ()=> {
 }
 
 
-
+"use strict";
 /** corest engine */
 
 let result_loads = ( data ) => {
