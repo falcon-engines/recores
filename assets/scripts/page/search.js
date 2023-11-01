@@ -72,6 +72,7 @@ let search_listed = ( data ) => {
 }
 
 
+
 /** video engine */
 
 let video_listed = ( data ) => {
@@ -121,6 +122,7 @@ let video_listed = ( data ) => {
     // builders
     root.appendChild(vids);
 }
+
 
 
 /** audio engine */
@@ -293,6 +295,7 @@ let waver_player = ()=> {
 }
 
 
+
 /** corest engine */
 
 let result_loads = ( data ) => {
@@ -316,6 +319,7 @@ let result_loads = ( data ) => {
     waver_player();
 }
 
+
 let result_losed = ( data ) => {
    
     let query = search_param('q');
@@ -331,7 +335,9 @@ let result_losed = ( data ) => {
             if ( ! data[i].title.includes(query) ){
                 forms.classList.remove('d-hide');
                 boxes.classList.add('lossed');
-                playa.src = '/anima/technology/robot-factory-research.lottie';
+                if ( window.innerWidth > 960 ) {
+                    playa.src = '/anima/technology/robot-factory-research.lottie';
+                }   
                 break;
             }
             else {
@@ -351,7 +357,9 @@ let result_losed = ( data ) => {
 }
 
 
+
 /** main process */
+
 ( async() => {
     let datas = await search_datums();
     result_loads( datas );
