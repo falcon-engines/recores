@@ -1,3 +1,7 @@
+/**
+ * https://blog.jeremylikness.com/blog/dynamic-search-in-a-static-hugo-website/
+ */
+
 /** search engine */
 let search_param = (params) => {
     const queryString = window.location.search;
