@@ -1,0 +1,45 @@
+<!-- prepare based assets -->
+{{ $css_based := dict "file" "critical.scss" "scope" "all" "load" "header" }}
+{{ $jsx_based := dict "file" "critical.js"   "scope" "all" "load" "header" }}
+{{ .Scratch.Add "scripter" ( slice $css_based $jsx_based ) }}
+
+
+<!-- prepare script maps -->
+{{ $css_files  := slice }}
+{{ $scss_files := slice }}
+{{ $less_files := slice }}
+{{ $jsx_files  := slice }}
+{{ $tsx_files  := slice }}
+
+{{ $current_page := . }}
+
+
+<!-- filter script types -->
+{{ range .Scratch.Get "scripter" }}
+
+    {{ if and ( eq .load "header" ) ( or (eq .scope "all" ) ( eq .scope $current_page ) ) }}
+
+        {{ if hasSuffix .file  ".scss"  }}
+            {{ $scss_files = $scss_files | append . }}
+        {{ else if hasSuffix .file  ".css"  }}
+            {{ $css_files = $css_files | append . }}
+        {{ else if hasSuffix .file  ".less"  }}
+            {{ $less_files = $less_files | append . }}
+        {{ else if hasSuffix .file  ".js"  }}
+            {{ $jsx_files = $jsx_files | append . }}
+        {{ else if hasSuffix .file  ".ts" }}
+            {{ $tsx_files = $tsx_files | append . }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+
+<!-- define asset silo -->
+{{ $css_files = "" }}
+{{ $jsx_files = "" }}
+
+
+<!-- extract scss maps -->
+{{ range $scss_files }} 
+{{ . }}
+{{ end }}

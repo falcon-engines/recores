@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="{{ site.Language.Lang }}" data-mode="auto">
 	<head>
-		{{- partial "script/load-critical" . -}}
+		{{- partial "corest/headlink" . -}}
 	</head>
 	<body id="pagetop" class="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}">
 		<div class="main">
@@ -12,6 +12,6 @@
 			</main>
 			{{- partial "based/footer" . }}
 		</div>
-		{{- partial "script/load-normal" . }}
+		{{- partial "corest/genscript" . }}
 	</body>
 </html>

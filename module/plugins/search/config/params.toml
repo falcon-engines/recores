@@ -1,0 +1,8 @@
+# Theme config.
+
+[searchs]
+    status = true     # true, false
+    engine = "self"   # algolia, fuse               # search engine  
+    [algolia]
+        unique = "algolia_id"                       # algolia unique id
+        secret = "algolia_secret"                   # algolia secret key

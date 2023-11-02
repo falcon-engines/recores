@@ -1,0 +1,9 @@
+{{ $scripts :=  .Scratch.Get "populate"   }}
+
+
+
+{{ range $scripts }}
+    {{ . }}
+{{ end }}
+
+
