@@ -10,4 +10,6 @@ window.addEventListener("load", () => {
 
     // media lazyload
     new medialoader();
+
+    
 });

@@ -50,20 +50,20 @@
                         <div id="tab-search-{{- . | lower -}}" class="tab-content search-tab grid mt-6 active">
                             <div id="tab-list-{{- . | lower -}}" class="resulting"></div>
                             <div id="overview-{{- . | lower -}}" class="overviews">
-                                <div id="video-overview" class="d-hide medbox round-10 mb-5">
+                                <div id="video-list-general" class="d-hide medbox round-10 mb-5">
                                     <div class="heading flex align-v py-05 px-1">
                                         <img class="icons" src="/icons/general/video.svg" height="26" width="26" alt="data icons heading video">
                                         <h2 class="ml-1 fz-95">Wathcing Video</h2>
                                     </div>
-                                    <div id="video-list-{{- . | lower -}}"></div>
+                                    <div class="video-player"></div>
                                 </div>
-                                <div id="audio-overview" class="d-hide medbox wave-audio round-10 ">
+                                <div id="audio-list-general" class="d-hide medbox wave-audio round-10 ">
                                     <div class="heading flex align-v py-05 px-1">
                                         <img class="icons" src="/icons/general/headphones.svg" height="22" width="22" alt="data icons heading audio">
                                         <h2 class="ml-1 fz-95">Listening Audio</h2>
                                     </div>
-                                    <div id="audio-list-{{- . | lower -}}">
-                                        <div class="wave-player" id="wave-general" data-link=""></div>
+                                    <div class="playlist">
+                                        <div class="wave-player d-hide" data-link=""></div>
                                     </div>
                                 </div>
                             </div>
@@ -72,20 +72,20 @@
                         <div id="tab-search-{{- . | lower -}}" class="tab-content search-tab grid mt-6">
                             <div id="tab-list-{{- . | lower -}}" class="resulting"></div>
                             <div id="overview-{{- . | lower -}}" class="overviews">
-                                <div id="video-overview" class="d-hide medbox round-10 mb-5">
+                                <div id="video-list-{{- . | lower -}}" class="d-hide medbox video-play round-10 mb-5">
                                     <div class="heading flex align-v py-05 px-1">
                                         <img class="icons" src="/icons/general/video.svg" height="26" width="26" alt="data icons heading video">
                                         <h2 class="ml-1 fz-95">Wathcing Video</h2>
                                     </div>
-                                    <div id="video-list-{{- . | lower -}}"></div>
+                                    <div class="video-player"></div>
                                 </div>
-                                <div id="audio-overview" class="d-hide medbox wave-audio round-10">
+                                <div id="audio-list-{{- . | lower -}}" class="d-hide medbox wave-audio round-10">
                                     <div class="heading flex align-v py-05 px-1">
                                         <img class="icons" src="/icons/general/headphones.svg" height="22" width="22" alt="data icons heading audio">
                                         <h2 class="ml-1 fz-95">Listening Audio</h2>
                                     </div>
-                                    <div id="audio-list-{{- . | lower -}}">
-                                        <div class="wave-player" id="wave-general" data-link=""></div>
+                                    <div class="playlist">
+                                        <div class="wave-player d-hide" data-link=""></div>
                                     </div>
                                 </div>
                             </div>
@@ -99,6 +99,6 @@
 
 {{ define "foot_assets" }}
     {{ $.Scratch.Set "page_css" ( dict "src" "styles/page/search.scss" "dest" "css/search.css" ) }}
-    {{ $.Scratch.Set "page_jsx" ( dict "src" "scripts/page/search.js"  "dest" "jsx/search.js" "type" "none" ) }}
+    {{ $.Scratch.Set "page_jsx" ( dict "src" "scripts/page/search.js"  "dest" "jsx/search.js"  ) }}
 {{ end }}
 
