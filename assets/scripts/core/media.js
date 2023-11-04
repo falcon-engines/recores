@@ -29,6 +29,7 @@ export class medialoader {
         });
     }
 
+
     lazy_main( entries, observer ) {
 
         let render = document.createElement( 'iframe' );
@@ -140,3 +141,9 @@ export class medialoader {
         });
     }
 }
+
+
+/**
+ * @license Copyright 2023 PT Lektor Media Utama
+ * @author Al Muhdil Karim
+ */

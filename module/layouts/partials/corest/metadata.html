@@ -1,6 +1,5 @@
 {{ $titles  := .Title }}
 {{ $descrip := .Page.Params.Description }}
-{{ $pwaapps := .Site.Params.Features.pwa_apps }}
 {{ $keyword := delimit .Keywords ", " }}
 {{ if .IsHome }}
     {{ $titles  = .Site.Title }}
@@ -29,19 +28,12 @@
 {{ template "_internal/schema.html" . }}
 
 
-<!-- progresive web application manifest -->
-{{- if $pwaapps -}}
-    <meta name="pwa-engines" content="{{ $pwaapps }}">
-    <meta name="theme-color" content="#317EFB">
-    <link rel="manifest" href="/manifest.json">
-{{- end -}}
-
-
 <!-- redirect search page -->
 {{ if and ( eq .Site.Params.searchs.status false ) ( eq .RelPermalink "/search/" ) }}
     {{ $redirect := print "0; url=" .Site.BaseURL "/404" }}
     <meta http-equiv="refresh" content="{{ $redirect }}" />
 {{ end }}
+
 
 <!-- alternative format -->
 {{ range .AlternativeOutputFormats -}}
@@ -49,3 +41,15 @@
 {{ end }}
 
 
+<!-- pwas feature -->
+{{- if .Site.Params.Features.pwa_apps -}}
+    <meta name="pwa-feature" content="{{ .Site.Params.Features.pwa_apps }}">
+    <meta name="theme-color" content="#317EFB">
+    <link rel="manifest" href="/manifest.json">
+{{- end -}}
+
+
+<!-- math feature -->
+{{- if .Page.Params.math -}}
+    <meta name="math-feature" content="{{ .Page.Params.math }}">
+{{ end }}

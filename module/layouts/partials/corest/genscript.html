@@ -33,10 +33,6 @@
 
 
 
-<!-- waves scripts -->
-<script src="https://unpkg.com/wavesurfer.js@7" defer></script>
-
-
 <!-- based scripts -->
 {{- if hugo.IsProduction -}}
     {{- $based_script := slice ( resources.Get "scripts/core.js" | js.Build "jsx/core.js" ) ( resources.Get "script/main.js" | js.Build "jsx/base.js" ) | resources.Concat "jsx/base.js" | minify | fingerprint  -}}
@@ -66,3 +62,4 @@
 {{- end -}}
 
 
+<!-- math script -->

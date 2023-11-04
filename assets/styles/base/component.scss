@@ -6,7 +6,7 @@ html[data-mode='dark'] .icons {
 }
 
 input, button, textarea, select {
-    font: inherit;
+    font-size: 95%;
 }
 
 .nolist {
@@ -28,7 +28,6 @@ input, button, textarea, select {
         margin: 5px 10px;
     }
     input {
-        font-size: 1rem;
         padding: 5px 10px;
         background-color: transparent;
         border: 0;
@@ -36,3 +35,7 @@ input, button, textarea, select {
         width: 90%;
     }
 }
+
+
+/* math */
+

@@ -2,6 +2,7 @@
 
 export class themebasics {
 
+
     constructor(){
         
         // tablayout engines
@@ -21,9 +22,35 @@ export class themebasics {
         }
 
         // progressive web aplication
-        if ( document.querySelector('meta[name="pwa-engines"]') ) {
+        if ( document.querySelector('meta[name="pwa-feature"]') ) {
             console.log('pwa active')
             this.pwaengine();
+        }
+
+        // math mode
+        if ( document.querySelector('meta[name="math-feature"]') ) {
+            this.mathmode();
+        }
+    }
+
+
+    mathmode() {
+
+        let mainjs = document.getElementById( 'base-jsx' );
+        let gensrc = document.createElement( 'script' );
+        gensrc.setAttribute( 'id', 'MathJax-script');
+        gensrc.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG";
+        mainjs.after( gensrc );
+
+        gensrc.onload = ()=> {
+            MathJax.Hub.Register.StartupHook("End",function () {
+                MathJax.Hub.Config({
+                    showMathMenu: false, //disables context menu
+                    tex2jax: {
+                    inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+                   }
+                });
+            });
         }
     }
 
@@ -134,3 +161,9 @@ export class themebasics {
         })
     }
 }
+
+
+/**
+ * @license Copyright 2023 PT Lektor Media Utama
+ * @author Al Muhdil Karim
+ */
