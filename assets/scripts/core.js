@@ -1,8 +1,8 @@
 "use strict";
 
 import { themebasics } from './core/theme.js';
-import { medialoader } from './core/media.js';
-import { searchmodel } from './page/search.js';
+import { mediainline } from './core/media.js';
+import { themesearch } from './page/search.js';
 
 window.addEventListener("load", () => {
     
@@ -10,10 +10,10 @@ window.addEventListener("load", () => {
     new themebasics();
 
     // media lazyload
-    new medialoader();
+    new mediainline();
 
     // theme searchs
-    new searchmodel('index.json');
+    new themesearch();
    
 });
 

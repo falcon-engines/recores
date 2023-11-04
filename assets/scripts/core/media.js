@@ -1,23 +1,14 @@
 "use strict";
 
-export class medialoader {
+export class mediainline {
 
     constructor(){
-        let pagechecks = document.querySelector('.media');
-        if ( pagechecks ) {
+
+        if ( document.querySelector('.media') ) {
             this.lazy_load();
         } 
     }
-
-    // animation 
-    animation() {
-        let mainjs = document.getElementById( 'page-jsx' );
-        let gensrc = document.createElement( 'script' );
-        gensrc.src = "https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs";
-        gensrc.setAttribute( 'type', 'module');
-        gensrc.setAttribute( 'defer', '');
-        mainjs.after( gensrc );
-    }
+   
 
     // lazyloads 
     lazy_load() {

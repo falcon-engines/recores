@@ -1,6 +1,6 @@
 "use strict";
 
-export class searchmodel {
+export class themesearch {
 
     constructor( file_paths ){
 

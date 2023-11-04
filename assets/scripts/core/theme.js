@@ -4,11 +4,19 @@ export class themebasics {
 
 
     constructor(){
+
+        // general variable
+        this.base_jsx = document.getElementById( 'base-jsx' );
+        
         
         // tablayout engines
         if ( document.querySelector( '.tabs' ) ) {
-            this.tabpreps();
             this.tabmodul();
+        }
+
+        // animation engine
+        if ( document.querySelector( '.animax' ) ) {
+            this.animaxio();
         }
 
         // dropdown engines
@@ -19,30 +27,42 @@ export class themebasics {
         // themes darkmode
         if ( document.querySelector( '.theme-menu' ) ) {
             this.darkmode();
+            console.log('Theme menu ada');
+        }
+        else {
+            console.log('Theme tidak ditemukan');
         }
 
         // progressive web aplication
         if ( document.querySelector('meta[name="pwa-feature"]') ) {
-            console.log('pwa active')
             this.pwaengine();
         }
 
         // math mode
         if ( document.querySelector('meta[name="math-feature"]') ) {
-            this.mathmode();
+            this.mathtext();
         }
     }
 
+    // animation 
+    animaxio() {
+        let animax = document.createElement( 'script' );
+        animax.src = "https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs";
+        animax.setAttribute( 'type', 'module');
+        animax.setAttribute( 'defer', '');
+        this.base_jsx.after( animax );
+    }
 
-    mathmode() {
+    // animation 
+    mathtext() {
 
-        let mainjs = document.getElementById( 'base-jsx' );
-        let gensrc = document.createElement( 'script' );
-        gensrc.setAttribute( 'id', 'MathJax-script');
-        gensrc.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG";
-        mainjs.after( gensrc );
+        let mathex = document.createElement( 'script' );
+        mathex.setAttribute( 'id', 'mathjax-feature');
+        mathex.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG";
+        mathex.setAttribute( 'defer', '');
+        this.base_jsx.after( mathex );
 
-        gensrc.onload = ()=> {
+        mathex.onload = ()=> {
             MathJax.Hub.Register.StartupHook("End",function () {
                 MathJax.Hub.Config({
                     showMathMenu: false, //disables context menu
@@ -55,9 +75,12 @@ export class themebasics {
     }
 
     
-    tabpreps() {
+    // tabsmodule
+    tabmodule() {
+        let actions = Array.prototype.slice.call( document.querySelectorAll('.tabs-open') );
         let builder = Array.prototype.slice.call( document.querySelectorAll( '.tabs.build' ) );
         let tabcount = 0;
+
         // tabs builder
         builder.forEach( tab => {
             // tab menu
@@ -82,11 +105,8 @@ export class themebasics {
             });
             tab.classList.remove('build');
         });
-    }
-    
 
-    tabmodul() {
-        let actions = Array.prototype.slice.call( document.querySelectorAll('.tabs-open') );
+        // tabs engine
         actions.forEach( item => {
             item.addEventListener('click', (event)=> {
                 let action = event.currentTarget;
@@ -111,9 +131,10 @@ export class themebasics {
             });
         });
     }
-
+    
 
     dropdown() {
+
         let droper = Array.prototype.slice.call( document.querySelectorAll( '.dropdown' ) );
         droper.forEach( dropmenu => {
             let action = dropmenu.querySelector( '.action' );

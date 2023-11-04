@@ -86,7 +86,7 @@
     </div>
 
 
-{{- else if or ( strings.Contains $getlink "mp4" ) ( strings.Contains $getlink "flv" ) ( strings.Contains $getlink "avi" ) ( strings.Contains $getlink "mkv" )  }}
+{{- else if or ( strings.Contains $getlink "mp4" ) ( strings.Contains $getlink "flv" ) ( strings.Contains $getlink "avi" )  }}
     
     <!-- render video -->
     {{ if strings.Contains $getlink "http" }}

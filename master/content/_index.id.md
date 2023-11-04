@@ -5,7 +5,6 @@ math        : true
 draft       : false
 ---
 
-$$ E=mc^2 $$
 
 # Article
 
