@@ -12,6 +12,7 @@ img, picture, video, canvas, svg {
     background: var(--bg-color);
     border: var(--br-primer);
     overflow: hidden;
+    aspect-ratio: 16 / 9;
 }
 .landscape { 
     aspect-ratio: 16 / 9;
@@ -24,24 +25,25 @@ img, picture, video, canvas, svg {
     }
 }
 .portrait {
-    height: 95vh;
     iframe{
         height: 100%;
     }
 }
-.portrait,
-.landscape {
+.media {
     img,
     video,
-    iframe{
+    iframe,
+    .audiobox{
         opacity: 0;
-        width: 100%;
         border: 0;
-        position: absolute;
     }
-    img.loaded,
-    video.loaded,
-    iframe.loaded{
+}
+
+.media.loaded{
+    img,
+    video,
+    iframe,
+    .audiobox{
         opacity: 1;
         transition: opacity .5s linear .5s; 
     }

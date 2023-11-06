@@ -84,3 +84,43 @@ html[data-mode="light"] .loader-round div {
 	from { opacity: 0; }
 	to { opacity: 1; }
 }
+
+/** audio inline */
+.audiobox{
+    width: 70%;
+    display: grid;
+    grid-template-columns: 256px auto;
+    grid-gap: 2rem;
+    align-items: normal;
+}
+
+.audiobox .player{
+    display: grid;
+    align-content: space-between;
+}
+
+.audiobox .control h2 {
+    text-transform: capitalize;
+}
+
+.audiobox .action{
+    background-color: orangered;
+    border-radius: 100px;
+    height: 62px;
+    width: 62px;
+}
+
+.media.loaded img.d-blur{
+    top: -10%;
+    left: -10%;
+    right: -10%;
+    bottom: -10%;
+    width: 120%;
+    max-width: 120%;
+    position: absolute;
+}
+
+.audiobox::before {
+    background-image: attr(data-cover);
+}
+

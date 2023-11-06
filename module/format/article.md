@@ -1,5 +1,5 @@
 ---
-title       : "Hore"
+title       : "{{ replace .TranslationBaseName "-" " " | title }}"
 date        : {{ .Date }}
 images      : ['sample.jpg']
 series      : []

@@ -14,11 +14,6 @@ export class themebasics {
             this.tabmodul();
         }
 
-        // animation engine
-        if ( document.querySelector( '.animax' ) ) {
-            this.animaxio();
-        }
-
         // dropdown engines
         if ( document.querySelector( '.dropdown' ) ) {
             this.dropdown();
@@ -27,11 +22,8 @@ export class themebasics {
         // themes darkmode
         if ( document.querySelector( '.theme-menu' ) ) {
             this.darkmode();
-            console.log('Theme menu ada');
         }
-        else {
-            console.log('Theme tidak ditemukan');
-        }
+       
 
         // progressive web aplication
         if ( document.querySelector('meta[name="pwa-feature"]') ) {
@@ -44,14 +36,6 @@ export class themebasics {
         }
     }
 
-    // animation 
-    animaxio() {
-        let animax = document.createElement( 'script' );
-        animax.src = "https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs";
-        animax.setAttribute( 'type', 'module');
-        animax.setAttribute( 'defer', '');
-        this.base_jsx.after( animax );
-    }
 
     // animation 
     mathtext() {
@@ -75,8 +59,8 @@ export class themebasics {
     }
 
     
-    // tabsmodule
-    tabmodule() {
+    // tabsmodul
+    tabmodul() {
         let actions = Array.prototype.slice.call( document.querySelectorAll('.tabs-open') );
         let builder = Array.prototype.slice.call( document.querySelectorAll( '.tabs.build' ) );
         let tabcount = 0;
@@ -133,6 +117,7 @@ export class themebasics {
     }
     
 
+    // dropdown
     dropdown() {
 
         let droper = Array.prototype.slice.call( document.querySelectorAll( '.dropdown' ) );
@@ -153,6 +138,7 @@ export class themebasics {
     }
 
 
+    // pwaengine
     pwaengine() {
         if('serviceWorker' in navigator) {
             navigator.serviceWorker
@@ -170,6 +156,7 @@ export class themebasics {
     }
 
 
+    // darkmode
     darkmode() {
         let actions = Array.prototype.slice.call( document.querySelectorAll( '.theme-menu .item' ) );
         actions.forEach( action => {

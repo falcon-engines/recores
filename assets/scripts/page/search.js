@@ -141,7 +141,7 @@ export class themesearch {
         basehosts.index = [];
 
 
-        database.forEach(function (result) {
+        database.forEach(function ( result)  {
             if ( result.tags && !duplicate[result.links] ) {
                 let populate = {};
                 let new_tags = [];
@@ -155,8 +155,8 @@ export class themesearch {
                 populate.sects = result.section;
                 populate.categ = result.category;
                 
-                result.tags.forEach(function (tag) {
-                    return new_tags.push(this.search_filters(tag));
+                result.tags.forEach( function ( tag ) {
+                    return new_tags.push( this.search_filters( tag ) );
                 });
                 populate.tags = new_tags;
                 basehosts.index.push(populate);
@@ -516,7 +516,6 @@ export class themesearch {
                 loader.forEach( player => {
                     player.dataset.link = '';
                 });
-                
             });
         });
     }
@@ -534,6 +533,7 @@ export class themesearch {
              * Render a waveform as a squiggly line
              * @see https://css-tricks.com/making-an-audio-waveform-visualizer-with-vanilla-javascript/
              */
+
             renderFunction: (channels, ctx) => {
                 const { width, height } = ctx.canvas
                 const scale = channels[0].length / width
