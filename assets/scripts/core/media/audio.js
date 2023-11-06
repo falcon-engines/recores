@@ -1,7 +1,7 @@
 "use strict";
 
 
-export class audiowafers {
+export class audioplayer {
 
     constructor( target, linker ){
         this.linker = linker;
@@ -13,6 +13,7 @@ export class audiowafers {
 
         // waveform prototype
         const canvas = document.createElement('canvas')
+        const wraper = this.target.querySelector('.audiobox'); 
         const equals = this.target.querySelector('.effect'); 
         const iconic = this.target.querySelector('.action'); 
         const ctx    = canvas.getContext('2d');
@@ -50,17 +51,20 @@ export class audiowafers {
         // wavesuffer action
         let waver_plays = ()=> {
             wavesurfer.play();
+            this.target.dataset.status = 'play';
             iconic.firstChild.src = '/icons/general/pause.svg';
         } 
 
         let waver_pause = ()=> {
             wavesurfer.pause();
+            this.target.dataset.status = 'stop';
             iconic.firstChild.src = '/icons/general/play.svg';
         } 
 
         // event listener
         wavesurfer.on('finish', () => {
             wavesurfer.stop();
+            this.target.dataset.status = 'stop';
             iconic.firstChild.src = '/icons/general/play.svg';
         })
 

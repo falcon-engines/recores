@@ -3,7 +3,8 @@
 import { themebasics } from './core/theme.js';
 import { mediainline } from './core/media.js';
 import { themesearch } from './page/search.js';
-import { audiowafers } from './core/player/wavers.js';
+import { audioplayer } from './core/media/audio.js';
+
 
 window.addEventListener("load", () => {
     
@@ -12,7 +13,7 @@ window.addEventListener("load", () => {
     new themebasics();
 
     // media lazyload
-    new mediainline( audiowafers );
+    new mediainline( audioplayer );
 
     // theme searchs
     new themesearch();

@@ -139,10 +139,6 @@ export class mediainline {
         render.insertBefore( player       , render.children[1] );
 
 
-        // cleansing data
-        render.classList.remove( 'media' );
-
-
         this.cleaner( render, player );
     }
 
@@ -164,8 +160,6 @@ export class mediainline {
         let action = document.createElement( 'div' );
         let starts = document.createElement( 'img' );
 
-
-
         // parent aspect ratio
         render.style.width  = render.offsetWidth+'px';
         render.style.height = ( render.offsetWidth / 16 ) * 9+'px';
@@ -173,14 +167,12 @@ export class mediainline {
         render.src = render.dataset.cover ;
        
         // background load
-        bgload.classList.add( 'd-blur' );
+        bgload.classList.add( 'd-blur', 'audio-bg' );
         bgload.src = render.dataset.cover;
-       
-
-        // player load
+    
+        // wraps load
         wraper.classList.add( 'audiobox' );
-       
-
+    
         // cover class
         covers.classList.add( 'covers' );
         covers.src = render.dataset.cover;
@@ -190,29 +182,24 @@ export class mediainline {
         // player class
         player.classList.add( 'player' );
 
-
         // waver class
         equals.classList.add( 'effect' );
 
-
         // control class
         contrl.classList.add( 'control', 'flex', 'align-v' );
-
 
         // titles class
         titles.classList.add('fz-120');
         titles.innerText = render.dataset.title; 
 
-        // titles class
+        // action class
         action.classList.add( 'action', 'grid', 'align-a', 'mr-3' );
 
-
-        // titles class
+        // icons class
         starts.src = '/icons/general/play.svg'; 
         starts.classList.add( 'icons' );
         starts.height = 32;
         starts.width = 32;
-
 
         // player builds
         render.insertBefore( bgload , player.children[0] );
@@ -225,12 +212,11 @@ export class mediainline {
         contrl.insertBefore( action , contrl.children[0] );
         action.insertBefore( starts , action.children[0] );
 
+        // audio engines
+        new this.audio_player( render, render.dataset.src );
 
-        // loader players
-        new this.audio_player( player, render.dataset.src );
-
-        // loader cleaers
-        this.cleaner( render, render );
+        // cleaer datums
+        this.cleaner( render, player );
     }
 
 
@@ -307,6 +293,10 @@ export class mediainline {
 
         let attrib = [ 'data-src', 'data-title', 'data-type', 'data-cover', 'src', 'mode', 'speed', 'direction' ];
         let loader = render.querySelector( '.loader-round' );
+
+        // remove onload
+        render.classList.remove( 'onload' );
+
 
         attrib.forEach( attribute => {
 

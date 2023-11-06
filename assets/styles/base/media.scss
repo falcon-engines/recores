@@ -7,13 +7,36 @@ img, picture, video, canvas, svg {
     width: 100%;
 }
 .media {
-    width: 100%; 
-    position: relative; 
-    background: var(--bg-color);
-    border: var(--br-primer);
+    width: 100%;
     overflow: hidden;
-    aspect-ratio: 16 / 9;
+    position: relative;
+    img,
+    video,
+    iframe,
+    .audiobox{
+        border: 0;
+        opacity: 0;
+    }
 }
+
+.media.loaded{
+    img,
+    video,
+    iframe,
+    .audiobox{
+        opacity: 1;
+        transition: opacity .5s linear .5s; 
+    }
+}
+
+.onload {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: var(--br-primer);
+    background: var(--bg-color);
+   
+}
+
 .landscape { 
     aspect-ratio: 16 / 9;
     video {
@@ -27,24 +50,5 @@ img, picture, video, canvas, svg {
 .portrait {
     iframe{
         height: 100%;
-    }
-}
-.media {
-    img,
-    video,
-    iframe,
-    .audiobox{
-        opacity: 0;
-        border: 0;
-    }
-}
-
-.media.loaded{
-    img,
-    video,
-    iframe,
-    .audiobox{
-        opacity: 1;
-        transition: opacity .5s linear .5s; 
     }
 }

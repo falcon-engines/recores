@@ -115,7 +115,7 @@
 
 {{ $populate := slice ( dict "path_src" $pathsrc "title" .Text "media-type" $formats "cover" $bcovers )  }}
 
-<div class="media portrait grid align-a colfix" data-src="{{ $pathsrc | absURL  }}" data-title="{{ .Text  }}" data-cover="{{ $bcovers }}" data-type="{{ $formats }}" >
+<div class="media portrait grid align-a colfix onload" data-src="{{ $pathsrc | absURL  }}" data-title="{{ .Text  }}" data-cover="{{ $bcovers }}" data-type="{{ $formats }}" >
     <div class="loader-round"><div></div><div></div></div>
 </div>
 

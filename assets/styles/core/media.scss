@@ -124,3 +124,42 @@ html[data-mode="light"] .loader-round div {
     background-image: attr(data-cover);
 }
 
+
+.media[data-status='play'] .audiobox .action {
+    -webkit-animation:spin 5s linear infinite;
+    -moz-animation:spin 5s linear infinite;
+    animation:spin 5s linear infinite;
+}
+
+
+.media[data-status='play'] .audio-bg{
+    -webkit-animation:zoom_inline_audio 60s linear infinite;
+    -moz-animation:zoom_inline_audio 60s linear infinite;
+    animation:zoom_inline_audio 60s linear infinite;
+}
+
+
+@-moz-keyframes zoom_inline_audio { 
+    0% { -moz-transform: scale(1); } 
+    50% { -moz-transform: scale(1.5); } 
+    100% { -moz-transform: scale(1); } 
+}
+@-webkit-keyframes zoom_inline_audio { 
+    0% { -webkit-transform: scale(1); } 
+    50% { -webkit-transform: scale(1.5); } 
+    100% { -webkit-transform: scale(1); } 
+}
+@keyframes zoom_inline_audio { 
+    0% {
+        -webkit-transform: scale(1); 
+        transform: scale(1);
+    } 
+    50% {
+        -webkit-transform: scale(1.5); 
+        transform: scale(1.5);
+    } 
+    100% { 
+        -webkit-transform: scale(1); 
+        transform: scale(1);
+    } 
+}
