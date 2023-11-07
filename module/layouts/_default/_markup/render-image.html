@@ -6,7 +6,7 @@
 {{- $pathsrc := "" -}}
 {{- $formats := "" -}}
 {{- $bcovers := "" -}}
-
+{{- $mediaid := "" -}}
 
 <!-- FORMAT -->
 {{ if eq ".lottie" ( path.Ext $getlink )  }}
@@ -113,9 +113,9 @@
 <!-- RENDER -->
 {{ if and ( $formats ) ( ne $formats "images" ) }} 
 
-{{ $populate := slice ( dict "path_src" $pathsrc "title" .Text "media-type" $formats "cover" $bcovers )  }}
+{{ $populate := ( dict "unique" ( $pathsrc | md5 | base64Encode )  "path_src" ( $pathsrc | base64Encode )  "title" ( .Text | base64Encode ) "format" ( $formats | base64Encode )  "cover" ( $bcovers | base64Encode )  )  }}
 
-<div class="media portrait grid align-a colfix onload" data-src="{{ $pathsrc | absURL  }}" data-title="{{ .Text  }}" data-cover="{{ $bcovers }}" data-type="{{ $formats }}" >
+<div id="{{ $pathsrc | md5  }}" class="media portrait grid align-a colfix onload" data-source="{{ $pathsrc | absURL }}" data-title="{{ .Text  }}" data-cover="{{ $bcovers }}" data-referer="{{ $pathsrc | md5 }}" data-format="{{ $formats }}" data-test="{{ $populate }}">
     <div class="loader-round"><div></div><div></div></div>
 </div>
 
@@ -125,7 +125,7 @@
     {{- $resizer := slice "1972" "1680" "1280" "960" "640" "320" -}}
     {{- $actuals := $pathsrc.Resize "1280x jpg" -}}
     <figure>
-        <picture class="media landscape grid align-a colfix" data-src="{{ $pathsrc.RelPermalink }}" data-alt="{{ .Title }}" data-type="images">
+        <picture class="media landscape grid align-a colfix" data-source="{{ $pathsrc.RelPermalink }}" data-title="{{ .Text  }}" data-cover="{{ $bcovers }}" data-referer="{{ $pathsrc | md5 }}" data-type="images">
             {{ $getwebp := slice }}
             {{ range $resizer }}
                 {{ $rezise := "" }}

@@ -7,18 +7,65 @@ export class mediainline {
 
     constructor( audiowafers ){
 
-        
-        // load audio class
-        this.audio_player = audiowafers;
-
 
         // validator
         if ( ! document.querySelectorAll( '.media' ) ) {
             return;
         }
 
-        // prototype
-        let masters = document.querySelectorAll( '.media' );
+         // prototype
+        this.audio_player = audiowafers;
+        this.media_wraper = document.querySelectorAll( '.media' );
+
+
+        // method
+        this.setups();
+       
+    }
+
+
+    // load all data into storage
+    setups() {
+
+        let result = {} ;
+      
+
+        this.media_wraper.forEach( item => {
+
+            let data = item.dataset.test;
+            
+          
+            console.log(data[unique]);
+
+            
+
+            /*
+            let populate =  item.dataset.referer;
+            populate.title = item.dataset.title;
+            populate.source = item.dataset.source;
+            populate.format = item.dataset.format;
+            populate.cover = item.dataset.cover; */
+
+         
+            
+            
+        });
+
+        console.log(result);
+
+        // localStorage.removeItem('falcon-media');
+        // localStorage.setItem('falcon-media', btoa( JSON.stringify(result) ));
+        
+        
+        // console.log( JSON.parse(  atob( localStorage.getItem('falcon-media') ) ) );
+    }
+
+
+
+    // observ
+    loader() {
+
+        
         let options = { root: null, rootMargin: '0px' };
         let elmedia = new IntersectionObserver( this.observ.bind(this), options );
 
@@ -29,7 +76,7 @@ export class mediainline {
     }
 
 
-    // observ
+
     observ( entries, observer ) {
 
         entries.forEach( function ( entry ) {
@@ -139,7 +186,7 @@ export class mediainline {
         render.insertBefore( player       , render.children[1] );
 
 
-        this.cleaner( render, player );
+        // this.cleaner( render, player );
     }
 
 
@@ -216,7 +263,7 @@ export class mediainline {
         new this.audio_player( render, render.dataset.src );
 
         // cleaer datums
-        this.cleaner( render, player );
+        // this.cleaner( render, player );
     }
 
 
