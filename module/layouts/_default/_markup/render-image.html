@@ -111,21 +111,25 @@
 
 
 <!-- RENDER -->
+{{ $random := delimit  ( shuffle ( split ( md5 $pathsrc ) "" ) ) "" }}
+{{ $unique := slicestr ( $random | md5 | sha1 | base64Encode ) 0 20 | lower }}
+
+<div class="media-data hidden" data-unique="{{ $unique }}" data-source="{{ $pathsrc | absURL | base64Encode }}" data-title="{{ .Text | base64Encode }}" data-cover="{{ $bcovers | absURL | base64Encode }}" data-format="{{ $formats | base64Encode }}"></div>
+
+
 {{ if and ( $formats ) ( ne $formats "images" ) }} 
 
-{{ $populate := ( dict "unique" ( $pathsrc | md5 | base64Encode )  "path_src" ( $pathsrc | base64Encode )  "title" ( .Text | base64Encode ) "format" ( $formats | base64Encode )  "cover" ( $bcovers | base64Encode )  )  }}
-
-<div id="{{ $pathsrc | md5  }}" class="media portrait grid align-a colfix onload" data-source="{{ $pathsrc | absURL }}" data-title="{{ .Text  }}" data-cover="{{ $bcovers }}" data-referer="{{ $pathsrc | md5 }}" data-format="{{ $formats }}" data-test="{{ $populate }}">
-    <div class="loader-round"><div></div><div></div></div>
+<div id="{{ $unique }}" class="onload landscape grid align-a colfix">
+    <div class="loader-round"><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>
 
 {{ else if eq $formats "images" }} 
 
-<div class="flex-c">
+<div id="{{ $unique }}" class="flex-c">
     {{- $resizer := slice "1972" "1680" "1280" "960" "640" "320" -}}
     {{- $actuals := $pathsrc.Resize "1280x jpg" -}}
     <figure>
-        <picture class="media landscape grid align-a colfix" data-source="{{ $pathsrc.RelPermalink }}" data-title="{{ .Text  }}" data-cover="{{ $bcovers }}" data-referer="{{ $pathsrc | md5 }}" data-type="images">
+        <picture class="landscape grid align-a colfix" data-source="{{ $pathsrc.RelPermalink }}" data-title="{{ .Text  }}" data-cover="{{ $bcovers }}" data-referer="{{ $pathsrc | md5 }}" data-type="images">
             {{ $getwebp := slice }}
             {{ range $resizer }}
                 {{ $rezise := "" }}

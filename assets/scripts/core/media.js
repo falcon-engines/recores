@@ -7,124 +7,104 @@ export class mediainline {
 
     constructor( audiowafers ){
 
-
         // validator
-        if ( ! document.querySelectorAll( '.media' ) ) {
+        if ( ! document.querySelector( '.media-data' ) ) {
             return;
         }
 
-         // prototype
+        // prototype
         this.audio_player = audiowafers;
-        this.media_wraper = document.querySelectorAll( '.media' );
-
+        this.media_wraper = document.querySelectorAll( '.media-data' );
 
         // method
-        this.setups();
-       
+        this.loader();
     }
 
 
-    // load all data into storage
+    // setups
     setups() {
 
-        let result = {} ;
-      
-
+        let result = {};
         this.media_wraper.forEach( item => {
-
-            let data = item.dataset.test;
-            
-          
-            console.log(data[unique]);
-
-            
-
-            /*
-            let populate =  item.dataset.referer;
-            populate.title = item.dataset.title;
-            populate.source = item.dataset.source;
-            populate.format = item.dataset.format;
-            populate.cover = item.dataset.cover; */
-
-         
-            
+            let datum = item.dataset.unique;
+            result[datum] = {
+                source : atob( item.dataset.source ),
+                format : atob( item.dataset.format ),
+                title  : atob( item.dataset.title ),
+                cover  : atob( item.dataset.cover ),
+            }
+            item.remove();
             
         });
-
-        console.log(result);
-
-        // localStorage.removeItem('falcon-media');
-        // localStorage.setItem('falcon-media', btoa( JSON.stringify(result) ));
-        
-        
-        // console.log( JSON.parse(  atob( localStorage.getItem('falcon-media') ) ) );
+        localStorage.removeItem('falcon-media');
+        localStorage.setItem('falcon-media', btoa( JSON.stringify( result ) ) );
+        return JSON.parse( atob( localStorage.getItem('falcon-media') ) );
     }
-
 
 
     // observ
-    loader() {
+    async loader() {
 
-        
+        let loadata = await this.setups();
+        let masters = document.querySelectorAll( '.onload' );
         let options = { root: null, rootMargin: '0px' };
-        let elmedia = new IntersectionObserver( this.observ.bind(this), options );
+        let elmedia = new IntersectionObserver( ( entries ) => {
 
-        // observers
-        masters.forEach( function ( items ) {
-            elmedia.observe( items );
+            entries.forEach( ( entry ) => {
+
+                if ( entry.isIntersecting || entry.isInViewport ) {
+
+                    switch( loadata[entry.target.id].format ) {
+                        case 'anima':
+                            this.animax( loadata, entry );
+                            break;
+                        case 'audios':
+                            this.audios( loadata, entry )
+                            break;
+                        case 'google-doc':
+                            this.gogdoc( loadata, entry )
+                            break;
+                        case 'google-pdf':
+                            this.gogpdf( loadata, entry )
+                            break;
+                        case 'google-ppt':
+                            this.gogppt( loadata, entry )
+                            break;
+                        case 'google-xls':
+                            this.gogxls( loadata, entry )
+                            break;
+                        case 'images':
+                            this.images( loadata, entry )
+                            break;
+                        case 'docus':
+                            this.rawpdf( loadata, entry )
+                            break;
+                        case 'soundcloud':
+                            this.scloud( loadata, entry )
+                            break;
+                        case 'vimeo':
+                            this.vimeos( loadata, entry )
+                            break;
+                        case 'videos':
+                            this.vimeos( loadata, entry )
+                            break;
+                        case 'youtube':
+                            this.yutube( loadata, entry )
+                            break;
+                        default:
+                            console.log( entry.target.dataset.type+' media type not supported' );
+                    };
+
+                    elmedia.unobserve(entry.target);
+                } 
+            });
+        }, options );
+
+         
+        masters.forEach((items) => {
+            elmedia.observe(items);
         });
     }
-
-
-
-    observ( entries, observer ) {
-
-        entries.forEach( function ( entry ) {
-            if ( entry.isIntersecting ) {
-                switch(entry.target.dataset.type) {
-                    case 'anima':
-                        this.animax(entry);
-                        break;
-                    case 'audios':
-                        this.audios(entry)
-                        break;
-                    case 'google-doc':
-                        this.gogdoc(entry)
-                        break;
-                    case 'google-pdf':
-                        this.gogpdf(entry)
-                        break;
-                    case 'google-ppt':
-                        this.gogppt(entry)
-                        break;
-                    case 'google-xls':
-                        this.gogxls(entry)
-                        break;
-                    case 'images':
-                        this.images(entry)
-                        break;
-                    case 'docus':
-                        this.rawpdf(entry)
-                        break;
-                    case 'soundcloud':
-                        this.scloud(entry)
-                        break;
-                    case 'vimeo':
-                        this.vimeos(entry)
-                        break;
-                    case 'videos':
-                        this.vimeos(entry)
-                        break;
-                    case 'youtube':
-                        this.yutube(entry)
-                        break;
-                    default:
-                        console.log( entry.target.dataset.type+' media type not supported' );
-                };
-                observer.unobserve(entry.target);
-            };
-        }.bind(this));
-    };
 
 
     // script
@@ -157,25 +137,22 @@ export class mediainline {
  
 
     // animax
-    async animax( data ){
-     
+    async animax( data, entry ){
         
         await this.script( 'media-anima', 'https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs', 'module', 'defer' );
 
-
         //  prototype
-        let render = data.target;
+        let source = data[entry.target.id].source;
+        let render = document.getElementById( entry.target.id );
         let player = document.createElement( 'dotlottie-player' );
-
 
         // link validator
         if ( player.src === 'no-media' ) {
             return;
         }
 
-
         // player builder
-        player.src = data.target.dataset.src;
+        player.src = source;
         player.setAttribute( 'class'      , 'loaded' );
         player.setAttribute( 'speed'      , '1' );
         player.setAttribute( 'mode'       , 'normal' );
@@ -184,24 +161,22 @@ export class mediainline {
         player.setAttribute( 'direction'  , '1' );
         player.setAttribute( 'background' , 'transparent' );
         render.insertBefore( player       , render.children[1] );
-
-
-        // this.cleaner( render, player );
     }
 
 
     // audios 
-    async audios( data ){
-
-        await this.script( 'media-audio', 'https://unpkg.com/wavesurfer.js@7', 'module', 'defer' );
+    async audios( data, entry ){
 
         //  prototype
-        let render = data.target;
+        let source = data[entry.target.id].source;
+        let naming = data[entry.target.id].title;
+        let thumbs = data[entry.target.id].cover;
+        let render = document.getElementById( entry.target.id );
         let wraper = document.createElement( 'div' );
         let bgload = document.createElement( 'img' );
         let player = document.createElement( 'div' );
         let covers = document.createElement( 'img' );
-        let equals = document.createElement( 'div' );
+        let equals = document.createElement( 'canvas' );
         let contrl = document.createElement( 'div' );
         let titles = document.createElement( 'h2' );
         let action = document.createElement( 'div' );
@@ -211,42 +186,51 @@ export class mediainline {
         render.style.width  = render.offsetWidth+'px';
         render.style.height = ( render.offsetWidth / 16 ) * 9+'px';
         render.classList.add( 'loaded' );
-        render.src = render.dataset.cover ;
-       
+
+
         // background load
         bgload.classList.add( 'd-blur', 'audio-bg' );
-        bgload.src = render.dataset.cover;
+        bgload.src = thumbs;
     
+
         // wraps load
         wraper.classList.add( 'audiobox' );
     
+
         // cover class
         covers.classList.add( 'covers' );
-        covers.src = render.dataset.cover;
+        covers.src = thumbs;
         covers.style.height = '260px';
         covers.style.width  = '260px';
         
+
         // player class
         player.classList.add( 'player' );
 
+
         // waver class
-        equals.classList.add( 'effect' );
+        equals.classList.add( 'equalizer' );
+
 
         // control class
         contrl.classList.add( 'control', 'flex', 'align-v' );
 
+
         // titles class
         titles.classList.add('fz-120');
-        titles.innerText = render.dataset.title; 
+        titles.innerText = naming; 
+
 
         // action class
         action.classList.add( 'action', 'grid', 'align-a', 'mr-3' );
+
 
         // icons class
         starts.src = '/icons/general/play.svg'; 
         starts.classList.add( 'icons' );
         starts.height = 32;
         starts.width = 32;
+
 
         // player builds
         render.insertBefore( bgload , player.children[0] );
@@ -259,11 +243,15 @@ export class mediainline {
         contrl.insertBefore( action , contrl.children[0] );
         action.insertBefore( starts , action.children[0] );
 
-        // audio engines
-        new this.audio_player( render, render.dataset.src );
 
+        // audio engines
+        new this.audio_player( render, source );
+
+        
         // cleaer datums
-        // this.cleaner( render, player );
+        let loader = render.querySelector( '.loader-round' );
+        render.classList.add('loaded');
+        loader.remove();
     }
 
 

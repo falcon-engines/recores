@@ -6,10 +6,11 @@ img, picture, video, canvas, svg {
 .fluid {
     width: 100%;
 }
-.media {
+.onload {
     width: 100%;
     overflow: hidden;
     position: relative;
+    aspect-ratio: 16 / 9;
     img,
     video,
     iframe,
@@ -19,7 +20,7 @@ img, picture, video, canvas, svg {
     }
 }
 
-.media.loaded{
+.onload.loaded{
     img,
     video,
     iframe,
@@ -34,7 +35,6 @@ img, picture, video, canvas, svg {
     aspect-ratio: 16 / 9;
     border: var(--br-primer);
     background: var(--bg-color);
-   
 }
 
 .landscape { 

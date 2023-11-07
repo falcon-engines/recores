@@ -1,42 +1,54 @@
 // media loader
 html[data-mode="dark"] .loader-round div{
-  	border: 3px solid rgba(255, 255, 255, .30);
+  	border: 9px solid rgba(255, 255, 255, .035);
 }
 html[data-mode="light"] .loader-round div {
-  	border: 3px solid rgba(0, 0, 0, .20);
+  	border: 9px solid rgba(0, 0, 0, .025);
 }
 .loader-round {
     display: inline-block;
     position: absolute;
-    width: 99px;
-    height: 99px;
+    width: 30vw;
+    height: 30vw;
     div {
         position: absolute;
         opacity: 1;
         border-radius: 50%;
-        animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+        animation: lds-ripple 3s cubic-bezier(0, 0.2, 0.8, 1) infinite;
     }
     div:nth-child(2) {
         animation-delay: -0.5s;
     }
+    div:nth-child(3) {
+        animation-delay: -1s;
+    }
+    div:nth-child(4) {
+        animation-delay: -1.5s;
+    }
+    div:nth-child(5) {
+        animation-delay: -2s;
+    }
+    div:nth-child(6) {
+        animation-delay: -2.5s;
+    }
     @keyframes lds-ripple {
         0% {
-			top: 36px;
-			left: 36px;
+			top: 15vw;
+			left: 15vw;
 			width: 0;
 			height: 0;
 			opacity: 0;
         }
         4.9% {
-			top: 36px;
-			left: 36px;
+			top: 15vw;
+			left: 15vw;
 			width: 0;
 			height: 0;
 			opacity: 0;
         }
         5% {
-			top: 36px;
-			left: 36px;
+			top: 15vw;
+			left: 15vw;
 			width: 0;
 			height: 0;
 			opacity: 1;
@@ -44,8 +56,8 @@ html[data-mode="light"] .loader-round div {
         100% {
 			top: 0px;
 			left: 0px;
-			width: 72px;
-			height: 72px;
+			width: 30vw;
+			height: 30vw;
 			opacity: 0;
         }
     }  
@@ -110,7 +122,7 @@ html[data-mode="light"] .loader-round div {
     width: 62px;
 }
 
-.media.loaded img.d-blur{
+.loaded img.d-blur{
     top: -10%;
     left: -10%;
     right: -10%;
@@ -125,14 +137,14 @@ html[data-mode="light"] .loader-round div {
 }
 
 
-.media[data-status='play'] .audiobox .action {
+.loaded[data-status='play'] .audiobox .action {
     -webkit-animation:spin 5s linear infinite;
     -moz-animation:spin 5s linear infinite;
     animation:spin 5s linear infinite;
 }
 
 
-.media[data-status='play'] .audio-bg{
+.loaded[data-status='play'] .audio-bg{
     -webkit-animation:zoom_inline_audio 60s linear infinite;
     -moz-animation:zoom_inline_audio 60s linear infinite;
     animation:zoom_inline_audio 60s linear infinite;

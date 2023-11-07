@@ -14,9 +14,12 @@ English
 # Video locals
 ![video sample]( sample.mp4 "https://cdn.pixabay.com/photo/2023/10/04/02/55/mountains-8292685_1280.jpg" )
 
+# Video locals
+![video sample]( sample.mp4 "https://cdn.pixabay.com/photo/2023/10/04/02/55/mountains-8292685_1280.jpg" )
+
 
 # Audio locals
-![audio sample]( karim.mp3 "https://cdn.pixabay.com/photo/2023/10/04/02/55/mountains-8292685_1280.jpg" )
+![audio sample]( zaza.mp3 "https://cdn.pixabay.com/photo/2023/10/04/02/55/mountains-8292685_1280.jpg" )
 
 
 # Docus remote
