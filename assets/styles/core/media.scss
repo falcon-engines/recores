@@ -175,3 +175,29 @@ html[data-mode="light"] .loader-round div {
         transform: scale(1);
     } 
 }
+
+
+/** youtube inline */
+.youtubelite {
+
+    .coverbox{
+        width: 100%;
+        height: 100%;
+        display: grid;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .action,
+    .cover{
+        position: absolute;
+    }
+
+    .action{
+        background-color: #FF0000;
+        width: 86px;
+        height: 60px;
+        position: relative;
+    }
+}

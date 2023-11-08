@@ -1,11 +1,10 @@
 "use strict";
 
 
-
 export class mediainline {
 
 
-    constructor( audiowafers ){
+    constructor( audioplayer, youtubelite ){
 
         // validator
         if ( ! document.querySelector( '.media-data' ) ) {
@@ -13,7 +12,8 @@ export class mediainline {
         }
 
         // prototype
-        this.audio_player = audiowafers;
+        this.audio_player = audioplayer;
+        this.youtube_lite = youtubelite;
         this.media_wraper = document.querySelectorAll( '.media-data' );
 
         // method
@@ -256,74 +256,131 @@ export class mediainline {
 
 
     // google docs
-    gogdoc( data ){
+    gogdoc( data, entry ){
         
     }
 
 
     // google pdf
-    gogpdf( data ){
+    gogpdf( data, entry ){
         
     }
 
 
     // google ppt
-    gogppt( data ){
+    gogppt( data, entry ){
         
     }
 
 
     // google xls
-    gogxls( data ){
+    gogxls( data, entry ){
         
     }
 
 
     // google pdf
-    gogpdf( data ){
+    gogpdf( data, entry ){
         
     }
 
 
     // locals img
-    images( data ){
+    images( data, entry ){
         
     }
 
 
     // locals pdf 
-    rawpdf( data ){
+    rawpdf( data, entry ){
         
     }
 
 
     // soundcloud
-    scloud( data ){
+    scloud( data, entry ){
         
     }
 
 
     // vimeo src
-    vimeos( data ){
+    vimeos( data, entry ){
         
     }
 
 
     // video src
-    videos( data ){
+    videos( data, entry ){
         
     }
 
 
     // youtubes
-    yutube( data ){
+    yutube( data, entry ){
+
+        let geturi = data[entry.target.id].source;
+        let source = geturi.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/).pop();
+        let thumbs = data[entry.target.id].cover;
+        let render = document.getElementById( entry.target.id );
+        let wraper = document.createElement( 'div' );
+        let bgload = document.createElement( 'img' );
+        let action = document.createElement( 'div' );
+        let starts = document.createElement( 'img' );
+
+
+        // parent
+        render.classList.add( 'youtubelite' );
+
+
+        // wrapper
+        wraper.classList.add( 'coverbox' );
+
+
+        // covers
+        if ( source && render.offsetWidth <= 320 ) {
+            thumbs = 'https://img.youtube.com/vi/'+ source +'/mqdefault.jpg'
+        }
+        else if ( source && render.offsetWidth < 480 ) {
+            thumbs = 'https://img.youtube.com/vi/'+ source +'/hqdefault.jpg'
+        } 
+        else if ( source && render.offsetWidth >= 480 ) {
+            thumbs = 'https://img.youtube.com/vi/'+ source +'/maxresdefault.jpg'
+        } 
+        bgload.src    = thumbs;
+        bgload.width  = render.offsetWidth;
+        bgload.height = ( render.offsetWidth / 16 ) * 9;
+        bgload.classList.add('cover');
+
+
+        // actions
+        action.classList.add( 'action', 'grid', 'align-a', 'round-10' );
+        starts.classList.add( 'icons' );
+        starts.src    = '/icons/general/play.svg'; 
+        starts.height = 32;
+        starts.width  = 48;
+
+      
+        render.insertBefore( wraper , render.children[0] );
+        wraper.insertBefore( bgload , wraper.children[0] );
+        wraper.insertBefore( action , wraper.children[1] );
+        action.insertBefore( starts , action.children[0] );
+
         
+        // method
+        action.addEventListener( 'click', ()=> {
+            wraper.remove();
+            new this.youtube_lite( render, source );
+        });
+
+
+        // cleaer datums
+        let loader = render.querySelector( '.loader-round' );
+        render.classList.add('loaded');
+        loader.remove();
     }
 
 
     // HELPER
-
-
     cleaner( render, player ) {
 
         let attrib = [ 'data-src', 'data-title', 'data-type', 'data-cover', 'src', 'mode', 'speed', 'direction' ];
@@ -347,6 +404,8 @@ export class mediainline {
 
         loader.remove();
     }
+
+
 
     loaders_old( entries, observer ) {
 
