@@ -321,6 +321,7 @@ export class mediainline {
         let geturi = data[entry.target.id].source;
         let source = geturi.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/).pop();
         let thumbs = data[entry.target.id].cover;
+        let titles = data[entry.target.id].title;
         let render = document.getElementById( entry.target.id );
         let wraper = document.createElement( 'div' );
         let bgload = document.createElement( 'img' );
@@ -347,8 +348,9 @@ export class mediainline {
             thumbs = 'https://img.youtube.com/vi/'+ source +'/maxresdefault.jpg'
         } 
         bgload.src    = thumbs;
+        bgload.alt    = titles+'  video image cover.';
         bgload.width  = render.offsetWidth;
-        bgload.height = ( render.offsetWidth / 16 ) * 9;
+        bgload.height = ( render.offsetWidth / 4 ) * 3;
         bgload.classList.add('cover');
 
 
@@ -356,6 +358,7 @@ export class mediainline {
         action.classList.add( 'action', 'grid', 'align-a', 'round-10' );
         starts.classList.add( 'icons' );
         starts.src    = '/icons/general/play.svg'; 
+        starts.alt    = 'youtube play action  video image cover.';
         starts.height = 32;
         starts.width  = 48;
 

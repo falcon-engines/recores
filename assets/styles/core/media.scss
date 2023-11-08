@@ -200,4 +200,11 @@ html[data-mode="light"] .loader-round div {
         height: 60px;
         position: relative;
     }
+
+    .cover{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
+

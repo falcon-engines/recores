@@ -1,7 +1,7 @@
 ---
 title       : "karim"
-description : "some description"
 math        : true
+description : ""
 draft       : false
 ---
 
