@@ -48,12 +48,14 @@ export class audioplayer {
         // parent attribute
         parent.style.width  = parent.offsetWidth+'px';
         parent.style.height = ( parent.offsetWidth / 16 ) * 9+'px';
+        parent.classList.remove( 'onload' );
         parent.classList.add( 'loaded' );
 
 
         // background attribute
         bgload.classList.add( 'd-blur', 'audio-bg' );
         bgload.src = this.thumbs;
+        bgload.alt = 'Audio track background images.';
 
 
         // player attribute
@@ -63,8 +65,9 @@ export class audioplayer {
         // cover attribute
         covers.classList.add( 'covers' );
         covers.src = this.thumbs;
-        covers.style.height = '260px';
-        covers.style.width  = '260px';
+        covers.height = 260;
+        covers.width  = 260;
+        covers.alt = 'Audio cover  images.';
 
 
         // control attribute
@@ -93,6 +96,7 @@ export class audioplayer {
         iconic.classList.add( 'icons' );
         iconic.height = 32;
         iconic.width = 32;
+        iconic.alt = 'Audip play and pause button.';
 
 
         // player builds

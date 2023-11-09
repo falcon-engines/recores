@@ -2,10 +2,10 @@
 
 import { themebasics } from './core/theme.js';
 import { mediainline } from './core/media.js';
-import { themesearch } from './page/search.js';
 import { animaplayer } from './core/media/anima.js';
 import { audioplayer } from './core/media/audio.js';
-import { youtubelite } from './core/media/youtube.js';
+import { youtubelite } from './core/media/tubes.js';
+import { themesearch } from './page/search.js';
 
 
 window.addEventListener("load", () => {

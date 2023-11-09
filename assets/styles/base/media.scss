@@ -10,7 +10,6 @@ img, picture, video, canvas, svg {
     width: 100%;
     overflow: hidden;
     position: relative;
-    aspect-ratio: 16 / 9;
     img,
     video,
     iframe,
@@ -38,7 +37,8 @@ img, picture, video, canvas, svg {
 }
 
 .landscape { 
-    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
     video {
         height: 100%;
         object-fit: cover; 

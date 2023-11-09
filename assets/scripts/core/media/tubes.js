@@ -16,8 +16,7 @@ export class youtubelite{
         let action = this.render();
         action.addEventListener( 'click', ()=> {
             this.target.querySelector( '.coverbox' ).remove();
-            let render = this.embeds();
-            this.script();
+            let render = this.corest();
             this.player( render );
         });
     }
@@ -72,21 +71,25 @@ export class youtubelite{
         action.insertBefore( starts , action.children[0] );
 
 
+        // cleaner action
         this.target.querySelector( '.loader-round' ).remove();
+        this.target.classList.remove( 'onload' );
+
 
         return action;
-
-        // method
-        // action.addEventListener( 'click', ()=> {
-        //    wraper.remove();
-        //    this.player( unique , render );
-        // });
-
-        // return parent;
     }
 
 
-    embeds() {
+    corest() {
+
+        // get youtube iframe api
+        let target = document.getElementById('base-jsx');
+        let script = document.createElement('script');
+        script.setAttribute( 'id', 'media-youtube' ) ;
+        script.src = "https://www.youtube.com/iframe_api";
+        target.after( script );
+
+        // create youtube element
         let player = document.createElement( 'div' );
         player.setAttribute( 'id', 'id-'+this.source );
         this.target.appendChild( player );
@@ -95,15 +98,11 @@ export class youtubelite{
 
 
     script() {
-        let target = document.getElementById('base-jsx');
-        let script = document.createElement('script');
-        script.setAttribute( 'id', 'media-youtube' ) ;
-        script.src = "https://www.youtube.com/iframe_api";
-        target.after( script );
+
     }
 
 
-    player( player ) {
+    player() {
 
         window.onYouTubeIframeAPIReady = function() {
             

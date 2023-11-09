@@ -5,7 +5,6 @@ export class animaplayer {
     constructor( data, entry ) {
      
         //  prototype
-        this.datums = data;
         this.target = document.getElementById( entry.target.id );
         this.source = data[entry.target.id].source;
         this.thumbs = data[entry.target.id].cover;
