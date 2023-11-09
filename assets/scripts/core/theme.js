@@ -37,7 +37,7 @@ export class themebasics {
     }
 
 
-    // animation 
+    // mathjs 
     mathtext() {
 
         let mathex = document.createElement( 'script' );

@@ -4,7 +4,7 @@
 export class mediainline {
 
 
-    constructor( animaplayer, audioplayer, youtubelite ){
+    constructor( animaplayer, audioplayer, docusplayer, gdocsplayer, gopdfplayer, gopptplayer, goxlsplayer, imageplayer, youtubelite, videoplayer, vimeoplayer ){
 
         // validator
         if ( ! document.querySelector( '.media-data' ) ) {
@@ -14,7 +14,20 @@ export class mediainline {
         // prototype
         this.anima_player = animaplayer;
         this.audio_player = audioplayer;
+        this.docus_player = docusplayer;
+        this.gdocs_player = gdocsplayer;
+        this.gopdf_player = gopdfplayer;
+        this.goppt_player = gopptplayer;
+        this.goxls_player = goxlsplayer;
+        this.image_player = imageplayer;
+        this.image_player = imageplayer;
+
         this.youtube_lite = youtubelite;
+        this.video_player = videoplayer;
+        this.vimeo_player = vimeoplayer;
+
+
+
         this.media_wraper = document.querySelectorAll( '.media-data' );
 
         // method
@@ -62,32 +75,32 @@ export class mediainline {
                         case 'audios':
                             new this.audio_player( loadata, entry );
                             break;
+                        case 'docus':
+                            new this.docus( loadata, entry )
+                            break;
                         case 'google-doc':
-                            this.gogdoc( loadata, entry )
+                            new this.gdocs_player( loadata, entry );
                             break;
                         case 'google-pdf':
-                            this.gogpdf( loadata, entry )
+                            new this.gopdf_player( loadata, entry );
                             break;
                         case 'google-ppt':
-                            this.gogppt( loadata, entry )
+                            new this.goppt_player( loadata, entry );
                             break;
                         case 'google-xls':
-                            this.gogxls( loadata, entry )
+                            new this.goxls_player( loadata, entry );
                             break;
                         case 'images':
-                            this.images( loadata, entry )
-                            break;
-                        case 'docus':
-                            this.rawpdf( loadata, entry )
+                            new this.image_player( loadata, entry )
                             break;
                         case 'soundcloud':
-                            this.scloud( loadata, entry )
+                            new this.soudnclouds( loadata, entry )
                             break;
                         case 'vimeo':
-                            this.vimeos( loadata, entry )
+                            new this.vimeo_player( loadata, entry )
                             break;
                         case 'videos':
-                            this.vimeos( loadata, entry )
+                            new this.video_player( loadata, entry )
                             break;
                         case 'youtube':
                             new this.youtube_lite( loadata, entry )
@@ -106,97 +119,6 @@ export class mediainline {
             elmedia.observe(items);
         });
     }
-
-
-    // script
-    script( uniq, link, type, mode ) {
-
-        return new Promise( ( resolve ) => {
-
-            if ( ! document.getElementById( uniq ) ) {
-
-                let parent = document.getElementById( 'base-jsx' );
-                let elemen = document.createElement( 'script' );
-                if ( uniq ) {
-                    elemen.setAttribute( 'id', uniq )
-                };  
-                if ( link ) {
-                    elemen.src = link;
-                };
-                if ( type ) {
-                    elemen.setAttribute( 'type', type );
-                }; 
-                if ( mode ) {
-                    elemen.setAttribute( mode, '' );
-                }; 
-
-                parent.after( elemen );
-                elemen.onload = () =>{ resolve(); }
-            };
-        });
-    }
- 
-
-
-    // google docs
-    gogdoc( data, entry ){
-        
-    }
-
-
-    // google pdf
-    gogpdf( data, entry ){
-        
-    }
-
-
-    // google ppt
-    gogppt( data, entry ){
-        
-    }
-
-
-    // google xls
-    gogxls( data, entry ){
-        
-    }
-
-
-    // google pdf
-    gogpdf( data, entry ){
-        
-    }
-
-
-    // locals img
-    images( data, entry ){
-        
-    }
-
-
-    // locals pdf 
-    rawpdf( data, entry ){
-        
-    }
-
-
-    // soundcloud
-    scloud( data, entry ){
-        
-    }
-
-
-    // vimeo src
-    vimeos( data, entry ){
-        
-    }
-
-
-    // video src
-    videos( data, entry ){
-        
-    }
-
 
 
     // HELPER
@@ -225,7 +147,7 @@ export class mediainline {
     }
 
 
-
+    
     loaders_old( entries, observer ) {
 
         let render = document.createElement( 'iframe' );

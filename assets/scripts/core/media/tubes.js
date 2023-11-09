@@ -97,11 +97,6 @@ export class youtubelite{
     }
 
 
-    script() {
-
-    }
-
-
     player() {
 
         window.onYouTubeIframeAPIReady = function() {
