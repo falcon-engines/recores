@@ -2,38 +2,115 @@
 
 export class youtubelite{
 
-
-    constructor( target, linker ) {
-        this.unique = linker;
-        this.target = target;
-        this.player();
+    
+    constructor( data, entry ) {
+        this.target = document.getElementById( entry.target.id );
+        this.source = data[entry.target.id].source.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/).pop();;
+        this.thumbs = data[entry.target.id].cover;
+        this.titles = data[entry.target.id].title;
+        this.bootup();
     }
 
 
-    player() {
+    bootup() {
+        let action = this.render();
+        action.addEventListener( 'click', ()=> {
+            this.target.querySelector( '.coverbox' ).remove();
+            let render = this.embeds();
+            this.script();
+            this.player( render );
+        });
+    }
 
-        let parent = document.getElementById( this.target.getAttribute( 'id' ) );
+
+    render() {
+
+        let wraper = document.createElement( 'div' );
+        let bgload = document.createElement( 'img' );
+        let action = document.createElement( 'div' );
+        let starts = document.createElement( 'img' );
+
+
+        // parent
+        this.target.classList.add( 'youtubelite' );
+        this.target.classList.add( 'loaded' );
+
+
+        // wrapper
+        wraper.classList.add( 'coverbox' );
+
+
+        // covers
+        if (  this.source && this.target.offsetWidth <= 320 ) {
+            this.thumbs = 'https://img.youtube.com/vi/'+this.source +'/mqdefault.jpg'
+        }
+        else if (  this.source && this.target.offsetWidth < 480 ) {
+            this.thumbs = 'https://img.youtube.com/vi/'+this.source +'/hqdefault.jpg'
+        } 
+        else if (  this.source && this.target.offsetWidth >= 480 ) {
+            this.thumbs = 'https://img.youtube.com/vi/'+this.source +'/maxresdefault.jpg'
+        } 
+        bgload.src    = this.thumbs;
+        bgload.alt    = this.titles+'  video image cover.';
+        bgload.width  = this.target.offsetWidth;
+        bgload.height = ( this.target.offsetWidth / 4 ) * 3;
+        bgload.classList.add('cover');
+
+
+        // actions
+        action.classList.add( 'action', 'grid', 'align-a', 'round-10' );
+        starts.classList.add( 'icons' );
+        starts.src    = '/icons/general/play.svg'; 
+        starts.alt    = 'youtube play action  video image cover.';
+        starts.height = 32;
+        starts.width  = 48;
+
+      
+        this.target.insertBefore( wraper , this.target.children[0] );
+        wraper.insertBefore( bgload , wraper.children[0] );
+        wraper.insertBefore( action , wraper.children[1] );
+        action.insertBefore( starts , action.children[0] );
+
+
+        this.target.querySelector( '.loader-round' ).remove();
+
+        return action;
+
+        // method
+        // action.addEventListener( 'click', ()=> {
+        //    wraper.remove();
+        //    this.player( unique , render );
+        // });
+
+        // return parent;
+    }
+
+
+    embeds() {
         let player = document.createElement( 'div' );
-        player.setAttribute( 'id', 'id-'+this.unique );
-        parent.appendChild( player );
-        this.script( player );
+        player.setAttribute( 'id', 'id-'+this.source );
+        this.target.appendChild( player );
+        return player;
     }
 
 
-    script( player ) {
-
+    script() {
         let target = document.getElementById('base-jsx');
         let script = document.createElement('script');
         script.setAttribute( 'id', 'media-youtube' ) ;
         script.src = "https://www.youtube.com/iframe_api";
         target.after( script );
+    }
+
+
+    player( player ) {
 
         window.onYouTubeIframeAPIReady = function() {
             
-            player = new YT.Player( 'id-'+this.unique , {
+            player = new YT.Player( 'id-'+this.source , {
                 height: this.target.offsetHeight,
-                width: this.target.offsetWidth,
-                videoId:  this.unique,
+                width:  this.target.offsetWidth,
+                videoId:  this.source,
                 playerVars: {
                     autoplay: 1,                                // auto play
                     controls: 1,                                // show controls
@@ -56,7 +133,7 @@ export class youtubelite{
         }.bind(this);
     }
 
-    
+   
     ready ( event ) {
         event.target.setVolume( 80 );
 		event.target.playVideo();

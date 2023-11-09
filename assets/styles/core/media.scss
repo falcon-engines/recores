@@ -106,7 +106,7 @@ html[data-mode="light"] .loader-round div {
     align-items: normal;
 }
 
-.audiobox .player{
+.audiobox .control{
     display: grid;
     align-content: space-between;
 }
@@ -121,6 +121,7 @@ html[data-mode="light"] .loader-round div {
     height: 62px;
     width: 62px;
 }
+
 
 .loaded img.d-blur{
     top: -10%;
@@ -145,9 +146,9 @@ html[data-mode="light"] .loader-round div {
 
 
 .loaded[data-status='play'] .audio-bg{
-    -webkit-animation:zoom_inline_audio 60s linear infinite;
-    -moz-animation:zoom_inline_audio 60s linear infinite;
-    animation:zoom_inline_audio 60s linear infinite;
+    -webkit-animation:zoom_inline_audio 50s linear infinite;
+    -moz-animation:zoom_inline_audio 50s linear infinite;
+    animation:zoom_inline_audio 50s linear infinite;
 }
 
 

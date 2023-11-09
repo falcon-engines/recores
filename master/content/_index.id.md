@@ -5,8 +5,8 @@ description : ""
 draft       : false
 ---
 
-# Video youtube
-![Watch youtube]( https://www.youtube.com/watch?v=CgRHuvKD8zg )
+# Audio locals
+![audio sample]( zaza.mp3 "https://cdn.pixabay.com/photo/2023/10/04/02/55/mountains-8292685_1280.jpg" )
 
 
 # Article

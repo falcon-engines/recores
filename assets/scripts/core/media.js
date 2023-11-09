@@ -4,7 +4,7 @@
 export class mediainline {
 
 
-    constructor( audioplayer, youtubelite ){
+    constructor( animaplayer, audioplayer, youtubelite ){
 
         // validator
         if ( ! document.querySelector( '.media-data' ) ) {
@@ -12,6 +12,7 @@ export class mediainline {
         }
 
         // prototype
+        this.anima_player = animaplayer;
         this.audio_player = audioplayer;
         this.youtube_lite = youtubelite;
         this.media_wraper = document.querySelectorAll( '.media-data' );
@@ -56,10 +57,10 @@ export class mediainline {
 
                     switch( loadata[entry.target.id].format ) {
                         case 'anima':
-                            this.animax( loadata, entry );
+                            new this.anima_player( data, entry );
                             break;
                         case 'audios':
-                            this.audios( loadata, entry )
+                            new this.audio_player( loadata, entry );
                             break;
                         case 'google-doc':
                             this.gogdoc( loadata, entry )
@@ -89,7 +90,7 @@ export class mediainline {
                             this.vimeos( loadata, entry )
                             break;
                         case 'youtube':
-                            this.yutube( loadata, entry )
+                            new this.youtube_lite( loadata, entry )
                             break;
                         default:
                             console.log( entry.target.dataset.type+' media type not supported' );
@@ -135,124 +136,6 @@ export class mediainline {
         });
     }
  
-
-    // animax
-    async animax( data, entry ){
-        
-        await this.script( 'media-anima', 'https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs', 'module', 'defer' );
-
-        //  prototype
-        let source = data[entry.target.id].source;
-        let render = document.getElementById( entry.target.id );
-        let player = document.createElement( 'dotlottie-player' );
-
-        // link validator
-        if ( player.src === 'no-media' ) {
-            return;
-        }
-
-        // player builder
-        player.src = source;
-        player.setAttribute( 'class'      , 'loaded' );
-        player.setAttribute( 'speed'      , '1' );
-        player.setAttribute( 'mode'       , 'normal' );
-        player.setAttribute( 'loop'       , '' );
-        player.setAttribute( 'autoplay'   , '' );
-        player.setAttribute( 'direction'  , '1' );
-        player.setAttribute( 'background' , 'transparent' );
-        render.insertBefore( player       , render.children[1] );
-    }
-
-
-    // audios 
-    async audios( data, entry ){
-
-        //  prototype
-        let source = data[entry.target.id].source;
-        let naming = data[entry.target.id].title;
-        let thumbs = data[entry.target.id].cover;
-        let render = document.getElementById( entry.target.id );
-        let wraper = document.createElement( 'div' );
-        let bgload = document.createElement( 'img' );
-        let player = document.createElement( 'div' );
-        let covers = document.createElement( 'img' );
-        let equals = document.createElement( 'canvas' );
-        let contrl = document.createElement( 'div' );
-        let titles = document.createElement( 'h2' );
-        let action = document.createElement( 'div' );
-        let starts = document.createElement( 'img' );
-
-        // parent aspect ratio
-        render.style.width  = render.offsetWidth+'px';
-        render.style.height = ( render.offsetWidth / 16 ) * 9+'px';
-        render.classList.add( 'loaded' );
-
-
-        // background load
-        bgload.classList.add( 'd-blur', 'audio-bg' );
-        bgload.src = thumbs;
-    
-
-        // wraps load
-        wraper.classList.add( 'audiobox' );
-    
-
-        // cover class
-        covers.classList.add( 'covers' );
-        covers.src = thumbs;
-        covers.style.height = '260px';
-        covers.style.width  = '260px';
-        
-
-        // player class
-        player.classList.add( 'player' );
-
-
-        // waver class
-        equals.classList.add( 'equalizer' );
-
-
-        // control class
-        contrl.classList.add( 'control', 'flex', 'align-v' );
-
-
-        // titles class
-        titles.classList.add('fz-120');
-        titles.innerText = naming; 
-
-
-        // action class
-        action.classList.add( 'action', 'grid', 'align-a', 'mr-3' );
-
-
-        // icons class
-        starts.src = '/icons/general/play.svg'; 
-        starts.classList.add( 'icons' );
-        starts.height = 32;
-        starts.width = 32;
-
-
-        // player builds
-        render.insertBefore( bgload , player.children[0] );
-        render.insertBefore( wraper , render.children[1] );
-        wraper.insertBefore( covers , player.children[0] );
-        wraper.insertBefore( player , wraper.children[1] );
-        player.insertBefore( equals , player.children[1] );
-        player.insertBefore( contrl , player.children[0] );
-        contrl.insertBefore( titles , contrl.children[0] );
-        contrl.insertBefore( action , contrl.children[0] );
-        action.insertBefore( starts , action.children[0] );
-
-
-        // audio engines
-        new this.audio_player( render, source );
-
-        
-        // cleaer datums
-        let loader = render.querySelector( '.loader-round' );
-        render.classList.add('loaded');
-        loader.remove();
-    }
 
 
     // google docs
@@ -316,7 +199,7 @@ export class mediainline {
 
 
     // youtubes
-    yutube( data, entry ){
+    yutube_old( data, entry ){
 
         let geturi = data[entry.target.id].source;
         let source = geturi.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/).pop();

@@ -3,6 +3,7 @@
 import { themebasics } from './core/theme.js';
 import { mediainline } from './core/media.js';
 import { themesearch } from './page/search.js';
+import { animaplayer } from './core/media/anima.js';
 import { audioplayer } from './core/media/audio.js';
 import { youtubelite } from './core/media/youtube.js';
 
@@ -13,7 +14,7 @@ window.addEventListener("load", () => {
     new themebasics();
 
     // media lazyload
-    new mediainline( audioplayer, youtubelite );
+    new mediainline( animaplayer, audioplayer, youtubelite );
 
     // theme searchs
     new themesearch();
