@@ -47,27 +47,6 @@ img, picture, video, canvas, svg {
     iframe {
         height: 100%;
     }
-    .boxed{
-        width: 70%;
-        display: grid;
-        grid-template-columns: 256px auto;
-        grid-gap: 2rem;
-        align-items: normal;
-    }
-    .control{
-        display: grid;
-        align-content: space-between;
-    }
-    .covers {
-        object-fit: cover;
-    }
-    .align-v {
-        aspect-ratio: 1 / 1.41421;
-        
-    }
-    .align-h {
-        aspect-ratio: 4 / 3;
-    }
 }
 .portrait {
     iframe{
