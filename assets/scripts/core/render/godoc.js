@@ -1,6 +1,6 @@
 "use strict";
 
-export class vimeoplayer {
+export class gdocsplayer {
 
     constructor( data, entry ){
 
@@ -13,10 +13,15 @@ export class vimeoplayer {
     }
 
     bootup() {
-
+        let action = this.render();
+        action.addEventListener( 'click', ()=> {
+            this.player();
+        }); 
     }
 
     render() {
+
+
 
     }
 

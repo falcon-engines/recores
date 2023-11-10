@@ -49,7 +49,7 @@
 
 
 <!-- DIRSRC -->
-{{ if or ( in $audioxt ( path.Ext $getlink ) ) ( in $imagext ( path.Ext $getlink ) ) ( in $videoxt ( path.Ext $getlink ) ) ( eq ".lottie" ( path.Ext $getlink ) )  }}
+{{ if or ( in $audioxt ( path.Ext $getlink ) ) ( in $imagext ( path.Ext $getlink ) ) ( in $videoxt ( path.Ext $getlink ) ) ( eq ".lottie" ( path.Ext $getlink ) ) ( eq ".pdf" ( path.Ext $getlink ) )  }}
 
     {{- if .Page.Resources.GetMatch $getlink }}
 

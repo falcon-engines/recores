@@ -31,7 +31,6 @@ export class audioplayer {
 
     render() {
 
-
         // protype
         let parent = document.getElementById( this.target );
         let bgload = document.createElement( 'img' );
@@ -48,18 +47,16 @@ export class audioplayer {
         // parent attribute
         parent.style.width  = parent.offsetWidth+'px';
         parent.style.height = ( parent.offsetWidth / 16 ) * 9+'px';
-        parent.classList.remove( 'onload' );
-        parent.classList.add( 'loaded' );
 
 
         // background attribute
-        bgload.classList.add( 'd-blur', 'audio-bg' );
+        bgload.classList.add( 'd-blur', 'bg-asset' );
         bgload.src = this.thumbs;
         bgload.alt = 'Audio track background images.';
 
 
         // player attribute
-        player.classList.add( 'audiobox' );
+        player.classList.add( 'audiobox', 'boxed' );
 
 
         // cover attribute
@@ -113,6 +110,8 @@ export class audioplayer {
 
         // clean loader
         parent.querySelector( '.loader-round' ).remove();
+        parent.classList.remove( 'onload' );
+        parent.classList.add( 'loaded' );
         return parent;
     }
 

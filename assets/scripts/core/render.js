@@ -21,7 +21,6 @@ export class mediainline {
         this.goxls_player = goxlsplayer;
         this.image_player = imageplayer;
         this.image_player = imageplayer;
-
         this.youtube_lite = youtubelite;
         this.video_player = videoplayer;
         this.vimeo_player = vimeoplayer;
@@ -76,7 +75,7 @@ export class mediainline {
                             new this.audio_player( loadata, entry );
                             break;
                         case 'docus':
-                            new this.docus( loadata, entry )
+                            new this.docus_player( loadata, entry )
                             break;
                         case 'google-doc':
                             new this.gdocs_player( loadata, entry );
@@ -108,7 +107,6 @@ export class mediainline {
                         default:
                             console.log( entry.target.dataset.type+' media type not supported' );
                     };
-
                     elmedia.unobserve(entry.target);
                 } 
             });

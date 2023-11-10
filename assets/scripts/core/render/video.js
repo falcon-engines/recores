@@ -1,6 +1,6 @@
 "use strict";
 
-export class docusplayer {
+export class videoplayer {
 
     constructor( data, entry ){
 
@@ -18,6 +18,7 @@ export class docusplayer {
 
     render() {
 
+       
     }
 
 

@@ -2,9 +2,11 @@
 html[data-mode="dark"] .loader-round div{
   	border: 9px solid rgba(255, 255, 255, .035);
 }
+
 html[data-mode="light"] .loader-round div {
   	border: 9px solid rgba(0, 0, 0, .025);
 }
+
 .loader-round {
     display: inline-block;
     position: absolute;
@@ -62,6 +64,7 @@ html[data-mode="light"] .loader-round div {
         }
     }  
 }
+
 .loader-round.hide{
     opacity: 0;
     transition: opacity 1s linear 1s; 
@@ -97,14 +100,46 @@ html[data-mode="light"] .loader-round div {
 	to { opacity: 1; }
 }
 
-/** audio inline */
-.audiobox{
-    width: 70%;
-    display: grid;
-    grid-template-columns: 256px auto;
-    grid-gap: 2rem;
-    align-items: normal;
+/* page orientation */
+
+.landscape {
+
+    .boxed{
+        width: 70%;
+        display: grid;
+        grid-template-columns: 256px auto;
+        grid-gap: 2rem;
+        align-items: normal;
+    }
+
+    .control{
+        display: grid;
+        align-content: space-between;
+    }
+
+    .covers {
+        object-fit: cover;
+    }
+
+    .orientation-v {
+        aspect-ratio: 1 / 1.41421;
+    }
+
+    .orientation-h {
+        aspect-ratio: 4 / 3;
+    }
+
+    .modals .close {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 10000;
+    }
 }
+
+
+
+/** audio inline */
 
 .audiobox .control{
     display: grid;
@@ -122,17 +157,9 @@ html[data-mode="light"] .loader-round div {
     width: 62px;
 }
 
-
-.loaded img.d-blur{
-    width: 100%;
-    max-width: 100%;
-    position: absolute;
-}
-
 .audiobox::before {
     background-image: attr(data-cover);
 }
-
 
 .loaded[data-status='play'] .audiobox .action {
     -webkit-animation:spin 5s linear infinite;
@@ -140,13 +167,11 @@ html[data-mode="light"] .loader-round div {
     animation:spin 5s linear infinite;
 }
 
-
 .loaded[data-status='play'] .audio-bg{
     -webkit-animation:zoom_inline_audio 50s linear infinite;
     -moz-animation:zoom_inline_audio 50s linear infinite;
     animation:zoom_inline_audio 50s linear infinite;
 }
-
 
 @-moz-keyframes zoom_inline_audio { 
     0% { -moz-transform: scale(1); } 

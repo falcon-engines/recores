@@ -1,6 +1,6 @@
 "use strict";
 
-export class goxlsplayer {
+export class gopptplayer {
 
     constructor( data, entry ){
 
@@ -13,11 +13,14 @@ export class goxlsplayer {
     }
 
     bootup() {
-
+        let action = this.render();
+        action.addEventListener( 'click', ()=> {
+            this.player();
+        }); 
     }
 
     render() {
-
+        
     }
 
 

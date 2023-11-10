@@ -1,19 +1,19 @@
 "use strict";
 
-import { themebasics } from './core/theme.js';
-import { mediainline } from './core/media.js';
-import { animaplayer } from './core/media/anima.js';
-import { audioplayer } from './core/media/audio.js';
-import { docusplayer } from './core/media/docus.js';
-import { gdocsplayer } from './core/media/godoc.js';
-import { gopdfplayer } from './core/media/gopdf.js';
-import { gopptplayer } from './core/media/goppt.js';
-import { goxlsplayer } from './core/media/goxls.js';
-import { imageplayer } from './core/media/image.js';
-import { youtubelite } from './core/media/tubes.js';
-import { videoplayer } from './core/media/video.js';
-import { vimeoplayer } from './core/media/vimeo.js';
-import { soudnclouds } from './core/media/scloud.js';
+import { themebasics } from './core/basics.js';
+import { mediainline } from './core/render.js';
+import { animaplayer } from './core/render/anima.js';
+import { audioplayer } from './core/render/audio.js';
+import { docusplayer } from './core/render/docus.js';
+import { gdocsplayer } from './core/render/godoc.js';
+import { gopdfplayer } from './core/render/gopdf.js';
+import { gopptplayer } from './core/render/goppt.js';
+import { goxlsplayer } from './core/render/goxls.js';
+import { imageplayer } from './core/render/image.js';
+import { youtubelite } from './core/render/tubes.js';
+import { videoplayer } from './core/render/video.js';
+import { vimeoplayer } from './core/render/vimeo.js';
+import { soudnclouds } from './core/render/scloud.js';
 import { themesearch } from './page/search.js';
 
 
