@@ -3,16 +3,14 @@
 <!doctype html>
 <html lang="{{ site.Language.Lang }}" data-mode="auto">
 	<head>
-		{{- partial "corest/headlink" . -}}
+		{{- partial "_based/protos/head/_load" . -}}
 	</head>
 	<body id="pagetop" class="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}">
-		<div class="main">
-			{{- partial "based/header" . }}
-			<main class="content">
-				{{- block "main" . }}{{ end }}
-			</main>
-			{{- partial "based/footer" . }}
-		</div>
-		{{- partial "corest/genscript" . }}
+		{{- partial "based/header" . }}
+		<main class="content">
+			{{- block "main" . }}{{ end }}
+		</main>
+		{{- partial "based/footer" . }}
+ 		{{- partial "_based/protos/foot/_load" . }}
 	</body>
 </html>

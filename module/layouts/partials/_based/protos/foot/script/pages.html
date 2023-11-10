@@ -1,0 +1,17 @@
+<!-- paged scripts -->
+{{- if .Scratch.Get "page_jsx" -}}
+    {{- $paged_script := .Scratch.Get "page_jsx" -}}
+    {{- if hugo.IsProduction -}}
+        {{- range slice $paged_script -}}
+            {{- $page_script := resources.Get .src | js.Build .dest | resources.ExecuteAsTemplate .dest . | minify | fingerprint -}}
+            {{- $module_type := cond ( eq .type "module"  ) "module" "" -}}
+            <script id="page-jsx" src="{{ $page_script.RelPermalink }}" integrity="{{ $page_script.Data.Integrity | safeHTMLAttr }}" type="{{ $module_type }}" defer></script>
+        {{- end -}}
+    {{- else -}}
+        {{- range slice $paged_script -}}
+            {{- $page_script := resources.Get .src | js.Build .dest | resources.ExecuteAsTemplate .dest . -}}
+            {{- $module_type := cond ( eq .type "module"  ) "module" "" -}}
+            <script id="page-jsx" src="{{ $page_script.RelPermalink }}" type="{{ $module_type }}" defer></script>
+        {{- end -}}
+    {{- end -}}
+{{- end -}}

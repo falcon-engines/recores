@@ -1,0 +1,18 @@
+<!-- falcon styles  -->
+{{- partial "_based/protos/foot/base-styles" . -}}
+
+
+<!-- falcon script   -->
+{{- partial "_based/protos/foot/base-script" . -}}
+
+
+<!-- google analytic -->
+{{ if hugo.IsProduction }}
+    {{ template "_internal/google_analytics_async.html" . }}
+{{ end }}
+
+
+<!-- diagram feature -->
+{{ if .Page.Store.Get "hasMermaid" }}
+    {{- partial "_based/protos/foot/inline/mermaid" . -}}
+{{ end }}

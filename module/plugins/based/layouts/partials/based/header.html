@@ -4,7 +4,7 @@
 <header class="headnav default">
     <div class="wrap my-1">
         <div class="flex align-v fluid">
-        {{ partial "widget/site-logo" . }}
+        {{ partial "_based/widget/site-logo" . }}
         <nav id="navigation" class="nav mr-a">
             <ul class="navlist nolist flex align-v">
             {{ range .Site.Menus.main }}
@@ -31,9 +31,9 @@
             {{ end }}
             </ul>
         </nav>
-        {{ partial "widget/find-line.html" . }}
-        {{ partial "widget/lang-menu.html" . }}
-        {{ partial "widget/dark-mode.html" . }}
+        {{ partial "_based/widget/find-line.html" . }}
+        {{ partial "_based/widget/lang-menu.html" . }}
+        {{ partial "_based/widget/dark-mode.html" . }}
         </div>
     </div>
 </header>
