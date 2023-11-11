@@ -1,0 +1,94 @@
+<div id="search-page" class="wrap boxes">
+    <div id="formed" class="d-hide">
+        <div class="container">
+            <div class="media animax grid align-a colfix" data-type="animax">
+                <dotlottie-player src="" class="animate" background="transparent" height="620" speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
+            </div>
+            <div class="information">
+                <div class="subox">
+                    <div class="headon">
+                        <img class="icons" src="/icons/emoji/sad-square.svg" height="42" width="42" alt="image sad emoji"  />
+                        <div class="notif">
+                            <h2 class="title"> Maaf </h2>
+                            <h3 class="tagline"> Informasi Tidak Ditemukan </h3> 
+                        </div>
+                    </div> 
+                    <p class="description"> Silahkan ketikan kata kunci lain untuk memulai kembali pencarian. </p> 
+                    <div class="search-form line flex align-v round-7">
+                        {{ $search_tag :=  T "search_tag" | safeHTML }}
+                        <label><img class="icons" src="/icons/general/search.svg" width="22" height="22" alt="heading search icons"></label>
+                        <input type="search" id="search-input" placeholder="{{ $search_tag }}" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="result" class="tabs headnav d-hide">
+        {{ $section := slice | uniq }}
+        {{- range .Site.Pages  -}}
+            {{- if and ( .Section ) ( ne .Section "tags" )  -}}
+                {{ $section =  $section | append .Section }}
+            {{ else if  ( ne .Section "tags" )   }}
+                {{ $section =  $section | append  "general" }}
+            {{ end }}
+        {{ end }}
+        <div class="tabs-menu">
+            {{ range $index, $element := $section | uniq }}
+                {{ if (eq $index 0) }}
+                    <div class="tabs-open active" data-target="tab-search-{{- . | lower -}}">{{- strings.FirstUpper . -}}</div>
+                {{ else }}
+                    <div class="tabs-open" data-target="tab-search-{{- . | lower -}}">{{- strings.FirstUpper . -}}</div>
+                {{ end }} 
+            {{ end }}
+        </div>
+        <div class="tabs-load">
+            {{ range $index, $element := $section  | uniq }}
+                {{ if (eq $index 0) }}
+                    <div id="tab-search-{{- . | lower -}}" class="tab-content search-tab grid mt-6 active">
+                        <div id="tab-list-{{- . | lower -}}" class="resulting"></div>
+                        <div id="overview-{{- . | lower -}}" class="overviews">
+                            <div id="video-list-general" class="d-hide medbox round-10 mb-5">
+                                <div class="heading flex align-v py-05 px-1">
+                                    <img class="icons" src="/icons/general/video.svg" height="26" width="26" alt="data icons heading video">
+                                    <h2 class="ml-1 fz-95">Wathcing Video</h2>
+                                </div>
+                                <div class="video-player"></div>
+                            </div>
+                            <div id="audio-list-general" class="d-hide medbox wave-audio round-10 ">
+                                <div class="heading flex align-v py-05 px-1">
+                                    <img class="icons" src="/icons/general/headphones.svg" height="22" width="22" alt="data icons heading audio">
+                                    <h2 class="ml-1 fz-95">Listening Audio</h2>
+                                </div>
+                                <div class="playlist">
+                                    <div class="wave-player d-hide" data-link=""></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{ else }}
+                    <div id="tab-search-{{- . | lower -}}" class="tab-content search-tab grid mt-6">
+                        <div id="tab-list-{{- . | lower -}}" class="resulting"></div>
+                        <div id="overview-{{- . | lower -}}" class="overviews">
+                            <div id="video-list-{{- . | lower -}}" class="d-hide medbox video-play round-10 mb-5">
+                                <div class="heading flex align-v py-05 px-1">
+                                    <img class="icons" src="/icons/general/video.svg" height="26" width="26" alt="data icons heading video">
+                                    <h2 class="ml-1 fz-95">Wathcing Video</h2>
+                                </div>
+                                <div class="video-player"></div>
+                            </div>
+                            <div id="audio-list-{{- . | lower -}}" class="d-hide medbox wave-audio round-10">
+                                <div class="heading flex align-v py-05 px-1">
+                                    <img class="icons" src="/icons/general/headphones.svg" height="22" width="22" alt="data icons heading audio">
+                                    <h2 class="ml-1 fz-95">Listening Audio</h2>
+                                </div>
+                                <div class="playlist">
+                                    <div class="wave-player d-hide" data-link=""></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{ end }} 
+            {{ end }}
+        </div>
+    </div>
+</div>

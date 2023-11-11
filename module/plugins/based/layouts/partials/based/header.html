@@ -2,6 +2,8 @@
 {{ $menuactived := "" }}
 
 <header class="headnav default">
+   
+<i class="las la-battery-three-quarters"></i>
     <div class="wrap my-1">
         <div class="flex align-v fluid">
         {{ partial "_based/widget/site-logo" . }}
@@ -12,7 +14,7 @@
                     <li class="nav-submenu dropdown mx-1"> 
                         <div class="action flex all">
                             <p class="title no-space">{{ .Name }}</p>
-                            <img src="/icons/general/chevron-down.svg" class="icons ml-05" height="10" width="10" alt="arrow down">
+                            <img src="/glyph/icons/general/chevron-down.svg" class="icons ml-05" height="10" width="10" alt="arrow down">
                         </div>
                         <ul class="menu d-hide nolist">
                             {{ range .Children }}

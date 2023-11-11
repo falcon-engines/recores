@@ -1,0 +1,154 @@
+.grid-2 {
+    display: grid;
+    @media ( max-width: var(--media-xs ) ) and ( min-width: var(--media-xs ) ) { 
+        grid-template-columns: repeat( 1, calc( 100vw / 1 ) );
+    }
+    @media ( min-width: var(--media-sm ) )  { 
+        grid-template-columns: repeat( 2, calc( 100vw / 2 ) );
+    }
+}
+.grid-3 {
+    display: grid;
+    @media ( max-width: var(--media-xs ) ) and ( min-width: var(--media-xs ) ) { 
+        grid-template-columns: repeat( 1, calc( 100vw / 1 ) );
+    }
+    @media ( min-width: var(--media-sm ) )  { 
+        grid-template-columns: repeat( 2, calc( 100vw / 2 ) );
+    }
+    @media ( min-width: var(--media-md ) )  {
+        grid-template-columns: repeat( 3, calc( 100vw / 3 ) );
+    }
+}
+.grid-4 {
+    display: grid;
+    @media ( max-width: var(--media-xs ) ) and ( min-width: var(--media-xs ) )  { 
+        grid-template-columns: repeat( 1, calc( 100vw / 1 ) );
+    }
+    @media ( min-width: var(--media-sm ) )  {
+        grid-template-columns: repeat( 2, calc( 100vw / 2 ) );
+    }
+    @media ( min-width: var(--media-md ) )  {
+        grid-template-columns: repeat( 4, calc( 100vw / 4 ) );
+    }
+}
+.grid-5 {
+    display: grid;
+    @media ( max-width: var(--media-xs ) ) and ( min-width: var(--media-xs ) )  { 
+        grid-template-columns: repeat( 1, calc( 100vw / 1 ) );
+    }
+    @media ( min-width: var(--media-sm ) )  {
+        grid-template-columns: repeat( 2, calc( 100vw / 2 ) );
+    }
+    @media ( min-width: var(--media-md ) )  {
+        grid-template-columns: repeat( 4, calc( 100vw / 4 ) );
+    }
+    @media ( min-width: var(--media-lg ) )  {
+        grid-template-columns: repeat( 5, calc( 100vw / 5 ) );
+    }
+}
+.grid-6 {
+    display: grid;
+    @media ( max-width: var(--media-xs ) ) and ( min-width: var(--media-xs ) )  { 
+        grid-template-columns: repeat( 1, calc( 100vw / 1 ) );
+    }
+    @media ( min-width: var(--media-sm ) )  {
+        grid-template-columns: repeat( 2, calc( 100vw / 2 ) );
+    }
+    @media ( min-width: var(--media-md ) )  {
+        grid-template-columns: repeat( 3, calc( 100vw / 3 ) );
+    }
+    @media ( min-width: var(--media-lg ) )  {
+        grid-template-columns: repeat( 6, calc( 100vw / 6 ) );
+    }
+  
+}
+.grid-7 {
+    display: grid;
+    @media ( max-width: var(--media-xs ) ) and ( min-width: var(--media-xs ) )  { 
+        grid-template-columns: repeat( 1, calc( 100vw / 1 ) );
+    }
+    @media ( min-width: var(--media-sm ) )  {
+        grid-template-columns: repeat( 2, calc( 100vw / 2 ) );
+    }
+    @media ( min-width: var(--media-md ) )  {
+        grid-template-columns: repeat( 4, calc( 100vw / 4 ) );
+    }
+    @media ( min-width: var(--media-lg ) )  {
+        grid-template-columns: repeat( 7, calc( 100vw / 7 ) );
+    }
+}
+.grid-8 {
+    display: grid;
+    @media ( max-width: var(--media-xs ) ) and ( min-width: var(--media-xs ) )  { 
+        grid-template-columns: repeat( 1, calc( 100vw / 1 ) );
+    }
+    @media ( min-width: var(--media-sm ) )  {
+        grid-template-columns: repeat( 2, calc( 100vw / 2 ) );
+    }
+    @media ( min-width: var(--media-md ) )  {
+        grid-template-columns: repeat( 4, calc( 100vw / 4 ) );
+    }
+    @media ( min-width: var(--media-lg ) )  {
+        grid-template-columns: repeat( 8, calc( 100vw / 8 ) );
+    }
+}
+.grid-9 {
+    display: grid;
+    @media ( max-width: var(--media-xs ) ) and ( min-width: var(--media-xs ) )  { 
+        grid-template-columns: repeat( 1, calc( 100vw / 1 ) );
+    }
+    @media ( min-width: var(--media-sm ) )  {
+        grid-template-columns: repeat( 2, calc( 100vw / 2 ) );
+    }
+    @media ( min-width: var(--media-md ) )  {
+        grid-template-columns: repeat( 4, calc( 100vw / 4 ) );
+    }
+    @media ( min-width: var(--media-lg ) )  {
+        grid-template-columns: repeat( 9, calc( 100vw / 9 ) );
+    }
+}
+.grid-10 {
+    display: grid;
+    @media ( max-width: var(--media-xs ) ) and ( min-width: var(--media-xs ) )  { 
+        grid-template-columns: repeat( 1, calc( 100vw / 1 ) );
+    }
+    @media ( min-width: var(--media-sm ) )  {
+        grid-template-columns: repeat( 2, calc( 100vw / 2 ) );
+    }
+    @media ( min-width: var(--media-md ) )  {
+        grid-template-columns: repeat( 5, calc( 100vw / 5 ) );
+    }
+    @media ( min-width: var(--media-lg ) )  {
+        grid-template-columns: repeat( 10, calc( 100vw / 10 ) );
+    }
+}
+.grid-11 {
+    display: grid;
+    @media ( max-width: var(--media-xs ) ) and ( min-width: var(--media-xs ) )  { 
+        grid-template-columns: repeat( 1, calc( 100vw / 1 ) );
+    }
+    @media ( min-width: var(--media-sm ) )  {
+        grid-template-columns: repeat( 2, calc( 100vw / 2 ) );
+    }
+    @media ( min-width: var(--media-md ) )  {
+        grid-template-columns: repeat( 5, calc( 100vw / 5 ) );
+    }
+    @media ( min-width: var(--media-lg ) )  {
+        grid-template-columns: repeat( 11, calc( 100vw / 11 ) );
+    }
+}
+.grid-12 {
+    display: grid;
+    @media ( max-width: var(--media-xs ) ) and ( min-width: var(--media-xs ) )  { 
+        grid-template-columns: repeat( 1, calc( 100vw / 1 ) );
+    }
+    @media ( min-width: var(--media-sm ) )  {
+        grid-template-columns: repeat( 2, calc( 100vw / 2 ) );
+    }
+    @media ( min-width: var(--media-md ) )  {
+        grid-template-columns: repeat( 6, calc( 100vw / 6 ) );
+    }
+    @media ( min-width: var(--media-lg ) )  {
+        grid-template-columns: repeat( 12, calc( 100vw / 12 ) );
+    }
+}

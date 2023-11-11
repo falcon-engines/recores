@@ -1,0 +1,28 @@
+<!-- populate style -->
+{{ $populate_style := slice }}
+
+
+<!-- based style group -->
+{{ $based := resources.Get "script/based/protos/styles/critical/_main.scss"  | toCSS  }}
+{{ $populate_style =  $populate_style | append $based }}
+
+
+<!-- paged style group -->
+{{ if .Scratch.Get "head_css" }}
+    {{ $paged := resources.Get ( .Scratch.Get "head_css"  ) | toCSS  }}
+    {{ $populate_style =  $populate_style | append $paged }}
+{{ end }}
+
+
+<!-- render critical styles -->
+{{- if hugo.IsProduction -}}
+    {{- $based_styles := $populate_style | resources.Concat "styles/critical.css"  | minify   -}}
+    <style>{{ $based_styles.Content | safeCSS  }}</style>
+{{- else -}}
+    {{- $based_styles := $populate_style | resources.Concat "styles/critical.css" -}}
+    <style>{{ $based_styles.Content | safeCSS  }}</style>
+{{- end -}}
+
+
+
+
