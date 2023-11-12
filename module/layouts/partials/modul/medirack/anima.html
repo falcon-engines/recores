@@ -1,0 +1,47 @@
+<!-- input preparation -->
+{{ $glink := partial "modul/medirack/library/link-builder" ( dict "source" .source "format" "anima" ) }}
+
+
+<!-- variable crafting -->
+{{ $links := cond ( eq hugo.IsProduction true ) ( $glink     | absURL  | base64Encode ) ( $glink  | absURL ) }}
+{{ $cover := cond ( eq hugo.IsProduction true ) ( .covers    | absURL  | base64Encode ) ( .covers | absURL ) }}
+{{ $direc := cond ( eq hugo.IsProduction true ) ( .direction | base64Encode ) ( .direction ) }}
+{{ $autop := cond ( eq hugo.IsProduction true ) ( .autoplay  | base64Encode ) ( .autoplay ) }}
+{{ $title := cond ( eq hugo.IsProduction true ) ( .title     | base64Encode ) ( .title ) }}
+{{ $speed := cond ( eq hugo.IsProduction true ) ( .speed     | base64Encode ) ( .speed ) }}
+{{ $modes := cond ( eq hugo.IsProduction true ) ( .mode      | base64Encode ) ( .mode ) }}
+{{ $loops := cond ( eq hugo.IsProduction true ) ( .loop      | base64Encode ) ( .loop ) }}
+
+
+<!-- config parameter -->
+{{ $status := .Site.Params.medirack.status }}
+{{ $engine := .Site.Params.medirack.engine }}
+{{ $themes := .Site.Params.medirack.status.falcon.anima }}
+
+
+<!-- create custom id -->
+{{ $random := delimit  ( shuffle ( split ( md5 $links ) "" ) ) "" }}
+{{ $unique := slicestr ( $random | md5 | sha1 | base64Encode ) 0 20 | lower }}
+
+
+<!-- render animation -->
+{{ if and ( eq $status true ) ( $engine "falcon" ) }}
+
+
+    <!-- set falcon anima load -->
+    <media-rack format="anima"  unique="{{ $unique }}" source="{{ $links }}" background="{{ $cover }}"  title="{{ $title }}" direction="{{ $direc }}" autoplay="{{ $autop }}" speed="{{ $speed }}" mode="{{ $modes }}" loop="{{ $loops }}" theme="{{ $themes }}">
+    <noscript>Animation failed, your browser does not support JavaScript!</noscript>
+
+    <!-- set falcon anima hook -->
+    {{- .Page.Store.Set "falcon_render_anima" true -}}
+
+{{ else }}
+
+
+    <!-- set default lazy load -->
+    <div class="medirack grid align-a colfix" data-type="animax">
+        <dotlottie-player src="{{ $links }}" background="transparent" speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
+        <noscript>Animation failed, your browser does not support JavaScript!</noscript>
+    </div>
+
+{{ end }}

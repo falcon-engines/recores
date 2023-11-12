@@ -37,33 +37,11 @@ export class themebasics {
             this.pwaengine();
         }
 
-        // math mode
-        if ( document.querySelector('meta[name="math-feature"]') ) {
-            this.mathtext();
-        }
     }
 
 
     // mathjs 
-    mathtext() {
 
-        let mathex = document.createElement( 'script' );
-        mathex.setAttribute( 'id', 'mathjax-feature');
-        mathex.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG";
-        mathex.setAttribute( 'defer', '');
-        this.base_jsx.after( mathex );
-
-        mathex.onload = ()=> {
-            MathJax.Hub.Register.StartupHook("End",function () {
-                MathJax.Hub.Config({
-                    showMathMenu: false, //disables context menu
-                    tex2jax: {
-                    inlineMath: [ ['$','$'], ['\\(','\\)'] ]
-                   }
-                });
-            });
-        }
-    }
 
     
     // tabsmodul
@@ -145,22 +123,7 @@ export class themebasics {
     }
 
 
-    // pwaengine
-    pwaengine() {
-        if('serviceWorker' in navigator) {
-            navigator.serviceWorker
-                .register('/webapps.js', { scope: '/' })
-                .then(function(registration) {
-                    // console.log('Service Worker Registered');
-                });
-      
-            navigator.serviceWorker
-                .ready
-                .then(function(registration) {
-                    // console.log('Service Worker Ready');
-                });
-        }
-    }
+
 
 
     // darkmode

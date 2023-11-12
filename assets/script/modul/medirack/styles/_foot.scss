@@ -1,3 +1,41 @@
+
+/* page orientation */
+
+.landscape {
+
+    .boxed{
+        width: 70%;
+        display: grid;
+        grid-template-columns: 256px auto;
+        grid-gap: 2rem;
+        align-items: normal;
+    }
+
+    .control{
+        display: grid;
+        align-content: space-between;
+    }
+
+    .covers {
+        object-fit: cover;
+    }
+
+    .orientation-v {
+        aspect-ratio: 1 / 1.41421;
+    }
+
+    .orientation-h {
+        aspect-ratio: 4 / 3;
+    }
+
+    .modals .close {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 10000;
+    }
+}
+
 // media loader
 html[data-mode="dark"] .loader-round div{
     border: 9px solid rgba(255, 255, 255, .035);

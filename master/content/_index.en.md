@@ -23,36 +23,36 @@ English
 
 
 # Docus remote
-![docus sample]( https://archive.org/download/gov.uscourts.mowd.117531/gov.uscourts.mowd.117531.1.0.pdf )
+![docus sample]( https://archive.org/download/gov.uscourts.mowd.117531/gov.uscourts.mowd.117531.1.0.pdf "ini adalah Title")
 
 
 # Docus locals
-![docus sample]( test.pdf )
+![docus sample]( test.pdf "ini adalah Title")
 
 
 # Video youtube
-![Watch youtube]( https://www.youtube.com/watch?v=CgRHuvKD8zg )
+![Watch youtube]( https://www.youtube.com/watch?v=CgRHuvKD8zg "ini adalah Title")
 
 
 # Video Vimeo
-![Watch vimeo]( https://player.vimeo.com/video/866657381 )
+![Watch vimeo]( https://player.vimeo.com/video/866657381 "ini adalah Title")
 
 
 # Google Doc
-![Watch vimeo]( https://docs.google.com/document/d/e/2PACX-1vQ-YbhHx20ObJ3fO30LmFkBAhLulWPaiEX8O8N1y45I9hK8KaYBqhUYtbL_CrhkznzFoGDWsitpa-6T/pub)
+![Watch vimeo]( https://docs.google.com/document/d/e/2PACX-1vQ-YbhHx20ObJ3fO30LmFkBAhLulWPaiEX8O8N1y45I9hK8KaYBqhUYtbL_CrhkznzFoGDWsitpa-6T/pub "ini adalah Title")
 
 
 # Google Xls
-![Watch vimeo]( https://docs.google.com/spreadsheets/d/e/2PACX-1vRQwGfLwFHcO1P7kfQruGMARU_dYMRUlqi8HlJHOpcoZQS6vB_lJ0wSLrVF6fi28Gml90FGnrGUje4a/pubhtml)
+![Watch vimeo]( https://docs.google.com/spreadsheets/d/e/2PACX-1vRQwGfLwFHcO1P7kfQruGMARU_dYMRUlqi8HlJHOpcoZQS6vB_lJ0wSLrVF6fi28Gml90FGnrGUje4a/pubhtml "ini adalah Title")
 
 
 # Google Ppt
-![Watch vimeo]( https://docs.google.com/presentation/d/e/2PACX-1vSD-c4MYaEiK8VzUNm8uvSEPq-0Q_Pyi2A-OIFDmuV0ra6PiHXjsV4w2V3QspAsUnPiVXTRLeFSrMmT/pub?start=false&loop=false&delayms=3000)
+![Watch vimeo]( https://docs.google.com/presentation/d/e/2PACX-1vSD-c4MYaEiK8VzUNm8uvSEPq-0Q_Pyi2A-OIFDmuV0ra6PiHXjsV4w2V3QspAsUnPiVXTRLeFSrMmT/pub?start=false&loop=false&delayms=3000 "ini adalah Title")
 
 
 # Google Pdf
-![Watch vimeo]( https://drive.google.com/file/d/1N3OE-qI6ga4euDjx-7IQDYKcoSH9k0CZ/view?usp=share_link)
+![Watch vimeo]( https://drive.google.com/file/d/1N3OE-qI6ga4euDjx-7IQDYKcoSH9k0CZ/view?usp=share_link "ini adalah Title")
 
 
 # Animax Json
-![karim adalah]( technology/robot-1.lottie )
+![ini adalah Text]( technology/robot-1.lottie "ini adalah Title")

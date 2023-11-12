@@ -4,7 +4,7 @@
 <header class="headnav default">
     <div class="wrap my-1">
         <div class="flex align-v fluid">
-        {{ partial "_based/blocks/site-logo" . }}
+        {{ partial "blocks/site-logo" . }}
         <nav id="navigation" class="nav mr-a">
             <ul class="navlist nolist flex align-v">
             {{ range .Site.Menus.main }}
@@ -31,9 +31,9 @@
             {{ end }}
             </ul>
         </nav>
-        {{ partial "_based/modul/searching/bar-default" . }}
-        {{ partial "_based/modul/multilang/menu-dropdown.html" . }}
-        {{ partial "_based/modul/darkmode/menu-dropdown.html" . }}
+        {{ partial "modul/searching/bar-default" . }}
+        {{ partial "modul/multilang/menu-dropdown.html" . }}
+        {{ partial "modul/darkmode/menu-dropdown.html" . }}
         </div>
     </div>
 </header>

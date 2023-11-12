@@ -1,6 +1,6 @@
 ---
-title       : '{{ replace .File.ContentBaseName `-` ` ` | title }}'
-date        : '{{ .Date }}'
+title       : "Profile"
+date        : 2023-11-12T20:54:36+07:00
 slug        : ""
 tocs        : false
 images      : ['sample.jpg']

@@ -1,10 +1,10 @@
-{{- $scripter := slice -}}
 {{- block "head_assets" . -}}{{- end -}}
 {{- block "foot_assets" . -}}{{- end -}}
 <!doctype html>
 <html lang="{{ site.Language.Lang }}" data-mode="auto">
 	<head>
-		{{- partial "_based/protos/critical" . -}}
+		{{- partial "protos/critical" . -}}
+		{{- block "json_meta" . -}}{{- end -}}
 	</head>
 	<body id="pagetop" class="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}">
 		{{- partial "based/header" . }}
@@ -12,6 +12,6 @@
 			{{- block "main" . }}{{ end }}
 		</main>
 		{{- partial "based/footer" . }}
- 		{{- partial "_based/protos/defers" . }}
+ 		{{- partial "protos/defers" . }}
 	</body>
 </html>

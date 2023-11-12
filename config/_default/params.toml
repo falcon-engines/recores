@@ -111,11 +111,12 @@ images      = ['images/sample.jpg']                 # site default images
 # Custom media render and lazy load
 [medirack]
     status = false      # true, false               # Enable lazy load 
-    engine = "falcon"   # default, falcon           # falcon is the intelegent media load with multiple type based on inline markdown 
+    engine = "falcon"   # lazy, falcon              # falcon is the intelegent media load with multiple type based on inline markdown 
     [falcon]
-        audio_template = "default"
-        video_template = "default"
-        image_template = "default"
+        anima = "default"                           # falcon template anima
+        audio = "default"                           # falcon template audio
+        video = "default"
+        image = "default"
 
 
 
