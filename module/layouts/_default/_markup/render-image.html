@@ -146,6 +146,7 @@
 <!-- general render  -->
 
 {{ if and ( $formats ) ( ne $formats "images" ) }} 
+
     <!-- predata render -->
     <div class="media-data hidden" data-unique="{{ $unique }}" data-source="{{ $pathsrc | absURL | base64Encode }}" data-title="{{ .Text | base64Encode }}" data-cover="{{ $bcovers | absURL | base64Encode }}" data-format="{{ $formats | base64Encode }}"></div>
 

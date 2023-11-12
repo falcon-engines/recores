@@ -43,14 +43,94 @@ images      = ['images/sample.jpg']                 # site default images
     slack     = "slack account"                     # slack account
 
 
-[features]
-    darkmode = true   # true, false                 # enable darkmode
-    pwa_apps = false  # true, false                 # enable progresive web application
-   
+#
+# FALCON FEATURE
+#
 
+# Web analytic plaftorm
+
+[analytic]
+    status = false                                  # enable web analytic plaftorm  
+    engine = [ "GA", "CF", "BG", "YN" ]             # Value of engine : GA ( google analytic ), CF ( cloudflared ), BG ( Bing ), YN ( Yandex )
+    [google]
+        unique = 'g-measurment-id'                  # google measure id 
+    [cloudflare]
+        unique = 'cf-measurment-id'                 # cloudflare measure id  
+    [yandex]
+        unique = 'yn-measurment-id'                 # yandex measure id  
+    [bing]
+        unique = 'bn-measurment-id'                 # bing measure id  
+        
+
+# Dark Mode Engine
+[darkmode]
+    status = false      # true, false               # enable darkmode
+
+
+# Site Multi language
+[multilang]
+    status = false      #true / false               # enable multiple language features
+
+
+
+# Page Table of Content
+[tablecone]
+    status = false                                  # activate page table of content
+
+
+
+# Math JS : Math formulation render
+[mathtext]
+    status = false      # true, false               # enable math formula 
+
+
+
+# Diagram : Diagram drawer based on mermaid
+[diagrams]
+    status = false      # true, false               # enable diagrams drawer based on mermaid 
+    engine = "mermaid"  # hugo, mermaid             # select diagram engine 
+
+
+
+# Commenting and Discusion
+[comments]
+    status = false      # true, false               # enable comment of post area
+    engine = "disqus"   # disqus                    # comment engine 
+    [disqus] 
+        unique = "disqus_id"                        # disqus shortname
+
+
+# Custom media render and lazy load
+[medirack]
+    status = false      # true, false               # Enable lazy load 
+    engine = "falcon"   # default, falcon           # falcon is the intelegent media load with multiple type based on inline markdown 
+    [falcon]
+        audio_template = "default"
+        video_template = "default"
+        image_template = "default"
+
+
+
+# Static site search feature
 [searchs]
-    status = true     # true, false
-    engine = "self"   # algolia, fuse               # search engine  
+    status = false     # true, false
+    engine = "self"    # algolia, fuse              # search engine
+    render = "self"    # page title                 # page render
     [algolia]
         unique = "algolia_id"                       # algolia unique id
         secret = "algolia_secret"                   # algolia secret key
+    [layouts]
+        bars   = "default"
+        page   = "default"
+
+
+# Progresive Web Application Feature
+[webapps]
+    status = false      # true, false               # enable progresive web application
+
+
+# Youtube  API
+[youtube_api]
+    status = false                                  # youtube chanel list api
+    unique = "youtube_id"                           # algolia unique id
+    secret = "youtube_api_secret"                   # algolia secret key

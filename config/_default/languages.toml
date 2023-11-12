@@ -1,11 +1,9 @@
 [id]
     weight       = 1
-    title        = "karim id"
     languageCode = "id"
     languageName = "Bahasa"
 
 [en]
     weight       = 2
-    title        = "Karim en"
     languageCode = "en"
     languageName = "English"

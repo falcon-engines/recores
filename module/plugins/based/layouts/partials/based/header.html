@@ -2,8 +2,6 @@
 {{ $menuactived := "" }}
 
 <header class="headnav default">
-   
-<i class="las la-battery-three-quarters"></i>
     <div class="wrap my-1">
         <div class="flex align-v fluid">
         {{ partial "_based/widget/site-logo" . }}
@@ -33,9 +31,9 @@
             {{ end }}
             </ul>
         </nav>
-        {{ partial "_based/widget/find-line.html" . }}
-        {{ partial "_based/widget/lang-menu.html" . }}
-        {{ partial "_based/widget/dark-mode.html" . }}
+        {{ partial "_based/modul/searching/bar-default" . }}
+        {{ partial "_based/modul/multilang/menu-dropdown.html" . }}
+        {{ partial "_based/modul/darkmode/menu-dropdown.html" . }}
         </div>
     </div>
 </header>

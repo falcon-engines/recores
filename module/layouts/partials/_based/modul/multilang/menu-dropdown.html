@@ -1,0 +1,26 @@
+{{ if eq .Site.Params.multilang true }}
+
+    <div class="lang-menu dropdown mx-1 ">
+        <div class="action flex all">
+            {{ if or ( eq .Site.Params.base_model.helps "icon" ) ( eq .Site.Params.base_model.helps "both" ) ( eq .Site.Params.base_model.helps "menu" ) }}
+                <img class="icons" src="{{ .Site.BaseURL }}/glyph/icons/general/lang-menu.svg" class="icons" width="24" height="24" alt="lang menu icons">
+            {{ end }}
+            {{ if or ( eq .Site.Params.base_model.helps "text" ) ( eq .Site.Params.base_model.helps "both" ) ( eq .Site.Params.base_model.helps "menu" ) }}
+                <p class="title no-space ml-1">{{- T "lang_menu" -}} </p>
+            {{ end }}
+            {{ if eq .Site.Params.base_model.helps "menu" }}
+                <img class="icons ml-1" src="{{ .Site.BaseURL }}/glyph/icons/general/right-arrow.svg" class="icons" width="14" height="14" alt="lang menu arrow">
+            {{ end }}
+        </div>
+        <div class="menu d-hide">
+        {{ range .Site.Home.AllTranslations }}
+            <div class="item">
+                <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+            </div>
+        {{ end }}
+        </div>
+    </div>
+
+    <!-- multilang dropdown sync assests -->
+    {{- .Page.Store.Set "multilang_dropdown" true -}}
+{{ end }}

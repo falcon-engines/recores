@@ -1,0 +1,6 @@
+
+<!-- redirect search page -->
+{{ if and ( eq .Site.Params.searchs.status false ) ( eq .RelPermalink "/search/" ) }}
+    {{ $redirect := print "0; url=" .Site.BaseURL "/404" }}
+    <meta http-equiv="refresh" content="{{ $redirect }}" />
+{{ end }}

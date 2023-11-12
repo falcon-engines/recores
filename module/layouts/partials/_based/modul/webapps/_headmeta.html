@@ -1,0 +1,7 @@
+
+<!-- pwas feature -->
+{{- if .Site.Params.Features.pwa_apps -}}
+    <meta name="pwa-feature" content="{{ .Site.Params.Features.pwa_apps }}">
+    <meta name="theme-color" content="#317EFB">
+    <link rel="manifest" href="/manifest.json">
+{{- end -}}

@@ -1,0 +1,5 @@
+<!-- alternative format -->
+{{ range .AlternativeOutputFormats -}}
+  <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .RelPermalink | safeURL }}">
+{{ end }}
+
