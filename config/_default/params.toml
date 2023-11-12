@@ -1,7 +1,10 @@
+# MAIN METADATA
 description = 'Text about my cool site'             # site description
 images      = ['images/sample.jpg']                 # site default images
 
 
+
+# SITE METADATA
 [site_meta]
     leads      = ""                                 # site tagline
     author     = ""                                 # Default author name  
@@ -32,7 +35,7 @@ images      = ['images/sample.jpg']                 # site default images
     twitter   = "my twitter id"                     # twitter username
     instagram = "my instagram id"                   # instagram username
     tiktok    = "my tiktok id"                      # tiktok username
-    youtube   = "my youtube id"                     # youtube chanel
+    youtube   = "my youtube id"                     # youtube chanel id
     discord   = "my discord id"                     # discord id
 
 
@@ -61,6 +64,10 @@ images      = ['images/sample.jpg']                 # site default images
     [bing]
         unique = 'bn-measurment-id'                 # bing measure id  
         
+# Helpers Engines Mode Engine
+[assistant]
+    status = true      # true, false                # enable assistant
+
 
 # Dark Mode Engine
 [darkmode]
@@ -100,6 +107,7 @@ images      = ['images/sample.jpg']                 # site default images
         unique = "disqus_id"                        # disqus shortname
 
 
+
 # Custom media render and lazy load
 [medirack]
     status = false      # true, false               # Enable lazy load 
@@ -124,9 +132,11 @@ images      = ['images/sample.jpg']                 # site default images
         page   = "default"
 
 
+
 # Progresive Web Application Feature
 [webapps]
     status = false      # true, false               # enable progresive web application
+
 
 
 # Youtube  API

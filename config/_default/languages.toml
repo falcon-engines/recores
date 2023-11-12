@@ -2,7 +2,6 @@
     weight       = 1
     languageCode = "id"
     languageName = "Bahasa"
-
 [en]
     weight       = 2
     languageCode = "en"
