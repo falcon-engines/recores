@@ -1,5 +1,5 @@
 <!-- input preparation -->
-{{ $glink := partial "modul/medirack/library/link-builder" ( dict "source" .source "format" "anima" ) }}
+{{ $glink := partial "modul/mediarack/library/link-builder" ( dict "source" .source "format" "anima" ) }}
 
 
 <!-- variable crafting -->
@@ -11,12 +11,12 @@
 {{ $speed := cond ( eq hugo.IsProduction true ) ( .speed     | base64Encode ) ( .speed ) }}
 {{ $modes := cond ( eq hugo.IsProduction true ) ( .mode      | base64Encode ) ( .mode ) }}
 {{ $loops := cond ( eq hugo.IsProduction true ) ( .loop      | base64Encode ) ( .loop ) }}
-
+{{ $pages := .pages }}
 
 <!-- config parameter -->
-{{ $status := .Site.Params.medirack.status }}
-{{ $engine := .Site.Params.medirack.engine }}
-{{ $themes := .Site.Params.medirack.status.falcon.anima }}
+{{ $status := .Site.Params.mediarack.status }}
+{{ $engine := .Site.Params.mediarack.engine }}
+{{ $themes := .Site.Params.mediarack.status.falcon.anima }}
 
 
 <!-- create custom id -->
@@ -30,18 +30,21 @@
 
     <!-- set falcon anima load -->
     <media-rack format="anima"  unique="{{ $unique }}" source="{{ $links }}" background="{{ $cover }}"  title="{{ $title }}" direction="{{ $direc }}" autoplay="{{ $autop }}" speed="{{ $speed }}" mode="{{ $modes }}" loop="{{ $loops }}" theme="{{ $themes }}">
-    <noscript>Animation failed, your browser does not support JavaScript!</noscript>
+    <noscript>Something Wrong, This Animation need your browser support for javaScript!</noscript>
 
     <!-- set falcon anima hook -->
-    {{- .Page.Store.Set "falcon_render_anima" true -}}
+    {{- $pages.Page.Store.Set "falcon_render_anima" true -}}
+
 
 {{ else }}
 
 
     <!-- set default lazy load -->
-    <div class="medirack grid align-a colfix" data-type="animax">
+    <div class="media grid align-a colfix" data-type="animax">
         <dotlottie-player src="{{ $links }}" background="transparent" speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
         <noscript>Animation failed, your browser does not support JavaScript!</noscript>
     </div>
 
+
 {{ end }}
+

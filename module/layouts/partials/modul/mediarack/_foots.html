@@ -1,0 +1,19 @@
+{{ $rackmedia := .script }}
+{{ $all_modul := slice "anima" "audio" "docus" "godoc" "gopdf" "goppt" "goxls" "image" "video" "vimeo" "ytube" }}
+{{ $pagestore := .context.Page.Store }}
+
+ <!-- register main class -->
+
+{{ $main :=  resources.Get "script/modul/mediarack/script/_foots.js" | js.Build "jsx/rakcmedia.js" }}
+{{ $rackmedia = $rackmedia | append $main  }}
+
+
+{{ if .Context.Page.Store.pagestore.Get "falcon_render_anima" }}
+
+    {{ $anima :=  resources.Get "script/modul/mediarack/script/anima.js" | js.Build "jsx/rakcmedia.js" }}
+    {{ $rackmedia = $rackmedia | append $anima  }}
+{{ end }}
+
+
+ <!-- register main class -->
+{{ return $rackmedia }}

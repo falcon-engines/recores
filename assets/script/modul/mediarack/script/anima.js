@@ -4,6 +4,7 @@ export class animaplayer {
 
     constructor( data, entry ) {
      
+        alert('ok');
         //  prototype
         this.target = document.getElementById( entry.target.id );
         this.source = data[entry.target.id].source;
@@ -18,7 +19,7 @@ export class animaplayer {
     script() {
 
         return new Promise( ( resolve ) => {
-            
+             
             let parent = document.getElementById( 'base-jsx' );
             let elemen = document.createElement( 'script' );
             elemen.setAttribute( 'id', 'media-anima' );

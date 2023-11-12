@@ -1,8 +1,11 @@
-<!-- head element -->
+<!-- render element -->
 
 {{ $populate_defers := slice  }}
-{{ $populate_defers  = $populate_defers  | append ( partial "modul/comment/_foots" . ) }}
-{{ $populate_defers  = $populate_defers  | append ( partial "modul/darkmode/_foots" . ) }}
 
 
-{{ $populate_defers }}
+{{ $populate_defers  =  partial "modul/mediarack/_foots" ( dict "context" . "script" $populate_defers )  }}
+
+
+
+{{- $render_script := $populate_defers | resources.Concat "jsx/zaza.js" | resources.ExecuteAsTemplate "jsx/zaza.js" .  -}}
+<script id="base-jsx" src="{{ $render_script.RelPermalink  }}" type="module" defer></script>
