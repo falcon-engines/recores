@@ -4,7 +4,7 @@
 <header class="headnav default">
     <div class="wrap my-1">
         <div class="flex align-v fluid">
-        {{ partial "widget/site-logo" . }}
+        {{ partial "blocks/site-logo" . }}
         <nav id="navigation" class="nav mr-a">
             <ul class="navlist nolist flex align-v">
             {{ range .Site.Menus.main }}
@@ -12,7 +12,7 @@
                     <li class="nav-submenu dropdown mx-1"> 
                         <div class="action flex all">
                             <p class="title no-space">{{ .Name }}</p>
-                            <img src="/icons/general/chevron-down.svg" class="icons ml-05" height="10" width="10" alt="arrow down">
+                            <img src="/glyph/icons/general/chevron-down.svg" class="icons ml-05" height="10" width="10" alt="arrow down">
                         </div>
                         <ul class="menu d-hide nolist">
                             {{ range .Children }}
@@ -31,10 +31,9 @@
             {{ end }}
             </ul>
         </nav>
-        {{ partial "widget/find-line.html" . }}
-        {{ partial "widget/lang-menu.html" . }}
-        {{ partial "widget/dark-mode.html" . }}
+        {{ partial "modul/searching/bar-default" . }}
+        {{ partial "modul/multilang/menu-dropdown.html" . }}
+        {{ partial "modul/darkmode/menu-dropdown.html" . }}
         </div>
     </div>
 </header>
-

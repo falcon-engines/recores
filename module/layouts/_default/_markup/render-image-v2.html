@@ -1,0 +1,234 @@
+<!-- GLOBAL -->
+{{- $getlink := .Destination | safeURL -}}
+{{- $audioxt := slice ".wav" ".ogg"  ".mp3"  ".avi"  -}}
+{{- $imagext := slice ".png" ".webp" ".svg"  ".jpg"  -}}
+{{- $videoxt := slice ".mp4" ".flv"  ".webm" ".m3u8" -}}
+{{- $pathsrc := "" -}}
+{{- $formats := "" -}}
+{{- $bcovers := "" -}}
+
+
+
+
+<!-- anima embed -->
+{{ if eq ".lottie" ( path.Ext $getlink )  }}
+    {{- $formats =  "anima" -}}
+    {{- $bcovers = "/images/default/audio-player.webp" | absURL  -}}
+    {{- $pathsrc =  $getlink -}}
+    {{ .Page.Store.Set "render_anima" true }}
+{{ end }}
+
+
+<!-- audio embed -->
+{{ if in $audioxt ( path.Ext $getlink ) }}
+    {{- $formats =  "audios" -}}
+    {{- $bcovers = "/images/default/audio-player.webp" | absURL  -}}
+    {{- $pathsrc =  $getlink -}}
+    {{- .Page.Store.Set "render_audio" true -}}
+{{ end }}
+
+
+<!-- docus embed -->
+{{ if eq ".pdf" ( path.Ext $getlink ) }}
+    {{- $formats =  "docus" -}}
+    {{- $bcovers = "/images/default/audio-player.webp" | absURL  -}}
+    {{- $pathsrc =  $getlink -}}
+    {{- .Page.Store.Set "render_docus" true -}}
+{{ end }}
+
+
+<!-- google document embed -->
+{{ if strings.Contains  $getlink "docs.google.com/document" }}
+    {{- $formats = "google-doc" -}}
+    {{- $bcovers = "/images/default/audio-player.webp" | absURL  -}}
+    {{- $pathsrc  = print $getlink "?embedded=true" -}}
+    {{- .Page.Store.Set "render_godoc" true -}}
+{{ end }}
+
+
+<!-- google pdf embed link -->
+{{- if strings.Contains $getlink "drive.google.com/file" -}}
+    {{- $formats = "google-pdf" -}}
+    {{- $bcovers = "/images/default/audio-player.webp" | absURL  -}}
+    {{- $pathsrc = replace $getlink "/view?usp=share_link" "/preview" -}}
+    {{- .Page.Store.Set "render_gofile" true -}}
+{{ end }}
+
+
+<!-- google presentation embed link -->
+{{ if strings.Contains  $getlink "docs.google.com/presentation" }}
+    {{- $formats = "google-ppt" -}}
+    {{- $bcovers = "/images/default/audio-player.webp" | absURL  -}}
+    {{- $pathsrc = replace $getlink "pub?" "embed?" -}}
+    {{- .Page.Store.Set "render_goppt" true -}}
+{{ end }}
+
+
+<!-- google spreadsheets embed -->
+{{ if strings.Contains  $getlink "docs.google.com/spreadsheets" }}
+    {{- $formats = "google-xls" -}}
+    {{- $bcovers = "/images/default/audio-player.webp" | absURL  -}}
+    {{ .Page.Store.Set "render_goxls" true }}
+    {{ if strings.Contains $getlink "gid=" }}
+        {{- $pathsrc = print $getlink "&widget=true&headers=false" -}}
+    {{ else }}
+        {{- $pathsrc = print $getlink "?widget=true&headers=false" -}}
+    {{ end }}
+{{ end }}
+
+
+<!-- image embed -->
+{{ if in $imagext ( path.Ext $getlink ) }}
+    {{- $formats = "images" -}}
+    {{- $bcovers = "/images/default/audio-player.webp" | absURL  -}}
+    {{- $pathsrc = $getlink -}}
+    {{- .Page.Store.Set "render_image" true -}}
+{{ end }}
+
+
+<!-- souncloud embed link-->
+{{- if strings.Contains $getlink "https://w.soundcloud.com/player/" -}}
+    {{- $formats = "souncloud" -}}
+    {{- $bcovers = "/images/default/audio-player.webp" | absURL  -}}
+    {{- $pathsrc = $getlink -}}
+    {{- .Page.Store.Set "render_soundcloud" true -}}
+{{ end }}
+
+
+<!-- video embed -->
+{{ if in $videoxt ( path.Ext $getlink ) }}
+    {{- $formats = "videos" -}}
+    {{- $bcovers = "/images/default/audio-player.webp" | absURL  -}}
+    {{- $pathsrc = $getlink -}}
+    {{- .Page.Store.Set "render_video" true -}}
+{{ end }}
+
+
+<!-- vimeo embed link-->
+{{- if strings.Contains $getlink "vimeo.com" -}}
+    {{- $formats = "vimeo" -}}
+    {{- $bcovers = "/images/default/audio-player.webp" | absURL  -}}
+    {{- $pathsrc = $getlink -}}
+    {{- .Page.Store.Set "render_vimeo" true -}}
+{{ end }}
+
+
+<!-- youtube embed link-->
+{{- if strings.Contains $getlink "youtube.com" -}}
+    {{- $formats = "youtube" -}}
+    {{- $bcovers = "/images/default/audio-player.webp" | absURL  -}}
+    {{- $pathsrc = strings.Replace $getlink "watch?v=" "embed/" -}}
+    {{- .Page.Store.Set "render_youtube" true -}}
+{{ end }}
+
+
+<!-- link builder -->
+{{ $link_extension := slice }}
+{{ $link_extension = $link_extension | append $audioxt }}
+{{ $link_extension = $link_extension | append $imagext }}
+{{ $link_extension = $link_extension | append $videoxt }}
+{{ $link_extension = $link_extension | append ( slice ".lottie" ".pdf"  )   }}
+{{ if in $link_extension ( path.Ext $getlink ) }}
+    {{- if .Page.Resources.GetMatch $getlink }}
+        {{ $pathsrc = .Page.Resources.GetMatch $getlink }}
+    {{ else if resources.GetMatch ( print "/" $formats "/" $getlink ) }}
+        {{ $pathsrc = resources.GetMatch ( print "/" $formats "/" $getlink ) }}
+    {{ else if strings.Contains $getlink "http" }}
+        {{ $pathsrc = $getlink }}
+    {{ end }}
+{{ end }}
+
+
+
+<!-- unique generator  -->
+{{ $random := delimit  ( shuffle ( split ( md5 $pathsrc ) "" ) ) "" }}
+{{ $unique := slicestr ( $random | md5 | sha1 | base64Encode ) 0 20 | lower }}
+
+
+<!-- general render  -->
+
+{{ if and ( $formats ) ( ne $formats "images" ) }} 
+
+    <!-- predata render -->
+    <div class="media-data hidden" data-unique="{{ $unique }}" data-source="{{ $pathsrc | absURL | base64Encode }}" data-title="{{ .Text | base64Encode }}" data-cover="{{ $bcovers | absURL | base64Encode }}" data-format="{{ $formats | base64Encode }}"></div>
+
+
+    <!-- laoder render -->
+    <div id="{{ $unique }}" class="onload landscape grid align-a colfix">
+        <div class="loader-round"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+{{ end }}
+
+
+
+{{ if eq $formats "images" }} 
+
+    <!-- images render -->
+ 
+    <div id="{{ $unique }}" class="flex-c">
+        {{- $resizer := slice "1972" "1680" "1280" "960" "640" "320" -}}
+        {{- $actuals := $pathsrc.Resize "1280x jpg" -}}
+        <figure>
+            <picture class="landscape grid align-a colfix" data-source="{{ $pathsrc.RelPermalink }}" data-title="{{ .Text  }}" data-cover="{{ $bcovers }}" data-referer="{{ $pathsrc | md5 }}" data-type="images">
+                {{ $getwebp := slice }}
+                {{ range $resizer }}
+                    {{ $rezise := "" }}
+                    {{ $values := "" }}
+                    {{ if eq . "1972" }}
+                        {{ $rezise = $pathsrc.Resize "1972x1109 webp" }}
+                        {{ $values  = print $rezise.RelPermalink " " . "w" }}
+                    {{ else if eq . "1680" }}
+                        {{ $rezise = $pathsrc.Resize "1680x945 webp" }}
+                        {{ $values =  print $rezise.RelPermalink " " . "w" }}
+                    {{ else if eq . "1280" }}
+                        {{ $rezise = $pathsrc.Resize "1280x720 webp" }}
+                        {{ $values   =  print $rezise.RelPermalink " " . "w" }}
+                    {{ else if eq . "960" }}
+                        {{ $rezise = $pathsrc.Resize "960x540 webp" }}
+                        {{ $values   =  print $rezise.RelPermalink " " . "w" }}
+                    {{ else if eq . "640" }}
+                        {{ $rezise = $pathsrc.Resize "640x360 webp" }}
+                        {{ $values   =  print $rezise.RelPermalink " " . "w" }}
+                    {{ else if eq . "320" }}
+                        {{ $rezise = $pathsrc.Resize "320x180 webp" }}
+                        {{ $values   =  print $rezise.RelPermalink " " . "w" }}
+                    {{ end }}
+                    {{ $getwebp = $getwebp | append $values }} 
+                {{ end }}
+                {{ $webpsrc := delimit $getwebp ", "  }}
+                <source type="image/webp" srcset=" {{- print $webpsrc -}}" />
+
+                {{ $getjpg := slice }}
+                {{ range $resizer }}
+                    {{ $rezise := "" }}
+                    {{ $values := "" }}
+                    {{ if eq . "1972" }}
+                        {{ $rezise = $pathsrc.Resize "1972x1109 jpg" }}
+                        {{ $values  = print $rezise.RelPermalink " " . "w" }}
+                    {{ else if eq . "1680" }}
+                        {{ $rezise = $pathsrc.Resize "1680x945 jpg" }}
+                        {{ $values =  print $rezise.RelPermalink " " . "w" }}
+                    {{ else if eq . "1280" }}
+                        {{ $rezise = $pathsrc.Resize "1280x720 jpg" }}
+                        {{ $values   =  print $rezise.RelPermalink " " . "w" }}
+                    {{ else if eq . "960" }}
+                        {{ $rezise = $pathsrc.Resize "960x540 jpg" }}
+                        {{ $values   =  print $rezise.RelPermalink " " . "w" }}
+                    {{ else if eq . "640" }}
+                        {{ $rezise = $pathsrc.Resize "640x360 jpg" }}
+                        {{ $values   =  print $rezise.RelPermalink " " . "w" }}
+                    {{ else if eq . "320" }}
+                        {{ $rezise = $pathsrc.Resize "320x180 webp" }}
+                        {{ $values   =  print $rezise.RelPermalink " " . "w" }}
+                    {{ end }}
+                    {{ $getjpg = $getjpg | append $values }} 
+                {{ end }}
+                {{ $jpgsrc := delimit $getjpg ", "  }}
+                <source type="image/jpg"  srcset="{{- print $jpgsrc -}}" />
+                <div class="loader-round"><div></div><div></div></div>
+            </picture>
+            {{ with .Text }}<p class="fw-600 caption" data-alt="{{ . }}">{{ . }}</p>{{ end }}
+        </figure>
+    </div>
+
+{{ end }}

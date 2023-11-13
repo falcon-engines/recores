@@ -1,0 +1,56 @@
+<!-- input preparation -->
+{{ $glink := partial "modul/rackmedia/library/link-builder" ( dict "source" .source "format" "anima" ) }}
+
+
+<!-- variable crafting -->
+{{ $links := cond ( eq hugo.IsProduction true ) ( $glink     | absURL  | base64Encode ) ( $glink  | absURL ) }}
+{{ $cover := cond ( eq hugo.IsProduction true ) ( .covers    | absURL  | base64Encode ) ( .covers | absURL ) }}
+{{ $direc := cond ( eq hugo.IsProduction true ) ( .direction | base64Encode ) ( .direction ) }}
+{{ $autop := cond ( eq hugo.IsProduction true ) ( .autoplay  | base64Encode ) ( .autoplay ) }}
+{{ $title := cond ( eq hugo.IsProduction true ) ( .title     | base64Encode ) ( .title ) }}
+{{ $speed := cond ( eq hugo.IsProduction true ) ( .speed     | base64Encode ) ( .speed ) }}
+{{ $modes := cond ( eq hugo.IsProduction true ) ( .mode      | base64Encode ) ( .mode ) }}
+{{ $loops := cond ( eq hugo.IsProduction true ) ( .loop      | base64Encode ) ( .loop ) }}
+{{ $pages := .pages }}
+
+<!-- config parameter -->
+{{ $status := .Site.Params.mediarack.status }}
+{{ $engine := .Site.Params.mediarack.engine }}
+{{ $themes := .Site.Params.mediarack.status.falcon.anima }}
+
+
+<!-- create custom id -->
+{{ $random := delimit  ( shuffle ( split ( md5 $links ) "" ) ) "" }}
+{{ $unique := slicestr ( $random | md5 | sha1 | base64Encode ) 0 20 | lower }}
+
+
+<!-- render animation -->
+{{ if and ( eq $status true ) ( $engine "falcon" ) }}
+
+
+    <!-- set falcon anima load -->
+    <rack-data format="anima"  unique="{{ $unique }}" source="{{ $links }}" background="{{ $cover }}"  title="{{ $title }}" direction="{{ $direc }}" autoplay="{{ $autop }}" speed="{{ $speed }}" mode="{{ $modes }}" loop="{{ $loops }}" theme="{{ $themes }}" />
+    <noscript>Something Wrong, This Animation need your browser support for javaScript!</noscript>
+
+    <!-- set falcon anima hook -->
+    {{- $pages.Page.Store.Set "falcon_render_anima" true -}}
+
+
+{{ else if ( eq $status true ) }}
+
+    
+    <!-- set default lazy load -->
+    <div class="media grid align-a colfix" data-type="animax">
+        <dotlottie-player src="" data-src="{{ $links }}" background="transparent" speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
+        <noscript>Animation failed, your browser does not support JavaScript!</noscript>
+    </div>
+
+
+{{ else  }}
+
+
+    <dotlottie-player src="{{ $links }}" background="transparent" speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
+
+    
+{{ end }}
+

@@ -1,0 +1,147 @@
+{{ $populate_styles := slice }}
+
+
+<!-- RENDER CLASS -->
+
+<!-- render anima -->
+{{ if .Page.Store.Get "render_anima" }}
+    {{ $render_style_anima := resources.Get "script/based/protos/styles/render/anima.scss" | toCSS }}
+    {{ $populate_styles = $populate_styles | append $render_style_anima }}
+{{ end }}
+
+
+<!-- render audio -->
+{{ if .Page.Store.Get "render_audio" }} 
+    {{ $render_style_audio := resources.Get "script/based/protos/styles/render/audio.scss" | toCSS }}
+    {{ $populate_styles = $populate_styles | append $render_style_audio }}
+{{ end }}
+
+
+<!-- render docus -->
+{{ if .Page.Store.Get "render_docus" }} 
+    {{ $render_style_docus := resources.Get "script/based/protos/styles/render/docus.scss" | toCSS }}
+    {{ $populate_styles = $populate_styles | append $render_style_docus }}
+{{ end }}
+
+
+<!-- render google docs -->
+{{ if .Page.Store.Get "render_godoc" }} 
+    {{ $render_style_godoc := resources.Get "script/based/protos/styles/render/godoc.scss" | toCSS }}
+    {{ $populate_styles = $populate_styles | append $render_style_godoc }}
+    {{ print "google doc found" }}
+{{ end }}
+
+
+<!-- render google file -->
+{{ if .Page.Store.Get "render_gofile" }} 
+    {{ $render_style_gopdf := resources.Get "script/based/protos/styles/render/gopdf.scss" | toCSS }}
+    {{ $populate_styles = $populate_styles | append $render_style_gopdf }}
+{{ end }}
+
+
+<!-- render google ppt -->
+{{ if .Page.Store.Get "render_goppt" }} 
+    {{ $render_style_goppt := resources.Get "script/based/protos/styles/render/goppt.scss" | toCSS }}
+    {{ $populate_styles = $populate_styles | append $render_style_goppt }}
+{{ end }}
+
+
+<!-- render google excel -->
+{{ if .Page.Store.Get "render_goxls" }} 
+    {{ $render_style_goxls := resources.Get "script/based/protos/styles/render/goxls.scss" | toCSS }}
+    {{ $populate_styles = $populate_styles | append $render_style_goxls }}
+  
+{{ end }}
+
+
+<!-- render images -->
+{{ if .Page.Store.Get "render_image" }} 
+    {{ $render_style_image := resources.Get "script/based/protos/styles/render/image.scss" | toCSS }}
+    {{ $populate_styles = $populate_styles | append $render_style_image }}
+{{ end }}
+
+
+<!-- render soundcloud -->
+{{ if .Page.Store.Get "render_soundcloud" }} 
+    {{ $render_style_sclod := resources.Get "script/based/protos/styles/render/sclod.scss" | toCSS }}
+    {{ $populate_styles = $populate_styles | append $render_style_sclod }}
+{{ end }}
+
+
+<!-- render video -->
+{{ if .Page.Store.Get "render_video" }} 
+    {{ $render_style_video := resources.Get "script/based/protos/styles/render/video.scss" | toCSS }}
+    {{ $populate_styles = $populate_styles | append $render_style_video }}
+{{ end }}
+
+
+<!-- render vimeo -->
+{{ if .Page.Store.Get "render_vimeo" }} 
+    {{ $render_style_vimeo := resources.Get "script/based/protos/styles/render/vimeo.scss" | toCSS }}
+    {{ $populate_styles = $populate_styles | append $render_style_vimeo }}
+{{ end }}
+
+
+<!-- render youtube -->
+{{ if .Page.Store.Get "render_youtube" }} 
+    {{ $render_style_ytube := resources.Get "script/based/protos/styles/render/ytube.scss" | toCSS }}
+    {{ $populate_styles = $populate_styles | append $render_style_ytube }}
+{{ end }}
+
+
+<!-- render lazy load -->
+{{ $render_style_based   := resources.Get "script/based/protos/styles/render/_main.scss"  | toCSS }}
+{{ $populate_styles = $populate_styles | append $render_style_based }}
+
+
+
+<!-- BASED CLASS  -->
+{{ $themes_based := resources.Get "script/based/protos/styles/based/_main.scss" | toCSS }}
+{{ $populate_styles = $populate_styles | append $themes_based }}
+
+
+
+<!-- MODULE CLASS -->
+{{ $modul_printer  := resources.Get "script/based/modul/printer/styles/_main.scss" | toCSS }}
+{{ $populate_styles = $populate_styles | append $modul_printer }}
+
+
+{{ $modul_searchs := resources.Get "script/based/modul/searchs/styles/_main.scss" | toCSS }}
+{{ $populate_styles = $populate_styles | append $modul_searchs }}
+
+{{ $modul_webapps := resources.Get "script/based/modul/webapp/styles/_main.scss" | toCSS }}
+{{ $populate_styles = $populate_styles | append $modul_webapps }}
+
+
+{{ $modul_youtube := resources.Get "script/based/modul/youtube/styles/_main.scss"  | toCSS}}
+{{ $populate_styles = $populate_styles | append $modul_webapps }}
+
+
+<!-- RENDER -->
+
+<!-- based styles -->
+{{- if hugo.IsProduction -}}
+    {{ $based_styles := print "css/" ( delimit (shuffle (split (md5 .Title ) "" )) ""  | urlize )  ".css"  }}
+    {{- $render_styles := $populate_styles | resources.Concat $based_styles | resources.ExecuteAsTemplate $based_styles . | toCSS |  minify | fingerprint  -}}
+    <link id="base-css"  type="text/css" rel="stylesheet" href="{{ $render_styles.RelPermalink | safeURL }}" integrity="{{ $render_styles.Data.Integrity | safeHTMLAttr }}"/>
+{{- else -}}
+    {{- $render_styles := $populate_styles | resources.Concat "css/base.css" | toCSS -}}
+    <link id="base-css"  type="text/css" rel="stylesheet" href="{{ $render_styles.RelPermalink | safeURL }}" />
+{{- end -}}
+
+
+<!-- paged styles -->
+{{- if .Scratch.Get "page_css" -}}
+    {{- $paged_style := .Scratch.Get "page_css" -}}
+    {{ if hugo.IsProduction }}
+        {{ range slice $paged_style }}
+            {{- $style := resources.Get .src | resources.ExecuteAsTemplate .dest . | toCSS | minify | fingerprint -}}
+            <link id="page-css"  type="text/css" rel="stylesheet" href="{{ $style.RelPermalink | safeURL }}" integrity="{{ $style.Data.Integrity | safeHTMLAttr }}"/>
+        {{- end -}}
+    {{ else }}
+        {{ range slice $paged_style }}
+            {{- $style := resources.Get .src | resources.ExecuteAsTemplate .dest . | toCSS  -}}
+            <link id="page-css"  type="text/css" rel="stylesheet" href="{{ $style.RelPermalink | safeURL }}" />
+        {{- end }}
+    {{ end }}
+{{- end -}}

@@ -1,0 +1,7 @@
+{{ if and ( eq .Site.Params.searchs.status true ) ( ne .Page.Title "Search" )  }}
+    {{ $search_tag :=  T "search_tag" | safeHTML }}
+    <div class="search-form line flex align-v round-7">
+        <label><img class="icons" src="/glyph//icons/general/search.svg" width="22" height="22" alt="heading search icons"></label>
+        <input type="search" id="search-input" placeholder="{{ $search_tag }}" autocomplete="off">
+    </div>
+{{ end }}

@@ -1,0 +1,15 @@
+<!-- paged styles -->
+{{- if .Scratch.Get "page_css" -}}
+    {{- $paged_style := .Scratch.Get "page_css" -}}
+    {{ if hugo.IsProduction }}
+        {{ range slice $paged_style }}
+            {{- $style := resources.Get .src | resources.ExecuteAsTemplate .dest . | toCSS | minify | fingerprint -}}
+            <link id="page-css"  type="text/css" rel="stylesheet" href="{{ $style.RelPermalink | safeURL }}" integrity="{{ $style.Data.Integrity | safeHTMLAttr }}"/>
+        {{- end -}}
+    {{ else }}
+        {{ range slice $paged_style }}
+            {{- $style := resources.Get .src | resources.ExecuteAsTemplate .dest . | toCSS  -}}
+            <link id="page-css"  type="text/css" rel="stylesheet" href="{{ $style.RelPermalink | safeURL }}" />
+        {{- end }}
+    {{ end }}
+{{- end -}}

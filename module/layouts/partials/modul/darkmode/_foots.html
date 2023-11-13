@@ -1,0 +1,11 @@
+{{ $darkmode  := slice }}
+{{ $scriptall := slice "main" "function" "karim" }}
+
+{{ range $scriptall }}
+    {{ $src := print "jsx/" . ".js" }}
+    {{ $dst := print "jsx/darkmode.js" }}
+    {{ $darkmode = $darkmode | append ( dict "src" $src "dest" $dst  )  }}
+{{ end  }}
+
+{{ return $darkmode }}
+

@@ -1,0 +1,3 @@
+{{ $comment := slice }}
+{{ $comment = $comment | append ( dict "src" "comment/js" "dest" "jsx/comment.js"  )  }}
+{{ return $comment }}
