@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="{{ site.Language.Lang }}" data-mode="auto">
+	<head>
+		{{- partial "based/critical" . -}}
+		{{- block "head" . -}}{{- end -}}
+	</head>
+	<body id="pagetop" class="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}">
+		{{- partial "based/header" . }}
+		<main class="content">
+			{{- block "main" . }}{{ end }}
+		</main>
+		{{- partial "based/footer" . }}
+		{{- block "foot" . }}{{ end -}}
+ 		{{- partial "based/defers" . }}
+	</body>
+</html>

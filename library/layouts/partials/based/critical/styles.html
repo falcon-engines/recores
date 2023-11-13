@@ -1,0 +1,22 @@
+<!-- populate style -->
+{{ $header_style := slice }}
+{{ $render_style := "" }}
+
+
+
+<!-- register based style -->
+{{ $based := resources.Get "styles/corest/critical.scss"  | toCSS  }}
+{{ $header_style :=  $header_style | append $based }}
+
+
+<!-- populate styles -->
+{{- if hugo.IsProduction -}}
+    {{- $render_style = $header_style | resources.Concat "styles/critical.css"  | minify   -}}
+{{- else -}}
+    {{- $render_style = $header_style | resources.Concat "styles/critical.css" -}}
+{{- end -}}
+
+
+<!-- render styles -->
+<style>{{ $render_style.Content | safeCSS  }}</style>
+

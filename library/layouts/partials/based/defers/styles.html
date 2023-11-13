@@ -1,0 +1,17 @@
+{{ $footer_styles := slice }}
+
+<!-- BASED CLASS  -->
+{{ $based := resources.Get "styles/corest/defers.scss" | toCSS }}
+{{ $footer_styles = $footer_styles | append $based }}
+
+
+
+<!-- themes styles -->
+{{- if hugo.IsProduction -}}
+    {{ $based_styles := print "css/" ( delimit (shuffle (split (md5 .Title ) "" )) ""  | urlize )  ".css"  }}
+    {{- $render_style := $footer_styles | resources.Concat $based_styles | resources.ExecuteAsTemplate $based_styles . | toCSS |  minify | fingerprint  -}}
+    <link id="base-css"  type="text/css" rel="stylesheet" href="{{ $render_style.RelPermalink | safeURL }}" integrity="{{ $render_style.Data.Integrity | safeHTMLAttr }}"/>
+{{- else -}}
+    {{- $render_style := $footer_styles | resources.Concat "css/base.css" | toCSS -}}
+    <link id="base-css"  type="text/css" rel="stylesheet" href="{{ $render_style.RelPermalink | safeURL }}" />
+{{- end -}}

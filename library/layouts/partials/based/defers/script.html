@@ -1,0 +1,20 @@
+<!-- populate script -->
+{{ $scripts := slice  }}
+
+
+<!-- another module 1 -->
+{{ if fileExists "/library/layouts/partials/markline-defers.html" }}  
+    {{ $scripts = partial "_markline" ( dict "context" . "script" $scripts ) }}
+{{ end }}
+
+<!-- another module 1 -->
+{{ if fileExists "/library/layouts/partials/markline-defers.html" }}  
+    {{ $scripts = partial "datafind" ( dict "context" . "script" $scripts ) }}
+{{ end }}
+
+
+<!-- render element -->
+{{ if $scripts }}
+    {{- $render_script := $scripts | resources.Concat "jsx/falcon.js" | resources.ExecuteAsTemplate "jsx/falcon.js" . -}}
+    <script id="base-jsx" src="{{ $render_script.RelPermalink  }}" type="module" defer></script>
+{{ end }}

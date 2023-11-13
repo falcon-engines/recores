@@ -5,20 +5,12 @@
 baseURL = 'http://lectore.com/'
 
 
-##-------------------------
-## directory config
-##-------------------------
-
-contentDir = "master/content/"
-themesDir  = "plugins/"  
-publishDir = "publish"
-
 
 ##-------------------------
-## register plugins
+## themes overide
 ##-------------------------
-
-theme  = [ "based", "markline", "rebased" ]                                   
+themesDir  = "library/theme/" 
+theme  = []                                   
 
 
 ##-------------------------
@@ -71,23 +63,45 @@ disableHugoGeneratorInject = true                 # disable injection
     noJSConfigInAssets = true
 
 
+
 ##-------------------------
-## module config
+## directory config
 ##-------------------------
+
+contentDir = "datum"
+publishDir = "sites"
 
 [module]
 [[module.mounts]]
-    source = 'module/format'
+    source = 'library/format'
     target = 'archetypes'
 [[module.mounts]]
-    source = 'module/layouts'
+    source = 'library/layouts'
     target = 'layouts'
 [[module.mounts]]
-    source = 'module/langua'
+    source = 'library/auxiler'
+    target = 'layouts/auxiler'
+[[module.mounts]]
+    source = 'library/langua'
     target = 'i18n'
+[[module.mounts]]
+    source = 'library/scripts'
+    target = 'assets'
+[[module.mounts]]
+    source = 'library/styles'
+    target = 'assets/styles'
+[[module.mounts]]
+    source = 'library/shapes/fonts'
+    target = 'assets'
+[[module.mounts]]
+    source = 'library/shapes/anim'
+    target = 'assets'
+[[module.mounts]]
+    source = 'library/shapes/icons'
+    target = 'assets'
 [[module.mounts]]
     source = 'assets'
     target = 'static'
 [[module.mounts]]
-    source = 'master/datums'
+    source = 'assets/docus'
     target = 'data'
