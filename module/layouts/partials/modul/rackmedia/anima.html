@@ -1,5 +1,5 @@
 <!-- input preparation -->
-{{ $glink := partial "modul/mediarack/library/link-builder" ( dict "source" .source "format" "anima" ) }}
+{{ $glink := partial "modul/rackmedia/library/link-builder" ( dict "source" .source "format" "anima" ) }}
 
 
 <!-- variable crafting -->
@@ -29,22 +29,28 @@
 
 
     <!-- set falcon anima load -->
-    <media-rack format="anima"  unique="{{ $unique }}" source="{{ $links }}" background="{{ $cover }}"  title="{{ $title }}" direction="{{ $direc }}" autoplay="{{ $autop }}" speed="{{ $speed }}" mode="{{ $modes }}" loop="{{ $loops }}" theme="{{ $themes }}">
+    <rack-data format="anima"  unique="{{ $unique }}" source="{{ $links }}" background="{{ $cover }}"  title="{{ $title }}" direction="{{ $direc }}" autoplay="{{ $autop }}" speed="{{ $speed }}" mode="{{ $modes }}" loop="{{ $loops }}" theme="{{ $themes }}" />
     <noscript>Something Wrong, This Animation need your browser support for javaScript!</noscript>
 
     <!-- set falcon anima hook -->
     {{- $pages.Page.Store.Set "falcon_render_anima" true -}}
 
 
-{{ else }}
+{{ else if ( eq $status true ) }}
 
-
+    
     <!-- set default lazy load -->
     <div class="media grid align-a colfix" data-type="animax">
-        <dotlottie-player src="{{ $links }}" background="transparent" speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
+        <dotlottie-player src="" data-src="{{ $links }}" background="transparent" speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
         <noscript>Animation failed, your browser does not support JavaScript!</noscript>
     </div>
 
 
+{{ else  }}
+
+
+    <dotlottie-player src="{{ $links }}" background="transparent" speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
+
+    
 {{ end }}
 

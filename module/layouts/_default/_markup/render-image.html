@@ -16,75 +16,75 @@
 
 <!-- anima template -->
 {{ with ( eq ".lottie" ( path.Ext $source ) ) }}
-    {{ partial "modul/mediarack/anima" ( dict "contex" . "source" $source "covers" $alters "title" $title "pages"  $page ) }}
+    {{ partial "modul/rackmedia/anima" ( dict "contex" . "source" $source "covers" $alters "title" $title "pages"  $page ) }}
 {{ end }}
 
 
 <!-- audio template -->
 {{- $audioxt := slice ".wav" ".ogg"  ".mp3"  ".flac"  -}}
 {{ with (  in $audioxt ( path.Ext $source ) ) }}
-    {{ partial "modul/mediarack/audio" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
+    {{ partial "modul/rackmedia/audio" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
 {{ end }}
 
 
 <!-- docus template -->
 {{ with ( eq ".pdf" ( path.Ext $source ) ) }}
-    {{ partial "modul/mediarack/docus" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
+    {{ partial "modul/rackmedia/docus" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
 {{ end }}
 
 
 <!-- godoc template -->
 {{ with ( strings.Contains  $source "docs.google.com/document" ) }}
-    {{ partial "modul/mediarack/godoc" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
+    {{ partial "modul/rackmedia/godoc" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
 {{ end }}
 
 
 <!-- gopdf template -->
 {{ with ( strings.Contains $source "drive.google.com/file" ) }}
-    {{ partial "modul/mediarack/gopdf" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
+    {{ partial "modul/rackmedia/gopdf" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
 {{ end }}
 
 
 <!-- goppt template -->
 {{ with ( strings.Contains $source "docs.google.com/presentation" ) }}
-    {{ partial "modul/mediarack/gopdf" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
+    {{ partial "modul/rackmedia/gopdf" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
 {{ end }}
 
 
 <!-- goxls template -->
 {{ with ( strings.Contains $source "docs.google.com/spreadsheets" ) }}
-    {{ partial "modul/mediarack/goxls" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
+    {{ partial "modul/rackmedia/goxls" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
 {{ end }}
 
 
 <!-- image template -->
 {{- $imagext := slice ".png" ".webp" ".svg"  ".jpg"  -}}
 {{ with ( in $imagext ( path.Ext $source ) ) }}
-    {{ partial "modul/mediarack/image" ( dict "contex" . "source" $source "caption" $alters  "title" $title "pages"  $page ) }}
+    {{ partial "modul/rackmedia/image" ( dict "contex" . "source" $source "caption" $alters  "title" $title "pages"  $page ) }}
 {{ end }}
 
 
 <!-- soundcloud template -->
 {{ with ( strings.Contains $source "https://w.soundcloud.com/player/" ) }}
-    {{ partial "modul/mediarack/sclod" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
+    {{ partial "modul/rackmedia/sclod" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
 {{ end }}
 
 
 <!-- video template -->
 {{- $videoxt := slice ".mp4" ".flv"  ".webm" ".m3u8" -}}
 {{ with ( in $videoxt ( path.Ext $source ) ) }}
-    {{ partial "modul/mediarack/goxls" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
+    {{ partial "modul/rackmedia/goxls" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
 {{ end }}
 
 
 <!-- vimeo template -->
 {{ with ( strings.Contains $source "vimeo.com" ) }}
-    {{ partial "modul/mediarack/sclod" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
+    {{ partial "modul/rackmedia/sclod" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
 {{ end }}
 
 
 
 <!-- youtube template -->
 {{ with ( strings.Contains $source "youtube.com" ) }}
-    {{ partial "modul/mediarack/sclod" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
+    {{ partial "modul/rackmedia/sclod" ( dict "contex" . "source" $source "covers" $alters  "title" $title "pages"  $page ) }}
 {{ end }}

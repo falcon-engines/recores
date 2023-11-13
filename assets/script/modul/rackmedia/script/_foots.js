@@ -8,16 +8,23 @@ class media_rack {
 
 
     constructor(){
+        
 
+        console.log( 'Mediarack main class loaded.' );
 
         // validator
-        if ( ! document.querySelector( 'media-rack' ) ) {
+        if ( ! document.querySelector( 'rack-data' ) ) {
             return;
         }
 
-       
+        
 
-        this.media_wraper = document.querySelectorAll( '.media-data' );
+
+        // debugger
+        this.debugger();
+
+
+        this.media_wraper = document.querySelectorAll( 'rack-data' );
 
         // method
         this.init_data();
@@ -130,17 +137,16 @@ class media_rack {
 
     
 
-    
+    debugger() {
+
+        // debugger
+        if ( document.querySelector("meta[property='staging-environment']") == 'development' ) {
+            console.log( 'Mediarack main class loaded.' );
+        }
+    }
 
 
-
-
-
-
-
-
-
-    
+   
     // observ
     async loader() {
 

@@ -1,11 +1,11 @@
+<!-- populate script -->
+{{ $scripts := slice  }}
+
+
+<!-- rackmedia module -->
+{{ $scripts = partial "modul/rackmedia/_foots" ( dict "context" . "script" $scripts ) }}
+
+
 <!-- render element -->
-
-{{ $populate_defers := slice  }}
-
-
-{{ $populate_defers  =  partial "modul/mediarack/_foots" ( dict "context" . "script" $populate_defers )  }}
-
-
-
-{{- $render_script := $populate_defers | resources.Concat "jsx/zaza.js" | resources.ExecuteAsTemplate "jsx/zaza.js" .  -}}
+{{- $render_script := $scripts | resources.Concat "jsx/falcon.js" | resources.ExecuteAsTemplate "jsx/falcon.js" . -}}
 <script id="base-jsx" src="{{ $render_script.RelPermalink  }}" type="module" defer></script>
