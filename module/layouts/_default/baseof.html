@@ -2,19 +2,6 @@
 <!doctype html>
 <html lang="{{ site.Language.Lang }}" data-mode="auto">
 	<head>
-<<<<<<< HEAD
-		{{- partial "script/load-critical" . -}}
-	</head>
-	<body id="pagetop" class="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}">
-		<div class="main">
-			{{- partial "based/header" . }}
-			<main class="content">
-				{{- block "main" . }}{{ end }}
-			</main>
-			{{- partial "based/footer" . }}
-		</div>
-		{{- partial "script/load-normal" . }}
-=======
 		{{- partial "protos/critical" . -}}
 		{{- block "json_meta" . -}}{{- end -}}
 	</head>
@@ -25,6 +12,5 @@
 		</main>
 		{{- partial "based/footer" . }}
  		{{- partial "protos/defers" . }}
->>>>>>> origin/main
 	</body>
 </html>

@@ -10,7 +10,7 @@ baseURL = 'http://lectore.com/'
 ##-------------------------
 
 contentDir = "master/content/"
-themesDir  = "module/plugins/"  
+themesDir  = "plugins/"  
 publishDir = "publish"
 
 
@@ -18,7 +18,7 @@ publishDir = "publish"
 ## register plugins
 ##-------------------------
 
-theme  = [ "based" ]                                   
+theme  = [ "based", "markline", "rebased" ]                                   
 
 
 ##-------------------------

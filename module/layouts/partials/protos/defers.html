@@ -3,8 +3,10 @@
 
 
 <!-- rackmedia module -->
-{{ $scripts = partial "modul/rackmedia/_foots" ( dict "context" . "script" $scripts ) }}
+{{ $scripts = partial "_markline" ( dict "context" . "script" $scripts ) }}
 
+
+{{ $scripts = partial "datafind" ( dict "context" . "script" $scripts ) }}
 
 <!-- render element -->
 {{- $render_script := $scripts | resources.Concat "jsx/falcon.js" | resources.ExecuteAsTemplate "jsx/falcon.js" . -}}
