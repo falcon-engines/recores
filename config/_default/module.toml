@@ -1,0 +1,31 @@
+
+## import module
+[[imports]]
+    path = "github.com/rozard-falcon/rozarder"
+
+
+## main skeleton
+[[mounts]]
+    source = 'library/format'
+    target = 'archetypes'
+[[mounts]]
+    source = 'library/layout'
+    target = 'layouts'
+[[mounts]]
+    source = 'library/auxiler'
+    target = 'layouts/auxiler'
+[[mounts]]
+    source = 'library/langua'
+    target = 'i18n'
+[[mounts]]
+    source = 'library/scripts/njsx'
+    target = 'assets/jsx'
+[[mounts]]
+    source = 'library/scripts/scss'
+    target = 'assets/css'
+[[mounts]]
+    source = 'assets'
+    target = 'static'
+[[mounts]]
+    source = 'assets/docus'
+    target = 'data'

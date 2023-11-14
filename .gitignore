@@ -3,3 +3,6 @@
 
 # ignore hugo build
 resources
+
+
+based.code-workspace

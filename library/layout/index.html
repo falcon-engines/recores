@@ -1,0 +1,25 @@
+{{ define "head_assets" }}
+    
+{{ end }}
+
+{{ define "scripter" }}
+    {{ $page    := . }}
+    {{ $style_1 := dict "file" "head.scss"  "scope" "all"  "load" "header" }}
+    {{ $style_2 := dict "file" "index.scss" "scope" $page  "load" "header" }}
+    {{ $style_3 := dict "file" "based.jsx"  "scope" "all"  "load" "footer" }}
+    {{ $style_3 := dict "file" "index.jsx"  "scope" $page  "load" "footer" }}
+    {{ .Scratch.Add "scripter" ( slice $style_1 $style_2 $style_3 ) }}
+{{ end }}
+
+
+{{ define "main" }}
+    {{ i18n "home" }}
+    {{ .Content }}
+    {{ .Site.Params.scripter.engine }}
+{{ end }} 
+
+{{ define "foot_assets" }}
+    {{ $.Scratch.Set "page_css" ( dict "src" "styles/pages/index.scss" "dest" "css/page-index.css" ) }}
+    {{ $.Scratch.Set "page_jsx" ( dict "src" "script/pages/index.js"   "dest" "jsx/page-index.js"  ) }}
+{{ end }}
+

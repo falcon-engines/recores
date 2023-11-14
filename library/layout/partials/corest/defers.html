@@ -1,0 +1,6 @@
+{{- if templates.Exists "partials/rozarder-defers.html" -}}
+    {{ partial "partials/rozarder-defers.html" . }}
+{{ else }}
+    {{ partial "based/defers/styles" .  }}
+    {{ partial "based/defers/script" .  }}
+{{ end }}

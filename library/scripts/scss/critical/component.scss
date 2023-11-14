@@ -1,0 +1,37 @@
+
+/* components */
+html[data-mode='dark'] .icons {
+    -webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
+}
+
+input, button, textarea, select {
+    font-size: 95%;
+}
+
+.nolist {
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+
+.search-form.line {
+    border: var(--br-primer);
+   
+    :focus-visible {
+        outline: transparent;
+    }
+    label {
+        border-right: var(--br-primer);
+    }
+    img {
+        margin: 5px 10px;
+    }
+    input {
+        padding: 5px 10px;
+        background-color: transparent;
+        border: 0;
+        color: var(--text-color-1);
+        width: 90%;
+    }
+}

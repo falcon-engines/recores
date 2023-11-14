@@ -5,20 +5,12 @@
 baseURL = 'http://lectore.com/'
 
 
-##-------------------------
-## directory config
-##-------------------------
-
-contentDir = "master/content/"
-themesDir  = "module/plugins/"  
-publishDir = "publish"
-
 
 ##-------------------------
-## register plugins
+## themes overide
 ##-------------------------
-
-theme  = [ "based" ]                                   
+# themesDir  = "library/theme/" 
+# theme  = []                                   
 
 
 ##-------------------------
@@ -71,23 +63,12 @@ disableHugoGeneratorInject = true                 # disable injection
     noJSConfigInAssets = true
 
 
+
 ##-------------------------
-## module config
+## directory config
 ##-------------------------
 
-[module]
-[[module.mounts]]
-    source = 'module/format'
-    target = 'archetypes'
-[[module.mounts]]
-    source = 'module/layouts'
-    target = 'layouts'
-[[module.mounts]]
-    source = 'module/langua'
-    target = 'i18n'
-[[module.mounts]]
-    source = 'assets'
-    target = 'static'
-[[module.mounts]]
-    source = 'master/datums'
-    target = 'data'
+contentDir = "datum"
+publishDir = "sites"
+
+

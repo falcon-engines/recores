@@ -1,0 +1,51 @@
+/* layouts */
+.grid {
+    display: grid;
+}
+.flex {
+    display: flex;
+}
+.align-a {
+    align-items: center;
+    justify-items: center;
+}
+.align-h {
+    justify-items: center;
+}
+.align-v {
+    align-items: center;
+}
+.d-block {
+    display: block;
+}
+.d-hide {
+    z-index: -1;
+    opacity: 0;
+    position: fixed;
+    visibility: hidden;
+}
+.d-none {
+    display: none;
+}
+.wrap {
+    margin: 0 auto;
+    @media ( max-width: $media-xs ), ( min-width: $media-xs )  {
+        width: calc( 100vw - 20px);
+    }
+    @media ( min-width: $media-sm )  {
+        width: 94vw;
+    }
+}
+
+/* button */
+a.btn {
+    font-size: 1rem;
+    padding: .7rem 1.75rem;
+    text-decoration: none;
+    border: var(--br-primer);
+}
+
+a.btn-primary {
+    background: var(--color-primer);
+    border: 0;
+}

@@ -1,0 +1,42 @@
+{{ $currentpage := .  }}
+{{ $menuactived := "" }}
+
+<header class="headnav default">
+    <div class="wrap my-1">
+        <div class="flex align-v fluid">
+        {{ partial "render/site-logo" . }}
+        <nav id="navigation" class="nav mr-a">
+            <ul class="navlist nolist flex align-v">
+            {{ range .Site.Menus.main }}
+                {{ if .HasChildren }}
+                    <li class="nav-submenu dropdown mx-1"> 
+                        <div class="action flex all">
+                            <p class="title no-space">{{ .Name }}</p>
+                            <img src="/glyph/icons/general/chevron-down.svg" class="icons ml-05" height="10" width="10" alt="arrow down">
+                        </div>
+                        <ul class="menu d-hide nolist">
+                            {{ range .Children }}
+                                <li class="" >
+                                    <a class="" href="{{ .URL }}"><p class="title no-space ml-1">{{ .Name }}</p></a>
+                                </li>
+                            {{ end }}
+                        </ul>
+                    </li>
+                {{ else }}
+                    <li class="mx-1" >
+                        <a class="" href="{{ .URL }}"><p class="title no-space">{{ .Name }}</p></a>
+                    </li>
+                {{ end }}
+                
+            {{ end }}
+            </ul>
+        </nav>
+        {{ if fileExists "/library/layouts/partials/searchbar/bar-default.html" }}
+            {{ partial "searchbar/bar-default" . }}
+            {{ partial "langmenu/menu-dropdown.html" . }}
+            {{ partial "darkmode/menu-dropdown.html" . }}
+        {{ end }}
+       
+        </div>
+    </div>
+</header>

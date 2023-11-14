@@ -1,0 +1,13 @@
+<!-- metadata -->
+{{ partial "corest/metadata" .  }}
+
+
+<!-- themes critical script  -->
+{{ partial "corest/critical/styles" .  }}
+{{ partial "corest/critical/script" .  }}
+
+
+<!-- framework critical script  -->
+{{- if templates.Exists "partials/rozarder-critical.html" -}}
+    {{ partial "partials/rozarder-critical.html" . }}
+{{ end }}
