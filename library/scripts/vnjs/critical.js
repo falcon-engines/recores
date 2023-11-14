@@ -1,1 +1,1 @@
-console.log('test');
+console.log('theme head script loaded');

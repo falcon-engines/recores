@@ -1,12 +1,3 @@
-<!-- define theme critical script  -->
-{{ $styles := "css/critical.scss" }}
-{{ $script := "jsx/critical.js"   }}
-
-
-<!-- register theme ciritcial script to scripter dataset  -->
-{{ .Scratch.Add "scripter_head" ( slice $styles $script ) }}
-
-
 <!-- extract scripter data  -->
 {{ $all_critical := .Scratch.Get "scripter_head" }}
 {{ $head_styles := slice }}

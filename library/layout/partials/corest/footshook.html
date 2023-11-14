@@ -1,7 +1,41 @@
-<!-- define theme default script -->
-{{ $styles := dict "src" "assets/css/defers.scss" "dest" "css/theme-based.css"  }}
-{{ $script := dict "src" "assets/jsx/defers.scss" "dest" "css/theme-based.js"  }}
+<!-- extract scripter data  -->
+{{ $all_deferer := .Scratch.Get "scripter_foot" }}
+{{ $foot_styles := slice }}
+{{ $foot_script := slice }}
+
+{{ range $all_deferer }}
+    <!-- extract styles data -->
+    {{ if strings.Contains . ".scss" }}
+        {{ $foot_styles = $foot_styles | append (  resources.Get . )  }}
+    {{ end }}
+    <!-- extract script data -->
+    {{ if strings.Contains . ".js" }}
+        {{ $foot_script = $foot_script | append (  resources.Get . )  }}
+    {{ end }}
+{{ end }}
 
 
-<!-- register default theme script to scripter dataset  -->
-{{ .Scratch.Add "scripter_foot" ( slice $styles $script ) }}
+<!-- preparing script -->
+{{ $defer_styles := "" }}
+{{ $defer_script := "" }}
+{{- if hugo.IsProduction -}}
+    {{- $defer_styles = $foot_styles | resources.Concat "css/base.css" | toCSS | minify | fingerprint -}}
+    {{- $defer_script = $foot_script | resources.Concat "jsx/theme-defer.js"  | js.Build "jsx/base.js" | minify | fingerprint -}}
+{{- else -}}
+    {{- $defer_styles = $foot_styles | resources.Concat "css/base.css" | toCSS -}}
+    {{- $defer_script = $foot_script | resources.Concat "jsx/theme-defer.js"  | js.Build "jsx/base.js" -}}
+{{- end -}}
+
+
+<!-- rendering script -->
+{{- if hugo.IsProduction -}}
+
+    <link id="base-css" type="text/css" rel="stylesheet" href="{{ $defer_styles.RelPermalink | safeURL }}" integrity="{{ $defer_styles.Data.Integrity | safeHTMLAttr }}" />
+    <script id="base-jsx"  type="module" src="{{ $defer_script.RelPermalink  }}" integrity="{{ $defer_script.Data.Integrity | safeHTMLAttr }}" defer></script>
+
+{{- else -}}
+
+    <link id="base-css" type="text/css" rel="stylesheet" href="{{ $defer_styles.RelPermalink | safeURL }}" />
+    <script id="base-jsx" type="module"  src="{{ $defer_script.RelPermalink  }}" defer></script>
+
+{{- end -}}
