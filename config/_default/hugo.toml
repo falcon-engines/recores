@@ -5,6 +5,13 @@
 baseURL = 'http://lectore.com/'
 
 
+##-------------------------
+## directory config
+##-------------------------
+
+contentDir = "datum"
+publishDir = "sites"
+
 
 ##-------------------------
 ## themes overide
@@ -64,11 +71,6 @@ disableHugoGeneratorInject = true                 # disable injection
 
 
 
-##-------------------------
-## directory config
-##-------------------------
 
-contentDir = "datum"
-publishDir = "sites"
 
 

@@ -18,10 +18,10 @@
     source = 'library/langua'
     target = 'i18n'
 [[mounts]]
-    source = 'library/scripts/vnjs'
+    source = 'library/linkers/script'
     target = 'assets/jsx'
 [[mounts]]
-    source = 'library/scripts/scss'
+    source = 'library/linkers/styles'
     target = 'assets/css'
 [[mounts]]
     source = 'assets'

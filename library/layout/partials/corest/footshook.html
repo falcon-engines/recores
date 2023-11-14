@@ -14,16 +14,18 @@
     {{ end }}
 {{ end }}
 
-
+{{ .Page.Title }}
 <!-- preparing script -->
 {{ $defer_styles := "" }}
 {{ $defer_script := "" }}
 {{- if hugo.IsProduction -}}
-    {{- $defer_styles = $foot_styles | resources.Concat "css/base.css" | toCSS | minify | fingerprint -}}
-    {{- $defer_script = $foot_script | resources.Concat "jsx/theme-defer.js"  | js.Build "jsx/base.js" | minify | fingerprint -}}
+    {{- $title_output := delimit ( shuffle (split (md5 .Title ) "" ) ) ""  | urlize   -}}
+    {{- $defer_styles = $foot_styles | resources.Concat ( print "css/" $title_output ".css" ) | resources.ExecuteAsTemplate ( print "css/" $title_output ".css" ) . | toCSS | minify | fingerprint -}}
+    {{- $defer_script = $foot_script | resources.Concat ( print "jsx/" $title_output ".js" )  | resources.ExecuteAsTemplate ( print "jsx/" $title_output ".js" ) .  | js.Build ( print "jsx/" $title_output ".js" ) | minify | fingerprint -}}
 {{- else -}}
-    {{- $defer_styles = $foot_styles | resources.Concat "css/base.css" | toCSS -}}
-    {{- $defer_script = $foot_script | resources.Concat "jsx/theme-defer.js"  | js.Build "jsx/base.js" -}}
+    {{- $title_output := .Title  | urlize -}}
+    {{- $defer_styles = $foot_styles | resources.Concat ( print "css/" $title_output ".css" ) | resources.ExecuteAsTemplate ( print "css/" $title_output ".css" ) . | toCSS -}}
+    {{- $defer_script = $foot_script | resources.Concat ( print "jsx/" $title_output ".js" )  | resources.ExecuteAsTemplate ( print "jsx/" $title_output ".js" )  . | js.Build ( print "jsx/" $title_output ".js" ) -}}
 {{- end -}}
 
 
