@@ -1,3 +1,18 @@
+<!-- populate style -->
+
+
+<!-- based style group -->
+{{ $based := resources.Get "css/critical.scss"  | resources.ExecuteAsTemplate "css/base.css" . | toCSS  }}
+
+
+<!-- paged style group -->
+{{ if .Scratch.Get "head_css" }}
+    {{ $paged := resources.Get ( .Scratch.Get "head_css"  ) | toCSS  }}
+    {{ $populate_style =  $populate_style | append $paged }}
+{{ end }}
+
+
+
 
 
 

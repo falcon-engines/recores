@@ -1,0 +1,9 @@
+<!-- script dataset -->
+{{ .Scratch.Set "scripter_head" slice }}
+{{ .Scratch.Set "scripter_foot" slice }}
+
+
+<!-- engine : autoload module -->
+{{- if templates.Exists "partials/rozarder.html" -}}
+    {{ partial "partials/rozarder"  . }}
+{{ end }}

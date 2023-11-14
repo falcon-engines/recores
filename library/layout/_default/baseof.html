@@ -1,8 +1,11 @@
+
 <!doctype html>
 <html lang="{{ site.Language.Lang }}" data-mode="auto">
 	<head>
-		{{- partial "corest/critical" . -}}
-		{{- block "head" . -}}{{- end -}}
+		{{- partial "corest/corehook" . -}}
+		{{- partial "corest/metahook" . -}}
+		{{- block "headset" . }}{{- end -}}
+		{{- partial "corest/headhook" . -}}
 	</head>
 	<body id="pagetop" class="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}">
 		{{- partial "render/navbar" . }}
@@ -10,7 +13,7 @@
 			{{- block "main" . }}{{ end }}
 		</main>
 		{{- partial "render/footer" . }}
-		{{- block "foot" . }}{{ end -}}
- 		{{- partial "corest/defers" . }}
+		{{- block "footset" . }}{{ end -}}
+ 		{{- partial "corest/footshook" . }}
 	</body>
 </html>

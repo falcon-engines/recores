@@ -1,0 +1,42 @@
+<!-- define theme critical script  -->
+{{ $styles := "css/critical.scss" }}
+{{ $script := "jsx/critical.js"   }}
+
+
+<!-- register theme ciritcial script to scripter dataset  -->
+{{ .Scratch.Add "scripter_head" ( slice $styles $script ) }}
+
+
+<!-- extract scripter data  -->
+{{ $all_critical := .Scratch.Get "scripter_head" }}
+{{ $head_styles := slice }}
+{{ $head_script := slice }}
+
+{{ range $all_critical }}
+    <!-- extract styles data -->
+    {{ if strings.Contains . ".scss" }}
+        {{ $head_styles = $head_styles | append (  resources.Get . )  }}
+    {{ end }}
+    <!-- extract script data -->
+    {{ if strings.Contains . ".js" }}
+        {{ $head_script = $head_script | append (  resources.Get . )  }}
+    {{ end }}
+{{ end }}
+
+
+
+<!-- preparing script -->
+{{ $critical_styles := "" }}
+{{ $critical_script := "" }}
+{{- if hugo.IsProduction -}}
+    {{- $critical_styles = $head_styles | resources.Concat "css/theme-critical.css" | toCSS | minify  -}}
+    {{- $critical_script = $head_script | resources.Concat "jsx/theme-critical.js"  | js.Build "jsx/theme-critical.js" | minify  -}}
+{{- else -}}
+    {{- $critical_styles = $head_styles | resources.Concat "css/theme-critical.css" | toCSS -}}
+    {{- $critical_script = $head_script | resources.Concat "jsx/theme-critical.js"  | js.Build "jsx/theme-critical.js" -}}
+{{- end -}}
+
+
+<!-- rendering script -->
+<style>{{ $critical_styles.Content  | safeCSS }}</style>
+<script>{{ $critical_script.Content | safeJS }}</script>

@@ -18,7 +18,7 @@
     source = 'library/langua'
     target = 'i18n'
 [[mounts]]
-    source = 'library/scripts/njsx'
+    source = 'library/scripts/vnjs'
     target = 'assets/jsx'
 [[mounts]]
     source = 'library/scripts/scss'

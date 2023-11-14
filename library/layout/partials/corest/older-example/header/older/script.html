@@ -1,25 +1,14 @@
-<!-- populate script -->
-{{ $populate_script := slice }}
-{{ $critical_script := "" }}
 
 
 <!-- based script group -->
-{{ $based := resources.Get "script/based/protos/script/critical/_main.js" | js.Build "jsx/based-core.js"  }}
-{{ $populate_script =  $populate_script | append $based }}
+{{ $based := resources.Get "script/vnjs/critical.js" | js.Build "jsx/based-core.js"  }}
 
 
 <!-- paged script group -->
 {{ if .Scratch.Get "head_jsx" }}
     {{ $paged := resources.Get ( .Scratch.Get "head_jsx"  ) | js.Build "jsx/paged-core.js"  }}
-    {{ $populate_script =  $populate_script | append $paged }}
 {{ end }}
 
 
-<!-- render critical script -->
-{{- if hugo.IsProduction -}}
-    {{- $critical_script = $populate_script | resources.Concat "script/critical.js" | minify   -}}
-{{- else -}}
-    {{- $critical_script = $populate_script | resources.Concat "script/critical.js" -}}
-{{- end -}}
-<script>{{ $critical_script.Content | safeJS  }}</script>
+
 

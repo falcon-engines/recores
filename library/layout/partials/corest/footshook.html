@@ -1,0 +1,7 @@
+<!-- define theme default script -->
+{{ $styles := dict "src" "assets/css/defers.scss" "dest" "css/theme-based.css"  }}
+{{ $script := dict "src" "assets/jsx/defers.scss" "dest" "css/theme-based.js"  }}
+
+
+<!-- register default theme script to scripter dataset  -->
+{{ .Scratch.Add "scripter_foot" ( slice $styles $script ) }}
