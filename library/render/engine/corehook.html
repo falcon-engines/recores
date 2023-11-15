@@ -4,14 +4,14 @@
 
 
 <!-- theme head dataset -->
-{{ $styles_head := "css/critical/_main.scss" }}
-{{ $script_head := "jsx/critical/_main.js"   }}
+{{ $styles_head := "theme/styles/critical/_main.scss" }}
+{{ $script_head := "theme/script/critical/_main.js"   }}
 {{ .Scratch.Add "scripter_head" ( slice $styles_head $script_head ) }}
 
 
 <!-- theme foot dataset -->
-{{ $styles_foot := "css/defers/_main.scss" }}
-{{ $script_foot := "jsx/defers/_main.js"   }}
+{{ $styles_foot := "theme/styles/defers/_main.scss" }}
+{{ $script_foot := "theme/script/defers/_main.js"   }}
 {{ .Scratch.Add "scripter_foot" ( slice $styles_foot $script_foot ) }}
 
 
@@ -19,8 +19,8 @@
 {{ $all_modules := slice "rozarder" }}
 {{ $context_now := . }}
 {{ range $all_modules }}
-    {{- if templates.Exists ( print "partials/" . ".html" ) -}}
-        {{ partial ( print "partials/" .  ) $context_now }}
+    {{- if templates.Exists ( print "partials/" . "/constructor.html" ) -}}
+        {{ partial ( print "partials/" . "/constructor" ) $context_now }}
     {{ end }}
 {{ end }}
 

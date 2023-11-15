@@ -1,30 +1,87 @@
+## -----------------------
+##  IMPORT MODULE
+## -----------------------
 
-## import module
+## ---- Import rozarder : Icons, fonts, animation, script and styles framework 
+
 [[imports]]
     path = "github.com/rozard-falcon/rozarder"
 
-## main skeleton
+
+
+
+
+
+## -----------------------
+##  REBASED STRUCTURE
+## -----------------------
+
+## ---- rebased archetypes directory
+
 [[mounts]]
     source = 'library/format'
     target = 'archetypes'
+
+
+
+
+## ----- rebased layouts directory
+
 [[mounts]]
-    source = 'library/layout'
+    source = 'library/render'
     target = 'layouts'
 [[mounts]]
-    source = 'library/auxiler'
-    target = 'layouts/auxiler'
+    source = 'library/render/_cores'
+    target = 'layouts/_default'
+[[mounts]]
+    source = 'library/render/_cores/core.html'
+    target = 'layouts/_default/baseof.html'
+[[mounts]]
+    source = 'library/render/_cores/listing.html'
+    target = 'layouts/_default/list.html'
+[[mounts]]
+    source = 'library/render/paged'
+    target = 'layouts/_default'
+[[mounts]]
+    source = 'library/parted'
+    target = 'layouts/partials'
+[[mounts]]
+    source = 'library/render/engine'
+    target = 'layouts/partials/engine'
+[[mounts]]
+    source = 'library/auxile'
+    target = 'layouts/partials/bin'
+[[mounts]]
+    source = 'library/render/section'
+    target = 'layouts/partials/section'
+[[mounts]]
+    source = 'library/render/blocks'
+    target = 'layouts/partials/blocks'
+[[mounts]]
+    source = 'library/render/modul'
+    target = 'static/modul'
+
+
+
+## ---- rebase languange directory
+
 [[mounts]]
     source = 'library/langua'
     target = 'i18n'
+
+
+
+## ---- rebase static directory
+
+
 [[mounts]]
-    source = 'library/linkers/script'
-    target = 'assets/jsx'
-[[mounts]]
-    source = 'library/linkers/styles'
-    target = 'assets/css'
-[[mounts]]
-    source = 'assets'
+    source = 'library/statics'
     target = 'static'
+
+
+
+## ---- rebase data directory 
+
 [[mounts]]
-    source = 'assets/docus'
+    source = 'assets/media/docus'
     target = 'data'

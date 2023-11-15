@@ -9,8 +9,8 @@ baseURL = 'http://lectore.com/'
 ## directory config
 ##-------------------------
 
-contentDir = "datum"
-publishDir = "sites"
+contentDir = "drafter"
+
 
 
 ##-------------------------
