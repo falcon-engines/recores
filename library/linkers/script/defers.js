@@ -1,1 +1,1 @@
-console.log('theme foot script loaded');
+console.log('theme - core module - foot script loaded');

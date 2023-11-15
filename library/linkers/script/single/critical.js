@@ -1,0 +1,1 @@
+console.log('theme - single module - head script loaded.');

@@ -3,8 +3,8 @@
 <html lang="{{ site.Language.Lang }}" data-mode="auto">
 	<head>
 		{{- partial "corest/corehook" . -}}
-		{{- partial "corest/metahook" . -}}
 		{{- block "headset" . }}{{- end -}}
+		{{- partial "corest/metahook" . -}}
 		{{- partial "corest/headhook" . -}}
 	</head>
 	<body id="pagetop" class="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}">
