@@ -1,5 +1,14 @@
 {{ define "headset" }}
 
+    <!-- theme page head dataset -->
+    {{ $styles_head := resources.Get "theme/styles/critical/single.scss" }}
+    {{ $script_head := resources.Get "theme/script/critical/single.js"   }}
+    {{ .Scratch.Add "scripter_head" ( slice $styles_head $script_head ) }}
+
+    <!-- theme page head dataset -->
+    {{ $styles_page := resources.Get "theme/styles/defers/single.scss" }}
+    {{ $script_page := resources.Get "theme/script/defers/single.js"   }}
+    {{ .Scratch.Add "scripter_foot" ( slice $styles_page $script_page ) }}
 {{ end }}
 
 

@@ -1,5 +1,38 @@
-{{- if templates.Exists "partials/rozarder/defershook.html" -}}
-    {{ partial "rozarder/defershook" . }}
-{{ else }}
-
+<!-- extract scripter data  -->
+{{ $all_deferer := .Scratch.Get "scripter_foot" }}
+{{ $foot_styles := slice }}
+{{ $foot_script := slice }}
+{{ range $all_deferer }}
+    <!-- extract styles data -->
+    {{ if strings.Contains . ".scss" }}
+        {{ $foot_styles = $foot_styles | append (  resources.Get . )  }}
+    {{ end }}
+    <!-- extract script data -->
+    {{ if strings.Contains . ".js" }}
+        {{ $foot_script = $foot_script | append (  resources.Get . )  }}
+    {{ end }}
 {{ end }}
+
+
+<!-- preparing script -->
+{{ $defer_styles := "" }}
+{{ $defer_script := "" }}
+{{- if hugo.IsProduction -}}
+    {{- $title_output := delimit ( shuffle (split (md5 .Title ) "" ) ) ""  | urlize   -}}
+    {{- $defer_styles = $foot_styles | resources.Concat ( print "css/" $title_output ".css" ) | resources.ExecuteAsTemplate ( print "css/" $title_output ".css" ) . | toCSS | minify | fingerprint -}}
+    {{- $defer_script = $foot_script | resources.Concat ( print "jsx/" $title_output ".js" )  | resources.ExecuteAsTemplate ( print "jsx/" $title_output ".js" ) .  | js.Build ( print "jsx/" $title_output ".js" ) | minify | fingerprint -}}
+{{- else -}}
+    {{- $title_output := .Title  | urlize -}}
+    {{- $defer_styles = $foot_styles | resources.Concat ( print "css/" $title_output ".css" ) | resources.ExecuteAsTemplate ( print "css/" $title_output ".css" ) . | toCSS -}}
+    {{- $defer_script = $foot_script | resources.Concat ( print "jsx/" $title_output ".js" )  | resources.ExecuteAsTemplate ( print "jsx/" $title_output ".js" )  . | js.Build ( print "jsx/" $title_output ".js" ) -}}
+{{- end -}}
+
+
+<!-- rendering script -->
+{{- if hugo.IsProduction -}}
+    <link id="base-css" type="text/css" rel="stylesheet" href="{{ $defer_styles.RelPermalink | safeURL }}" integrity="{{ $defer_styles.Data.Integrity | safeHTMLAttr }}" />
+    <script id="base-jsx"  type="module" src="{{ $defer_script.RelPermalink  }}" integrity="{{ $defer_script.Data.Integrity | safeHTMLAttr }}" defer></script>
+{{- else -}}
+    <link id="base-css" type="text/css" rel="stylesheet" href="{{ $defer_styles.RelPermalink | safeURL }}" />
+    <script id="base-jsx" type="module"  src="{{ $defer_script.RelPermalink  }}" defer></script>
+{{- end -}}

@@ -1,0 +1,27 @@
+<!-- 
+    ENGINE ASSETS
+    // populate and render scripts for themes and falcon module 
+-->
+
+<!-- define critical scripts dataset : engine/scripter/headhook -->
+{{- .Scratch.Set "scripter_head" slice -}}
+
+
+<!-- define deferers scripts dataset : engine/scripter/foothook -->
+{{- .Scratch.Set "scripter_foot" slice -}}
+
+
+<!-- register script from all available module -->
+{{- partial "engine/scripthook/pluginhook" . -}}
+
+
+<!-- register script from current active theme -->
+{{- partial "engine/scripthook/themehook"  . -}}
+
+
+
+<!-- 
+    METADATA
+    // render all metadata for hugo sites
+-->
+{{- partial "engine/metadata/native" . -}}

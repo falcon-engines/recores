@@ -1,0 +1,10 @@
+<!-- register critical theme assets -->
+{{ $styles_head := "theme/styles/critical/_main.scss" }}
+{{ $script_head := "theme/script/critical/_main.js"   }}
+{{ .Scratch.Add "scripter_head" ( slice $styles_head $script_head ) }}
+
+
+<!-- register footer theme assets -->
+{{ $styles_foot := "theme/styles/defers/_main.scss" }}
+{{ $script_foot := "theme/script/defers/_main.js"   }}
+{{ .Scratch.Add "scripter_foot" ( slice $styles_foot $script_foot ) }}

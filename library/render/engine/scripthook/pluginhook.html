@@ -1,0 +1,10 @@
+<!-- autoload critical script from another falcons modules -->
+{{ $all_modules := slice "rozarder" }}
+
+
+{{ $context_now := . }}
+{{ range $all_modules }}
+    {{- if templates.Exists ( print "partials/" . "/scripter.html" ) -}}
+        {{ partial ( print "partials/" . "/scripter" ) $context_now }}
+    {{ end }}
+{{ end }}
