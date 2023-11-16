@@ -1,7 +1,4 @@
-<!-- 
-    ENGINE ASSETS
-    // populate and render scripts for themes and falcon module 
--->
+<!-- ENGINE ASSETS -->
 
 <!-- define critical scripts dataset : engine/scripter/headhook -->
 {{- .Scratch.Set "scripter_head" slice -}}
@@ -20,8 +17,5 @@
 
 
 
-<!-- 
-    METADATA
-    // render all metadata for hugo sites
--->
+<!-- METADATA  -->
 {{- partial "engine/metadata/native" . -}}

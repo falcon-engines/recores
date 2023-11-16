@@ -4,7 +4,7 @@
 
 {{ $context_now := . }}
 {{ range $all_modules }}
-    {{- if templates.Exists ( print "partials/" . "/scripter.html" ) -}}
-        {{ partial ( print "partials/" . "/scripter" ) $context_now }}
+    {{- if templates.Exists ( print "partials/" . "/hookers.html" ) -}}
+        {{ partial ( print "partials/" . "/hookers" ) $context_now }}
     {{ end }}
 {{ end }}

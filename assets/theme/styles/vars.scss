@@ -12,27 +12,5 @@ html[data-mode='dark'] {
 
 
 html {
-    // coloring
     --color-back-1 : #fff;
-}
- 
-
-/*  normalize class  */
-
-* {
-    margin:0;
-}
-
-*, *::before, *::after {
-    box-sizing: inherit;
-}
-
-#root, #__next {
-    isolation: isolate;
-}
-
-html{
-    box-sizing: border-box;
-    overflow-x: hidden;
-    touch-action: manipulation;
 }
