@@ -8,8 +8,7 @@ baseURL = 'http://lectore.com/'
 ##-------------------------
 ## directory config
 ##-------------------------
-
-contentDir = "drafter"
+contentDir = "plates"
 
 
 

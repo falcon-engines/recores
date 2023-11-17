@@ -5,10 +5,11 @@
 ## ---- Import rozarder : Icons, fonts, animation, script and styles framework 
 
 [[imports]]
-    path = "github.com/rozard-falcon/rozarder"
+    path = "github.com/rozard-falcon/colorize"
 
 
-
+[[imports]]
+    path = "github.com/rozard-falcon/robicons"
 
 
 
@@ -24,13 +25,14 @@
     target = 'archetypes'
 
 
-
-
 ## ----- rebased layouts directory
 
 [[mounts]]
     source = 'library/render'
     target = 'layouts'
+[[mounts]]
+    source = 'library/render'
+    target = 'layouts/partials'
 [[mounts]]
     source = 'library/render/_cores'
     target = 'layouts/_default'
@@ -44,45 +46,29 @@
     source = 'library/render/paged'
     target = 'layouts/_default'
 [[mounts]]
-    source = 'library/parted'
-    target = 'layouts/partials'
-[[mounts]]
-    source = 'library/render/engine'
-    target = 'layouts/partials/engine'
-[[mounts]]
     source = 'library/auxile'
     target = 'layouts/partials/bin'
 [[mounts]]
-    source = 'library/render/section'
-    target = 'layouts/partials/section'
-[[mounts]]
     source = 'library/render/blocks'
-    target = 'layouts/partials/blocks'
+    target = 'layouts/shortcodes'
 [[mounts]]
     source = 'library/render/modul'
     target = 'static/modul'
 
 
-
 ## ---- rebase languange directory
-
 [[mounts]]
     source = 'library/langua'
     target = 'i18n'
 
 
-
 ## ---- rebase static directory
-
-
 [[mounts]]
     source = 'library/statics'
     target = 'static'
 
 
-
 ## ---- rebase data directory 
-
 [[mounts]]
-    source = 'assets/media/docus'
+    source = 'assets/datums'
     target = 'data'
