@@ -63,6 +63,8 @@ images      = ['images/sample.jpg']                 # site default images
         unique = 'yn-measurment-id'                 # yandex measure id  
     [bing]
         unique = 'bn-measurment-id'                 # bing measure id  
+
+        
         
 # Helpers Engines Mode Engine
 [assistant]

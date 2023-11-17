@@ -67,9 +67,3 @@ disableHugoGeneratorInject = true                 # disable injection
 
 [build]
     noJSConfigInAssets = true
-
-
-
-
-
-
