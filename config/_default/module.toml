@@ -8,15 +8,9 @@
     path = "github.com/rozard-falcon/colorize"
 
 
-[[imports]]
-    path = "github.com/rozard-falcon/robicons"
-
-
-
 ## -----------------------
 ##  REBASED STRUCTURE
 ## -----------------------
-
 
 ## ---- rebased archetypes directory
 
@@ -34,20 +28,11 @@
     source = 'library/render'
     target = 'layouts/partials'
 [[mounts]]
-    source = 'library/render/_cores'
-    target = 'layouts/_default'
-[[mounts]]
-    source = 'library/render/_cores/core.html'
-    target = 'layouts/_default/baseof.html'
-[[mounts]]
-    source = 'library/render/_cores/listing.html'
-    target = 'layouts/_default/list.html'
-[[mounts]]
     source = 'library/render/paged'
     target = 'layouts/_default'
 [[mounts]]
-    source = 'library/auxile'
-    target = 'layouts/partials/bin'
+    source = 'library/auxiles'
+    target = 'layouts/partials'
 [[mounts]]
     source = 'library/render/blocks'
     target = 'layouts/shortcodes'

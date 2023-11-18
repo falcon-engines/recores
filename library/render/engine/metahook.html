@@ -1,21 +1,8 @@
-<!-- ENGINE ASSETS -->
-
-<!-- define critical scripts dataset : engine/scripter/headhook -->
-{{- .Scratch.Set "scripter_head" slice -}}
-
-
-<!-- define deferers scripts dataset : engine/scripter/foothook -->
-{{- .Scratch.Set "scripter_foot" slice -}}
-
-
-<!-- register script from all available module -->
-{{- partial "engine/scripthook/pluginhook" . -}}
-
-
-<!-- register script from current active theme -->
-{{- partial "engine/scripthook/themehook"  . -}}
-
-
 
 <!-- METADATA  -->
 {{- partial "engine/metadata/native" . -}}
+
+
+
+
+
