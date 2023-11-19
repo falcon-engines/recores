@@ -1,0 +1,33 @@
+/* media queries
+––––––––––––––––––––––––––––––––––––––––––––––––– 
+    Note: The best way to structure the use of media queries is to create the queries
+    near the relevant code. For example, if you wanted to change the styles for buttons
+    on small devices, paste the mobile query code up in the buttons section and style it
+    there.
+
+    1. media-xs   : 420px;
+    2. media-sm   : 768px;
+    3. media-md   : 992px;
+    4. media-lg   : 1200px;
+    5. media-xl   : 1400px;
+    6. media-gx   : 1956px;
+
+*/
+
+
+.flex {
+    display: inline-flex;
+}
+
+.flex.center-y.center-x {
+    align-items: center;
+    justify-content: center;
+}
+
+.flex.center-x {
+    align-items: center;
+}
+
+.flex.center-y {
+    justify-content: center;
+}

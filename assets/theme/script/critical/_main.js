@@ -1,1 +1,0 @@
-console.log('theme - core module - head script loaded');

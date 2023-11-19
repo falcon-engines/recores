@@ -1,0 +1,67 @@
+/* media queries
+––––––––––––––––––––––––––––––––––––––––––––––––– 
+    Note: The best way to structure the use of media queries is to create the queries
+    near the relevant code. For example, if you wanted to change the styles for buttons
+    on small devices, paste the mobile query code up in the buttons section and style it
+    there.
+
+    1. media-xs   : 420px;
+    2. media-sm   : 768px;
+    3. media-md   : 992px;
+    4. media-lg   : 1200px;
+    5. media-xl   : 1400px;
+    6. media-gx   : 1956px;
+
+*/
+
+
+.loader-round {
+    display: inline-block;
+    position: absolute;
+    width: 99px;
+    height: 99px;
+    div {
+        position: absolute;
+        opacity: 1;
+        border-radius: 50%;
+        animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+    div:nth-child(2) {
+        animation-delay: -0.5s;
+    }
+    @keyframes lds-ripple {
+        0% {
+			top: 36px;
+			left: 36px;
+			width: 0;
+			height: 0;
+			opacity: 0;
+        }
+        4.9% {
+			top: 36px;
+			left: 36px;
+			width: 0;
+			height: 0;
+			opacity: 0;
+        }
+        5% {
+			top: 36px;
+			left: 36px;
+			width: 0;
+			height: 0;
+			opacity: 1;
+        }
+        100% {
+			top: 0px;
+			left: 0px;
+			width: 72px;
+			height: 72px;
+			opacity: 0;
+        }
+    }  
+}
+.loader-round.hide{
+    opacity: 0;
+    transition: opacity 1s linear 1s; 
+}
+

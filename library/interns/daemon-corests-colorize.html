@@ -1,0 +1,45 @@
+<!-- define variable -->
+
+
+{{ $styles_head := slice }}
+{{ $script_head := slice }}
+{{ $styles_foot := slice }}
+{{ $script_foot := slice }}
+{{ $contex_page := . }}
+
+
+<!-- populate script -->
+{{ range $section, $data := .Site.Params.colorize }}
+   
+
+    {{ if and ( eq $section "styles" ) ( $data.head ) }}
+        {{ range $data.head }}
+            {{ $assets_path := print "colorize/styles/head/" . ".scss" }}
+            {{ partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "head" "cond" "" ) }}
+        {{ end }}
+    {{ end }}
+
+
+    {{ if and ( eq $section "styles" ) ( $data.foot )  }}
+        {{ range $data.foot }}
+            {{ $assets_path := print "colorize/styles/foot/" . ".scss" }}
+            {{ partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "foot" "cond" "" ) }}
+        {{ end }}
+    {{ end }}
+
+
+    {{ if and ( eq $section "script" ) ( $data.head )  }}
+        {{ range $data.head }}
+            {{ $assets_path := print "colorize/script/head/" . ".js" }}
+            {{ partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "head" "cond" "" ) }}
+        {{ end }}
+    {{ end }}
+
+
+    {{ if and ( eq $section "script" ) ( $data.foot )  }}
+        {{ range $data.foot }}
+            {{ $assets_path := print "colorize/script/foot/" . ".js" }}
+            {{ partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "foot" "cond" "" ) }}
+        {{ end }}
+    {{ end }}
+{{ end }}

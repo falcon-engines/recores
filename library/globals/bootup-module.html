@@ -1,0 +1,8 @@
+{{ $falcon_modules_index := partial "corelister" ( dict "type" "modules" ) }}
+{{ $context_now := . }}
+
+{{ range $falcon_modules_index }}
+    {{- if templates.Exists ( print "partials/" . "/engine/bootup.html" ) -}}
+        {{ partial ( print "partials/" . "/engine/bootup" ) $context_now }}
+    {{ end }}
+{{ end }}

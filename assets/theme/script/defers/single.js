@@ -1,1 +1,0 @@
-console.log('theme - single module - foot script loaded');

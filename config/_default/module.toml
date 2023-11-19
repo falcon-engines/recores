@@ -9,72 +9,72 @@
 
 
 ## -----------------------
-##  REBASED STRUCTURE
+##  based directory
 ## -----------------------
 
-
-
-## --------------------
-## Rebase _default
-## --------------------
-
 [[mounts]]
-    source = 'library/render/based'
+    source = 'based'
     target = 'layouts/_default'
 
 [[mounts]]
-    source = 'library/render/based/recore.html'
+    source = 'based/recore.html'
     target = 'layouts/_default/baseof.html'
 
 [[mounts]]
-    source = 'library/render/based/single.html'
+    source = 'based/single.html'
     target = 'layouts/_default/single.html'
 
 [[mounts]]
-    source = 'library/render/based/listing.html'
+    source = 'based/listing.html'
     target = 'layouts/_default/list.html'
+
+
+
+## -----------------------
+##  based directory
+## -----------------------
 
 
 
 ## ---- rebased archetypes directory
 
 [[mounts]]
-    source = 'library/format'
+    source = 'format'
     target = 'archetypes'
 
 
 ## ----- rebased layouts directory
 
 [[mounts]]
-    source = 'library/render'
+    source = 'render'
     target = 'layouts'
 [[mounts]]
-    source = 'library/render'
+    source = 'global'
     target = 'layouts/partials'
 [[mounts]]
-    source = 'library/render/paged'
+    source = 'render/paged'
     target = 'layouts'
 [[mounts]]
-    source = 'library/auxile'
+    source = 'auxile'
     target = 'layouts/partials/bin'
 [[mounts]]
-    source = 'library/render/blocks'
+    source = 'render/blocks'
     target = 'layouts/shortcodes'
 [[mounts]]
-    source = 'library/render/modul'
+    source = 'render/modul'
     target = 'static/modul'
 
 
 
 ## ---- rebase languange directory
 [[mounts]]
-    source = 'library/langua'
+    source = 'langua'
     target = 'i18n'
 
 
 ## ---- rebase static directory
 [[mounts]]
-    source = 'library/statics'
+    source = 'source'
     target = 'static'
 
 
@@ -82,3 +82,30 @@
 [[mounts]]
     source = 'assets/media/docus'
     target = 'data'
+
+
+
+## --------------------
+## Rebase partials
+## --------------------
+
+
+[[mounts]]
+    source = 'global'
+    target = 'layouts/partials'
+
+[[mounts]]
+    source = 'auxile'
+    target = 'layouts/partials/bin'
+
+[[mounts]]
+    source = 'engine'
+    target = 'layouts/partials/colorize'
+
+[[mounts]]
+    source = 'assets'
+    target = 'assets/colorize/'
+
+[[mounts]]
+    source = 'source'
+    target = 'static/colorize/'

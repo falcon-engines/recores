@@ -1,0 +1,11 @@
+{{- partial "colorize/hookers" . -}}
+{{- partial "section/metadata/native" . -}}
+
+
+<!-- rendering script -->
+{{ $critical_styles :=  partial "get-script" ( dict "ctx" . "type" "style"  "load" "head"  ) }}
+<style>{{ $critical_styles.Content | safeCSS }}</style>
+
+
+{{ $critical_script :=  partial "get-script" ( dict "ctx" . "type" "script" "load" "head" ) }}
+<script>{{ $critical_script.Content | safeJS  }}</script>

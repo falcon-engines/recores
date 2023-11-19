@@ -1,0 +1,70 @@
+/* media queries
+––––––––––––––––––––––––––––––––––––––––––––––––– 
+    Note: The best way to structure the use of media queries is to create the queries
+    near the relevant code. For example, if you wanted to change the styles for buttons
+    on small devices, paste the mobile query code up in the buttons section and style it
+    there.
+
+    1. media-xs   : 420px;
+    2. media-sm   : 768px;
+    3. media-md   : 992px;
+    4. media-lg   : 1200px;
+    5. media-xl   : 1400px;
+    6. media-gx   : 1956px;
+
+*/
+
+
+.d-block {
+    display: block;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-hide {
+    z-index: -1;
+    opacity: 0;
+    position: fixed;
+    visibility: hidden;
+}
+
+.d-view {
+    z-index: 1;
+    opacity: 1;
+    position: relative;
+    visibility: visible;
+}
+
+/* Utilities
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.full-width {
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+.max-width {
+    max-width: 100%;
+    box-sizing: border-box; 
+}
+
+.pull-right {
+    float: right; 
+}
+
+.pull-left {
+    float: left; 
+}
+
+
+.page.wrap {
+    margin: 0 auto;
+    @media ( max-width: 420px ), ( min-width: 420px )  {
+        width: calc( 100vw - 20px);
+    }
+    @media ( min-width: 768px )  {
+        width: 94vw;
+    }
+}

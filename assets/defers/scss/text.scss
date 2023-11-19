@@ -1,0 +1,84 @@
+/* media queries
+––––––––––––––––––––––––––––––––––––––––––––––––– 
+    Note: The best way to structure the use of media queries is to create the queries
+    near the relevant code. For example, if you wanted to change the styles for buttons
+    on small devices, paste the mobile query code up in the buttons section and style it
+    there.
+
+    1. media-xs   : 420px;
+    2. media-sm   : 768px;
+    3. media-md   : 992px;
+    4. media-lg   : 1200px;
+    5. media-xl   : 1400px;
+    6. media-gx   : 1956px;
+
+*/
+
+
+
+/* font weight */
+.fw-3x{
+    font-weight: 300;
+}
+.fw-4x{
+    font-weight: 400;
+}
+.fw-5x{
+    font-weight: 500;
+}
+.fw-6x{
+    font-weight: 600;
+}
+
+/* font size */
+.fz-80{
+    font-size: 80%;
+}
+.fz-85{
+    font-size: 85%;
+}
+.fz-90{
+    font-size: 90%;
+}
+.fz-95{
+    font-size: 95%;
+}
+.fz-100{
+    font-size: 100%;
+}
+.fz-110{
+    font-size: 110%;
+}
+.fz-120{
+    font-size: 120%;
+}
+.fz-130{
+    font-size: 130%;
+}
+.fz-140{
+    font-size: 140%;
+}
+.fz-150{
+    font-size: 150%;
+}
+.fz-2x{
+    font-size: 200%;
+}
+.fz-3x{
+    font-size: 300%;
+}
+.fz-4x{
+    font-size: 400%;
+}
+.fz-5x{
+    font-size: 500%;
+}
+
+/* font transform */
+.ft-c {
+    text-transform: capitalize;
+}
+
+.ft-u {
+    text-transform: uppercase;
+}
