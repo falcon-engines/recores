@@ -53,7 +53,7 @@
     target = 'layouts/partials'
 [[mounts]]
     source = 'library/render/paged'
-    target = 'layouts/rebase'
+    target = 'layouts'
 [[mounts]]
     source = 'library/auxile'
     target = 'layouts/partials/bin'
