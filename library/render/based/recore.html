@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="{{ site.Language.Lang }}" data-mode="auto">
+	<head>
+		{{- block "filters" . }}{{- end -}}	<!-- register main filter and hooks for current pages -->
+		{{- partial "section/metahook" . -}} <!-- scripthook initialize and basic metadata renders -->
+		{{- partial "section/headhook" . -}} <!-- renders critical scripts for current active page -->
+	</head>
+	<body id="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}" class="pagetop" data-modal="">
+		<header id="head-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}" class="headnav">
+			{{- partial "section/header"  . -}}
+		</header>
+		<main id="main-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}" class="content">
+			{{- block "main" . }}{{ end -}}
+		</main>
+		<footer id="foot-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}" class="footer" >
+			{{- partial "section/footer"  . -}}
+		</footer>
+ 		{{- partial "section/foothook" . -}}
+	</body>
+</html>

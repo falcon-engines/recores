@@ -12,6 +12,30 @@
 ##  REBASED STRUCTURE
 ## -----------------------
 
+
+
+## --------------------
+## Rebase _default
+## --------------------
+
+[[mounts]]
+    source = 'library/render/based'
+    target = 'layouts/_default'
+
+[[mounts]]
+    source = 'library/render/based/recore.html'
+    target = 'layouts/_default/baseof.html'
+
+[[mounts]]
+    source = 'library/render/based/single.html'
+    target = 'layouts/_default/single.html'
+
+[[mounts]]
+    source = 'library/render/based/listing.html'
+    target = 'layouts/_default/list.html'
+
+
+
 ## ---- rebased archetypes directory
 
 [[mounts]]
@@ -29,16 +53,17 @@
     target = 'layouts/partials'
 [[mounts]]
     source = 'library/render/paged'
-    target = 'layouts/_default'
+    target = 'layouts/rebase'
 [[mounts]]
-    source = 'library/auxiles'
-    target = 'layouts/partials'
+    source = 'library/auxile'
+    target = 'layouts/partials/bin'
 [[mounts]]
     source = 'library/render/blocks'
     target = 'layouts/shortcodes'
 [[mounts]]
     source = 'library/render/modul'
     target = 'static/modul'
+
 
 
 ## ---- rebase languange directory
@@ -55,5 +80,5 @@
 
 ## ---- rebase data directory 
 [[mounts]]
-    source = 'assets/datums'
+    source = 'assets/media/docus'
     target = 'data'
