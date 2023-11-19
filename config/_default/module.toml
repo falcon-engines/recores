@@ -1,8 +1,19 @@
 ## -----------------------
-##  IMPORT MODULE
+##  assets directory
 ## -----------------------
 
-## ---- Import rozarder : Icons, fonts, animation, script and styles framework 
+[[mounts]]
+    source = 'assets'
+    target = 'assets/recores'
+
+[[mounts]]
+    source = 'assets/css'
+    target = 'assets/css'
+
+[[mounts]]
+    source = 'assets/jsx'
+    target = 'assets/jsx'
+
 
 
 ## -----------------------
@@ -28,81 +39,61 @@
 
 
 ## -----------------------
-##  based directory
+##  library directory
 ## -----------------------
 
-
-
-## ---- rebased archetypes directory
-
 [[mounts]]
-    source = 'format'
+    source = 'library/format'
     target = 'archetypes'
 
-
-## ----- rebased layouts directory
-
 [[mounts]]
-    source = 'render'
-    target = 'layouts'
-[[mounts]]
-    source = 'global'
+    source = 'library/global'
     target = 'layouts/partials'
-[[mounts]]
-    source = 'render/paged'
-    target = 'layouts'
-[[mounts]]
-    source = 'auxile'
-    target = 'layouts/partials/bin'
-[[mounts]]
-    source = 'render/blocks'
-    target = 'layouts/shortcodes'
-[[mounts]]
-    source = 'render/modul'
-    target = 'static/modul'
 
-
-
-## ---- rebase languange directory
 [[mounts]]
-    source = 'langua'
+    source = 'library/interns'
+    target = 'layouts/partials/recores'
+
+[[mounts]]
+    source = 'library/langua'
     target = 'i18n'
 
-
-## ---- rebase static directory
 [[mounts]]
-    source = 'source'
+    source = 'library/metad'
+    target = 'layouts/partials/metadata'
+
+
+
+## -----------------------
+##  module directory
+## -----------------------
+
+[[mounts]]
+    source = 'module'
     target = 'static'
 
 
-## ---- rebase data directory 
+
+## -----------------------
+##  datum directory
+## -----------------------
+
 [[mounts]]
-    source = 'assets/media/docus'
+    source = 'source/datum'
     target = 'data'
 
-
-
-## --------------------
-## Rebase partials
-## --------------------
-
+[[mounts]]
+    source = 'source/media/anima'
+    target = 'assets/anima'
 
 [[mounts]]
-    source = 'global'
-    target = 'layouts/partials'
+    source = 'source/media/audio'
+    target = 'assets/audio'
 
 [[mounts]]
-    source = 'auxile'
-    target = 'layouts/partials/bin'
+    source = 'source/media/image'
+    target = 'assets/video'
 
 [[mounts]]
-    source = 'engine'
-    target = 'layouts/partials/colorize'
-
-[[mounts]]
-    source = 'assets'
-    target = 'assets/colorize/'
-
-[[mounts]]
-    source = 'source'
-    target = 'static/colorize/'
+    source = 'source/media/video'
+    target = 'assets/video'
