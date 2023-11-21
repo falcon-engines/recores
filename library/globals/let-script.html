@@ -1,20 +1,17 @@
 <!-- define variable -->
-
-
-{{ $styles_head := slice }}
-{{ $script_head := slice }}
-{{ $styles_foot := slice }}
-{{ $script_foot := slice }}
-{{ $contex_page := . }}
-
+{{ $contex_page := .ctx }}
+{{ $assets_conf := .config }}
+{{ $module_name := .module }}
 
 
 <!-- populate script -->
-{{ range $section, $data := .Site.Params.recores }}
+{{ range $section, $data := $assets_conf }}
    
+  
+
     {{ if and ( eq $section "styles" ) ( $data.head ) }}
         {{ range $data.head }}
-            {{ $assets_path := print "recores/based/head/scss/" . ".scss" }}
+            {{ $assets_path := print $module_name "/based/head/scss/" . ".scss" }}
             {{ partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "head" "cond" "" ) }}
         {{ end }}
     {{ end }}
@@ -22,7 +19,7 @@
 
     {{ if and ( eq $section "styles" ) ( $data.foot )  }}
         {{ range $data.foot }}
-            {{ $assets_path := print "recores/based/foot/scss/" . ".scss" }}
+            {{ $assets_path := print $module_name "/based/foot/scss/" . ".scss" }}
             {{ partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "foot" "cond" "" ) }}
         {{ end }}
     {{ end }}
@@ -30,7 +27,7 @@
 
     {{ if and ( eq $section "script" ) ( $data.head )  }}
         {{ range $data.head }}
-            {{ $assets_path := print "recores/based/head/js/" . ".js" }}
+            {{ $assets_path := print $module_name "/based/head/js/" . ".js" }}
             {{ partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "head" "cond" "" ) }}
         {{ end }}
     {{ end }}
@@ -38,7 +35,7 @@
 
     {{ if and ( eq $section "script" ) ( $data.foot )  }}
         {{ range $data.foot }}
-            {{ $assets_path := print "recores/based/foot/js/" . ".js" }}
+            {{ $assets_path := print $module_name "/based/foot/js/" . ".js" }}
             {{ partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "foot" "cond" "" ) }}
         {{ end }}
     {{ end }}

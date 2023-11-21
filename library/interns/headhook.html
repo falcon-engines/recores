@@ -1,7 +1,7 @@
 <!-- render critical styles -->
+{{ $styles := partial "get-script" ( dict "ctx" . "hook" "based_head_styles" ) }}
+{{ with $styles }}<style>{{ $styles.Content | safeCSS }}</style>{{ end }}
 
-{{ $style := partial "get-script" ( dict "ctx" . "hook" "based_head_styles" ) }}
-
-{{ if $style }}
-    <style>{{ $style.Content | safeCSS }}</style>
-{{ end }}
+<!-- render critical script -->
+{{ $script := partial "get-script" ( dict "ctx" . "hook" "based_head_script" ) }}
+{{ with $script }}<script>{{ $script.Content | safeJS }}</script>{{ end }}

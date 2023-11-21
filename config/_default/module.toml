@@ -6,13 +6,6 @@
     source = 'assets'
     target = 'assets/recores'
 
-[[mounts]]
-    source = 'assets/recores/css'
-    target = 'assets/recores/css'
-
-[[mounts]]
-    source = 'assets/recores/jsx'
-    target = 'assets/recores/jsx'
 
 
 ## -----------------------
@@ -75,7 +68,6 @@
 [[mounts]]
     source = 'module'
     target = 'static'
-
 
 
 ## -----------------------
