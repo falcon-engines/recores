@@ -1,8 +1,0 @@
-{{ $falcon_themes_index  := partial "corelister" ( dict "type" "themes"  ) }}
-{{ $context_now := . }}
-
-{{ range $falcon_themes_index }}
-    {{- if templates.Exists ( print "partials/" . "/engine/bootup.html" ) -}}
-        {{ partial ( print "partials/" . "/engine/bootup" ) $context_now }}
-    {{ end }}
-{{ end }}

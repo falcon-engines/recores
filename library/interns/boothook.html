@@ -1,0 +1,23 @@
+{{ $falcon_module := slice "" }}
+{{ $falcon_themes := slice "robicons" }}
+{{ $context_pages := . }}
+
+
+<!-- bootup core module -->
+{{ partial "recores/corehook" . }}
+
+
+<!-- bootup all modules -->
+{{ range $falcon_module }}
+    {{- if templates.Exists ( print "partials/" . "/engine/bootup.html" ) -}}
+        {{ partial ( print "partials/" . "/engine/bootup" ) $context_pages }}
+    {{ end }}
+{{ end }}
+
+
+<!-- bootup all themes -->
+{{ range $falcon_themes }}
+    {{- if templates.Exists ( print "partials/" . "/engine/bootup.html" ) -}}
+        {{ partial ( print "partials/" . "/engine/bootup" ) $context_pages }}
+    {{ end }}
+{{ end }}

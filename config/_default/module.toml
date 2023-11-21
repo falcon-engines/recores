@@ -7,13 +7,12 @@
     target = 'assets/recores'
 
 [[mounts]]
-    source = 'assets/css'
-    target = 'assets/css'
+    source = 'assets/recores/css'
+    target = 'assets/recores/css'
 
 [[mounts]]
-    source = 'assets/jsx'
-    target = 'assets/jsx'
-
+    source = 'assets/recores/jsx'
+    target = 'assets/recores/jsx'
 
 
 ## -----------------------
@@ -21,20 +20,25 @@
 ## -----------------------
 
 [[mounts]]
-    source = 'based'
-    target = 'layouts/_default'
-
-[[mounts]]
-    source = 'based/recore.html'
+    source = 'based/baseof.html'
     target = 'layouts/_default/baseof.html'
 
-[[mounts]]
-    source = 'based/single.html'
-    target = 'layouts/_default/single.html'
+
+## -----------------------
+##  engine directory
+## -----------------------
 
 [[mounts]]
-    source = 'based/listing.html'
-    target = 'layouts/_default/list.html'
+    source = 'engine/blocks'
+    target = 'layouts/partials/shortcodes'
+
+[[mounts]]
+    source = 'engine/parted'
+    target = 'layouts/partials/recores/parted/'
+
+[[mounts]]
+    source = 'engine/section'
+    target = 'layouts/partials/recores/section/'
 
 
 
@@ -47,7 +51,7 @@
     target = 'archetypes'
 
 [[mounts]]
-    source = 'library/global'
+    source = 'library/globals'
     target = 'layouts/partials'
 
 [[mounts]]

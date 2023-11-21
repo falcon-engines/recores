@@ -1,0 +1,14 @@
+<!-- render critical styles -->
+{{ $critical_styles :=  partial "get-script" ( dict "ctx" . "type" "style"  "load" "head"  ) }}
+
+{{ if $critical_styles }}
+    <style>{{ $critical_styles.Content | safeCSS }}</style>
+{{ end }}
+
+
+<!-- render critical styles -->
+{{ $critical_script :=  partial "get-script" ( dict "ctx" . "type" "script" "load" "head" ) }}
+
+{{ if $critical_script }}
+    <script>{{ $critical_script.Content | safeJS  }}</script>
+{{ end }}

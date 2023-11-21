@@ -13,68 +13,25 @@
 */}} -->
 
 <!-- function variable -->
-
-{{ $type := .type }}
-{{ $load := .load }}
-{{ $data := slice }}
+{{ $load := index ( split .hook "_" ) 1 }}
+{{ $exts := index ( split .hook "_" ) 2 }}
 {{ $link := slice }}
-{{ $exts := "" }}
-{{ $hook := "" }}
+{{ $data := slice }}
 
 
-<!-- define in use hook -->
-{{ if and ( eq $type "style" ) ( eq $load "head" ) }}
-    {{- $hook = "head_styles_register" -}}
-{{ else if and ( eq $type "script" ) ( eq $load "head" ) }}
-    {{- $hook = "head_script_register" -}}
-{{ else if and ( eq $type "style" ) ( eq $load "foot" )  }}
-    {{- $hook = "foot_styles_register" -}}
-{{ else if and ( eq $type "script" ) ( eq $load "foot" ) }}
-    {{- $hook = "foot_script_register" -}}
+{{ range ( .ctx.Page.Scratch.Get .hook ) }}
+    {{ $data = $data | append ( resources.Get . )  }}
 {{ end }}
 
 
-<!-- extract script and concatination -->
-{{ range ( .ctx.Page.Scratch.Get $hook )  }}
-
-    {{ if eq ( path.Ext . ) ".scss" }}
-        {{ $link = $link | append ( resources.Get . )  }}
-        {{ $exts = "sccs" }}
-    {{ end }}
-
-    
-    {{ if eq ( path.Ext . ) ".js" }}
-    
-        {{ $link = $link | append ( resources.Get . )  }}
-        {{ $exts = "js" }}
-    {{ end }}
+{{ if eq $exts "styles" }}
+    {{ $link = $data | resources.Concat ( print "based/" $load ".css" )  }}
 {{ end }}
 
 
-<!-- data finishing -->
-{{ if eq hugo.IsProduction false }}
-
-    {{ if eq $exts "sccs" }}
-        {{ $data = $link | resources.Concat ( print "css/" $load ".css" ) | toCSS }}
-    {{ end }}
-
-
-    {{ if eq $exts "js" }}
-        {{ $data = $link | resources.Concat ( print "js/" $load ".js" ) | js.Build ( dict "targetPath" ( print "js/" $load ".js") )  }}
-    {{ end }}
-
-{{ else  }}
-
-    {{ if eq $exts "sccs" }}
-        {{ $data = $link | resources.Concat ( print "css/" $load ".css" ) | toCSS | minify | fingerprint }}
-    {{ end }}
-
-
-    {{ if eq $exts "js" }}
-        {{ $data = $link | resources.Concat ( print "js/" $load ".js" ) |  js.Build ( dict "targetPath" ( print "js/" $load ".js") ) | minify | fingerprint }}
-    {{ end }}
-
+{{ if eq $exts "script" }}
+    {{ $link = $data | resources.Concat ( print "based/" $load ".js" ) | js.Build ( dict "targetPath" ( print "based/" $load ".js") )  }}
 {{ end }}
 
 
-{{- return $data -}}
+{{ return $link }} 

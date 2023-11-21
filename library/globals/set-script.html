@@ -17,38 +17,95 @@
 
 
 <!-- function variable -->
-
-{{ $link := .link }}
-{{ $load := .load }}
-{{ $cond := .cond }}
+{{ $link := resources.Get .link }}
 {{ $exts := path.Ext .link }}
-{{ $type := cond ( eq $exts ".js" ) "script" "styles" }}
-{{ $hook := print $load "_" $type "_register" }}
+{{ $path := "" }}
 
 
-{{ if eq ( and ( or ( eq $exts ".scss" ) ( eq $exts ".js" )) ( or ( eq $load "head" ) ( eq $load "foot" )) ) false  }}
-    
-    <!-- error file format  -->
-    {{  if eq ( or ( eq $exts ".scss" ) ( eq $exts ".js" ) ) false }}
-        {{ print "Error : format " $link " not supported." }}
-    {{ end }}
+{{ if and 
+    ( strings.Contains $link "based" ) 
+    ( strings.Contains $link "head" ) }}
 
-    <!-- error target load  -->
-    {{ if eq ( or ( eq $load "head" ) ( eq $load "foot" ) ) false }}
-        {{ print "Error : Target render " $load " not supported ." }}
-    {{ end }}
 
-{{ else if ( gt ( len $cond ) 0 ) }}
+    {{ if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) }}
 
-    <!-- register script based on params  -->
-    {{ if eq ( .ctx.Page.Store.Get $cond ) true }}
-        {{- .ctx.Page.Scratch.Add $hook ( slice .link ) -}}
+        {{ $assets := resources.Get $link | toCSS }}
+        {{- .ctx.Page.Scratch.Add "based_head_styles" ( slice $assets ) -}}
     {{ end }}
     
-{{ else  }}
+    {{ if or ( eq $exts ".js" ) ( eq $exts ".ts" )  }}
+        {{- .ctx.Page.Scratch.Add "based_head_script" ( slice $link ) -}}
+    {{ end }}
 
-    <!-- register script  -->
-    {{- .ctx.Page.Scratch.Add $hook ( slice .link ) -}}
+
+{{ else if and 
+    ( strings.Contains .link  "based" ) 
+    ( strings.Contains .link  "foot" ) }}
+
+
+    {{ if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) }}
+        {{- .ctx.Page.Scratch.Add "based_foot_style" ( slice $link ) -}}
+    {{ end }}
+    
+    {{ if or ( eq $exts ".js" ) ( eq $exts ".ts" )  }}
+        {{- .ctx.Page.Scratch.Add "based_foot_script" ( slice $link ) -}}
+    {{ end }}
+
+
+{{ else if and 
+    ( strings.Contains .link  "blocks" )
+    ( strings.Contains .link  "head" ) }}
+
+    
+    {{ if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) }}
+        {{- .ctx.Page.Scratch.Add "block_foot_style" ( slice $link ) -}}
+    {{ end }}
+
+    {{ if or ( eq $exts ".js" ) ( eq $exts ".ts" )  }}
+        {{- .ctx.Page.Scratch.Add "block_foot_script" ( slice $link ) -}}
+    {{ end }}
+
+
+{{ else if and 
+    ( strings.Contains .link  "blocks" )
+    ( strings.Contains .link  "foot" ) }}
+
+    
+    {{ if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) }}
+        {{- .ctx.Page.Scratch.Add "block_foot_style" ( slice $link ) -}}
+    {{ end }}
+
+    {{ if or ( eq $exts ".js" ) ( eq $exts ".ts" )  }}
+        {{- .ctx.Page.Scratch.Add "block_foot_script" ( slice $link ) -}}
+    {{ end }}
+
+
+{{ else if and 
+    ( strings.Contains .link  "paged" ) 
+    ( strings.Contains .link  "head" ) }}
+
+
+    {{ if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) }}
+        {{- .ctx.Page.Scratch.Add "paged_head_style" ( slice $link ) -}}
+    {{ end }}
+    
+    {{ if or ( eq $exts ".js" ) ( eq $exts ".ts" )  }}
+        {{- .ctx.Page.Scratch.Add "paged_head_script" ( slice $link ) -}}
+    {{ end }}
+
+
+{{ else if and 
+    ( strings.Contains .link  "paged" )
+    ( strings.Contains .link  "foot" ) }}
+
+
+    {{ if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) }}
+        {{- .ctx.Page.Scratch.Add "paged_foot_style" ( slice $link ) -}}
+    {{ end }}
+
+    {{ if or ( eq $exts ".js" ) ( eq $exts ".ts" )  }}
+        {{- .ctx.Page.Scratch.Add "paged_foot_script" ( slice $link ) -}}
+    {{ end }}
+
 
 {{ end }}
-

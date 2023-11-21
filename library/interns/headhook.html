@@ -1,0 +1,7 @@
+<!-- render critical styles -->
+
+{{ $style := partial "get-script" ( dict "ctx" . "hook" "based_head_styles" ) }}
+
+{{ if $style }}
+    <style>{{ $style.Content | safeCSS }}</style>
+{{ end }}

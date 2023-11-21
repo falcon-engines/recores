@@ -8,13 +8,13 @@
 {{ $contex_page := . }}
 
 
-<!-- populate script -->
-{{ range $section, $data := .Site.Params.colorize }}
-   
 
+<!-- populate script -->
+{{ range $section, $data := .Site.Params.recores }}
+   
     {{ if and ( eq $section "styles" ) ( $data.head ) }}
         {{ range $data.head }}
-            {{ $assets_path := print "colorize/styles/head/" . ".scss" }}
+            {{ $assets_path := print "recores/based/head/scss/" . ".scss" }}
             {{ partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "head" "cond" "" ) }}
         {{ end }}
     {{ end }}
@@ -22,7 +22,7 @@
 
     {{ if and ( eq $section "styles" ) ( $data.foot )  }}
         {{ range $data.foot }}
-            {{ $assets_path := print "colorize/styles/foot/" . ".scss" }}
+            {{ $assets_path := print "recores/based/foot/scss/" . ".scss" }}
             {{ partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "foot" "cond" "" ) }}
         {{ end }}
     {{ end }}
@@ -30,7 +30,7 @@
 
     {{ if and ( eq $section "script" ) ( $data.head )  }}
         {{ range $data.head }}
-            {{ $assets_path := print "colorize/script/head/" . ".js" }}
+            {{ $assets_path := print "recores/based/head/js/" . ".js" }}
             {{ partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "head" "cond" "" ) }}
         {{ end }}
     {{ end }}
@@ -38,7 +38,7 @@
 
     {{ if and ( eq $section "script" ) ( $data.foot )  }}
         {{ range $data.foot }}
-            {{ $assets_path := print "colorize/script/foot/" . ".js" }}
+            {{ $assets_path := print "recores/based/foot/js/" . ".js" }}
             {{ partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "foot" "cond" "" ) }}
         {{ end }}
     {{ end }}

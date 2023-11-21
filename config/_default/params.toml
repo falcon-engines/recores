@@ -1,8 +1,8 @@
-[colorize]
-    [colorize.styles]
+[recores]
+    [recores.styles]
         head = [ "base", "cols", "flex", "form", "grid", "icon", "link", "list", "space", "table", "tabs", "text", "utils" ]
         foot = [ "base", "audio", "code", "cols", "flex", "form", "grid", "icon", "iframe", "image",  "link", "list", "space", "table", "tabs", "text", "utils", "video" ]
-    [colorize.script]
+    [recores.script]
         head = [ "base" ]
         foot = [ "base" ]
  

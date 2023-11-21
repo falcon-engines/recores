@@ -1,0 +1,50 @@
+{{ $filter := .filter }}
+{{ $source := .ctx.Page.Scratch.Get .filter }}
+{{ $linker := "" }}
+
+
+
+
+
+<!-- extract script and concatination -->
+{{ if eq hugo.IsProduction false }}
+
+    {{ if eq $filter "based_head_styles" }}
+        {{ $linker = $source | resources.Concat ( print "framework/head.css" ) | toCSS }}
+    {{ end }}
+
+
+    {{ if eq $filter "critical_script" }}
+        {{ $linker = $source | resources.Concat ( print "framework/head.js" ) | js.Build ( dict "targetPath" ( print "framework/head.js" ) )  }}
+    {{ end }}
+
+    
+
+    {{ if eq $filter "defers_styles" }}
+        {{ $linker = $source | resources.Concat ( print "framework/base.css" ) | toCSS }}
+    {{ end }}
+
+
+    {{ if eq $filter "defers_script" }}
+        {{ $linker = $source | resources.Concat ( print "framework/base.js" ) | js.Build ( dict "targetPath" ( print "framework/base.js" ) )  }}
+    {{ end }}
+    
+
+{{ else  }}
+
+    {{ if eq $filter "critical_styles" }}
+        {{ $linker = $source | resources.Concat ( print "framework/head.css" ) | toCSS | minify | fingerprint }}
+    {{ end }}
+
+
+    {{ if eq $filter "critical_script" }}
+        {{ $linker = $source | resources.Concat ( print  "framework/head.js" ) |  js.Build ( dict "targetPath" ( print  "framework/head.js" ) ) | minify | fingerprint }}
+    {{ end }}
+    
+
+{{ end }}
+
+
+{{- return $linker -}}
+
+
