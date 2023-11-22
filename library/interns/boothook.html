@@ -1,10 +1,10 @@
-{{ $falcon_module := slice "sodalist" }}
-{{ $falcon_themes := slice "robicons" }}
+{{ $falcon_module := slice "sodalist" "blueapi" }}
+{{ $falcon_themes := slice "themes" }}
 {{ $context_pages := . }}
 
 
 <!-- bootup core module -->
-{{ partial "let-script" ( dict "ctx" . "config" .Site.Params.recores.assets "module" "recores" ) }}
+{{ partial "packscript" ( dict "ctx" . "config" .Site.Params.recores.assets "module" "recores" ) }}
 
 
 

@@ -3,7 +3,6 @@
 {{ $assets_conf := .config }}
 {{ $module_name := .module }}
 
-
 <!-- populate script -->
 {{ range $section, $data := $assets_conf }}
   
@@ -38,6 +37,5 @@
             {{ partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "foot" "cond" "" ) }}
         {{ end }}
     {{ end }}
-
     
 {{ end }}
