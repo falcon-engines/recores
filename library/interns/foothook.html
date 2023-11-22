@@ -28,7 +28,7 @@
 <!-- render page script -->
 {{ $page_script := partial "recores/compose" ( dict "ctx" . "filter" "paged_foot_script" ) }}
 {{ if and ( eq hugo.IsProduction true ) ( $page_script ) }}
-    <script id="page-jsx"  type="module" src="{{ $base_script.RelPermalink }}" integrity="{{ $base_script.Data.Integrity | safeHTMLAttr }}" defer></script>
-{{- else if $base_script -}}
-    <script id="page-jsx" type="module" src="{{ $base_script.RelPermalink }}" defer></script>
+    <script id="page-jsx"  type="module" src="{{ $page_script.RelPermalink }}" integrity="{{ $page_script.Data.Integrity | safeHTMLAttr }}" defer></script>
+{{- else if $page_script -}}
+    <script id="page-jsx" type="module" src="{{ $page_script.RelPermalink }}" defer></script>
 {{ end }}
