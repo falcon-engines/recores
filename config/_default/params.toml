@@ -1,3 +1,17 @@
+
+[analytic]
+    status = false                                  # enable web analytic plaftorm  
+    engine = [ "GA", "CF", "BG", "YN" ]             # Value of engine : GA ( google analytic ), CF ( cloudflared ), BG ( Bing ), YN ( Yandex )
+    [google]
+        unique = 'g-measurment-id'                  # google measure id 
+    [cloudflare]
+        unique = 'cf-measurment-id'                 # cloudflare measure id  
+    [yandex]
+        unique = 'yn-measurment-id'                 # yandex measure id  
+    [bing]
+        unique = 'bn-measurment-id'                 # bing measure id  
+
+
 [recores]
     [recores.assets]
         [recores.assets.styles]
