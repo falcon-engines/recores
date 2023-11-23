@@ -18,21 +18,17 @@
 
 
 ## -----------------------
-##  engine directory
+##  render directory
 ## -----------------------
 
-[[mounts]]
-    source = 'engine/blocks'
-    target = 'layouts/partials/shortcodes'
 
 [[mounts]]
-    source = 'engine/parted'
-    target = 'layouts/partials/recores/parted/'
+    source = 'render/metadata'
+    target = 'layouts/partials/recores/metadata/'
 
 [[mounts]]
-    source = 'engine/section'
-    target = 'layouts/partials/recores/section/'
-
+    source = 'render/analytical'
+    target = 'layouts/partials/recores/analytical/'
 
 
 ## -----------------------

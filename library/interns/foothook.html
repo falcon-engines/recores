@@ -1,3 +1,7 @@
+<!-- load analytic engine -->
+{{ partial "recores/analytical/_init" . }}
+
+
 <!-- render based styles -->
 {{ $base_styles := partial "recores/compose" ( dict "ctx" . "filter" "based_foot_styles" ) }}
 {{- if and ( eq hugo.IsProduction true ) ( $base_styles ) -}}
