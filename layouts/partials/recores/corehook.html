@@ -1,0 +1,52 @@
+{{ $falcon_engine := slice "reblock" "glypher" "markup" "jamstac" "navpath" "helpers"  }}
+{{ $falcon_module := slice "article" }}
+{{ $falcon_themes := slice "themes" }}
+{{ $context_pages := . }}
+
+
+<!-- setups engine cores -->
+{{ range $falcon_engine }}
+
+    <!-- render engine metadata -->
+    {{- if templates.Exists ( print "partials/" . "/metada.html" ) -}}
+        {{ partial ( print "partials/" . "/metada" ) $context_pages }}
+    {{ end }}
+
+    <!-- setups engine scripts -->
+    {{- if templates.Exists ( print "partials/" . "/scripthook.html" ) -}}
+        {{ partial ( print "partials/" . "/scripthook" ) $context_pages }}
+    {{ end }}
+{{ end }}
+
+
+
+<!-- setups module cores -->
+{{ range $falcon_module }}
+
+    <!-- render module metadata -->
+    {{- if templates.Exists ( print "partials/" . "/metada.html" ) -}}
+        {{ partial ( print "partials/" . "/metada" ) $context_pages }}
+    {{ end }}
+
+    <!-- setups module scripts -->
+    {{- if templates.Exists ( print "partials/" . "/scripthook.html" ) -}}
+        {{ partial ( print "partials/" . "/scripthook" ) $context_pages }}
+    {{ end }}
+{{ end }}
+
+
+
+<!-- setups themes cores -->
+{{ range $falcon_themes }}
+
+    <!-- render themes metadata -->
+    {{- if templates.Exists ( print "partials/" . "/metada.html" ) -}}
+        {{ partial ( print "partials/" . "/metada" ) $context_pages }}
+    {{ end }}
+
+    <!-- setups themes scripts -->
+    {{- if templates.Exists ( print "partials/" . "/scripthook.html" ) -}}
+        {{ partial ( print "partials/" . "/scripthook" ) $context_pages }}
+    {{ end }}
+    
+{{ end }}

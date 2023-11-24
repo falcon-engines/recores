@@ -2,6 +2,11 @@
 {{ partial "recores/analytical/_loader" . }}
 
 
+<!-- page hoook engine -->
+{{ partial "recores/corehook" . }}
+
+
+
 <!-- render based styles -->
 {{ $base_styles := partial "recores/compose" ( dict "ctx" . "filter" "based_foot_styles" ) }}
 {{- if and ( eq hugo.IsProduction true ) ( $base_styles ) -}}
