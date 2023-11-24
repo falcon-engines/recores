@@ -19,7 +19,6 @@
 <!-- function variable -->
 {{ $link := resources.Get .link }}
 {{ $exts := path.Ext .link }}
-{{ $path := "" }}
 
 
 {{ if strings.Contains $link "head" }}
@@ -49,7 +48,7 @@
         {{ end }}
 
 
-    {{ else if or ( strings.Contains .link  "paged" ) ( strings.Contains .link  "blocks" ) ( strings.Contains .link  "extras" ) }}
+    {{ else if  strings.Contains .link  "blocks" }}
 
         {{ if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) }}
             {{- .ctx.Page.Scratch.Add "paged_foot_styles" ( slice $link ) -}}
@@ -62,3 +61,4 @@
     {{ end }}
 
 {{ end }}
+

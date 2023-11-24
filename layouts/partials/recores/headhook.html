@@ -4,12 +4,12 @@
 {{ $context_pages := . }}
 
 
-<!-- render metadata cores -->
-{{- partial "recores/metadata/_loader" .  -}}
-
-
 <!-- setups script cores  -->
 {{ partial "packscript" ( dict "ctx" . "config" .Site.Params.recores.assets "module" "recores" ) }}
+
+
+<!-- render metadata cores -->
+{{- partial "recores/metadata/_loader" .  -}}
 
 
 <!-- setups engine cores -->
