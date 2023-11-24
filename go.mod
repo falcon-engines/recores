@@ -1,3 +1,3 @@
-module github.com/rozard-engines/recores
+module github.com/falcon-engines/recores
 
 go 1.21.4

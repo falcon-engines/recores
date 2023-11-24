@@ -7,28 +7,6 @@
     target = 'assets/recores'
 
 
-## -----------------------
-##  based directory
-## -----------------------
-
-[[mounts]]
-    source = 'based/baseof.html'
-    target = 'layouts/_default/baseof.html'
-
-
-## -----------------------
-##  render directory
-## -----------------------
-
-
-[[mounts]]
-    source = 'render/metadata'
-    target = 'layouts/partials/recores/metadata/'
-
-[[mounts]]
-    source = 'render/analytical'
-    target = 'layouts/partials/recores/analytical/'
-
 
 ## -----------------------
 ##  library directory
@@ -39,21 +17,36 @@
     target = 'archetypes'
 
 [[mounts]]
+    source = 'library/interns'
+    target = 'layouts/partials/recores/interns'
+
+
+[[mounts]]
     source = 'library/globals'
     target = 'layouts/partials'
 
-[[mounts]]
-    source = 'library/interns'
-    target = 'layouts/partials/recores'
 
 [[mounts]]
     source = 'library/langua'
     target = 'i18n'
 
+
+## -----------------------
+##  render directory
+## -----------------------
+
 [[mounts]]
-    source = 'library/metad'
+    source = 'render/based/baseof.html'
+    target = 'layouts/_default/baseof.html'
+
+
+[[mounts]]
+    source = 'render/metadata'
     target = 'layouts/partials/metadata'
 
+[[mounts]]
+    source = 'render/analytical'
+    target = 'layouts/partials/analytical'
 
 
 ## -----------------------

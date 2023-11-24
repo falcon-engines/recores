@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="{{ site.Language.Lang }}" data-mode="auto">
 	<head>
-		{{- block "headhook" . }}{{- end -}} <!-- register scripter filter hooks for current pages -->
-		{{- partial "recores/headhook" . -}} <!-- renders critical scripts for current active page -->
+		{{- block "hookers" . }}{{- end -}} <!-- register scripter filter hooks for current pages -->
+		{{- partial "recores/interns/headhook" . -}} <!-- renders critical scripts for current active page -->
 		{{- block "metahook" . }}{{- end -}} <!-- register metadata hooks filter for current pages -->
 	</head>
 	<body id="page-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}" class="pagetop" data-modal="">
