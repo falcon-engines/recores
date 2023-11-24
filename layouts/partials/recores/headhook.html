@@ -1,0 +1,69 @@
+{{ $falcon_engine := slice "reblock" "glypher" "markup" "jamstac" "navpath" "helpers"  }}
+{{ $falcon_module := slice "article" }}
+{{ $falcon_themes := slice "themes" }}
+{{ $context_pages := . }}
+
+
+<!-- render metadata cores -->
+{{- partial "recores/metadata/_loader" .  -}}
+
+
+<!-- setups script cores  -->
+{{ partial "packscript" ( dict "ctx" . "config" .Site.Params.recores.assets "module" "recores" ) }}
+
+
+<!-- setups engine cores -->
+{{ range $falcon_engine }}
+
+    <!-- render engine metadata -->
+    {{- if templates.Exists ( print "partials/" . "/metada.html" ) -}}
+        {{ partial ( print "partials/" . "/metada" ) $context_pages }}
+    {{ end }}
+
+    <!-- setups engine scripts -->
+    {{- if templates.Exists ( print "partials/" . "/bootup.html" ) -}}
+        {{ partial ( print "partials/" . "/bootup" ) $context_pages }}
+    {{ end }}
+{{ end }}
+
+
+
+<!-- setups module cores -->
+{{ range $falcon_module }}
+
+    <!-- render module metadata -->
+    {{- if templates.Exists ( print "partials/" . "/metada.html" ) -}}
+        {{ partial ( print "partials/" . "/metada" ) $context_pages }}
+    {{ end }}
+
+    <!-- setups module scripts -->
+    {{- if templates.Exists ( print "partials/" . "/bootup.html" ) -}}
+        {{ partial ( print "partials/" . "/bootup" ) $context_pages }}
+    {{ end }}
+{{ end }}
+
+
+
+<!-- setups themes cores -->
+{{ range $falcon_themes }}
+
+    <!-- render themes metadata -->
+    {{- if templates.Exists ( print "partials/" . "/metada.html" ) -}}
+        {{ partial ( print "partials/" . "/metada" ) $context_pages }}
+    {{ end }}
+
+    <!-- setups themes scripts -->
+    {{- if templates.Exists ( print "partials/" . "/bootup.html" ) -}}
+        {{ partial ( print "partials/" . "/bootup" ) $context_pages }}
+    {{ end }}
+{{ end }}
+
+
+
+<!-- render critical styles -->
+{{ $styles := partial "get-script" ( dict "ctx" . "hook" "based_head_styles" ) }}
+{{ with $styles }}<style>{{ $styles.Content | safeCSS }}</style>{{ end }}
+
+<!-- render critical script -->
+{{ $script := partial "get-script" ( dict "ctx" . "hook" "based_head_script" ) }}
+{{ with $script }}<script>{{ $script.Content | safeJS }}</script>{{ end }}
