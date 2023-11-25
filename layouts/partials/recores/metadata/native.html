@@ -1,9 +1,9 @@
-{{ $titles  := .Title }}
-{{ if .IsHome }}
-    {{ $titles  = .Site.Title }}
-{{ end }}
+{{- $titles  := .Title -}}
+{{- if .IsHome -}}
+    {{- $titles  = .Site.Title -}}
+{{- end -}}
 
-{{ $keyword := delimit .Keywords ", " }}
+{{- $keyword := delimit .Keywords ", " -}}
 
 <!-- general metadata -->
 <title>{{ $titles }}</title>
@@ -17,12 +17,12 @@
 
 
 <!-- alternative format -->
-{{ range .AlternativeOutputFormats -}}
+{{- range .AlternativeOutputFormats -}}
   	<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .RelPermalink | safeURL }}">
-{{ end }}
+{{- end -}}
 
 
 <!-- staging information -->
-{{ if ne hugo.IsProduction true }}
-	<meta name="staging-environment" content="{{ hugo.Environment }} ">
-{{ end }}
+{{- if ne hugo.IsProduction true -}}
+	<meta name="falconenv" content="{{ hugo.Environment }} ">
+{{- end -}}
