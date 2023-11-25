@@ -1,7 +1,9 @@
 {{ $filter := .filter }}
-{{ $source := .ctx.Page.Scratch.Get .filter }}
+{{ $rawdat := .ctx.Page.Scratch.Get .filter }}
 {{ $linker := "" }}
 
+<!-- clean duplicate registration -->
+{{ $source := $rawdat | uniq }}
 
 {{ if and ( eq hugo.IsProduction false ) ( $source ) }}
 
@@ -47,6 +49,7 @@
     <!-- PRODUCTION -->
     <!-- based and paged head -->
     {{ with eq $filter "based_head_styles" }}
+    
         {{ $linker = $source | resources.Concat ( print "css/head.css" ) | toCSS | minify }}
     {{ end }}
 
@@ -63,7 +66,8 @@
 
 
     {{ with eq $filter "based_foot_script" }}
-        {{ $linker = $source | resources.Concat ( print "jsx/foot.js" ) | js.Build ( dict "targetPath" ( print "jsx/foot.js" )) | minify | fingerprint  }}
+
+           {{ $linker = $source | resources.Concat ( print "jsx/foot.js" ) | js.Build ( dict "targetPath" ( print "jsx/foot.js" )) | minify | fingerprint  }}
     {{ end }}
 
 
@@ -80,6 +84,7 @@
     
 
 {{ end }}
+
 
 
 {{- return $linker -}}
