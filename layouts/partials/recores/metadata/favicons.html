@@ -1,0 +1,5 @@
+{{ if .Site.Params.site_meta.basic.favicon }}
+    <link rel="icon" type="image/x-icon" href="{{ .Site.Params.site_meta.basic.favicon }}"/>
+{{ else }}
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico"/>
+{{ end }}
