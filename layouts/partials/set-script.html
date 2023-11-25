@@ -48,7 +48,7 @@
         {{ end }}
 
 
-    {{ else if or ( strings.Contains .link  "blocks" ) ( strings.Contains .link  "paged" ) }}
+    {{ else if or ( strings.Contains .link  "blocks" ) ( strings.Contains .link  "paged" ) ( strings.Contains .link  "parted" ) }}
 
         {{ if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) }}
             {{- .ctx.Page.Scratch.Add "paged_foot_styles" ( slice $link ) -}}

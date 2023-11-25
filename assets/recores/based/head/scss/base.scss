@@ -39,6 +39,7 @@ html[data-mode='dark'] {
    --color-danger : linear-gradient(65deg, #0270D7 0, #0F8AFD 100%);
    --color-inform : linear-gradient(65deg, #0270D7 0, #0F8AFD 100%);
    --color-succes : linear-gradient(65deg, #0270D7 0, #0F8AFD 100%); 
+
 }
 
 
@@ -94,5 +95,6 @@ body {
 	color: var(--color-text-1);
    font-size: 1.095em;
    background: var(--color-back-1);
-   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;  
+   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+   transition: background .3s, color .1s;
 }
