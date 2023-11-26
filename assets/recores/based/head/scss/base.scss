@@ -51,12 +51,14 @@ html {
 html[data-mode='dark'] {
 
    --color-back-1 : #242830;
-   --color-back-2 : linear-gradient(75deg, #25323c 0, #4c5054 100%);
+   --color-back-2 : linear-gradient(75deg, #2c2e40 0, #2c3346 100%);
    --color-back-3 : linear-gradient(75deg, #21282e 0, #1b202b 100%);
 
-   --color-text-1 : #8A94A7;
-   --color-text-2 : #fff;
-   --color-text-3 : #dee4ef;
+   --color-hover-2 : linear-gradient(75deg, #3441b9 0, #335acd 100%);
+
+   --color-text-1 : #fff;
+   --color-text-2 : #dee4ef;
+   --color-text-3 : #8A94A7;
 
    --color-link-1 : #7f9eff;
 

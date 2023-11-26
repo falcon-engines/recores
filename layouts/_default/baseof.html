@@ -10,7 +10,7 @@
 			{{- partial "header"  . -}}
 		</header>
 		<main id="main-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}" class="content">
-			{{- block "main" . }}{{ end -}}
+			{{- block "content" . }}{{ end -}}
 		</main>
 		<footer id="foot-{{ .Kind }}{{ with.Section }} {{ . }}{{ end }}{{ with .Site.Params.layout.model }} {{ . }}{{ end }}" class="footer" >
 			{{- partial "footer"  . -}}
