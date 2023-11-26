@@ -58,7 +58,7 @@ html[data-mode='dark'] {
    --color-text-2 : #fff;
    --color-text-3 : #dee4ef;
 
-   --color-link-1 : #00dcff;
+   --color-link-1 : #7f9eff;
 
    --color-line-1 : rgb(255 255 255 / 15%);
    --color-line-2 : rgb(255 255 255 / 15%);
@@ -120,14 +120,11 @@ body {
 }
 
 .wrap .full-width {
-   margin: 0 -1em ;
-   width: 100vw;
+   width: calc( 100vw - 2em );
    @media ( min-width:768px ) {
-      width: 94vw;
-      margin: 0 -3vw;
+      width: calc( 100vw - 3vw );
    }
    @media ( min-width:992px ) {
-      width: 90vw;
-      margin: 0 -5vw;
+      width: calc( 100vw - 5vw );
    }
 }
