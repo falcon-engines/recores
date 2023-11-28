@@ -90,8 +90,8 @@ html[data-mode='dark'] {
 }
 
 html{
-   box-sizing: border-box;
    overflow-x: hidden;
+   box-sizing: border-box;
    touch-action: manipulation;
 }
 
@@ -108,4 +108,5 @@ body {
    background: var(--color-back-1);
    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
    transition: background .3s, color .1s;
+   position: relative;
 }
