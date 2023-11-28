@@ -40,7 +40,7 @@
     flex: 100%;
 }
 
-@media ( max-width: 420px ){
+@media ( min-width: 420px ){
     .col-xs-2 {
         flex: 50%;
     }
@@ -76,7 +76,7 @@
     }
 }
 
-@media ( max-width: 768px ){
+@media ( min-width: 768px ){
     .col-sm-2 {
         flex: 50%;
     }
@@ -112,7 +112,7 @@
     }
 }
 
-@media ( max-width: 992px ){
+@media ( min-width: 992px ){
     .col-md-2 {
         flex: 50%;
     }
@@ -148,7 +148,7 @@
     }
 }
 
-@media ( max-width: 1200px ){
+@media ( min-width: 1200px ){
     .col-lg-2 {
         flex: 50%;
     }
@@ -184,7 +184,7 @@
     }
 }
 
-@media ( max-width: 1400px ){
+@media ( min-width: 1400px ){
     .col-xl-2 {
         flex: 50%;
     }
@@ -220,7 +220,7 @@
     }
 }
 
-@media ( max-width: 1957px ){
+@media ( min-width: 1957px ){
     .col-xl-2 {
         flex: 50%;
     }
