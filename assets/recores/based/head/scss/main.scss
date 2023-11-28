@@ -110,3 +110,12 @@ body {
    transition: background .3s, color .1s;
    position: relative;
 }
+
+
+.content{
+   display: block;
+   overflow: hidden;
+   @media ( min-width: 990px ) {
+      min-height: calc( 100vh - 410px );
+   }  
+}
