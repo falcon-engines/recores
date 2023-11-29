@@ -41,3 +41,10 @@
 {{- else if $page_script -}}
     <script id="page-jsx" type="module" src="{{ $page_script.RelPermalink }}" defer></script>
 {{ end }}
+
+
+
+<!-- render icon sprites -->
+{{ if templates.Exists "partials/glypher/spritesgen.html" }}
+    {{  partial "glypher/spritesgen" . }}
+{{ end }}
