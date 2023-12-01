@@ -1,89 +1,89 @@
-{{ $filter := .filter }}
-{{ $rawdat := .ctx.Page.Scratch.Get .filter }}
-{{ $linker := "" }}
+{{- $filter := .filter -}}
+{{- $rawdat := .ctx.Page.Scratch.Get .filter -}}
+{{- $linker := "" -}}
 
 <!-- clean duplicate registration -->
-{{ $source := $rawdat | uniq }}
+{{- $source := $rawdat | uniq -}}
 
-{{ if and ( eq hugo.IsProduction false ) ( $source ) }}
+{{- if and ( eq hugo.IsProduction false ) ( $source ) -}}
 
 
     <!-- DEVELOPMENT -->
     <!-- based and paged head -->
-    {{ with eq $filter "based_head_styles" }}
-        {{ $linker = $source | resources.Concat ( print "based/head.css" ) | toCSS }}
-    {{ end }}
+    {{- with eq $filter "based_head_styles" -}}
+        {{- $linker = $source | resources.Concat ( print "based/head.css" ) | toCSS -}}
+    {{- end -}}
 
-    {{ with eq $filter "based_head_script" }}
-        {{ $linker = $source | resources.Concat ( print "based/head.js" ) | js.Build ( dict "targetPath" ( print "based/head.js" ) )  }}
-    {{ end }}
+    {{- with eq $filter "based_head_script" -}}
+        {{- $linker = $source | resources.Concat ( print "based/head.js" ) | js.Build ( dict "targetPath" ( print "based/head.js" ) )  -}}
+    {{- end -}}
 
 
 
     <!-- based foot -->
-    {{ with eq $filter "based_foot_styles" }}
-        {{ $linker = $source | resources.Concat ( print "css/base.css" ) | toCSS  }}
-    {{ end }}
+    {{- with eq $filter "based_foot_styles" -}}
+        {{- $linker = $source | resources.Concat ( print "css/base.css" ) | toCSS  -}}
+    {{- end -}}
 
-    {{ with eq $filter "based_foot_script" }}
-        {{ $linker = $source | resources.Concat ( print "jsx/base.js" ) | js.Build ( dict "targetPath" ( print "jsx/base.js" ) )  }}
-    {{ end }}
+    {{- with eq $filter "based_foot_script" -}}
+        {{- $linker = $source | resources.Concat ( print "jsx/base.js" ) | js.Build ( dict "targetPath" ( print "jsx/base.js" ) )  -}}
+    {{- end -}}
 
 
 
     <!-- paged foot -->
-    {{ with eq $filter "paged_foot_styles" }}
-        {{ $linker = $source | resources.Concat ( print "css/page.css" ) | toCSS }}
-    {{ end }}
+    {{- with eq $filter "paged_foot_styles" -}}
+        {{- $linker = $source | resources.Concat ( print "css/page.css" ) | toCSS -}}
+    {{- end -}}
 
-    {{ with eq $filter "paged_foot_script" }}
-        {{ $linker = $source | resources.Concat ( print "jsx/page.js" ) | js.Build ( dict "targetPath" ( print "jsx/page.js" ) )  }}
-    {{ end }}
+    {{- with eq $filter "paged_foot_script" -}}
+        {{- $linker = $source | resources.Concat ( print "jsx/page.js" ) | js.Build ( dict "targetPath" ( print "jsx/page.js" ) )  -}}
+    {{- end -}}
     
 
 
-{{ else if ( $source ) }}
+{{- else if ( $source ) -}}
 
 
 
     <!-- PRODUCTION -->
     <!-- based and paged head -->
-    {{ with eq $filter "based_head_styles" }}
+    {{- with eq $filter "based_head_styles" -}}
     
-        {{ $linker = $source | resources.Concat ( print "css/head.css" ) | toCSS | minify }}
-    {{ end }}
+        {{- $linker = $source | resources.Concat ( print "css/head.css" ) | toCSS | minify -}}
+    {{- end -}}
 
-    {{ with eq $filter "based_head_script" }}
-        {{ $linker = $source | resources.Concat ( print  "jsx/head.js" ) | js.Build ( dict "targetPath" ( print  "jsx/head.js" )) | minify }}
-    {{ end }}
+    {{- with eq $filter "based_head_script" -}}
+        {{- $linker = $source | resources.Concat ( print  "jsx/head.js" ) | js.Build ( dict "targetPath" ( print  "jsx/head.js" )) | minify -}}
+    {{- end -}}
 
 
 
     <!-- based foot -->
-    {{ with eq $filter "based_foot_styles" }}
-        {{ $linker = $source | resources.Concat ( print "css/foot.css" ) | toCSS | minify | fingerprint }}
-    {{ end }}
+    {{- with eq $filter "based_foot_styles" -}}
+        {{- $linker = $source | resources.Concat ( print "css/foot.css" ) | toCSS | minify | fingerprint -}}
+    {{- end -}}
 
 
-    {{ with eq $filter "based_foot_script" }}
+    {{- with eq $filter "based_foot_script" -}}
 
-           {{ $linker = $source | resources.Concat ( print "jsx/foot.js" ) | js.Build ( dict "targetPath" ( print "jsx/foot.js" )) | minify | fingerprint  }}
-    {{ end }}
+           {{- $linker = $source | resources.Concat ( print "jsx/foot.js" ) | js.Build ( dict "targetPath" ( print "jsx/foot.js" )) | minify | fingerprint  -}}
+    {{- end -}}
 
 
 
     <!-- paged foot -->
-    {{ with eq $filter "paged_foot_styles" }}
-        {{ $linker = $source | resources.Concat ( print "css/page.css" ) | toCSS | minify | fingerprint }}
-    {{ end }}
+    {{- with eq $filter "paged_foot_styles" -}}
+        {{- $linker = $source | resources.Concat ( print "css/page.css" ) | toCSS | minify | fingerprint -}}
+    {{- end -}}
 
 
-    {{ with eq $filter "paged_foot_script" }}
-        {{ $linker = $source | resources.Concat ( print "jsx/page.js" ) | js.Build ( dict "targetPath" ( print "jsx/page.js" ))  }}
-    {{ end }}
+    {{- with eq $filter "paged_foot_script" -}}
+        {{- $linker = $source | resources.Concat ( print "jsx/page.js" ) | js.Build ( dict "targetPath" ( print "jsx/page.js" ))  -}}
+    {{- end -}}
     
 
-{{ end }}
+{{- end -}}
 
 
 

@@ -2,55 +2,55 @@
 
     FUNCTION : ICON SYSTEM AND RENDER
 
-    syntax : {{ partial "icons" ( dict "ctx" . "name" "[icon name]" ) }}
+    syntax : {{- partial "icons" ( dict "ctx" . "name" "[icon name]" ) -}}
     attrib :
         - ctx  : parse current page context to this function, do not change/remove `ctx` parameters !
         - name : icon name
     example:
-       {{ partial "icons" ( dict "ctx" $currentpage "name" "chevron-down" ) }}
+       {{- partial "icons" ( dict "ctx" $currentpage "name" "chevron-down" ) -}}
 
 */}} -->
 
 
 <!-- function variable -->
-{{ $link := resources.Get .link }}
-{{ $exts := path.Ext .link }}
+{{- $link := resources.Get .link -}}
+{{- $exts := path.Ext .link -}}
 
-{{ if strings.Contains $link "head" }}
+{{- if strings.Contains $link "head" -}}
 
-    {{ if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) }}
+    {{- if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) -}}
         {{- .ctx.Page.Scratch.Add "based_head_styles" ( slice $link ) -}}
-    {{ end }}
+    {{- end -}}
     
-    {{ if or ( eq $exts ".js" ) ( eq $exts ".ts" )  }}
+    {{- if or ( eq $exts ".js" ) ( eq $exts ".ts" )  -}}
         {{- .ctx.Page.Scratch.Add "based_head_script" ( slice $link ) -}}
-    {{ end }}
+    {{- end -}}
 
 
-{{ else if strings.Contains .link  "foot" }}
+{{- else if strings.Contains .link  "foot" -}}
 
-    {{ if ( strings.Contains .link  "based" ) }}
+    {{- if ( strings.Contains .link  "based" ) -}}
 
-        {{ if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) }}
+        {{- if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) -}}
             {{- .ctx.Page.Scratch.Add "based_foot_styles" ( slice $link ) -}}
-        {{ end }}
+        {{- end -}}
 
-        {{ if or ( eq $exts ".js" ) ( eq $exts ".ts" )  }}
+        {{- if or ( eq $exts ".js" ) ( eq $exts ".ts" )  -}}
             {{- .ctx.Page.Scratch.Add "based_foot_script" ( slice $link ) -}}
-        {{ end }}
+        {{- end -}}
 
 
-    {{ else if or ( strings.Contains .link  "blocks" ) ( strings.Contains .link  "paged" ) ( strings.Contains .link  "parted" ) }}
+    {{- else if or ( strings.Contains .link  "blocks" ) ( strings.Contains .link  "paged" ) ( strings.Contains .link  "parted" ) -}}
 
-        {{ if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) }}
+        {{- if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) -}}
             {{- .ctx.Page.Scratch.Add "paged_foot_styles" ( slice $link ) -}}
-        {{ end }}
+        {{- end -}}
 
-        {{ if or ( eq $exts ".js" ) ( eq $exts ".ts" )  }}
+        {{- if or ( eq $exts ".js" ) ( eq $exts ".ts" )  -}}
             {{- .ctx.Page.Scratch.Add "paged_foot_script" ( slice $link ) -}}
-        {{ end }}
+        {{- end -}}
 
-    {{ end }}
+    {{- end -}}
 
-{{ end }}
+{{- end -}}
 

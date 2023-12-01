@@ -6,12 +6,12 @@
 {{- $keyword := delimit .Keywords ", " -}}
 
 <!-- general metadata -->
-<title>{{ $titles }}</title>
+<title>{{- $titles -}}</title>
 
 <meta charset="UTF-8">
-<meta name="language" content="{{ site.Language.Lang }}">
-<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
-<meta name="keywords" content="{{ $keyword }}">
+<meta name="language" content="{{- site.Language.Lang -}}">
+<meta name="description" content="{{- with .Description -}}{{- . -}}{{- else -}}{{- if .IsPage -}}{{- .Summary -}}{{- else -}}{{- with .Site.Params.description -}}{{- . -}}{{- end -}}{{- end -}}{{- end -}}">
+<meta name="keywords" content="{{- $keyword -}}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,11 +21,11 @@
 
 <!-- alternative format -->
 {{- range .AlternativeOutputFormats -}}
-  	<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .RelPermalink | safeURL }}">
+  	<link rel="{{- .Rel -}}" type="{{- .MediaType.Type -}}" href="{{- .RelPermalink | safeURL -}}">
 {{- end -}}
 
 
 <!-- staging information -->
 {{- if ne hugo.IsProduction true -}}
-	<meta name="falconenv" content="{{ hugo.Environment }} ">
+	<meta name="falconenv" content="{{- hugo.Environment -}} ">
 {{- end -}}

@@ -2,7 +2,7 @@
 
     FUNCTION : GET CSS AND JS FILES
 
-    syntax : {{ partial "get-script" ( dict "ctx" . "type" "[style|script]" "load" "[head|foot]" ) }}
+    syntax : {{- partial "get-script" ( dict "ctx" . "type" "[style|script]" "load" "[head|foot]" ) -}}
     attrib :
         - ctx  : page context paramater variable, do not change/remove `ctx` parameters !
         - type : type script you want to get ( style | script ).
@@ -13,38 +13,38 @@
 */}} -->
 
 <!-- function variable -->
-{{ $dirs := index ( split .hook "_" ) 0 }}
-{{ $load := index ( split .hook "_" ) 1 }}
-{{ $exts := cond ( eq ( index ( split .hook "_" ) 2 ) "styles" ) ".css" ".js" }}
-{{ $path := print $dirs "/" $load $exts   }}
-{{ $link := slice }}
-{{ $data := slice }}
+{{- $dirs := index ( split .hook "_" ) 0 -}}
+{{- $load := index ( split .hook "_" ) 1 -}}
+{{- $exts := cond ( eq ( index ( split .hook "_" ) 2 ) "styles" ) ".css" ".js" -}}
+{{- $path := print $dirs "/" $load $exts   -}}
+{{- $link := slice -}}
+{{- $data := slice -}}
 
 
-{{ if .ctx.Page.Scratch.Get .hook }}
+{{- if .ctx.Page.Scratch.Get .hook -}}
 
-    {{ range ( .ctx.Page.Scratch.Get .hook ) }}
-        {{ $data = $data | append ( resources.Get . ) }}
-    {{ end }}
+    {{- range ( .ctx.Page.Scratch.Get .hook ) -}}
+        {{- $data = $data | append ( resources.Get . ) -}}
+    {{- end -}}
 
 
-    {{ if and ( strings.Contains $exts ".css" ) ( $data ) }}
+    {{- if and ( strings.Contains $exts ".css" ) ( $data ) -}}
         {{- if eq hugo.IsProduction true -}}
-            {{ $link = $data | resources.Concat $path | toCSS ( dict "targetPath" $path "outputStyle" "compressed" ) | minify | fingerprint }}
-        {{ else }}
-            {{ $link = $data | resources.Concat $path | toCSS ( dict "targetPath" $path ) }}
-        {{ end }}
-    {{ end }}
+            {{- $link = $data | resources.Concat $path | toCSS ( dict "targetPath" $path "outputStyle" "compressed" ) | minify | fingerprint -}}
+        {{- else -}}
+            {{- $link = $data | resources.Concat $path | toCSS ( dict "targetPath" $path ) -}}
+        {{- end -}}
+    {{- end -}}
 
 
-    {{ if and ( strings.Contains $exts ".js" ) ( $data ) }}
+    {{- if and ( strings.Contains $exts ".js" ) ( $data ) -}}
         {{- if eq hugo.IsProduction true -}}
-            {{ $link = $data | resources.Concat $path | js.Build ( dict "targetPath" $path "minify" true ) | minify | fingerprint }}
-        {{ else }}
-            {{ $link = $data | resources.Concat $path | js.Build ( dict "targetPath" $path ) }}
-        {{ end }}
-    {{ end }}
+            {{- $link = $data | resources.Concat $path | js.Build ( dict "targetPath" $path "minify" true ) | minify | fingerprint -}}
+        {{- else -}}
+            {{- $link = $data | resources.Concat $path | js.Build ( dict "targetPath" $path ) -}}
+        {{- end -}}
+    {{- end -}}
 
-{{ end }}
+{{- end -}}
 
-{{ return $link }} 
+{{- return $link -}} 
