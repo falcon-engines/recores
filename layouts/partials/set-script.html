@@ -20,9 +20,7 @@
 {{ $link := resources.Get .link }}
 {{ $exts := path.Ext .link }}
 
-
 {{ if strings.Contains $link "head" }}
-
 
     {{ if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) }}
         {{- .ctx.Page.Scratch.Add "based_head_styles" ( slice $link ) -}}

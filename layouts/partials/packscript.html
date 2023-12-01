@@ -6,7 +6,6 @@
 <!-- populate script -->
 {{ range $section, $data := $assets_conf }}
   
-  
     {{ if and ( eq $section "styles" ) ( $data.head ) }}
         {{ range $data.head }}
             {{ $assets_path := print $module_name "/based/head/scss/" . ".scss" }}
