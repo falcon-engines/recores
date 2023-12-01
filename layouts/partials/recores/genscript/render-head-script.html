@@ -1,0 +1,18 @@
+<!-- setups script cores  -->
+{{- partial "packscript" ( dict "ctx" . "config" .Site.Params.recores.assets "module" "recores" ) -}}
+
+
+<!-- render critical styles -->
+{{- if .Page.Scratch.Get "head_core_script" -}}
+
+    {{- $source := .Page.Scratch.Get "head_core_script" -}}
+    {{- $linker := "" -}}
+
+    {{- if eq hugo.IsProduction false -}}
+        {{- $linker = $source | resources.Concat ( print "css/critical.js" )  -}}
+    {{- else -}}
+        {{- $linker = $source | resources.Concat ( print "css/critical.js" ) | minify -}}
+    {{- end -}}
+    {{- with $linker -}}<script>{{- $linker.Content | safeJS -}}</script>{{- end -}}
+
+{{- end -}}

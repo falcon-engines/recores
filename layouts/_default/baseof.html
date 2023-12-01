@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ site.Language.Lang }}" data-mode="auto">
 	<head>
-		{{- block "headhook" . }}{{- end -}} <!-- register scripter filter hooks for current pages -->
+		{{- block "inithook" . }}{{- end -}} <!-- register scripter filter hooks for current pages -->
 		{{- partial "recores/headhook" . -}} <!-- renders critical scripts for current active page -->
 		{{- block "metahook" . }}{{- end -}} <!-- register metadata hooks filter for current pages -->
 	</head>

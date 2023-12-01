@@ -3,37 +3,79 @@
 {{- $assets_conf := .config -}}
 {{- $module_name := .module -}}
 
+
+{{ $srcfile := resources.Get "recores/based/pack.json"  }}
+{{ $srclink := $srcfile.RelPermalink | absURL }}
+{{ $sources := getJSON $srclink  }}
+{{ $modular := $sources.pack }}
+
+{{ print $modular }}
+
+{{ range $sources.deps }}
+
+{{  .  }}
+{{ end }}
+
+
+
+
+<!-- base script extracting -->
+{{ range $key, $data := $sources.base }}
+
+    {{ if eq $key "head" }}
+        {{ range .styles }}
+        {{ end }}
+
+        {{ range .script }}
+        {{ end }}
+    {{ end }}
+
+    {{ if eq $key "foot" }}
+        {{ range .styles }}
+        {{ end }}
+
+        {{ range .script }}
+        {{ end }}
+    {{ end }}
+    
+{{ end }}
+
+
+
+
+
+
 <!-- populate script -->
 {{- range $section, $data := $assets_conf -}}
   
     {{- if and ( eq $section "styles" ) ( $data.head ) -}}
         {{- range $data.head -}}
-            {{- $assets_path := print $module_name "/based/head/scss/" . ".scss" -}}
-            {{- partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "head" "cond" "" ) -}}
+            {{- $assets_path := print $module_name "/based/head/styles/" . ".scss" -}}
+            {{- partial "set-script" ( dict "ctx" $contex_page "src" $assets_path "load" "head" "cond" "" ) -}}
         {{- end -}}
     {{- end -}}
 
 
     {{- if and ( eq $section "styles" ) ( $data.foot )  -}}
         {{- range $data.foot -}}
-            {{- $assets_path := print $module_name "/based/foot/scss/" . ".scss" -}}
-            {{- partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "foot" "cond" "" ) -}}
+            {{- $assets_path := print $module_name "/based/foot/styles/" . ".scss" -}}
+            {{- partial "set-script" ( dict "ctx" $contex_page "src" $assets_path "load" "foot" "cond" "" ) -}}
         {{- end -}}
     {{- end -}}
 
 
     {{- if and ( eq $section "script" ) ( $data.head )  -}}
         {{- range $data.head -}}
-            {{- $assets_path := print $module_name "/based/head/js/" . ".js" -}}
-            {{- partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "head" "cond" "" ) -}}
+            {{- $assets_path := print $module_name "/based/head/script/" . ".js" -}}
+            {{- partial "set-script" ( dict "ctx" $contex_page "src" $assets_path "load" "head" "cond" "" ) -}}
         {{- end -}}
     {{- end -}}
 
 
     {{- if and ( eq $section "script" ) ( $data.foot )  -}}
         {{- range $data.foot -}}
-            {{- $assets_path := print $module_name "/based/foot/js/" . ".js" -}}
-            {{- partial "set-script" ( dict "ctx" $contex_page "link" $assets_path "load" "foot" "cond" "" ) -}}
+            {{- $assets_path := print $module_name "/based/foot/script/" . ".js" -}}
+            {{- partial "set-script" ( dict "ctx" $contex_page "src" $assets_path "load" "foot" "cond" "" ) -}}
         {{- end -}}
     {{- end -}}
     

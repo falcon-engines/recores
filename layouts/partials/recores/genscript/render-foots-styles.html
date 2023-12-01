@@ -1,0 +1,30 @@
+<!-- render based styles -->
+{{- if .Page.Scratch.Get "foot_core_styles" -}}
+
+    {{- $base_source := .Page.Scratch.Get "foot_core_styles" -}}
+
+    {{- if eq hugo.IsProduction false -}}
+        {{- $linker := $base_source | resources.Concat ( print "css/falcon.css" ) | toCSS  -}}
+        <link id="base-css" type="text/css" rel="stylesheet" href="{{- $linker.RelPermalink | safeURL -}}" />
+    {{- else -}}
+        {{- $linker := $base_source | resources.Concat ( print "css/falcon.css" ) | toCSS | minify | fingerprint -}}
+        <link id="base-css" type="text/css" rel="stylesheet" href="{{- $linker.RelPermalink | safeURL -}}" integrity="{{- $linker.Data.Integrity | safeHTMLAttr -}}" />
+    {{- end -}}
+
+{{- end -}}
+
+
+<!-- render page styles -->
+{{- if .Page.Scratch.Get "paged_foot_styles" -}}
+
+    {{- $page_source := .Page.Scratch.Get "paged_foot_styles" -}}
+
+    {{- if eq hugo.IsProduction true -}}
+        {{- $linker := $page_source | resources.Concat ( print "css/page.css" ) | toCSS  -}}
+        <link id="page-css" type="text/css" rel="stylesheet" href="{{- $linker.RelPermalink | safeURL -}}" integrity="{{- $linker.Data.Integrity | safeHTMLAttr -}}" />
+    {{- else -}}
+        {{- $linker := $page_source | resources.Concat ( print "css/page.css" ) | toCSS | minify | fingerprint -}}
+        <link id="page-css" type="text/css" rel="stylesheet" href="{{- $linker.RelPermalink | safeURL -}}" />
+    {{- end -}}
+
+{{- end -}}

@@ -3,43 +3,15 @@
 
 
 <!-- page hoook engine -->
-{{- partial "recores/corehook" . -}}
+{{- partial "recores/genscript/scratch-scripthook" . -}}
 
 
-<!-- render based styles -->
-{{- $base_styles := partial "recores/compose" ( dict "ctx" . "filter" "based_foot_styles" ) -}}
-{{- if and ( eq hugo.IsProduction true ) ( $base_styles ) -}}
-    <link id="base-css" type="text/css" rel="stylesheet" href="{{- $base_styles.RelPermalink | safeURL -}}" integrity="{{- $base_styles.Data.Integrity | safeHTMLAttr -}}" />
-{{- else if $base_styles -}}
-    <link id="base-css" type="text/css" rel="stylesheet" href="{{- $base_styles.RelPermalink | safeURL -}}" />
-{{- end -}}
+<!-- render styles -->
+{{- partial "recores/genscript/render-foots-styles" . -}}
 
 
-<!-- render page styles -->
-{{- $page_styles := partial "recores/compose" ( dict "ctx" . "filter" "paged_foot_styles" ) -}}
-{{- if and ( eq hugo.IsProduction true ) ( $page_styles ) -}}
-    <link id="page-css" type="text/css" rel="stylesheet" href="{{- $page_styles.RelPermalink | safeURL -}}" integrity="{{- $page_styles.Data.Integrity | safeHTMLAttr -}}" />
-{{- else if $page_styles -}}
-    <link id="page-css" type="text/css" rel="stylesheet" href="{{- $page_styles.RelPermalink | safeURL -}}" />
-{{- end -}}
-
-
-<!-- render based script -->
-{{- $base_script := partial "recores/compose" ( dict "ctx" . "filter" "based_foot_script" ) -}}
-{{- if and ( eq hugo.IsProduction true ) ( $base_script ) -}}
-    <script id="base-jsx"  type="module" src="{{- $base_script.RelPermalink -}}" integrity="{{- $base_script.Data.Integrity | safeHTMLAttr -}}" defer></script>
-{{- else if $base_script -}}
-    <script id="base-jsx" type="module" src="{{- $base_script.RelPermalink -}}" defer></script>
-{{- end -}}
-
-
-<!-- render page script -->
-{{- $page_script := partial "recores/compose" ( dict "ctx" . "filter" "paged_foot_script" ) -}}
-{{- if and ( eq hugo.IsProduction true ) ( $page_script ) -}}
-    <script id="page-jsx"  type="module" src="{{- $page_script.RelPermalink -}}" integrity="{{- $page_script.Data.Integrity | safeHTMLAttr -}}" defer></script>
-{{- else if $page_script -}}
-    <script id="page-jsx" type="module" src="{{- $page_script.RelPermalink -}}" defer></script>
-{{- end -}}
+<!-- render script -->
+{{- partial "recores/genscript/render-foots-script" . -}}
 
 
 <!-- render icon sprites -->

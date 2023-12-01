@@ -1,0 +1,30 @@
+<!-- render based script -->
+{{- if .Page.Scratch.Get "foot_core_script" -}}
+
+    {{- $base_source := .Page.Scratch.Get "foot_core_script" -}}
+
+    {{- if eq hugo.IsProduction true -}}
+        {{- $linker := $base_source | resources.Concat ( print "jsx/falcon.js" ) | js.Build ( dict "targetPath" ( print "jsx/falcon.js" ) ) | minify | fingerprint  -}}
+        <script id="base-jsx"  type="module" src="{{- $linker.RelPermalink -}}" integrity="{{- $linker.Data.Integrity | safeHTMLAttr -}}" defer></script>
+    {{- else -}}
+        {{- $linker := $base_source | resources.Concat ( print "jsx/falcon.js" ) | js.Build ( dict "targetPath" ( print "jsx/falcon.js" ) )  -}}
+        <script id="base-jsx" type="module" src="{{- $linker.RelPermalink -}}" defer></script>
+    {{- end -}}
+
+{{- end -}}
+
+
+<!-- render page script -->
+{{- if .Page.Scratch.Get "paged_foot_script" -}}
+
+    {{- $page_script := .Page.Scratch.Get "paged_foot_script" -}}
+
+    {{- if eq hugo.IsProduction true -}}
+        {{- $linker := $page_script | resources.Concat ( print "jsx/falcon.js" ) | js.Build ( dict "targetPath" ( print "jsx/falcon.js" ) ) | minify | fingerprint  -}}
+        <script id="page-jsx"  type="module" src="{{- $linker.RelPermalink -}}" integrity="{{- $linker.Data.Integrity | safeHTMLAttr -}}" defer></script>
+    {{- else -}}
+        {{- $linker := $page_script | resources.Concat ( print "jsx/falcon.js" ) | js.Build ( dict "targetPath" ( print "jsx/falcon.js" ) )  -}}
+        <script id="page-jsx" type="module" src="{{- $linker.RelPermalink -}}" defer></script>
+    {{- end -}}
+
+{{ end }}

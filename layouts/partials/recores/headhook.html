@@ -1,16 +1,14 @@
 <!-- setups script cores  -->
-{{- partial "recores/corehook" . -}}
+{{- partial "recores/genscript/scratch-scripthook" . -}}
 
-<!-- setups script cores  -->
-{{- partial "packscript" ( dict "ctx" . "config" .Site.Params.recores.assets "module" "recores" ) -}}
 
 <!-- render metadata cores -->
 {{- partial "recores/metadata/_loader" .  -}}
 
+
 <!-- render critical styles -->
-{{- $styles := partial "get-script" ( dict "ctx" . "hook" "based_head_styles" ) -}}
-{{- with $styles -}}<style>{{- $styles.Content | safeCSS -}}</style>{{- end -}}
+{{- partial "recores/genscript/render-head-styles" . -}}
+
 
 <!-- render critical script -->
-{{- $script := partial "get-script" ( dict "ctx" . "hook" "based_head_script" ) -}}
-{{- with $script -}}<script>{{- $script.Content | safeJS -}}</script>{{- end -}}
+{{- partial "recores/genscript/render-head-script" . -}}

@@ -13,44 +13,91 @@
 
 
 <!-- function variable -->
-{{- $link := resources.Get .link -}}
-{{- $exts := path.Ext .link -}}
-
-{{- if strings.Contains $link "head" -}}
-
-    {{- if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) -}}
-        {{- .ctx.Page.Scratch.Add "based_head_styles" ( slice $link ) -}}
-    {{- end -}}
-    
-    {{- if or ( eq $exts ".js" ) ( eq $exts ".ts" )  -}}
-        {{- .ctx.Page.Scratch.Add "based_head_script" ( slice $link ) -}}
-    {{- end -}}
+{{- $uris := resources.Get .src -}}
+{{- $type := path.Ext .src -}}
+{{- $load := .load -}}
+{{- $dest := .dest -}}
 
 
-{{- else if strings.Contains .link  "foot" -}}
-
-    {{- if ( strings.Contains .link  "based" ) -}}
-
-        {{- if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) -}}
-            {{- .ctx.Page.Scratch.Add "based_foot_styles" ( slice $link ) -}}
-        {{- end -}}
-
-        {{- if or ( eq $exts ".js" ) ( eq $exts ".ts" )  -}}
-            {{- .ctx.Page.Scratch.Add "based_foot_script" ( slice $link ) -}}
-        {{- end -}}
+{{- if eq $load "head" -}}
 
 
-    {{- else if or ( strings.Contains .link  "blocks" ) ( strings.Contains .link  "paged" ) ( strings.Contains .link  "parted" ) -}}
+    <!-- register head styles -->
+    {{- if or ( eq $type ".scss" ) ( eq $type ".less" ) ( eq $type ".sass" ) ( eq $type ".css" ) -}}
 
-        {{- if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) -}}
-            {{- .ctx.Page.Scratch.Add "paged_foot_styles" ( slice $link ) -}}
-        {{- end -}}
-
-        {{- if or ( eq $exts ".js" ) ( eq $exts ".ts" )  -}}
-            {{- .ctx.Page.Scratch.Add "paged_foot_script" ( slice $link ) -}}
+        {{- if resources.Get $uris -}}
+            {{- .ctx.Scratch.Add "head_core_styles" ( slice $uris ) -}}
+        {{- else if eq hugo.IsProduction false -}}
+            {{- print "Head resources not found :"  .src -}}
         {{- end -}}
 
     {{- end -}}
+
+
+    <!-- register head script -->
+    {{- if or ( eq $type ".js" ) ( eq $type ".ts" )  -}}
+
+        {{- if resources.Get $uris -}}
+            {{- .ctx.Scratch.Add "head_core_script" ( slice $uris ) -}}
+        {{- else if eq hugo.IsProduction false -}}
+            {{- print "Head resources not found :"  .src -}}
+        {{- end -}}
+        
+    {{- end -}}
+
+
+{{- else if and ( $dest ) ( eq $load "foot" ) -}}
+
+
+    <!-- register page styles -->
+    {{- if or ( eq $type ".scss" ) ( eq $type ".less" ) ( eq $type ".sass" ) ( eq $type ".css" ) -}}
+
+        {{- if resources.Get $uris -}}
+            {{- .ctx.Page.Scratch.Add "page_part_styles" ( slice  $uris ) -}}
+        {{- else if eq hugo.IsProduction false -}}
+            {{- print "Page resources not found :"  .src -}}
+        {{- end -}}
+   
+    {{- end -}}
+
+
+    <!-- register page script -->
+    {{- if or ( eq $type ".js" ) ( eq $type ".ts" )  -}}
+
+        {{- if resources.Get $uris -}}
+            {{- .ctx.Page.Scratch.Add "page_part_script" ( slice $uris ) -}}
+        {{- else if eq hugo.IsProduction false -}}
+            {{- print "Page resources not found :"  .src -}}
+        {{- end -}}
+       
+    {{- end -}}
+
+
+{{- else if eq $load "foot" -}}
+
+
+    <!-- register foot styles -->
+    {{- if or ( eq $type ".scss" ) ( eq $type ".less" ) ( eq $type ".sass" ) ( eq $type ".css" ) -}}
+
+        {{- if resources.Get $uris -}}
+            {{- .ctx.Page.Scratch.Add "foot_core_styles" ( slice $uris ) -}}
+        {{- else if eq hugo.IsProduction false -}}
+            {{- print "Foot resources not found :"  .src -}}
+        {{- end -}}
+        
+    {{- end -}}
+
+
+    <!-- register foot script -->
+    {{- if or ( eq $type ".js" ) ( eq $type ".ts" )  -}}
+
+        {{- if resources.Get $uris -}}
+            {{- .ctx.Page.Scratch.Add "foot_core_script" ( slice $uris ) -}}
+        {{- else if eq hugo.IsProduction false -}}
+            {{- print "Foot resources not found :"  .src -}}
+        {{- end -}}
+
+    {{- end -}}
+
 
 {{- end -}}
-
