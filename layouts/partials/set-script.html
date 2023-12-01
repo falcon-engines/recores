@@ -1,17 +1,13 @@
 <!-- {{/*
 
-    FUNCTION : REGISTER JS AND CSS FILES
+    FUNCTION : ICON SYSTEM AND RENDER
 
-    syntax : {{ partial "set-scripts" ( dict "ctx" . "link" "[file url]" "load" "[render target]" "cond" "[page store set parameter]" ) }}
+    syntax : {{ partial "icons" ( dict "ctx" . "name" "[icon name]" ) }}
     attrib :
-        - link : parse current page context to this function, do not change/remove `ctx` parameters !
-        - link : url of js / css file
-        - load : ( head | foot )
-        - cond : .Page.Store.Set parameter name, value type from .Page.Store.Set function parameter must be boelean.  
-                 Empty cond attribute on register-script function make scss/js file will render on entire site pages.
+        - ctx  : parse current page context to this function, do not change/remove `ctx` parameters !
+        - name : icon name
     example:
-        {{ partial "register-script" ( dict "ctx" . "link" "scss/base.css" "load" "head" "cond" "" ) }}
-        {{ partial "register-script" ( dict "ctx" . "link" "jsx/audio.js"  "load" "foot" "cond" "begin_audio_element" ) }}
+       {{ partial "icons" ( dict "ctx" $currentpage "name" "chevron-down" ) }}
 
 */}} -->
 
@@ -33,9 +29,7 @@
 
 {{ else if strings.Contains .link  "foot" }}
 
-
     {{ if ( strings.Contains .link  "based" ) }}
-
 
         {{ if or ( eq $exts ".scss" ) ( eq $exts ".less" ) ( eq $exts ".sass" ) ( eq $exts ".css" ) }}
             {{- .ctx.Page.Scratch.Add "based_foot_styles" ( slice $link ) -}}
