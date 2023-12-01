@@ -4,41 +4,7 @@
 {{- $module_name := .module -}}
 
 
-{{ $srcfile := resources.Get "recores/based/pack.json"  }}
-{{ $srclink := $srcfile.RelPermalink | absURL }}
-{{ $sources := getJSON $srclink  }}
-{{ $modular := $sources.pack }}
 
-{{ print $modular }}
-
-{{ range $sources.deps }}
-
-{{  .  }}
-{{ end }}
-
-
-
-
-<!-- base script extracting -->
-{{ range $key, $data := $sources.base }}
-
-    {{ if eq $key "head" }}
-        {{ range .styles }}
-        {{ end }}
-
-        {{ range .script }}
-        {{ end }}
-    {{ end }}
-
-    {{ if eq $key "foot" }}
-        {{ range .styles }}
-        {{ end }}
-
-        {{ range .script }}
-        {{ end }}
-    {{ end }}
-    
-{{ end }}
 
 
 
