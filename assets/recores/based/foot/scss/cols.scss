@@ -2,6 +2,10 @@
     flex: 100%;
 }
 
+.col{
+    flex: auto;
+}
+
 @media ( min-width: 420px ){
     .col-xs-2 {
         flex: 50%;
